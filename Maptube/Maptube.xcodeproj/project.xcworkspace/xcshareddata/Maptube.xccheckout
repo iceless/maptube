@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>640FB9CE-06F9-4E12-B3A4-A5F705D5496B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Maptube</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FA7D1020-9B69-4F94-B7D7-4E3D56E25F99</key>
+		<string>https://github.com/iceless/maptube.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Maptube/Maptube.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FA7D1020-9B69-4F94-B7D7-4E3D56E25F99</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/iceless/maptube.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FA7D1020-9B69-4F94-B7D7-4E3D56E25F99</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FA7D1020-9B69-4F94-B7D7-4E3D56E25F99</string>
+			<key>IDESourceControlWCCName</key>
+			<string>maptube</string>
+		</dict>
+	</array>
+</dict>
+</plist>
