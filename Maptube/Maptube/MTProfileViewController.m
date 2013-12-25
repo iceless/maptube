@@ -34,8 +34,10 @@
     [super viewWillAppear:animated];
     if ([PFUser currentUser]) {
         self.nameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
+        self.navItem.title = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
     } else {
         self.nameLabel.text = NSLocalizedString(@"Not logged in", nil);
+        self.navItem.title = @"nobody";
     }
 }
 
