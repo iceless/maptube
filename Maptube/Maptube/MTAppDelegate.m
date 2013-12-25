@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
+#import <Parse/Parse.h>
 #import "MTAppDelegate.h"
 
 @implementation MTAppDelegate
@@ -13,6 +14,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [Parse setApplicationId:@"iMYrlUJLwqub93eBh6Jdjk6F2UgiTuBGcBewAAoi"
+                  clientKey:@"bWqx8rTSb0GKfZLZCNF0ZAZRanah2ggtOJv0mhvS"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     return YES;
 }
 							
