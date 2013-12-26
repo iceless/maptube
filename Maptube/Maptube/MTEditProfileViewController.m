@@ -44,22 +44,90 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+//#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+//#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    NSInteger num = 0;
+    if (section == 0) {
+        num = 1;
+    } else {
+        num = 5;
+    }
+    return num;
 }
+
+- (void)configureView
+{
+        self.nLabel.text = @"Profile Picture";
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell;
+    
+    if(indexPath.section == 0){
+        static NSString *CellIdentifier = @"profilepiccell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        
+//        UILabel *label;
+//        
+//        label = (UILabel *)[cell.contentView viewWithTag:2];
+//        label.text = @"Profile Picture";
+        
+        self.nLabel.text = @"Profile Picture";
+        
+//        UIImageView *imgv;
+//        imgv = (UIImageView *)[cell.contentView viewWithTag:1];
+//        imgv.image = [UIImage imageNamed:@"profilepic.JPG"];
+        self.imgview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profilepic.JPG"]];
+        
+//        cell.textLabel.text = @"Profile Picture";
+        
+        
+//        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+    } else {
+        static NSString *CellIdentifier = @"fieldcell";
+        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = @"First Name";
+                break;
+            case 1:
+                cell.textLabel.text = @"Last Name";
+                break;
+            case 2:
+                cell.textLabel.text = @"Username";
+                break;
+            case 3:
+                cell.textLabel.text = @"Description";
+                break;
+            case 4:
+                cell.textLabel.text = @"Location";
+                break;
+            default:
+                break;
+        }
+        
+    }
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     

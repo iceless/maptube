@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56C3C932186BFA8E00E9B892 /* profilepic.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 56C3C931186BFA8E00E9B892 /* profilepic.JPG */; };
+		56C3C935186C12B700E9B892 /* MTEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C3C934186C12B700E9B892 /* MTEditProfileViewController.m */; };
 		56F1CAE71867DEEB008498DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CAE61867DEEB008498DF /* Foundation.framework */; };
 		56F1CAE91867DEEB008498DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CAE81867DEEB008498DF /* CoreGraphics.framework */; };
 		56F1CAEB1867DEEB008498DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CAEA1867DEEB008498DF /* UIKit.framework */; };
@@ -47,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		56C3C931186BFA8E00E9B892 /* profilepic.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profilepic.JPG; sourceTree = "<group>"; };
+		56C3C933186C12B700E9B892 /* MTEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditProfileViewController.h; sourceTree = "<group>"; };
+		56C3C934186C12B700E9B892 /* MTEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEditProfileViewController.m; sourceTree = "<group>"; };
 		56F1CAE31867DEEB008498DF /* Maptube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maptube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F1CAE61867DEEB008498DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		56F1CAE81867DEEB008498DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -172,6 +177,8 @@
 				56F1CAFF1867DEEB008498DF /* MTSecondViewController.m */,
 				56F1CB351869869D008498DF /* MTProfileViewController.h */,
 				56F1CB361869869D008498DF /* MTProfileViewController.m */,
+				56C3C933186C12B700E9B892 /* MTEditProfileViewController.h */,
+				56C3C934186C12B700E9B892 /* MTEditProfileViewController.m */,
 				56F1CB011867DEEB008498DF /* Images.xcassets */,
 				56F1CAED1867DEEB008498DF /* Supporting Files */,
 			);
@@ -185,6 +192,7 @@
 				56F1CAEF1867DEEB008498DF /* InfoPlist.strings */,
 				56F1CAF21867DEEB008498DF /* main.m */,
 				56F1CAF41867DEEB008498DF /* Maptube-Prefix.pch */,
+				56C3C931186BFA8E00E9B892 /* profilepic.JPG */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -255,6 +263,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Bing W";
 				TargetAttributes = {
+					56F1CAE21867DEEB008498DF = {
+						DevelopmentTeam = LD37N64D8F;
+					};
 					56F1CB061867DEEB008498DF = {
 						TestTargetID = 56F1CAE21867DEEB008498DF;
 					};
@@ -287,6 +298,7 @@
 				56F1CB021867DEEB008498DF /* Images.xcassets in Resources */,
 				56F1CAF11867DEEB008498DF /* InfoPlist.strings in Resources */,
 				56F1CAFA1867DEEB008498DF /* Main.storyboard in Resources */,
+				56C3C932186BFA8E00E9B892 /* profilepic.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +320,7 @@
 				56F1CAF31867DEEB008498DF /* main.m in Sources */,
 				56F1CB371869869D008498DF /* MTProfileViewController.m in Sources */,
 				56F1CAFD1867DEEB008498DF /* MTFirstViewController.m in Sources */,
+				56C3C935186C12B700E9B892 /* MTEditProfileViewController.m in Sources */,
 				56F1CB34186976ED008498DF /* MTRootTabBarController.m in Sources */,
 				56F1CAF71867DEEB008498DF /* MTAppDelegate.m in Sources */,
 				56F1CB001867DEEB008498DF /* MTSecondViewController.m in Sources */,
@@ -437,6 +450,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/bingw/Dropbox/iProjects/maptube/Maptube,
@@ -445,6 +460,7 @@
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
 				INFOPLIST_FILE = "Maptube/Maptube-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -454,6 +470,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/bingw/Dropbox/iProjects/maptube/Maptube,
@@ -462,6 +480,7 @@
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
 				INFOPLIST_FILE = "Maptube/Maptube-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -527,6 +546,7 @@
 				56F1CB1A1867DEEB008498DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		56F1CB1B1867DEEB008498DF /* Build configuration list for PBXNativeTarget "MaptubeTests" */ = {
 			isa = XCConfigurationList;
@@ -535,6 +555,7 @@
 				56F1CB1D1867DEEB008498DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

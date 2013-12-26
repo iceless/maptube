@@ -10,4 +10,7 @@
 
 @interface MTEditProfileViewController : UITableViewController
 
+@property (nonatomic, strong) IBOutlet UILabel *nLabel;
+@property (nonatomic, strong) IBOutlet UIImageView *imgview;
+
 @end
