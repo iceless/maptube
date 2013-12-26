@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
+#import <Parse/Parse.h>
 #import "MTEditProfileViewController.h"
 
 @interface MTEditProfileViewController ()
@@ -26,6 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self configureView];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -42,32 +45,21 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-//#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 2;
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-//#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    NSInteger num = 0;
-    if (section == 0) {
-        num = 1;
-    } else {
-        num = 5;
-    }
-    return num;
-}
+
 
 - (void)configureView
 {
-        self.nLabel.text = @"Profile Picture";
+    self.nLabel.text = @"Profile Picture";
+    self.imgview.image = [UIImage imageNamed:@"profilepic.JPG"];
 }
 
 
+/*
+ Since this is static cells, so not supposed to use "cellForRowAtIndexPath", 
+ which will mess up with existing framwork.
+ same with "numberOfRowsInSection" and "numberOfSectionsInTableView"
+ 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
@@ -78,6 +70,7 @@
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//            NSLog(@"not supposed to be here!!");
         }
         
 //        UILabel *label;
@@ -93,8 +86,6 @@
         self.imgview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profilepic.JPG"]];
         
 //        cell.textLabel.text = @"Profile Picture";
-        
-        
 //        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
     } else {
@@ -133,6 +124,28 @@
     
     return cell;
 }
+ 
+ - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+ {
+ //#warning Incomplete method implementation.
+ // Return the number of rows in the section.
+ NSInteger num = 0;
+ if (section == 0) {
+ num = 1;
+ } else {
+ num = 5;
+ }
+ return num;
+ }
+ 
+ - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+ {
+ //#warning Potentially incomplete method implementation.
+ // Return the number of sections.
+ return 2;
+ }
+
+ */
 
 /*
 // Override to support conditional editing of the table view.
@@ -184,5 +197,34 @@
 }
 
  */
+
+
+- (IBAction)logOutButtonTapAction:(id)sender {
+    [PFUser logOut];
+    
+    // Create the log in view controller
+    PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
+    [logInViewController setDelegate:self]; // Set ourselves as the delegate
+    
+    // Create the sign up view controller
+    PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
+    [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+    
+    // Assign our sign up controller to be displayed from the login controller
+    [logInViewController setSignUpController:signUpViewController];
+    
+    // Present the log in view controller
+    [self presentViewController:logInViewController animated:YES completion:NULL];
+    
+    
+    //        [self dismissViewControllerAnimated:YES completion:NULL];
+    //    [self presentViewController:logInViewController animated:YES completion:NULL];
+    //    [self.navigationController popViewControllerAnimated:YES];
+}
+
+// Sent to the delegate when a PFUser is logged in.
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 
 @end
