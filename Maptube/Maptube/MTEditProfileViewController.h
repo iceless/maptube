@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTEditProfileViewController : UITableViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface MTEditProfileViewController : UITableViewController 
 
 @property (nonatomic, strong) IBOutlet UILabel *nLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *imgview;
 
-- (IBAction)logOutButtonTapAction:(id)sender;
 
 @end

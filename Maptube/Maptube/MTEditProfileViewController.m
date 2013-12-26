@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
-#import <Parse/Parse.h>
 #import "MTEditProfileViewController.h"
 
 @interface MTEditProfileViewController ()
@@ -199,32 +198,5 @@
  */
 
 
-- (IBAction)logOutButtonTapAction:(id)sender {
-    [PFUser logOut];
-    
-    // Create the log in view controller
-    PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
-    [logInViewController setDelegate:self]; // Set ourselves as the delegate
-    
-    // Create the sign up view controller
-    PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
-    [signUpViewController setDelegate:self]; // Set ourselves as the delegate
-    
-    // Assign our sign up controller to be displayed from the login controller
-    [logInViewController setSignUpController:signUpViewController];
-    
-    // Present the log in view controller
-    [self presentViewController:logInViewController animated:YES completion:NULL];
-    
-    
-    //        [self dismissViewControllerAnimated:YES completion:NULL];
-    //    [self presentViewController:logInViewController animated:YES completion:NULL];
-    //    [self.navigationController popViewControllerAnimated:YES];
-}
-
-// Sent to the delegate when a PFUser is logged in.
-- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user {
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
 
 @end
