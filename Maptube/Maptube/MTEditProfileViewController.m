@@ -133,6 +133,26 @@
     return 2;
 }
 
+//why this functino called twice??
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    /* In this example, there is a different cell for
+     the top, middle and bottom rows of the tableView.
+     Each type of cell has a different height.
+     self.model contains the data for the tableview
+     */
+    static NSString *cellIdentifier;
+    if (indexPath.section == 0)
+        cellIdentifier = @"profilepiccell";
+    else if (indexPath.section == 1)
+        cellIdentifier = @"detailcell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    return cell.bounds.size.height;
+}
+
+
 
 
 /*
