@@ -126,8 +126,7 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView
-heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     /* In this example, there is a different cell for
      the top, middle and bottom rows of the tableView.
