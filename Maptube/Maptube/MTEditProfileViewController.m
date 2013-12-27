@@ -26,8 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self configureView];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -46,19 +44,10 @@
 
 
 
+// Since this is static cells, so not supposed to use "cellForRowAtIndexPath", 
+// which will mess up with existing framwork.
+// same with "numberOfRowsInSection" and "numberOfSectionsInTableView"
 
-- (void)configureView
-{
-    self.nLabel.text = @"Profile Picture";
-    self.imgview.image = [UIImage imageNamed:@"profilepic.JPG"];
-}
-
-
-/*
- Since this is static cells, so not supposed to use "cellForRowAtIndexPath", 
- which will mess up with existing framwork.
- same with "numberOfRowsInSection" and "numberOfSectionsInTableView"
- 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
@@ -72,17 +61,17 @@
 //            NSLog(@"not supposed to be here!!");
         }
         
-//        UILabel *label;
-//        
-//        label = (UILabel *)[cell.contentView viewWithTag:2];
-//        label.text = @"Profile Picture";
+        UILabel *label;
         
-        self.nLabel.text = @"Profile Picture";
+        label = (UILabel *)[cell.contentView viewWithTag:2];
+        label.text = @"Profile Picture";
         
-//        UIImageView *imgv;
-//        imgv = (UIImageView *)[cell.contentView viewWithTag:1];
-//        imgv.image = [UIImage imageNamed:@"profilepic.JPG"];
-        self.imgview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profilepic.JPG"]];
+//        self.nLabel.text = @"Profile Picture";
+        
+        UIImageView *imgv;
+        imgv = (UIImageView *)[cell.contentView viewWithTag:1];
+        imgv.image = [UIImage imageNamed:@"profilepic.JPG"];
+//        self.imgview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profilepic.JPG"]];
         
 //        cell.textLabel.text = @"Profile Picture";
 //        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -124,27 +113,27 @@
     return cell;
 }
  
- - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
- {
- //#warning Incomplete method implementation.
- // Return the number of rows in the section.
- NSInteger num = 0;
- if (section == 0) {
- num = 1;
- } else {
- num = 5;
- }
- return num;
- }
- 
- - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
- {
- //#warning Potentially incomplete method implementation.
- // Return the number of sections.
- return 2;
- }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    NSInteger num = 0;
+    if (section == 0) {
+        num = 1;
+    } else {
+        num = 5;
+    }
+    return num;
+}
 
- */
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    //#warning Potentially incomplete method implementation.
+    // Return the number of sections.
+    return 2;
+}
+
+
 
 /*
 // Override to support conditional editing of the table view.
