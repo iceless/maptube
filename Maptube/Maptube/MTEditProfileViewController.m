@@ -157,8 +157,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"editProfileDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         MTEditProfileDetailViewController *destViewController = segue.destinationViewController;
-        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"detailcell"];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         UILabel *label = (UILabel *)[cell.contentView viewWithTag:2];
         destViewController.detailwhat = label.text;
     }
