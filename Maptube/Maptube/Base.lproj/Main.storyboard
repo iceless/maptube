@@ -136,6 +136,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="psu-Q5-b4L" kind="push" id="Pbi-5v-M1W"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -151,33 +154,23 @@
             <point key="canvasLocation" x="2074" y="457"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="Lot-eG-imF">
+        <scene sceneID="OD5-LI-nZL">
             <objects>
-                <viewController id="vVb-Kl-d8h" sceneMemberID="viewController">
+                <viewController id="psu-Q5-b4L" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2Ci-iW-f1C"/>
-                        <viewControllerLayoutGuide type="bottom" id="zlI-Jo-r56"/>
+                        <viewControllerLayoutGuide type="top" id="zIg-Z1-dT2"/>
+                        <viewControllerLayoutGuide type="bottom" id="NhU-Fg-PwL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dwt-v2-Cyh">
+                    <view key="view" contentMode="scaleToFill" id="lk2-CN-fHA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KOq-2q-u4c">
-                                <rect key="frame" x="0.0" y="86" width="320" height="275"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="CxC-ZP-xIb"/>
+                    <navigationItem key="navigationItem" id="MKY-GR-oOV"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jYp-Fe-QRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QDt-wD-IO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2631" y="457"/>
+            <point key="canvasLocation" x="2547" y="463"/>
         </scene>
         <!--Settings View Controller - Setting-->
         <scene sceneID="rB0-FH-L3n">

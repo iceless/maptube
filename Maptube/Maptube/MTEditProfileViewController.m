@@ -77,28 +77,30 @@
 //        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
     } else {
-        static NSString *CellIdentifier = @"fieldcell";
+        static NSString *CellIdentifier = @"detailcell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
+        
+        UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
 
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = @"First Name";
+                label.text = @"First Name";
                 break;
             case 1:
-                cell.textLabel.text = @"Last Name";
+                label.text = @"Last Name";
                 break;
             case 2:
-                cell.textLabel.text = @"Username";
+                label.text = @"Username";
                 break;
             case 3:
-                cell.textLabel.text = @"Description";
+                label.text = @"Description";
                 break;
             case 4:
-                cell.textLabel.text = @"Location";
+                label.text = @"Location";
                 break;
             default:
                 break;
