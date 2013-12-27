@@ -134,10 +134,17 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fi-G8-iFY">
+                                            <rect key="frame" x="122" y="13" width="165" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="psu-Q5-b4L" kind="push" id="Pbi-5v-M1W"/>
+                                    <segue destination="psu-Q5-b4L" kind="push" identifier="editProfileDetail" id="Pbi-5v-M1W"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -151,12 +158,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1f-TP-9Hb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2074" y="457"/>
+            <point key="canvasLocation" x="2094" y="457"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Profile Detail View Controller-->
         <scene sceneID="OD5-LI-nZL">
             <objects>
-                <viewController id="psu-Q5-b4L" sceneMemberID="viewController">
+                <viewController id="psu-Q5-b4L" customClass="MTEditProfileDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zIg-Z1-dT2"/>
                         <viewControllerLayoutGuide type="bottom" id="NhU-Fg-PwL"/>
@@ -165,7 +172,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="I'm super Bing, thanks :)" translatesAutoresizingMaskIntoConstraints="NO" id="Tlk-ny-U83">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="what" translatesAutoresizingMaskIntoConstraints="NO" id="Tlk-ny-U83">
                                 <rect key="frame" x="0.0" y="82" width="320" height="200"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -175,7 +182,30 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94108780570652173" green="0.94108780570652173" blue="0.94108780570652173" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="MKY-GR-oOV"/>
+                    <navigationItem key="navigationItem" id="MKY-GR-oOV">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="k5d-Lh-FX6">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="qAE-AM-04r">
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.67619591353226571" green="0.76776473052940208" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Done">
+                                            <attributes>
+                                                <color key="NSColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="detailtextview" destination="Tlk-ny-U83" id="vam-Eo-Wvs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QDt-wD-IO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
+#import "MTEditProfileDetailViewController.h"
 #import "MTEditProfileViewController.h"
 
 @interface MTEditProfileViewController ()
@@ -154,7 +155,14 @@
     return cell.bounds.size.height;
 }
 
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"editProfileDetail"]) {
+        MTEditProfileDetailViewController *destViewController = segue.destinationViewController;
+        UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"detailcell"];
+        UILabel *label = (UILabel *)[cell.contentView viewWithTag:2];
+        destViewController.detailwhat = label.text;
+    }
+}
 
 
 /*
