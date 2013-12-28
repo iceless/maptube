@@ -164,6 +164,19 @@
     }
 }
 
+//saveButton to set the infos into PFUser, and send it to remote parse server
+- (IBAction)saveButtonTapAction:(id)sender
+{
+    PFUser *user = [PFUser currentUser];
+    user[@"firstname"] = _values[0];
+    NSLog(@"%@",self.values[0]);
+    user[@"lastname"] = _values[1];
+    user[@"username"] = _values[2];
+    user[@"description"] = _values[3];
+    user[@"location"] = _values[4];
+    [user saveInBackground];
+}
+
 
 /*
 // Override to support conditional editing of the table view.

@@ -15,4 +15,6 @@
 //mutable string array for profile detail values
 @property (nonatomic, strong) NSMutableArray *values;
 
+- (IBAction)saveButtonTapAction:(id)sender;
+
 @end

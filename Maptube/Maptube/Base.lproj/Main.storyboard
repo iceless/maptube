@@ -154,7 +154,13 @@
                             <outlet property="delegate" destination="DZ9-Oc-Gni" id="xE1-ht-Bd4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="bLU-Xm-lG4"/>
+                    <navigationItem key="navigationItem" id="bLU-Xm-lG4">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="FRv-TM-swT">
+                            <connections>
+                                <action selector="saveButtonTapAction:" destination="DZ9-Oc-Gni" id="vzu-51-Hwv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k1f-TP-9Hb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
