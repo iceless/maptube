@@ -99,25 +99,24 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        NSLog(@"Not supposed to be here");
-    }
-    
     if (indexPath.row == 0) {
         
+        NSString *name = [NSString stringWithFormat:NSLocalizedString(@"%@ %@", nil),
+                          [PFUser currentUser][@"firstname"],
+                          [PFUser currentUser][@"lastname"]];
         UILabel *label;
-        
         label = (UILabel *)[cell viewWithTag:1];
-        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
+        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), name];
         
         UIImageView *imgv;
-        imgv = (UIImageView *)[cell viewWithTag:2];
+        imgv = (UIImageView *)[cell viewWithTag:4];
         imgv.image = [UIImage imageNamed:@"profilepic.JPG"];
         
-        //        cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
+        label = (UILabel *)[cell viewWithTag:2];
+        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"location"]];
         
-        //        self.nameLabela.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
+        label = (UILabel *)[cell viewWithTag:3];
+        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
         
     }else {
         
