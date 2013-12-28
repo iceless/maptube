@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTEditProfileViewController : UITableViewController 
+@interface MTEditProfileViewController : UITableViewController
 
+//static string array for profile detail fields
+@property (nonatomic, strong) NSArray *fields;
+//mutable string array for profile detail values
+@property (nonatomic, strong) NSMutableArray *values;
 
 @end

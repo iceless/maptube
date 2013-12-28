@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
+#import "MTEditProfileViewController.h"
 #import "MTEditProfileDetailViewController.h"
 
 @interface MTEditProfileDetailViewController ()
@@ -31,13 +32,19 @@
     //have to use detailwhat to pass the string value to detailtextview.text,
     //since at very beginning, you can't assign detailtextview.text from the previous view controller
     // through controller
-    self.detailtextview.text = self.detailwhat;
+    self.detailtextview.text = self.detailvalue;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)doneButtonTapAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+    MTEditProfileViewController *controller = (MTEditProfileViewController *)[self.navigationController topViewController];
+    controller.values[self.indexpathrow] = self.detailtextview.text;
 }
 
 @end

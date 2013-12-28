@@ -183,24 +183,10 @@
                         <color key="backgroundColor" red="0.94108780570652173" green="0.94108780570652173" blue="0.94108780570652173" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="MKY-GR-oOV">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="k5d-Lh-FX6">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="qAE-AM-04r">
-                                <rect key="frame" x="233" y="5" width="71" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.67619591353226571" green="0.76776473052940208" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Done">
-                                            <attributes>
-                                                <color key="NSColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="k5d-Lh-FX6">
+                            <connections>
+                                <action selector="doneButtonTapAction:" destination="psu-Q5-b4L" id="AhV-Dr-f9R"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

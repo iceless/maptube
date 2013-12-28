@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
+#import <Parse/Parse.h>
 #import "MTEditProfileDetailViewController.h"
 #import "MTEditProfileViewController.h"
 
@@ -33,6 +34,31 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    //initial setting up, retrieve user's info
+    PFUser *user = [PFUser currentUser];
+    self.fields = @[@"First Name", @"Last Name", @"Username", @"Description", @"Location"];
+    self.values = [@[user[@"firstanme"],
+                     user[@"lastname"],
+                     user[@"username"],
+                     user[@"description"],
+                     user[@"location"]] mutableCopy];
+}
+
+//make sure everytime view appears, the table view's labels are updated from array values.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self refreshTableViewData];
+}
+
+//refresh the tableview data, assign array string values to labels respectively 
+- (void)refreshTableViewData
+{
+    for(int i = 0; i < 5; i++)
+    {
+        UILabel *labelvalue = (UILabel *)[[[self tableView] cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1]].contentView viewWithTag:2];
+        labelvalue.text = self.values[i];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,17 +93,10 @@
         label = (UILabel *)[cell.contentView viewWithTag:2];
         label.text = @"Profile Picture";
         
-//        self.nLabel.text = @"Profile Picture";
-        
         UIImageView *imgv;
         imgv = (UIImageView *)[cell.contentView viewWithTag:1];
         imgv.image = [UIImage imageNamed:@"profilepic.JPG"];
-//        self.imgview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profilepic.JPG"]];
-        
-//        cell.textLabel.text = @"Profile Picture";
-//        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        
-    } else {
+    } else if(indexPath.section == 1){
         static NSString *CellIdentifier = @"detailcell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
@@ -86,31 +105,11 @@
         }
         
         UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
+        UILabel *labelValue = (UILabel *)[cell.contentView viewWithTag:2];
 
-        switch (indexPath.row) {
-            case 0:
-                label.text = @"First Name";
-                break;
-            case 1:
-                label.text = @"Last Name";
-                break;
-            case 2:
-                label.text = @"Username";
-                break;
-            case 3:
-                label.text = @"Description";
-                break;
-            case 4:
-                label.text = @"Location";
-                break;
-            default:
-                break;
-        }
-        
+        label.text = self.fields[indexPath.row];
+        labelValue.text = self.values[indexPath.row];
     }
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
     // Configure the cell...
     
     return cell;
@@ -159,9 +158,8 @@
     if ([segue.identifier isEqualToString:@"editProfileDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         MTEditProfileDetailViewController *destViewController = segue.destinationViewController;
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-        UILabel *label = (UILabel *)[cell.contentView viewWithTag:2];
-        destViewController.detailwhat = label.text;
+        destViewController.detailvalue = self.values[indexPath.row];
+        destViewController.indexpathrow = indexPath.row;
     }
 }
 
