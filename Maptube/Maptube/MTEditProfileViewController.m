@@ -38,7 +38,7 @@
     //initial setting up, retrieve user's info
     PFUser *user = [PFUser currentUser];
     self.fields = @[@"First Name", @"Last Name", @"Username", @"Description", @"Location"];
-    self.values = [@[user[@"firstanme"],
+    self.values = [@[user[@"firstname"],
                      user[@"lastname"],
                      user[@"username"],
                      user[@"description"],
@@ -154,7 +154,8 @@
     return cell.bounds.size.height;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
     if ([segue.identifier isEqualToString:@"editProfileDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         MTEditProfileDetailViewController *destViewController = segue.destinationViewController;

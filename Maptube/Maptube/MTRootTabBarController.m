@@ -111,7 +111,7 @@
  */
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
-    user[@"firstanme"] = @"";
+    user[@"firstname"] = @"";
     user[@"lastname"] = @"";
     user[@"description"] = @"";
     user[@"location"] = @"";
