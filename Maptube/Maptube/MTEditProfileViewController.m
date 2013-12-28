@@ -169,7 +169,6 @@
 {
     PFUser *user = [PFUser currentUser];
     user[@"firstname"] = _values[0];
-    NSLog(@"%@",self.values[0]);
     user[@"lastname"] = _values[1];
     user[@"username"] = _values[2];
     user[@"description"] = _values[3];
