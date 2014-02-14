@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //self.title = @"Find A Place";
 	// Do any additional setup after loading the view.
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.zoomEnabled=YES;
@@ -131,7 +132,9 @@
     
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+}
 
 - (void)didReceiveMemoryWarning
 {

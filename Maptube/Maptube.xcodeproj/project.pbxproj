@@ -53,6 +53,7 @@
 		5E95916C18ADEE310097B6BC /* FSOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95916118ADEE310097B6BC /* FSOAuth.m */; };
 		5E95917218ADEEA30097B6BC /* FSConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95916F18ADEEA30097B6BC /* FSConverter.m */; };
 		5E95917318ADEEA30097B6BC /* FSVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95917118ADEEA30097B6BC /* FSVenue.m */; };
+		5E95917618ADF78E0097B6BC /* MTAddCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,8 @@
 		5E95916F18ADEEA30097B6BC /* FSConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSConverter.m; sourceTree = "<group>"; };
 		5E95917018ADEEA30097B6BC /* FSVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSVenue.h; sourceTree = "<group>"; };
 		5E95917118ADEEA30097B6BC /* FSVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSVenue.m; sourceTree = "<group>"; };
+		5E95917418ADF78E0097B6BC /* MTAddCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddCollectionViewController.h; sourceTree = "<group>"; };
+		5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +235,8 @@
 				56C3C937186C7DB800E9B892 /* MTSettingsViewController.m */,
 				5E95914C18ADE6260097B6BC /* MTAddPlaceViewController.h */,
 				5E95914D18ADE6260097B6BC /* MTAddPlaceViewController.m */,
+				5E95917418ADF78E0097B6BC /* MTAddCollectionViewController.h */,
+				5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */,
 				56F1CB011867DEEB008498DF /* Images.xcassets */,
 				56F1CAED1867DEEB008498DF /* Supporting Files */,
 			);
@@ -434,6 +439,7 @@
 				56F1CAFD1867DEEB008498DF /* MTFirstViewController.m in Sources */,
 				56C3C935186C12B700E9B892 /* MTEditProfileViewController.m in Sources */,
 				5E95916418ADEE310097B6BC /* FSRequester.m in Sources */,
+				5E95917618ADF78E0097B6BC /* MTAddCollectionViewController.m in Sources */,
 				5E95916C18ADEE310097B6BC /* FSOAuth.m in Sources */,
 				5E95916518ADEE310097B6BC /* FSTargetCallback.m in Sources */,
 				5E95917218ADEEA30097B6BC /* FSConverter.m in Sources */,
