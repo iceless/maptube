@@ -174,6 +174,8 @@
     user[@"description"] = _values[3];
     user[@"location"] = _values[4];
     [user saveInBackground];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ModifyProfileNotification object:nil];
+    
 }
 
 

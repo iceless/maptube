@@ -8,6 +8,7 @@
 
 #import <Parse/Parse.h>
 #import "MTProfileViewController.h"
+#import "MTAddCollectionViewController.h"
 
 @interface MTProfileViewController ()
 
@@ -32,8 +33,10 @@
 	// Do any additional setup after loading the view.
     
     recipes = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
     
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -44,8 +47,16 @@
 //        self.nameLabel.text = NSLocalizedString(@"Not logged in", nil);
         self.navItem.title = @"nobody";
     }
+    
+    
 }
-
+-(void)editProfile{
+    [self.table reloadData];
+}
+-(IBAction)clickAddCollection:(id)sender{
+    MTAddCollectionViewController *viewController = [[MTAddCollectionViewController alloc]init];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {

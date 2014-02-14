@@ -11,6 +11,7 @@
 @interface MTProfileViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate,UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) IBOutlet UINavigationItem *navItem;
+@property (nonatomic, strong) IBOutlet UITableView *table;
 
 //- (IBAction)logOutButtonTapAction:(id)sender;
 
