@@ -7,7 +7,7 @@
 //
 
 #import <Parse/Parse.h>
-#import "MTEditProfileDetailViewController.h"
+
 #import "MTEditProfileViewController.h"
 
 @interface MTEditProfileViewController ()
@@ -158,12 +158,16 @@
 {
     if ([segue.identifier isEqualToString:@"editProfileDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        MTEditProfileDetailViewController *destViewController = segue.destinationViewController;
-        destViewController.detailvalue = self.values[indexPath.row];
-        destViewController.indexpathrow = indexPath.row;
+        MTEditDetailViewController *destViewController = segue.destinationViewController;
+        destViewController.delegate = self;
+        destViewController.detailValue = self.values[indexPath.row];
+        destViewController.indexPathRow = indexPath.row;
     }
 }
-
+//MTEditDetailViewdelegate
+-(void)updateValue:(NSString *)str atIndex:(NSInteger)i{
+    self.values[i] = str;
+}
 //saveButton to set the infos into PFUser, and send it to remote parse server
 - (IBAction)saveButtonTapAction:(id)sender
 {

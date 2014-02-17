@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MTEditProfileViewController : UITableViewController
+#import "MTEditDetailViewController.h"
+@interface MTEditProfileViewController : UITableViewController<MTEditDetailViewDelegate>
 
 //static string array for profile detail fields
 @property (nonatomic, strong) NSArray *fields;

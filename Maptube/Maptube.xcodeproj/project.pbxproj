@@ -10,7 +10,6 @@
 		56C3C932186BFA8E00E9B892 /* profilepic.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 56C3C931186BFA8E00E9B892 /* profilepic.JPG */; };
 		56C3C935186C12B700E9B892 /* MTEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C3C934186C12B700E9B892 /* MTEditProfileViewController.m */; };
 		56C3C938186C7DB800E9B892 /* MTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C3C937186C7DB800E9B892 /* MTSettingsViewController.m */; };
-		56C3C93B186DCA1400E9B892 /* MTEditProfileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C3C93A186DCA1400E9B892 /* MTEditProfileDetailViewController.m */; };
 		56F1CAE71867DEEB008498DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CAE61867DEEB008498DF /* Foundation.framework */; };
 		56F1CAE91867DEEB008498DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CAE81867DEEB008498DF /* CoreGraphics.framework */; };
 		56F1CAEB1867DEEB008498DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CAEA1867DEEB008498DF /* UIKit.framework */; };
@@ -54,6 +53,7 @@
 		5E95917218ADEEA30097B6BC /* FSConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95916F18ADEEA30097B6BC /* FSConverter.m */; };
 		5E95917318ADEEA30097B6BC /* FSVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95917118ADEEA30097B6BC /* FSVenue.m */; };
 		5E95917618ADF78E0097B6BC /* MTAddCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */; };
+		5E9B4CF918B1BEAE00D9D6A3 /* MTEditDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +72,6 @@
 		56C3C934186C12B700E9B892 /* MTEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEditProfileViewController.m; sourceTree = "<group>"; };
 		56C3C936186C7DB800E9B892 /* MTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSettingsViewController.h; sourceTree = "<group>"; };
 		56C3C937186C7DB800E9B892 /* MTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSettingsViewController.m; sourceTree = "<group>"; };
-		56C3C939186DCA1400E9B892 /* MTEditProfileDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditProfileDetailViewController.h; sourceTree = "<group>"; };
-		56C3C93A186DCA1400E9B892 /* MTEditProfileDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEditProfileDetailViewController.m; sourceTree = "<group>"; };
 		56F1CAE31867DEEB008498DF /* Maptube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maptube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56F1CAE61867DEEB008498DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		56F1CAE81867DEEB008498DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -134,6 +132,8 @@
 		5E95917118ADEEA30097B6BC /* FSVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSVenue.m; sourceTree = "<group>"; };
 		5E95917418ADF78E0097B6BC /* MTAddCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddCollectionViewController.h; sourceTree = "<group>"; };
 		5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddCollectionViewController.m; sourceTree = "<group>"; };
+		5E9B4CF718B1BEAE00D9D6A3 /* MTEditDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditDetailViewController.h; sourceTree = "<group>"; };
+		5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEditDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,8 +229,8 @@
 				56F1CB361869869D008498DF /* MTProfileViewController.m */,
 				56C3C933186C12B700E9B892 /* MTEditProfileViewController.h */,
 				56C3C934186C12B700E9B892 /* MTEditProfileViewController.m */,
-				56C3C939186DCA1400E9B892 /* MTEditProfileDetailViewController.h */,
-				56C3C93A186DCA1400E9B892 /* MTEditProfileDetailViewController.m */,
+				5E9B4CF718B1BEAE00D9D6A3 /* MTEditDetailViewController.h */,
+				5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */,
 				56C3C936186C7DB800E9B892 /* MTSettingsViewController.h */,
 				56C3C937186C7DB800E9B892 /* MTSettingsViewController.m */,
 				5E95914C18ADE6260097B6BC /* MTAddPlaceViewController.h */,
@@ -437,6 +437,7 @@
 				56F1CB371869869D008498DF /* MTProfileViewController.m in Sources */,
 				5E95916618ADEE310097B6BC /* FSWebLogin.m in Sources */,
 				56F1CAFD1867DEEB008498DF /* MTFirstViewController.m in Sources */,
+				5E9B4CF918B1BEAE00D9D6A3 /* MTEditDetailViewController.m in Sources */,
 				56C3C935186C12B700E9B892 /* MTEditProfileViewController.m in Sources */,
 				5E95916418ADEE310097B6BC /* FSRequester.m in Sources */,
 				5E95917618ADF78E0097B6BC /* MTAddCollectionViewController.m in Sources */,
@@ -449,7 +450,6 @@
 				5E95917318ADEEA30097B6BC /* FSVenue.m in Sources */,
 				56C3C938186C7DB800E9B892 /* MTSettingsViewController.m in Sources */,
 				56F1CB001867DEEB008498DF /* MTSecondViewController.m in Sources */,
-				56C3C93B186DCA1400E9B892 /* MTEditProfileDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
