@@ -32,6 +32,13 @@
     //have to use detailwhat to pass the string value to detailtextview.text,
     //since at very beginning, you can't assign detailtextview.text from the previous view controller
     // through controller
+    self.detailtextview.layer.borderWidth =1.0;
+    self.detailtextview.layer.cornerRadius =5.0;
+    self.detailtextview.layer.borderColor = [UIColor grayColor].CGColor;
+    if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0){
+
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     self.detailtextview.text = self.detailvalue;
 }
 
