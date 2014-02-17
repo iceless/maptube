@@ -153,6 +153,15 @@
     
     return cell.bounds.size.height;
 }
+/*
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MTEditDetailViewController *controller=[[MTEditDetailViewController alloc] init];
+    controller.detailValue = self.values[indexPath.row];
+    controller.indexPathRow = indexPath.row;
+    controller.delegate = self;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+ */
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
