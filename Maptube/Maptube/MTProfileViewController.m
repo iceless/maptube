@@ -33,6 +33,9 @@
 	// Do any additional setup after loading the view.
     
     recipes = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
+    PFUser *user = [PFUser currentUser];
+    NSMutableArray *boardArray = user[@"Board"];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
     
 }
@@ -54,8 +57,8 @@
     [self.table reloadData];
 }
 -(IBAction)clickAddCollection:(id)sender{
-    MTAddCollectionViewController *viewController = [[MTAddCollectionViewController alloc]init];
-    [self.navigationController pushViewController:viewController animated:YES];
+   // MTAddCollectionViewController *viewController = [[MTAddCollectionViewController alloc]init];
+   // [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -130,8 +133,13 @@
         label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
         
     }else {
+        UILabel *label;
+        label = (UILabel *)[cell viewWithTag:1];
+        label.text = [recipes objectAtIndex:indexPath.row];
+        UIImageView *imgView = (UIImageView *)[cell viewWithTag:2];
+        imgView.image = [UIImage imageNamed:@"board"];
         
-        cell.textLabel.text = [recipes objectAtIndex:indexPath.row];
+       
     }
     return cell;
 }
