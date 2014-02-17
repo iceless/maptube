@@ -40,6 +40,8 @@
     self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;
     self.locationManager.distanceFilter=10.0f;
     [self.locationManager startUpdatingLocation];
+    
+    //self.table.tableFooterView = self.footer;
 }
 #pragma mark - Map
 
@@ -133,6 +135,18 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    FSVenue *venue = self.nearbyPlaces[indexPath.row];
+    NSLog(@"%@",venue.venueId);
+    [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",venue.venueId]] andStr:nil compeletion:^(id data){
+        //获取Foursquare图片信息
+        NSDictionary *dict = data;
+        NSDictionary *picDict = [dict objectForKey:@"photos"];
+        NSArray *picArray = [picDict objectForKey:@"items"];
+        
+        
+    }];
+    
+    
 
 }
 

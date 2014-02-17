@@ -15,5 +15,6 @@
 @property (strong,nonatomic )  IBOutlet UITableView *table;
 @property (strong, nonatomic)  CLLocationManager *locationManager;
 @property (assign, nonatomic)  CLLocationCoordinate2D  curLocation;
+@property (strong, nonatomic) IBOutlet UIView *footer;
 
 @end
