@@ -5,6 +5,7 @@
 //
 
 #import <Availability.h>
+
 #define ModifyProfileNotification @"EditProfileNotification"
 
 #ifndef __IPHONE_5_0
@@ -14,4 +15,6 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+#import "AFNetworking.h"
+#import "AFHelper.h"
 #endif
