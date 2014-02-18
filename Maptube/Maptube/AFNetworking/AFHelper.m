@@ -17,6 +17,7 @@
     
     [request setHTTPBody:postData];
     [request setHTTPMethod:@"Get"];
+    //[request setHTTPMethod:@"Post"];
         
     }
     
