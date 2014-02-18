@@ -66,6 +66,8 @@
 		5E9B4D1A18B1FE3B00D9D6A3 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1018B1FE3B00D9D6A3 /* AFXMLRequestOperation.m */; };
 		5E9B4D1B18B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1218B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m */; };
 		5E9B4D1E18B1FEB000D9D6A3 /* AFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */; };
+		5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */; };
+		5EA684E918B32DA800679EDE /* MTChooseBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +172,10 @@
 		5E9B4D1218B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHelper.m; path = AFNetworking/AFHelper.m; sourceTree = "<group>"; };
 		5E9B4D1D18B1FEB000D9D6A3 /* AFHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHelper.h; path = AFNetworking/AFHelper.h; sourceTree = "<group>"; };
+		5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddPictureViewController.h; sourceTree = "<group>"; };
+		5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddPictureViewController.m; sourceTree = "<group>"; };
+		5EA684E718B32DA800679EDE /* MTChooseBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTChooseBoardViewController.h; sourceTree = "<group>"; };
+		5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTChooseBoardViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +257,7 @@
 		56F1CAEC1867DEEB008498DF /* Maptube */ = {
 			isa = PBXGroup;
 			children = (
+				5EA684E318B3010000679EDE /* Cell */,
 				5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */,
 				5E9B4D1D18B1FEB000D9D6A3 /* AFHelper.h */,
 				5E9B4CFF18B1FE3A00D9D6A3 /* AFNetworking */,
@@ -278,6 +285,10 @@
 				5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */,
 				5E9B4CFC18B1F3E100D9D6A3 /* MTBoardViewController.h */,
 				5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */,
+				5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */,
+				5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */,
+				5EA684E718B32DA800679EDE /* MTChooseBoardViewController.h */,
+				5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */,
 				56F1CB011867DEEB008498DF /* Images.xcassets */,
 				56F1CAED1867DEEB008498DF /* Supporting Files */,
 			);
@@ -390,6 +401,13 @@
 				5E9B4D1218B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		5EA684E318B3010000679EDE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,9 +543,11 @@
 				5E9B4D1618B1FE3B00D9D6A3 /* AFJSONRequestOperation.m in Sources */,
 				56F1CAF71867DEEB008498DF /* MTAppDelegate.m in Sources */,
 				5E9B4D1718B1FE3B00D9D6A3 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */,
 				5E95917318ADEEA30097B6BC /* FSVenue.m in Sources */,
 				56C3C938186C7DB800E9B892 /* MTSettingsViewController.m in Sources */,
 				5E9B4D1818B1FE3B00D9D6A3 /* AFPropertyListRequestOperation.m in Sources */,
+				5EA684E918B32DA800679EDE /* MTChooseBoardViewController.m in Sources */,
 				5E9B4D1E18B1FEB000D9D6A3 /* AFHelper.m in Sources */,
 				56F1CB001867DEEB008498DF /* MTSecondViewController.m in Sources */,
 			);
@@ -612,7 +632,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -645,7 +665,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -660,7 +680,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhong sheng (Y2P65PB7UL)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Vivian/maptube/Maptube,
+					"$(SRCROOT)/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
@@ -681,7 +701,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Vivian/maptube/Maptube,
+					"$(SRCROOT)/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
