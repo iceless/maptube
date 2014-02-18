@@ -112,6 +112,8 @@
     }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    PFUser *user = [PFUser currentUser];
+    NSMutableArray *boardArray = user[@"Board"];
     
     if (indexPath.row == 0) {
         
@@ -133,6 +135,7 @@
         label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
         
     }else {
+        
         UILabel *label;
         label = (UILabel *)[cell viewWithTag:1];
         label.text = [recipes objectAtIndex:indexPath.row];
