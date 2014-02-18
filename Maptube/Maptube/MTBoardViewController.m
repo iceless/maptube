@@ -27,6 +27,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.mapView.mapType = MKMapTypeStandard;
+    self.mapView.zoomEnabled=YES;
+    self.mapView.showsUserLocation=NO;
+    self.mapView.delegate=self;
+
 }
 
 - (void)didReceiveMemoryWarning
