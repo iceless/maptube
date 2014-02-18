@@ -17,4 +17,5 @@
 @property (assign, nonatomic)  CLLocationCoordinate2D  curLocation;
 @property (strong, nonatomic) IBOutlet UIView *footer;
 
+
 @end

@@ -10,6 +10,7 @@
 #import "FSVenue.h"
 #import "Foursquare2.h"
 #import "FSConverter.h"
+#import "MTAddPictureViewController.h"
 
 @interface MTAddPlaceViewController ()
 
@@ -136,12 +137,32 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FSVenue *venue = self.nearbyPlaces[indexPath.row];
-    NSLog(@"%@",venue.venueId);
+    //NSLog(@"%@",venue.venueId);
     [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",venue.venueId]] andStr:nil compeletion:^(id data){
         //获取Foursquare图片信息
+        NSMutableArray *imageArray= [NSMutableArray array];
         NSDictionary *dict = data;
-        NSDictionary *picDict = [dict objectForKey:@"photos"];
-        NSArray *picArray = [picDict objectForKey:@"items"];
+        dict = [dict objectForKey:@"response"];
+        dict = [dict objectForKey:@"venue"];
+        dict = [dict objectForKey:@"photos"];
+        NSArray *array = [dict objectForKey:@"groups"];
+        if(array.count!=0){
+        dict = [array objectAtIndex:0];
+        NSArray *picArray = [dict objectForKey:@"items"];
+        for (int i=0; i<picArray.count; i++) {
+            NSDictionary *picDict = [picArray objectAtIndex:i];
+            NSString *str= [picDict objectForKey:@"prefix"];
+            str = [str stringByAppendingString:@"150x200"];
+            str = [str stringByAppendingString:[picDict objectForKey:@"suffix"]];
+            NSLog(@"%@",str);
+            [imageArray addObject:str];
+            
+            
+        }
+        }
+        
+        MTAddPictureViewController *controller = [[MTAddPictureViewController alloc ]initWithImageArray:imageArray AndVenue:venue];
+        [self.navigationController pushViewController:controller animated:YES];
         
         
     }];
