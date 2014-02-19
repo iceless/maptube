@@ -9,6 +9,7 @@
 #import <Parse/Parse.h>
 #import "MTProfileViewController.h"
 #import "MTAddCollectionViewController.h"
+#import "MTBoardViewController.h"
 
 @interface MTProfileViewController ()
 
@@ -99,6 +100,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [recipes count];
+    //return [PFUser currentUser][@"Board"]
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -164,5 +166,15 @@
     
     return cell.bounds.size.height;
 }
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+if ([segue.identifier isEqualToString:@"BoardDetail"]) {
+    NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
+    MTBoardViewController *destViewController = segue.destinationViewController;
+    
+    destViewController.placeArray = [PFUser user][@"Board"][indexPath.row][5];
+}
+}
+
 
 @end
