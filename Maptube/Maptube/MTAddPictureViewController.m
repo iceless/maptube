@@ -66,9 +66,9 @@
 }
 -(void)clickPicture:(id)sender{
     UIButton *button = (UIButton *)sender;
-    MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImageStr:[self.picArray objectAtIndex:button.tag] AndVenue:self.venue];
-    controller.view.frame = CGRectMake(10, 100, self.view.frame.size.width-20, self.view.frame.size.height);
-    [self.view addSubview:controller.view];
+   // MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImageStr:[self.picArray objectAtIndex:button.tag] AndVenue:self.venue];
+    //controller.view.frame = CGRectMake(10, 100, self.view.frame.size.width-20, self.view.frame.size.height);
+    //[self.view addSubview:controller.view];
     //self.modalTransitionStyle
     //弹出选择board面板
     

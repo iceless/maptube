@@ -37,6 +37,8 @@
 		56F1CB3118696AB7008498DF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CB3018696AB7008498DF /* SystemConfiguration.framework */; };
 		56F1CB34186976ED008498DF /* MTRootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CB33186976ED008498DF /* MTRootTabBarController.m */; };
 		56F1CB371869869D008498DF /* MTProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CB361869869D008498DF /* MTProfileViewController.m */; };
+		5E85E18F18B4420600A2A172 /* MTPlaceIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */; };
+		5E85E19518B483A000A2A172 /* MTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85E19418B483A000A2A172 /* MTTableView.m */; };
 		5E95914B18ADC24B0097B6BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E95914A18ADC24B0097B6BC /* MapKit.framework */; };
 		5E95914E18ADE6260097B6BC /* MTAddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95914D18ADE6260097B6BC /* MTAddPlaceViewController.m */; };
 		5E95916218ADEE310097B6BC /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 5E95915018ADEE310097B6BC /* CHANGELOG.md */; };
@@ -121,6 +123,10 @@
 		56F1CB33186976ED008498DF /* MTRootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRootTabBarController.m; sourceTree = "<group>"; };
 		56F1CB351869869D008498DF /* MTProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProfileViewController.h; sourceTree = "<group>"; };
 		56F1CB361869869D008498DF /* MTProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProfileViewController.m; sourceTree = "<group>"; };
+		5E85E18D18B4420600A2A172 /* MTPlaceIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlaceIntroductionViewController.h; sourceTree = "<group>"; };
+		5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlaceIntroductionViewController.m; sourceTree = "<group>"; };
+		5E85E19318B483A000A2A172 /* MTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTableView.h; sourceTree = "<group>"; };
+		5E85E19418B483A000A2A172 /* MTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTableView.m; sourceTree = "<group>"; };
 		5E95914A18ADC24B0097B6BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5E95914C18ADE6260097B6BC /* MTAddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddPlaceViewController.h; sourceTree = "<group>"; };
 		5E95914D18ADE6260097B6BC /* MTAddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddPlaceViewController.m; sourceTree = "<group>"; };
@@ -285,10 +291,14 @@
 				5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */,
 				5E9B4CFC18B1F3E100D9D6A3 /* MTBoardViewController.h */,
 				5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */,
+				5E85E19318B483A000A2A172 /* MTTableView.h */,
+				5E85E19418B483A000A2A172 /* MTTableView.m */,
 				5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */,
 				5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */,
 				5EA684E718B32DA800679EDE /* MTChooseBoardViewController.h */,
 				5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */,
+				5E85E18D18B4420600A2A172 /* MTPlaceIntroductionViewController.h */,
+				5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */,
 				56F1CB011867DEEB008498DF /* Images.xcassets */,
 				56F1CAED1867DEEB008498DF /* Supporting Files */,
 			);
@@ -532,6 +542,7 @@
 				5E9B4D1A18B1FE3B00D9D6A3 /* AFXMLRequestOperation.m in Sources */,
 				5E95916418ADEE310097B6BC /* FSRequester.m in Sources */,
 				5E95917618ADF78E0097B6BC /* MTAddCollectionViewController.m in Sources */,
+				5E85E18F18B4420600A2A172 /* MTPlaceIntroductionViewController.m in Sources */,
 				5E95916C18ADEE310097B6BC /* FSOAuth.m in Sources */,
 				5E95916518ADEE310097B6BC /* FSTargetCallback.m in Sources */,
 				5E95917218ADEEA30097B6BC /* FSConverter.m in Sources */,
@@ -541,6 +552,7 @@
 				5E9B4D1B18B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m in Sources */,
 				5E9B4D1318B1FE3B00D9D6A3 /* AFHTTPClient.m in Sources */,
 				5E9B4D1618B1FE3B00D9D6A3 /* AFJSONRequestOperation.m in Sources */,
+				5E85E19518B483A000A2A172 /* MTTableView.m in Sources */,
 				56F1CAF71867DEEB008498DF /* MTAppDelegate.m in Sources */,
 				5E9B4D1718B1FE3B00D9D6A3 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */,
