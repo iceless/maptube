@@ -9,6 +9,7 @@
 #import "MTChooseBoardViewController.h"
 #import <Parse/Parse.h>
 
+
 @interface MTChooseBoardViewController ()
 
 @end
@@ -23,19 +24,15 @@
     }
     return self;
 }
--(id)initWithImageStr:(NSString *)str AndVenue:(FSVenue *)venue{
+-(id)initWithImage:(UIImage *)image AndVenue:(FSVenue *)venue{
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
-       
-        
-        //self.view.backgroundColor = [UIColor grayColor];
         UIStoryboard * storyBoard  = [UIStoryboard
                                       storyboardWithName:@"Main" bundle:nil];
-        
         self = [storyBoard instantiateViewControllerWithIdentifier:@"ChooseBoard"];
         self.venue = venue;
-        self.imageStr = str;
+        self.image = image;
     }
     return self;
     
@@ -45,20 +42,21 @@
     [super viewDidLoad];
     PFUser *user = [PFUser currentUser];
     self.boardArray = user[@"Board"];
+    
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
     [button addTarget:self action:@selector(navBack) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Close" forState:UIControlStateNormal];
-    self.myNavigationItem.leftBarButtonItem=barItem;
+    self.navigationItem.leftBarButtonItem=barItem;
     
     button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame=CGRectMake(0, 0, 50, 32);
+    button.frame=CGRectMake(0, 0, 100, 32);
     [button addTarget:self action:@selector(createBoard) forControlEvents:UIControlEventTouchUpInside];
     barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Create" forState:UIControlStateNormal];
-    [button setBackgroundColor:[UIColor redColor]];
-    self.myNavigationItem.rightBarButtonItem=barItem;
+    [button setTitle:@"CreateBoard" forState:UIControlStateNormal];
+    //[button setBackgroundColor:[UIColor redColor]];
+    self.navigationItem.rightBarButtonItem=barItem;
     
     
     //self.table.frame = CGRectMake(10, 100, self.view.frame.size.width-20, self.view.frame.size.height);
@@ -70,6 +68,9 @@
 }
 -(void)navBack{
     [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)createBoard{
+    
 }
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -97,7 +98,7 @@
     if(indexPath.section==0){
         cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         UIImageView *imgView = (UIImageView *)[cell viewWithTag:1];
-        [imgView setImageWithURL:[NSURL URLWithString:self.imageStr]];
+        imgView.image = self.image;
         self.describeTextField = (UITextField *)[cell viewWithTag:2];
         UILabel *placeTitle = (UILabel *)[cell viewWithTag:3];
         placeTitle.text = self.venue.name;
@@ -111,6 +112,15 @@
     }
     
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSMutableArray  *array= [PFUser user][@"Board"][indexPath.row][5];
+    [array addObject:self.venue];
+    [PFUser user][@"Board"][indexPath.row][5] = array;
+    [[PFUser user] saveInBackground];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

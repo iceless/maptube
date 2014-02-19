@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "FSVenue.h"
-@interface MTChooseBoardViewController : UINavigationController<UITableViewDelegate, UITableViewDataSource>
+@interface MTChooseBoardViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) FSVenue *venue;
 @property (strong, nonatomic) NSArray *boardArray;
 @property (strong, nonatomic) UITextField *describeTextField;
-@property (strong, nonatomic) NSString *imageStr;
+@property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) IBOutlet UITableView *table;
-@property (strong, nonatomic) IBOutlet  UINavigationItem *myNavigationItem;
--(id)initWithImageStr:(NSString *)str AndVenue:(FSVenue *)venue;
+//@property (strong, nonatomic) IBOutlet  UINavigationItem *myNavigationItem;
+-(id)initWithImage:(UIImage *)image AndVenue:(FSVenue *)venue;
 
 @end
