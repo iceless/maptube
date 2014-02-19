@@ -11,6 +11,7 @@
 #import "Foursquare2.h"
 #import "FSConverter.h"
 #import "MTAddPictureViewController.h"
+#import "MTPlaceIntroductionViewController.h"
 
 @interface MTAddPlaceViewController ()
 
@@ -137,6 +138,8 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FSVenue *venue = self.nearbyPlaces[indexPath.row];
+    
+    
     //NSLog(@"%@",venue.venueId);
     [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",venue.venueId]] andStr:nil compeletion:^(id data){
         //获取Foursquare图片信息
@@ -144,6 +147,9 @@
         NSDictionary *dict = data;
         dict = [dict objectForKey:@"response"];
         dict = [dict objectForKey:@"venue"];
+        MTPlaceIntroductionViewController *controller = [[MTPlaceIntroductionViewController  alloc]initWithData:dict AndVenue:venue];
+        [self.navigationController pushViewController:controller animated:YES];
+        /*
         dict = [dict objectForKey:@"photos"];
         NSArray *array = [dict objectForKey:@"groups"];
         if(array.count!=0){
@@ -163,7 +169,7 @@
         
         MTAddPictureViewController *controller = [[MTAddPictureViewController alloc ]initWithImageArray:imageArray AndVenue:venue];
         [self.navigationController pushViewController:controller animated:YES];
-        
+        */
         
     }];
     
