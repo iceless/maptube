@@ -94,7 +94,12 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+      //delete board
+      
+    
 
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
