@@ -100,8 +100,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [recipes count];
-    //return [PFUser currentUser][@"Board"]
+    //return [recipes count];
+    NSArray *array= [PFUser currentUser][@"Board"];
+    return array.count+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,6 +118,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     PFUser *user = [PFUser currentUser];
     NSMutableArray *boardArray = user[@"Board"];
+    NSLog(@"%@",boardArray);
     
     if (indexPath.row == 0) {
         
@@ -141,7 +143,10 @@
         
         UILabel *label;
         label = (UILabel *)[cell viewWithTag:1];
-        label.text = [recipes objectAtIndex:indexPath.row];
+        
+        NSArray *array = [boardArray objectAtIndex:(indexPath.row-1)];
+        label.text = array[0];
+       
         UIImageView *imgView = (UIImageView *)[cell viewWithTag:2];
         imgView.image = [UIImage imageNamed:@"board"];
         
