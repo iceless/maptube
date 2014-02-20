@@ -46,7 +46,7 @@
     button.frame=CGRectMake(0, 0, 50, 32);
     [button addTarget:self action:@selector(createBoard) forControlEvents:UIControlEventTouchUpInside];
     barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Create" forState:UIControlStateNormal];
+    [button setTitle:@"Done" forState:UIControlStateNormal];
     [button setBackgroundColor:[UIColor redColor]];
     self.navigationItem.rightBarButtonItem=barItem;
     

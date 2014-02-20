@@ -82,7 +82,10 @@
     else if(indexPath.section==3){
     }
     else{
-        
+        UILabel *label = [[UILabel alloc]initWithFrame:cell.frame];
+        label.text =@"Delete Board";
+       
+        [cell.contentView addSubview:label];
         
     }
     
