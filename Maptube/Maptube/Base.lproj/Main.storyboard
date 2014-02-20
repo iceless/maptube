@@ -737,7 +737,7 @@
         <!--Edit Board View Controller-->
         <scene sceneID="UyQ-aq-sGe">
             <objects>
-                <viewController storyboardIdentifier="AddBoard" id="Q31-qE-lte" customClass="MTEditBoardViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditBoard" id="Q31-qE-lte" customClass="MTEditBoardViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="1m1-d5-GBc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

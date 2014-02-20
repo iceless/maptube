@@ -179,7 +179,7 @@
     [boardArray addObject:self.values];
     user[@"Board"] = boardArray;
     [user saveInBackground];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 

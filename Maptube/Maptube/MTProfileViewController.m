@@ -44,6 +44,7 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self.table reloadData];
     [super viewWillAppear:animated];
     if ([PFUser currentUser]) {
 //        self.nameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
