@@ -8,6 +8,7 @@
 
 #import "MTChooseBoardViewController.h"
 #import <Parse/Parse.h>
+#import "MTAddCollectionViewController.h"
 
 
 @interface MTChooseBoardViewController ()
@@ -66,10 +67,16 @@
     
 	// Do any additional setup after loading the view.
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [self.table reloadData];
+    
+}
 -(void)navBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)createBoard{
+    MTAddCollectionViewController *controller = [[MTAddCollectionViewController alloc]init];
+    [self.navigationController pushViewController:controller animated:YES];
     
 }
 #pragma mark - Table view data source
@@ -114,6 +121,12 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    /*
+    if(self.describeTextField.text.length==0){
+         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Please fill the describe first", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+        return;
+    }
+     */
     PFUser *user = [PFUser currentUser];
 
     NSMutableArray * boardArray= user[@"Board"][indexPath.row];
@@ -124,6 +137,8 @@
     [venueDict setObject:self.venue.title forKey:@"Title"];
     [venueDict setObject:self.venue.venueId forKey:@"VenueId"];
     [venueDict setObject:self.venue.location.address forKey:@"VenueAddress"];
+    if(self.describeTextField.text.length!=0)
+        [venueDict setObject:self.describeTextField.text forKey:@"Describe"];
     NSNumber *number = [NSNumber numberWithDouble:self.venue.location.coordinate.longitude];
     [venueDict setObject:number forKey:@"Longitude"];
     number = [NSNumber numberWithDouble:self.venue.location.coordinate.latitude];

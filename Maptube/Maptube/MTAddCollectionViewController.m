@@ -21,6 +21,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        UIStoryboard * storyBoard  = [UIStoryboard
+                                      storyboardWithName:@"Main" bundle:nil];
+        self = [storyBoard instantiateViewControllerWithIdentifier:@"AddBoard"];
+        
     }
     return self;
 }
@@ -171,8 +175,6 @@
     NSMutableArray *boardArray = user[@"Board"];
     if(!boardArray){
         boardArray = [NSMutableArray array];
-        
-        
     }
     [boardArray addObject:self.values];
     user[@"Board"] = boardArray;
