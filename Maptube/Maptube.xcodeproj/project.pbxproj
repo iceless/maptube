@@ -37,6 +37,7 @@
 		56F1CB3118696AB7008498DF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CB3018696AB7008498DF /* SystemConfiguration.framework */; };
 		56F1CB34186976ED008498DF /* MTRootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CB33186976ED008498DF /* MTRootTabBarController.m */; };
 		56F1CB371869869D008498DF /* MTProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CB361869869D008498DF /* MTProfileViewController.m */; };
+		5E62BB8E18B602C30061A48C /* MTEditBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */; };
 		5E85E18F18B4420600A2A172 /* MTPlaceIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */; };
 		5E85E19518B483A000A2A172 /* MTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85E19418B483A000A2A172 /* MTTableView.m */; };
 		5E95914B18ADC24B0097B6BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E95914A18ADC24B0097B6BC /* MapKit.framework */; };
@@ -123,6 +124,8 @@
 		56F1CB33186976ED008498DF /* MTRootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRootTabBarController.m; sourceTree = "<group>"; };
 		56F1CB351869869D008498DF /* MTProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProfileViewController.h; sourceTree = "<group>"; };
 		56F1CB361869869D008498DF /* MTProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProfileViewController.m; sourceTree = "<group>"; };
+		5E62BB8C18B602C30061A48C /* MTEditBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditBoardViewController.h; sourceTree = "<group>"; };
+		5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEditBoardViewController.m; sourceTree = "<group>"; };
 		5E85E18D18B4420600A2A172 /* MTPlaceIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlaceIntroductionViewController.h; sourceTree = "<group>"; };
 		5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlaceIntroductionViewController.m; sourceTree = "<group>"; };
 		5E85E19318B483A000A2A172 /* MTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTableView.h; sourceTree = "<group>"; };
@@ -289,6 +292,8 @@
 				5E95914D18ADE6260097B6BC /* MTAddPlaceViewController.m */,
 				5E95917418ADF78E0097B6BC /* MTAddCollectionViewController.h */,
 				5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */,
+				5E62BB8C18B602C30061A48C /* MTEditBoardViewController.h */,
+				5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */,
 				5E9B4CFC18B1F3E100D9D6A3 /* MTBoardViewController.h */,
 				5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */,
 				5E85E19318B483A000A2A172 /* MTTableView.h */,
@@ -537,6 +542,7 @@
 				5E95916618ADEE310097B6BC /* FSWebLogin.m in Sources */,
 				56F1CAFD1867DEEB008498DF /* MTFirstViewController.m in Sources */,
 				5E9B4D1418B1FE3B00D9D6A3 /* AFHTTPRequestOperation.m in Sources */,
+				5E62BB8E18B602C30061A48C /* MTEditBoardViewController.m in Sources */,
 				5E9B4CF918B1BEAE00D9D6A3 /* MTEditDetailViewController.m in Sources */,
 				56C3C935186C12B700E9B892 /* MTEditProfileViewController.m in Sources */,
 				5E9B4D1A18B1FE3B00D9D6A3 /* AFXMLRequestOperation.m in Sources */,
