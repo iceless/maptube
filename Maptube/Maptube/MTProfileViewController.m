@@ -10,6 +10,7 @@
 #import "MTProfileViewController.h"
 #import "MTAddCollectionViewController.h"
 #import "MTBoardViewController.h"
+#import "FSConverter.h"
 
 @interface MTProfileViewController ()
 
@@ -171,8 +172,11 @@
 if ([segue.identifier isEqualToString:@"BoardDetail"]) {
     NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
     MTBoardViewController *destViewController = segue.destinationViewController;
-    
-    destViewController.placeArray = [PFUser user][@"Board"][indexPath.row][5];
+    NSArray *array = [PFUser currentUser][@"Board"][indexPath.row-1];
+    if(array.count==6){
+    NSArray *venuArray = [PFUser currentUser][@"Board"][indexPath.row-1][5];
+    destViewController.placeArray = [FSConverter objectsConvertToVenues:venuArray];
+    }
 }
 }
 

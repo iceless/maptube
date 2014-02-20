@@ -114,12 +114,28 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSMutableArray  *array= [PFUser user][@"Board"][indexPath.row][5];
-    [array addObject:self.venue];
-    [PFUser user][@"Board"][indexPath.row][5] = array;
-    [[PFUser user] saveInBackground];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    PFUser *user = [PFUser currentUser];
+
+    NSMutableArray * boardArray= user[@"Board"][indexPath.row];
+    NSMutableArray *array;
+    if(boardArray.count==6)  array = boardArray[5];
+    else array= [NSMutableArray array];
+    NSMutableDictionary *venueDict = [NSMutableDictionary dictionary];
+    [venueDict setObject:self.venue.title forKey:@"Title"];
+    [venueDict setObject:self.venue.venueId forKey:@"VenueId"];
+    [venueDict setObject:self.venue.location.address forKey:@"VenueAddress"];
+    NSNumber *number = [NSNumber numberWithDouble:self.venue.location.coordinate.longitude];
+    [venueDict setObject:number forKey:@"Longitude"];
+    number = [NSNumber numberWithDouble:self.venue.location.coordinate.latitude];
+    [venueDict setObject:number forKey:@"Latitude"];
+    [venueDict setObject:self.venue.location.distance forKey:@"Distance"];
     
+    [array addObject:venueDict];
+    boardArray[5] = array;
+    
+    user[@"Board"][indexPath.row] = boardArray;
+    [user saveInBackground];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -7,7 +7,6 @@
 //
 
 #import <Parse/Parse.h>
-
 #import "MTEditProfileViewController.h"
 
 @interface MTEditProfileViewController ()

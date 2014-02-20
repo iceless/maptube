@@ -12,7 +12,7 @@
 @implementation FSConverter
 
 - (NSArray *)convertToObjects:(NSArray *)venues {
-    NSMutableArray *objects = [NSMutableArray arrayWithCapacity:venues];
+    NSMutableArray *objects = [NSMutableArray arrayWithCapacity:venues.count];
     for (NSDictionary *v  in venues) {
         FSVenue *ann = [[FSVenue alloc]init];
         ann.name = v[@"name"];
@@ -26,6 +26,23 @@
         [objects addObject:ann];
     }
     return objects;
+}
++(NSArray *)objectsConvertToVenues:(NSArray *)array {
+    
+    NSMutableArray *venuesArray = [NSMutableArray arrayWithCapacity:array.count];
+    for (NSDictionary *dict  in array) {
+        FSVenue *venue = [[FSVenue alloc]init];
+        venue.name = dict[@"Title"];
+        venue.venueId = dict[@"VenueId"];
+        venue.location.address = dict[@"VenueAddress"];
+        venue.location.distance = dict[@"Distance"];
+        [venue.location setCoordinate:CLLocationCoordinate2DMake([dict[@"Latitude"] doubleValue],
+                                                               [dict[@"Longitude"] doubleValue])];
+        [venuesArray addObject:venue];
+    
+    }
+    return venuesArray;
+    
 }
 
 @end

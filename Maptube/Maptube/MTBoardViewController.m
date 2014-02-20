@@ -34,12 +34,12 @@
     self.mapView.showsUserLocation=NO;
     self.mapView.delegate=self;
     self.tableView.backgroundColor = [UIColor clearColor];
-    
+    NSLog(@"%@",self.placeArray);
     if(self.placeArray.count!=0){
-    FSVenue *venue = self.placeArray[0];
-    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(venue.coordinate,2000 ,2000 );
-    [self.mapView setRegion:region animated:TRUE];
-    [self.mapView addAnnotations:self.placeArray];
+        FSVenue *venue = self.placeArray[0];
+        MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(venue.coordinate,2000 ,2000 );
+        [self.mapView setRegion:region animated:TRUE];
+        [self.mapView addAnnotations:self.placeArray];
     }
     
     
