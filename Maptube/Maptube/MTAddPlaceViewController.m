@@ -57,6 +57,7 @@
     MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(newLocation.coordinate,2000 ,2000 );
     [self.mapView setRegion:region animated:TRUE];
     [self getVenuesForLocation:newLocation];
+    [self.locationManager stopUpdatingLocation];
     
 }
 

@@ -196,6 +196,7 @@ if ([segue.identifier isEqualToString:@"BoardDetail"]) {
     if(array.count==6){
     NSArray *venuArray = [PFUser currentUser][@"Board"][indexPath.row-1][5];
     destViewController.placeArray = [FSConverter objectsConvertToVenues:venuArray];
+    destViewController.title = [PFUser currentUser][@"Board"][indexPath.row-1][0];
     }
 }
 }

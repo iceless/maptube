@@ -46,7 +46,7 @@
     button.frame=CGRectMake(0, 0, 50, 32);
     [button addTarget:self action:@selector(createBoard) forControlEvents:UIControlEventTouchUpInside];
     barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Create" forState:UIControlStateNormal];
+    [button setTitle:@"Done" forState:UIControlStateNormal];
     [button setBackgroundColor:[UIColor redColor]];
     self.navigationItem.rightBarButtonItem=barItem;
     
@@ -79,7 +79,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -93,6 +93,7 @@
             cell.detailTextLabel.text = self.values[indexPath.row];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
+    /*
         else if(indexPath.section==1){
             cell.textLabel.text = @"Show Map";
             UISwitch *switchButton = [[UISwitch alloc]initWithFrame:CGRectMake(250, 5, 100, 100)];
@@ -107,6 +108,7 @@
             
             
         }
+     */
         else {
             cell.textLabel.text = @"Secret";
             

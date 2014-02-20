@@ -82,7 +82,10 @@
     else if(indexPath.section==3){
     }
     else{
-        
+        UILabel *label = [[UILabel alloc]initWithFrame:cell.frame];
+        label.text =@"Delete Board";
+       
+        [cell.contentView addSubview:label];
         
     }
     
@@ -91,7 +94,12 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+      //delete board
+      
+    
 
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

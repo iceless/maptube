@@ -538,7 +538,7 @@
                                 <segue destination="OBV-xx-Esg" kind="push" id="wH0-Bo-tMP"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="fgJ-iB-zTP">
+                        <barButtonItem key="rightBarButtonItem" title="Add Map" id="fgJ-iB-zTP">
                             <connections>
                                 <action selector="clickAddCollection:" destination="Diz-Wc-4dc" id="GcU-eC-y4K"/>
                                 <segue destination="jOX-Vx-ZCc" kind="push" id="0QH-GD-gxo"/>
