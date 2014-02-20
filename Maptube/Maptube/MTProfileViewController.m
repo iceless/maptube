@@ -150,10 +150,16 @@
         UIImageView *imgView = (UIImageView *)[cell viewWithTag:2];
         imgView.image = [UIImage imageNamed:@"board"];
         
+        UIButton *button = (UIButton *)[cell viewWithTag:3];
+        [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
+        button.tag = 9+indexPath.row;
+        
        
     }
     return cell;
 }
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -171,6 +177,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     return cell.bounds.size.height;
+}
+
+-(void)clickEdit:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    int index = button.tag-10;
+    
+    
+    
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
