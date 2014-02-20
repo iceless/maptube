@@ -8,6 +8,7 @@
 
 #import <Parse/Parse.h>
 #import "MTAppDelegate.h"
+#import "Foursquare2.h"
 
 @implementation MTAppDelegate
 
@@ -17,6 +18,11 @@
     [Parse setApplicationId:@"iMYrlUJLwqub93eBh6Jdjk6F2UgiTuBGcBewAAoi"
                   clientKey:@"bWqx8rTSb0GKfZLZCNF0ZAZRanah2ggtOJv0mhvS"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [Foursquare2 setupFoursquareWithClientId:@"XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ"
+                                      secret:@"GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ"
+                                 callbackURL:@"www.mapgis.com"];
+
     return YES;
 }
 							

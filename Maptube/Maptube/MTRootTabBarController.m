@@ -106,8 +106,16 @@
     return informationComplete;
 }
 
+/*//TODO: there is another similar Parse signup codes in MTSettingsViewController, 
+ which is not supposed to have. It should keep only one single code block for Parse signup.
+ */
 // Sent to the delegate when a PFUser is signed up.
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
+    user[@"firstname"] = @"";
+    user[@"lastname"] = @"";
+    user[@"description"] = @"";
+    user[@"location"] = @"";
+    [user saveInBackground];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
