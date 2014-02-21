@@ -12,6 +12,7 @@
 #import "MTBoardViewController.h"
 #import "FSConverter.h"
 #import "MTPlace.h"
+#import "MTEditBoardViewController.h"
 
 @interface MTProfileViewController ()
 
@@ -40,6 +41,10 @@
     //NSMutableArray *boardArray = user[@"Board"];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
+    [self updateBoard];
+    
+}
+-(void)updateBoard{
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     
     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -51,12 +56,12 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+
     
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
-    [self.table reloadData];
+    [self updateBoard];
     [super viewWillAppear:animated];
     if ([PFUser currentUser]) {
 //        self.nameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
@@ -194,8 +199,15 @@
 -(void)clickEdit:(id)sender{
     UIButton *button = (UIButton *)sender;
     int index = button.tag-10;
+    PFObject *mapObject = [self.boardArray objectAtIndex:index];
+    NSMutableArray *array = [NSMutableArray array];
+    array[0] = [mapObject objectForKey:Title];
+    array[1] = [mapObject objectForKey:Descriprtion];
+    array[2] = [mapObject objectForKey:Category];
+    array[3] = [mapObject objectForKey:Secret];
     
-    
+    MTEditBoardViewController *controller = [[MTEditBoardViewController alloc]initWithData:array andPFObject:mapObject];
+    [self.navigationController pushViewController:controller animated:YES];
     
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
