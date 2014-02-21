@@ -69,9 +69,6 @@
         str = [str stringByAppendingString:[picDict objectForKey:@"suffix"]];
             NSLog(@"%@",str);
         [self.iconImageView setImageWithURL:[NSURL URLWithString:str]];
-        
-            
-        
     }
 
     

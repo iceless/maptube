@@ -36,7 +36,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    recipes = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
+    //recipes = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
    // PFUser *user = [PFUser currentUser];
     //NSMutableArray *boardArray = user[@"Board"];
 
@@ -163,6 +163,10 @@
         
         PFObject *mapObject = [self.boardArray objectAtIndex:(indexPath.row-1)];
         label.text = [mapObject objectForKey:Title];
+        
+        label = (UILabel *)[cell viewWithTag:4];
+        label.text = [mapObject objectForKey:Descriprtion];
+        
        
         UIImageView *imgView = (UIImageView *)[cell viewWithTag:2];
         imgView.image = [UIImage imageNamed:@"board"];
