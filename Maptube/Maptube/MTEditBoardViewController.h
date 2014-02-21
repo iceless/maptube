@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MTEditDetailViewController.h"
+#import <Parse/Parse.h>
+
 
 @interface MTEditBoardViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,MTEditDetailViewDelegate>
 @property (strong,nonatomic ) IBOutlet UITableView *table;
@@ -15,4 +17,6 @@
 @property (nonatomic, strong) NSArray *fields;
 //mutable string array for profile detail values
 @property (nonatomic, strong) NSMutableArray *values;
+@property (nonatomic, strong) PFObject *mapObject;
+-(id)initWithData:(NSMutableArray *)array andPFObject:(PFObject *)object;
 @end
