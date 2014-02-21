@@ -8,6 +8,7 @@
 
 #import "MTBoardViewController.h"
 #import "FSVenue.h"
+#import "MTPlace.h"
 
 @interface MTBoardViewController ()
 
@@ -34,13 +35,7 @@
     self.mapView.showsUserLocation=NO;
     self.mapView.delegate=self;
     self.tableView.backgroundColor = [UIColor clearColor];
-    NSLog(@"%@",self.placeArray);
-    if(self.placeArray.count!=0){
-        FSVenue *venue = self.placeArray[0];
-        MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(venue.coordinate,2000 ,2000 );
-        [self.mapView setRegion:region animated:TRUE];
-        [self.mapView addAnnotations:self.placeArray];
-    }
+    
     
     
 
@@ -86,9 +81,9 @@
     static NSString *CellIdentifier = @"PlaceCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel *label = (UILabel *)[cell viewWithTag:1];
-    FSVenue *venue = self.placeArray[indexPath.row];
+    MTPlace *place = self.placeArray[indexPath.row];
 
-    label.text = venue.title;
+    label.text = place.name;
     
     return cell;
 }

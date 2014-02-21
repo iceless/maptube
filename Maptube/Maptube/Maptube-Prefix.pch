@@ -5,9 +5,6 @@
 //
 
 #import <Availability.h>
-
-#define ModifyProfileNotification @"EditProfileNotification"
-
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
@@ -15,6 +12,22 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
-#import "AFHelper.h"
+    #import "AFNetworking.h"
+    #import "AFHelper.h"
+
+#define ModifyProfileNotification @"EditProfileNotification"
+
+#define Map @"Map"
+#define User @"User"
+#define Descriprtion @"Descriprtion"
+#define Secret @"Secret"
+#define Category @"Category"
+#define PlaceArray @"PlaceArray"
+#define Title @"Title"
+#define Place @"Place"
+#define Longitude @"Longitude"
+#define Latitude @"Latitude"
+#define VenueID @"VenueID"
+#define VenueAddress @"VenueAddress"
+
 #endif

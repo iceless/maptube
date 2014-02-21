@@ -61,8 +61,8 @@
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
     
-    self.fields = @[@"Title", @"Description", @"Category", @"Show Map", @"Secret"];
-    self.values = [@[@"", @"", @"", @"0", @"0"]mutableCopy];
+    self.fields = @[@"Title", @"Description", @"Category", @"Secret"];
+    self.values = [@[@"", @"", @"", [NSNumber numberWithBool:NO]]mutableCopy];
 
     //PFUser *user = [PFUser currentUser];
     //self.values = @[@"", @"", @"Category", @"Show Map", @"Secret"];
@@ -114,8 +114,8 @@
             
             UISwitch *switchButton = [[UISwitch alloc]initWithFrame:CGRectMake(250, 5, 100, 100)];
             switchButton.tag = 12;
-            
-            if([self.values[4] isEqualToString:@"0"])
+            NSNumber *secretNumber = self.values[3];
+            if(secretNumber== [NSNumber numberWithBool:NO])
                 switchButton.on = FALSE;
             else switchButton.on = TRUE;
             
@@ -158,29 +158,41 @@
 
 -(void)switchAction:(id)sender{
     UISwitch *switchButton = (UISwitch *)sender;
-    if(switchButton.tag==11){
+    //if(switchButton.tag==11){
         if(switchButton.on)
             self.values[3] = @"0";
         else self.values[3] = @"1";
         
-    }
-    else if(switchButton.tag==12){
-        if(switchButton.on)
-            self.values[4] = @"0";
-        else self.values[4] = @"1";
-        
-    }
+//    }
+//    else if(switchButton.tag==12){
+//        if(switchButton.on)
+//            self.values[4] = @"0";
+//        else self.values[4] = @"1";
+//        
+//    }
 
 }
 -(void)createBoard{
-    PFUser *user = [PFUser currentUser];
-    NSMutableArray *boardArray = user[@"Board"];
-    if(!boardArray){
-        boardArray = [NSMutableArray array];
-    }
-    [boardArray addObject:self.values];
-    user[@"Board"] = boardArray;
-    [user saveInBackground];
+    PFObject *mapObject = [PFObject objectWithClassName:Map];
+    [mapObject setObject:self.values[0] forKey:Title];
+    [mapObject setObject:self.values[1] forKey:Descriprtion];
+    [mapObject setObject:self.values[2] forKey:Category];
+    [mapObject setObject: self.values[3] forKey:Secret];
+    [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+            [relation addObject:mapObject];
+            
+            [[PFUser currentUser] saveEventually];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
+    
+   
+    
     [self.navigationController popViewControllerAnimated:YES];
     
 }

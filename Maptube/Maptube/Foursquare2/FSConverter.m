@@ -32,12 +32,11 @@
     NSMutableArray *venuesArray = [NSMutableArray arrayWithCapacity:array.count];
     for (NSDictionary *dict  in array) {
         FSVenue *venue = [[FSVenue alloc]init];
-        venue.name = dict[@"Title"];
-        venue.venueId = dict[@"VenueId"];
-        venue.location.address = dict[@"VenueAddress"];
-        venue.location.distance = dict[@"Distance"];
-        [venue.location setCoordinate:CLLocationCoordinate2DMake([dict[@"Latitude"] doubleValue],
-                                                               [dict[@"Longitude"] doubleValue])];
+        venue.name = dict[Title];
+        venue.venueId = dict[VenueID];
+        venue.location.address = dict[VenueAddress];
+        [venue.location setCoordinate:CLLocationCoordinate2DMake([dict[Latitude] doubleValue],
+                                                               [dict[Longitude] doubleValue])];
         [venuesArray addObject:venue];
     
     }

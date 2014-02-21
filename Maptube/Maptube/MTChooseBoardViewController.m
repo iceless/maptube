@@ -41,8 +41,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    PFUser *user = [PFUser currentUser];
-    self.boardArray = user[@"Board"];
+    //PFUser *user = [PFUser currentUser];
+   // self.boardArray = user[@"Board"];
+    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+    
+    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.boardArray = objects;
+            [self.table reloadData];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
@@ -113,8 +125,8 @@
     }
     else{
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-        NSArray * array = [self.boardArray objectAtIndex:indexPath.row];
-        cell.textLabel.text = array[0];
+        PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = mapObject[Title];
         
     }
     
@@ -127,29 +139,37 @@
         return;
     }
      */
-    PFUser *user = [PFUser currentUser];
-
-    NSMutableArray * boardArray= user[@"Board"][indexPath.row];
-    NSMutableArray *array;
-    if(boardArray.count==6)  array = boardArray[5];
-    else array= [NSMutableArray array];
-    NSMutableDictionary *venueDict = [NSMutableDictionary dictionary];
-    [venueDict setObject:self.venue.title forKey:@"Title"];
-    [venueDict setObject:self.venue.venueId forKey:@"VenueId"];
-    [venueDict setObject:self.venue.location.address forKey:@"VenueAddress"];
-    if(self.describeTextField.text.length!=0)
-        [venueDict setObject:self.describeTextField.text forKey:@"Describe"];
+   // NSLog(@"%@",self.boardArray);
+    PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
+    
+    PFObject *placeObject = [PFObject objectWithClassName:Place];
+    [placeObject setObject:self.venue.title forKey:Title];
+    if(self.describeTextField.text.length!=0){
+          [placeObject setObject:self.describeTextField.text  forKey:Descriprtion];
+    }
+    [placeObject setObject:self.venue.venueId forKey:VenueID];
+    [placeObject setObject:self.venue.location.address forKey:VenueAddress];
     NSNumber *number = [NSNumber numberWithDouble:self.venue.location.coordinate.longitude];
-    [venueDict setObject:number forKey:@"Longitude"];
+    [placeObject setObject:number forKey:Longitude];
     number = [NSNumber numberWithDouble:self.venue.location.coordinate.latitude];
-    [venueDict setObject:number forKey:@"Latitude"];
-    [venueDict setObject:self.venue.location.distance forKey:@"Distance"];
+    [placeObject setObject:number forKey:Latitude];
+    [placeObject saveEventually: ^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            PFRelation *relation = [mapObject relationforKey:Place];
+            [relation addObject:placeObject];
+            [mapObject saveInBackground];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
     
-    [array addObject:venueDict];
-    boardArray[5] = array;
     
-    user[@"Board"][indexPath.row] = boardArray;
-    [user saveInBackground];
+
+//[venueDict setObject:self.venue.location.distance forKey:@"Distance"];
+    
+    
+    
     [self.navigationController popViewControllerAnimated:YES];
     
 }

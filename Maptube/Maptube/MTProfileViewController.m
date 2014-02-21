@@ -11,6 +11,7 @@
 #import "MTAddCollectionViewController.h"
 #import "MTBoardViewController.h"
 #import "FSConverter.h"
+#import "MTPlace.h"
 
 @interface MTProfileViewController ()
 
@@ -35,10 +36,21 @@
 	// Do any additional setup after loading the view.
     
     recipes = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
-    PFUser *user = [PFUser currentUser];
-    NSMutableArray *boardArray = user[@"Board"];
+   // PFUser *user = [PFUser currentUser];
+    //NSMutableArray *boardArray = user[@"Board"];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
+    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+    
+    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            self.boardArray = objects;
+            [self.table reloadData];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
     
 }
 
@@ -102,8 +114,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //return [recipes count];
-    NSArray *array= [PFUser currentUser][@"Board"];
-    return array.count+1;
+   
+    return self.boardArray.count+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,9 +129,8 @@
     }
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    PFUser *user = [PFUser currentUser];
-    NSMutableArray *boardArray = user[@"Board"];
-    NSLog(@"%@",boardArray);
+    
+    
     
     if (indexPath.row == 0) {
         
@@ -145,8 +156,8 @@
         UILabel *label;
         label = (UILabel *)[cell viewWithTag:1];
         
-        NSArray *array = [boardArray objectAtIndex:(indexPath.row-1)];
-        label.text = array[0];
+        PFObject *mapObject = [self.boardArray objectAtIndex:(indexPath.row-1)];
+        label.text = [mapObject objectForKey:Title];
        
         UIImageView *imgView = (UIImageView *)[cell viewWithTag:2];
         imgView.image = [UIImage imageNamed:@"board"];
@@ -189,16 +200,31 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-if ([segue.identifier isEqualToString:@"BoardDetail"]) {
-    NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
-    MTBoardViewController *destViewController = segue.destinationViewController;
-    NSArray *array = [PFUser currentUser][@"Board"][indexPath.row-1];
-    if(array.count==6){
-    NSArray *venuArray = [PFUser currentUser][@"Board"][indexPath.row-1][5];
-    destViewController.placeArray = [FSConverter objectsConvertToVenues:venuArray];
-    destViewController.title = [PFUser currentUser][@"Board"][indexPath.row-1][0];
+    if ([segue.identifier isEqualToString:@"BoardDetail"]) {
+        NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
+        MTBoardViewController *destViewController = segue.destinationViewController;
+        PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row-1];
+        PFRelation *relation = [mapObject relationforKey:Place];
+        [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                destViewController.placeArray = [MTPlace convertPlaceArray:objects];
+                destViewController.title = [mapObject objectForKey:Title];
+                if(destViewController.placeArray.count!=0){
+                    MTPlace *place = destViewController.placeArray[0];
+                    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(place.coordinate,2000 ,2000 );
+                    [destViewController.mapView setRegion:region animated:TRUE];
+                    [destViewController.mapView addAnnotations:destViewController.placeArray];
+                    [destViewController.tableView reloadData];
+                }
+
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+        
     }
-}
 }
 
 

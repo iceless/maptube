@@ -69,6 +69,7 @@
 		5E9B4D1A18B1FE3B00D9D6A3 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1018B1FE3B00D9D6A3 /* AFXMLRequestOperation.m */; };
 		5E9B4D1B18B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1218B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m */; };
 		5E9B4D1E18B1FEB000D9D6A3 /* AFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */; };
+		5E9E0FF418B7252F008D89AD /* MTPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E0FF318B7252F008D89AD /* MTPlace.m */; };
 		5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */; };
 		5EA684E918B32DA800679EDE /* MTChooseBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */; };
 /* End PBXBuildFile section */
@@ -181,6 +182,8 @@
 		5E9B4D1218B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHelper.m; path = AFNetworking/AFHelper.m; sourceTree = "<group>"; };
 		5E9B4D1D18B1FEB000D9D6A3 /* AFHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHelper.h; path = AFNetworking/AFHelper.h; sourceTree = "<group>"; };
+		5E9E0FF218B7252F008D89AD /* MTPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlace.h; sourceTree = "<group>"; };
+		5E9E0FF318B7252F008D89AD /* MTPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlace.m; sourceTree = "<group>"; };
 		5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddPictureViewController.h; sourceTree = "<group>"; };
 		5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddPictureViewController.m; sourceTree = "<group>"; };
 		5EA684E718B32DA800679EDE /* MTChooseBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTChooseBoardViewController.h; sourceTree = "<group>"; };
@@ -266,6 +269,7 @@
 		56F1CAEC1867DEEB008498DF /* Maptube */ = {
 			isa = PBXGroup;
 			children = (
+				5E9E0FF118B72501008D89AD /* Objects */,
 				5EA684E318B3010000679EDE /* Cell */,
 				5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */,
 				5E9B4D1D18B1FEB000D9D6A3 /* AFHelper.h */,
@@ -418,6 +422,15 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		5E9E0FF118B72501008D89AD /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				5E9E0FF218B7252F008D89AD /* MTPlace.h */,
+				5E9E0FF318B7252F008D89AD /* MTPlace.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
 		5EA684E318B3010000679EDE /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,6 +553,7 @@
 				56F1CAF31867DEEB008498DF /* main.m in Sources */,
 				56F1CB371869869D008498DF /* MTProfileViewController.m in Sources */,
 				5E95916618ADEE310097B6BC /* FSWebLogin.m in Sources */,
+				5E9E0FF418B7252F008D89AD /* MTPlace.m in Sources */,
 				56F1CAFD1867DEEB008498DF /* MTFirstViewController.m in Sources */,
 				5E9B4D1418B1FE3B00D9D6A3 /* AFHTTPRequestOperation.m in Sources */,
 				5E62BB8E18B602C30061A48C /* MTEditBoardViewController.m in Sources */,
