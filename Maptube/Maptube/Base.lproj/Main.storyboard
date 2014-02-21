@@ -209,7 +209,13 @@
                             <outlet property="delegate" destination="jOX-Vx-ZCc" id="FLU-VN-R0G"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="8iS-eq-zhD"/>
+                    <navigationItem key="navigationItem" id="0vk-K0-00V">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="atY-bD-jTc">
+                            <connections>
+                                <action selector="saveButtonTapAction:" destination="DZ9-Oc-Gni" id="i09-So-llc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="table" destination="NVQ-JH-BqY" id="8fc-tu-ksb"/>
                     </connections>
@@ -766,6 +772,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="psu-Q5-b4L" kind="push" identifier="EditBoardDetail" id="inw-Kf-BCb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -793,6 +802,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OoM-2t-vrA"/>
+        <segue reference="inw-Kf-BCb"/>
     </inferredMetricsTieBreakers>
 </document>
