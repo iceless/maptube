@@ -84,9 +84,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    
-  
-  
         if(indexPath.section==0){
             cell =[tableView dequeueReusableCellWithIdentifier:@"CollectionDetailCell"];
             cell.textLabel.text = self.fields[indexPath.row];
@@ -160,8 +157,9 @@
     UISwitch *switchButton = (UISwitch *)sender;
     //if(switchButton.tag==11){
         if(switchButton.on)
-            self.values[3] = @"0";
-        else self.values[3] = @"1";
+            self.values[3] =  [NSNumber numberWithBool:NO];
+        else
+            self.values[3] = [NSNumber numberWithBool:YES];
         
 //    }
 //    else if(switchButton.tag==12){
@@ -190,9 +188,6 @@
         }
     }];
 
-    
-   
-    
     [self.navigationController popViewControllerAnimated:YES];
     
 }
