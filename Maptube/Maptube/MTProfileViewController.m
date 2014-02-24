@@ -263,28 +263,23 @@
     if ([segue.identifier isEqualToString:@"BoardDetail"]) {
         NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
         MTBoardViewController *destViewController = segue.destinationViewController;
-        PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row-1];
-        PFRelation *relation = [mapObject relationforKey:Place];
-        [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-                destViewController.placeArray = [MTPlace convertPlaceArray:objects];
-                destViewController.title = [mapObject objectForKey:Title];
-                if(destViewController.placeArray.count!=0){
-                    MTPlace *place = destViewController.placeArray[0];
-                    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(place.coordinate,2000 ,2000 );
-                    [destViewController.mapView setRegion:region animated:TRUE];
-                    [destViewController.mapView addAnnotations:destViewController.placeArray];
-                    [destViewController.tableView reloadData];
-                }
-
-                
-            } else {
-                // Log details of the failure
-                NSLog(@"Error: %@ %@", error, [error userInfo]);
-            }
-        }];
+        //PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row-1];
+        NSArray *places = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
         
+        if(places.count!=0){
+            
+            destViewController.placeArray = [MTPlace convertPlaceArray:places];
+            
+            MTPlace *place = destViewController.placeArray[0];
+            MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(place.coordinate,2000 ,2000 );
+            [destViewController.mapView setRegion:region animated:TRUE];
+            [destViewController.mapView addAnnotations:destViewController.placeArray];
+            [destViewController.tableView reloadData];
+        }
     }
+    
+    
+    
 }
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:ModifyBoardNotification];
