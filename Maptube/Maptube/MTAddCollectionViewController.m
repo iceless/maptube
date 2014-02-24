@@ -182,6 +182,7 @@
             [relation addObject:mapObject];
             
             [[PFUser currentUser] saveEventually];
+            [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);

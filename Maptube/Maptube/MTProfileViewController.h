@@ -12,7 +12,9 @@
 
 @property (nonatomic, strong) IBOutlet UINavigationItem *navItem;
 @property (nonatomic, strong) IBOutlet UITableView *table;
-@property (strong, nonatomic) NSArray *boardArray;
+@property (nonatomic, strong) NSArray *boardArray;
+@property (nonatomic, strong) NSMutableDictionary *placeArray;
+
 
 //- (IBAction)logOutButtonTapAction:(id)sender;
 

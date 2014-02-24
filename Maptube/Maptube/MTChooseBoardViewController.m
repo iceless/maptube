@@ -157,7 +157,11 @@
         if (!error) {
             PFRelation *relation = [mapObject relationforKey:Place];
             [relation addObject:placeObject];
-            [mapObject saveInBackground];
+            [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+            }
+                  }];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);

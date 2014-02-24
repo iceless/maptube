@@ -7,12 +7,14 @@
 //
 
 #import <Parse/Parse.h>
+#import <MapKit/MapKit.h>
 #import "MTProfileViewController.h"
 #import "MTAddCollectionViewController.h"
 #import "MTBoardViewController.h"
 #import "FSConverter.h"
 #import "MTPlace.h"
 #import "MTEditBoardViewController.h"
+
 
 @interface MTProfileViewController ()
 
@@ -41,6 +43,9 @@
     //NSMutableArray *boardArray = user[@"Board"];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
+    self.placeArray = [NSMutableDictionary dictionary];
+
     [self updateBoard];
     
 }
@@ -51,7 +56,30 @@
         if (!error) {
             self.boardArray = objects;
             [self.table reloadData];
-        } else {
+            
+            for (PFObject *mapObject in self.boardArray) {
+                PFRelation *relation = [mapObject relationforKey:Place];
+                [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    if (!error) {
+                        for (int i=0;i<self.boardArray.count;i++) {
+                            
+                            PFObject *mapObject = [self.boardArray objectAtIndex:i];
+                            PFRelation *relation = [mapObject relationforKey:Place];
+                            [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                                if (!error) {
+                                    
+                                    [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1] ];
+                                    [self.table reloadData];
+                                    
+                                }
+                            }];
+                        
+                        }
+                    }
+                }];
+            }
+        }
+        else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
@@ -168,8 +196,24 @@
         label.text = [mapObject objectForKey:Description];
         
        
-        UIImageView *imgView = (UIImageView *)[cell viewWithTag:2];
-        imgView.image = [UIImage imageNamed:@"board"];
+        MKMapView *mapView = (MKMapView *)[cell viewWithTag:2];
+        mapView.mapType = MKMapTypeStandard;
+        mapView.zoomEnabled=NO;
+        mapView.scrollEnabled = NO;
+        mapView.showsUserLocation=NO;
+        
+        
+       // NSLog(@"%@",[MTParse sharedInstance].placeArray);
+
+        NSArray *array = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+        array = [MTPlace convertPlaceArray:array];
+        if(array.count!=0){
+        MTPlace *place = array[0];
+        MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(place.coordinate,2000 ,2000 );
+        [mapView setRegion:region];
+        [mapView addAnnotations:array];
+        }
+         
         
         UIButton *button = (UIButton *)[cell viewWithTag:3];
         [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
@@ -242,6 +286,9 @@
         
     }
 }
-
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:ModifyBoardNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:ModifyProfileNotification];
+}
 
 @end
