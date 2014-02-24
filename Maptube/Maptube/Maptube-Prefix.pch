@@ -19,7 +19,7 @@
 
 #define Map @"Map"
 #define User @"User"
-#define Descriprtion @"Descriprtion"
+#define Description @"Description"
 #define Secret @"Secret"
 #define Category @"Category"
 #define PlaceArray @"PlaceArray"

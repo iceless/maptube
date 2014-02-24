@@ -165,7 +165,7 @@
         label.text = [mapObject objectForKey:Title];
         
         label = (UILabel *)[cell viewWithTag:4];
-        label.text = [mapObject objectForKey:Descriprtion];
+        label.text = [mapObject objectForKey:Description];
         
        
         UIImageView *imgView = (UIImageView *)[cell viewWithTag:2];
@@ -206,7 +206,7 @@
     PFObject *mapObject = [self.boardArray objectAtIndex:index];
     NSMutableArray *array = [NSMutableArray array];
     array[0] = [mapObject objectForKey:Title];
-    array[1] = [mapObject objectForKey:Descriprtion];
+    array[1] = [mapObject objectForKey:Description];
     array[2] = [mapObject objectForKey:Category];
     array[3] = [mapObject objectForKey:Secret];
     

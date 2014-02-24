@@ -173,7 +173,7 @@
 -(void)createBoard{
     PFObject *mapObject = [PFObject objectWithClassName:Map];
     [mapObject setObject:self.values[0] forKey:Title];
-    [mapObject setObject:self.values[1] forKey:Descriprtion];
+    [mapObject setObject:self.values[1] forKey:Description];
     [mapObject setObject:self.values[2] forKey:Category];
     [mapObject setObject: self.values[3] forKey:Secret];
     [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
