@@ -8,6 +8,8 @@
 
 #import "MTPlaceIntroductionViewController.h"
 #import "MTChooseBoardViewController.h"
+#import <Parse/Parse.h>
+#import "MTPlace.h"
 
 @interface MTPlaceIntroductionViewController ()
 
@@ -45,15 +47,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.mapView.mapType = MKMapTypeStandard;
+    self.mapView.zoomEnabled=NO;
+    self.mapView.scrollEnabled = NO;
+    self.mapView.showsUserLocation=NO;
     
-    UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame=CGRectMake(0, 0, 120, 32);
-    [button addTarget:self action:@selector(pin) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Add To Board" forState:UIControlStateNormal];
-    //[button setBackgroundColor:[UIColor redColor]];
-    self.navigationItem.rightBarButtonItem=barItem;
+    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(self.venue.coordinate,2000 ,2000 );
+    [self.mapView setRegion:region];
+    [self.mapView addAnnotation:self.venue];
+    
+    
+    self.boardArray = [NSMutableArray array];
+	
+    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+    
+    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                
+                PFRelation *placeRelation = [object relationforKey:Place];
+                
+                [[placeRelation query]whereKey:VenueID containsString:self.venue.venueId];
+                NSArray *array = [[placeRelation query] findObjects];
+                if(array.count!=0)
+                [self.boardArray addObject:object];
+                
+                
+            }
+            
+                [self.table reloadData];
+                
+            
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
     
     self.titleLabel.text = [self.placeData objectForKey:@"name"];
     NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
@@ -70,17 +100,49 @@
             NSLog(@"%@",str);
         [self.iconImageView setImageWithURL:[NSURL URLWithString:str]];
     }
+    
+    if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.table setSeparatorInset:UIEdgeInsetsZero];
+    }
 
     
 }
 
--(void)pin{
+-(IBAction)pin:(id)sender {
     
     MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImage:self.iconImageView.image AndVenue:self.venue];
     controller.view.frame = CGRectMake(10, 100, self.view.frame.size.width-20, self.view.frame.size.height);
     
     [self.navigationController pushViewController:controller animated:YES];
     
+}
+
+#pragma mark - Table view data source
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.boardArray.count;
+    
+    
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UITableViewCell *cell;
+    
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+        PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = mapObject[Title];
+        
+    
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 40;
 }
 
 - (void)didReceiveMemoryWarning

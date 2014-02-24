@@ -145,7 +145,7 @@
     PFObject *placeObject = [PFObject objectWithClassName:Place];
     [placeObject setObject:self.venue.title forKey:Title];
     if(self.describeTextField.text.length!=0){
-          [placeObject setObject:self.describeTextField.text  forKey:Descriprtion];
+          [placeObject setObject:self.describeTextField.text  forKey:Description];
     }
     [placeObject setObject:self.venue.venueId forKey:VenueID];
     [placeObject setObject:self.venue.location.address forKey:VenueAddress];
