@@ -50,34 +50,25 @@
     
 }
 -(void)updateBoard{
+    
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     
     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             self.boardArray = objects;
-            [self.table reloadData];
             
-            for (PFObject *mapObject in self.boardArray) {
-                PFRelation *relation = [mapObject relationforKey:Place];
-                [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                    if (!error) {
-                        for (int i=0;i<self.boardArray.count;i++) {
+            
+           for (int i=0;i<self.boardArray.count;i++) {
                             
                             PFObject *mapObject = [self.boardArray objectAtIndex:i];
                             PFRelation *relation = [mapObject relationforKey:Place];
-                            [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                                if (!error) {
-                                    
-                                    [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1] ];
-                                    [self.table reloadData];
-                                    
-                                }
-                            }];
-                        
-                        }
-                    }
-                }];
-            }
+               NSArray *objects =[[relation query] findObjects];
+               
+                            [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1]];
+              }
+                
+             [self.table reloadData];
+            
         }
         else {
             // Log details of the failure
@@ -201,6 +192,7 @@
         mapView.zoomEnabled=NO;
         mapView.scrollEnabled = NO;
         mapView.showsUserLocation=NO;
+        mapView.userInteractionEnabled = NO;
         
         
        // NSLog(@"%@",[MTParse sharedInstance].placeArray);
@@ -270,11 +262,7 @@
             
             destViewController.placeArray = [MTPlace convertPlaceArray:places];
             
-            MTPlace *place = destViewController.placeArray[0];
-            MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(place.coordinate,2000 ,2000 );
-            [destViewController.mapView setRegion:region animated:TRUE];
-            [destViewController.mapView addAnnotations:destViewController.placeArray];
-            [destViewController.tableView reloadData];
+            
         }
     }
     

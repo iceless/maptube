@@ -36,7 +36,11 @@
     self.mapView.delegate=self;
     self.tableView.backgroundColor = [UIColor clearColor];
     
-    
+    MTPlace *place = self.placeArray[0];
+    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(place.coordinate,2000 ,2000 );
+    [self.mapView setRegion:region animated:TRUE];
+    [self.mapView addAnnotations:self.placeArray];
+   
     
 
 }
