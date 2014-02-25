@@ -162,6 +162,74 @@
 }
  */
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section==0){
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:nil
+                                  delegate:self
+                                  cancelButtonTitle:@"取消"
+                                  destructiveButtonTitle:@"拍照"
+                                  otherButtonTitles:@"选择本地相册",nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    actionSheet.tag = 21;
+    [actionSheet showInView:self.view];
+    }
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSUInteger sourceType = 0;
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        if (buttonIndex == 0) {   //拍照
+            sourceType = UIImagePickerControllerSourceTypeCamera;
+            
+        }
+        else if (buttonIndex == 1) {
+            sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            
+        }
+        else if(buttonIndex == 2) {
+            return;
+        }
+    }
+    else {
+        
+        if (buttonIndex == 2) {
+            
+            return;
+            
+        } else {
+            
+            sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            
+        }
+        
+    }
+    
+    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    
+    imagePickerController.delegate = self;
+    
+    imagePickerController.allowsEditing = YES;
+    
+    imagePickerController.sourceType = sourceType;
+    
+    [self presentViewController:imagePickerController animated:YES completion:^{}];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:firstIndexPath];
+    UIImageView *imgv;
+    imgv = (UIImageView *)[cell.contentView viewWithTag:1];
+    imgv.image = image;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"editProfileDetail"]) {

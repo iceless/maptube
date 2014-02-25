@@ -16,7 +16,7 @@
     #import "AFHelper.h"
 
 #define ModifyProfileNotification @"EditProfileNotification"
-#define ModifyBoardNotification @"ModifyProfileNotification"
+#define ModifyBoardNotification @"ModifyBoardNotification"
 
 #define Map @"Map"
 #define User @"User"
