@@ -9,6 +9,7 @@
 #import "MTBoardViewController.h"
 #import "FSVenue.h"
 #import "MTPlace.h"
+#import "MTPlaceIntroductionViewController.h"
 
 @interface MTBoardViewController ()
 
@@ -91,7 +92,29 @@
     
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MTPlace *place = self.placeArray[indexPath.row];
+    FSVenue *venue = [[FSVenue alloc]init];
+    venue.location.coordinate = place.coordinate;
+    venue.name = place.name;
+    venue.venueId = place.venueId;
+    venue.location.address = place.venueAddress;
+    
+    
+    [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",place.venueId]] andStr:nil compeletion:^(id data){
+        //获取Foursquare venue信息
+        
+        NSDictionary *dict = data;
+        dict = [dict objectForKey:@"response"];
+        dict = [dict objectForKey:@"venue"];
+        MTPlaceIntroductionViewController *controller = [[MTPlaceIntroductionViewController  alloc]initWithData:dict AndVenue:venue];
+        [self.navigationController pushViewController:controller animated:YES];
+        
+        
+    }];
 
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

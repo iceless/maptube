@@ -200,10 +200,10 @@
         NSArray *array = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
         array = [MTPlace convertPlaceArray:array];
         if(array.count!=0){
-        MTPlace *place = array[0];
-        MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(place.coordinate,2000 ,2000 );
-        [mapView setRegion:region];
-        [mapView addAnnotations:array];
+            MTPlace *place = array[0];
+            MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(place.coordinate,2000 ,2000 );
+            [mapView setRegion:region];
+            [mapView addAnnotations:array];
         }
          
         
@@ -259,9 +259,7 @@
         NSArray *places = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
         
         if(places.count!=0){
-            
             destViewController.placeArray = [MTPlace convertPlaceArray:places];
-            
             
         }
     }

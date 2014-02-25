@@ -144,7 +144,6 @@
     //NSLog(@"%@",venue.venueId);
     [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",venue.venueId]] andStr:nil compeletion:^(id data){
         //获取Foursquare venue信息
-        NSMutableArray *imageArray= [NSMutableArray array];
         NSDictionary *dict = data;
         dict = [dict objectForKey:@"response"];
         dict = [dict objectForKey:@"venue"];
