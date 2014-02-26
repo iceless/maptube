@@ -12,6 +12,7 @@
 
 @interface MTPlaceIntroductionViewController : UIViewController<MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (strong, nonatomic) NSDictionary *placeData;
 @property (strong, nonatomic) FSVenue *venue;

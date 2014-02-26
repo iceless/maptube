@@ -66,13 +66,11 @@
             for (PFObject *object in objects) {
                 
                 PFRelation *placeRelation = [object relationforKey:Place];
-                
-                [[placeRelation query]whereKey:VenueID containsString:self.venue.venueId];
-                NSArray *array = [[placeRelation query] findObjects];
+                PFQuery *query = [placeRelation query];
+                [query whereKey:VenueID containsString:self.venue.venueId];
+                NSArray *array = [query findObjects];
                 if(array.count!=0)
                 [self.boardArray addObject:object];
-                
-                
             }
             
                 [self.table reloadData];
@@ -86,6 +84,7 @@
     }];
     
     self.titleLabel.text = [self.placeData objectForKey:@"name"];
+    self.addressLabel.text = self.venue.location.address;
     NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
     NSDictionary *pictureDict = [self.placeData objectForKey:@"photos"];
     NSArray *array = [pictureDict objectForKey:@"groups"];
@@ -131,9 +130,11 @@
     
     UITableViewCell *cell;
     
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-        PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
-        cell.textLabel.text = mapObject[Title];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = mapObject[Title];
+    cell.textLabel.font = [UIFont systemFontOfSize:12];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     
     
