@@ -34,7 +34,7 @@
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.zoomEnabled=YES;
     self.mapView.showsUserLocation=NO;
-    self.mapView.delegate=self;
+    //self.mapView.delegate=self;
     self.tableView.backgroundColor = [UIColor clearColor];
     
     MTPlace *place = self.placeArray[0];
@@ -48,17 +48,20 @@
 
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+    self.tableView.contentInset = UIEdgeInsetsMake(self.mapView.frame.size.height, 0, 0, 0);
     
-    self.tableView.contentInset = UIEdgeInsetsMake(self.mapView.frame.size.height-40, 0, 0, 0);
+    
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    if (scrollView.contentOffset.y < self.mapView.frame.size.height*-1 ) {
-        [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, self.mapView.frame.size.height*-1)];
+    if (scrollView.contentOffset.y < (self.mapView.frame.size.height)*-1 ) {
+        [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, (self.mapView.frame.size.height)*-1)];
     }
+   
 }
-
+/*
 #pragma mark - touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
@@ -76,6 +79,7 @@
     }
 	
 }
+ */
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
