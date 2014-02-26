@@ -45,16 +45,7 @@
    // self.boardArray = user[@"Board"];
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     
-    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            self.boardArray = objects;
-            [self.table reloadData];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    
+    self.boardArray = [[relation query] findObjects];
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
