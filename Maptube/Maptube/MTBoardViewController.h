@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "MTTableView.h"
+#import <Parse/Parse.h>
 
 @interface MTBoardViewController : UIViewController<CLLocationManagerDelegate,MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (strong, nonatomic)  IBOutlet MKMapView  *mapView;
 @property (strong, nonatomic)  NSArray *placeArray;
+@property (strong, nonatomic)  PFObject *boardData;
 @property (weak, nonatomic) IBOutlet MTTableView *tableView;
 
 @end

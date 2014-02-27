@@ -10,6 +10,7 @@
 #import "FSVenue.h"
 #import "MTPlace.h"
 #import "MTPlaceIntroductionViewController.h"
+#import "MTEditBoardViewController.h"
 
 @interface MTBoardViewController ()
 
@@ -49,6 +50,14 @@
     }
     
     self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-40);
+    
+    UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame=CGRectMake(0, 0, 50, 32);
+    [button addTarget:self action:@selector(editBoard) forControlEvents:UIControlEventTouchUpInside];
+     UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
+    [button setTitle:@"Edit" forState:UIControlStateNormal];
+    
+    self.navigationItem.rightBarButtonItem=barItem;
    
     
 
@@ -130,6 +139,25 @@
     }];
 
     
+}
+
+-(void)editBoard{
+    
+ 
+    
+    NSMutableArray *array = [NSMutableArray array];
+    array[0] = [self.boardData objectForKey:Title];
+    if([self.boardData objectForKey:Description])
+    array[1] = [self.boardData objectForKey:Description];
+    else array[1] = @"";
+    if([self.boardData objectForKey:Category])
+        array[2] =[self.boardData objectForKey:Category];
+    else array[2] = @"";
+    array[3] = [self.boardData objectForKey:Secret];
+    
+    MTEditBoardViewController *controller = [[MTEditBoardViewController alloc]initWithData:array andPFObject:self.boardData];
+    [self.navigationController pushViewController:controller animated:YES];
+
 }
 - (void)didReceiveMemoryWarning
 {

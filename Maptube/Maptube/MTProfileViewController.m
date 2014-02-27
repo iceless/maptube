@@ -59,14 +59,14 @@
             
             
            for (int i=0;i<self.boardArray.count;i++) {
-                            
-                            PFObject *mapObject = [self.boardArray objectAtIndex:i];
-                            PFRelation *relation = [mapObject relationforKey:Place];
+               
+               PFObject *mapObject = [self.boardArray objectAtIndex:i];
+               PFRelation *relation = [mapObject relationforKey:Place];
                NSArray *objects =[[relation query] findObjects];
                
-                            [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1]];
+               [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1]];
               }
-                
+            
              [self.table reloadData];
             
         }
@@ -258,7 +258,7 @@
         MTBoardViewController *destViewController = segue.destinationViewController;
         //PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row-1];
         NSArray *places = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-        
+        destViewController.boardData = [self.boardArray objectAtIndex:indexPath.row-1];
         if(places.count!=0){
             destViewController.placeArray = [MTPlace convertPlaceArray:places];
             
