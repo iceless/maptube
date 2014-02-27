@@ -34,21 +34,31 @@
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.zoomEnabled=YES;
     self.mapView.showsUserLocation=NO;
-    //self.mapView.delegate=self;
     self.tableView.backgroundColor = [UIColor clearColor];
     
-    MTPlace *place = self.placeArray[0];
-    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(place.coordinate,2000 ,2000 );
+    CGRect placeRect = [MTPlace updateMemberPins:self.placeArray];
+    CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
+    
+    //MTPlace *place = self.placeArray[0];
+    int distance = MAX(placeRect.size.width, placeRect.size.height);
+    distance = MAX(1500,distance);
+    
+    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
     [self.mapView setRegion:region animated:TRUE];
     [self.mapView addAnnotations:self.placeArray];
+    
+    self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-40);
    
     
 
 }
 
 -(void)viewDidLayoutSubviews {
+    
     [super viewDidLayoutSubviews];
-    self.tableView.contentInset = UIEdgeInsetsMake(self.mapView.frame.size.height, 0, 0, 0);
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(self.mapView.frame.size.height+80, 0, 0, 0);
+    
     
     
     
@@ -56,9 +66,10 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    if (scrollView.contentOffset.y < (self.mapView.frame.size.height)*-1 ) {
-        [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, (self.mapView.frame.size.height)*-1)];
+    if (scrollView.contentOffset.y < (self.mapView.frame.size.height+80)*-1 ) {
+        [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, (self.mapView.frame.size.height+80)*-1)];
     }
+    
    
 }
 /*

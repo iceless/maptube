@@ -18,4 +18,5 @@
 
 
 +(NSArray *)convertPlaceArray:(NSArray *)array;
++ (CGRect)updateMemberPins:(NSArray *)members;
 @end

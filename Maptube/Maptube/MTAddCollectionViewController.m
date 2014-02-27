@@ -181,8 +181,11 @@
             PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
             [relation addObject:mapObject];
             
-            [[PFUser currentUser] saveEventually];
-            [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+            [[PFUser currentUser] saveEventually: ^(BOOL succeeded, NSError *error) {
+                    if(succeeded)
+                   [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+                 }];
+            
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
