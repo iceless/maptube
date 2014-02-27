@@ -56,11 +56,12 @@
     //calculate average long / lat
     center_lat = center_lat / [members count];
     center_long = center_long / [members count];
-    
+    CLLocation *maxLocation = [[CLLocation alloc]initWithLatitude:max_lat longitude:max_long];
+    CLLocation *minLocation = [[CLLocation alloc]initWithLatitude:min_lat longitude:min_long];
     //NSLog(@"center long: %f, center lat: %f", center_long, center_lat);
     //NSLog(@"max_long: %f, min_long: %f, max_lat: %f, min_lat: %f", max_long, min_long, max_lat, min_lat);
-    
-    return CGRectMake(center_lat,center_long, max_lat , max_long);
+    CLLocationDistance distance = [maxLocation distanceFromLocation:minLocation];
+    return CGRectMake(center_lat,center_long, distance/2+100 , distance/2+100 );
     
     //create new region and set map
     

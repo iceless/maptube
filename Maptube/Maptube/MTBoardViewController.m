@@ -36,16 +36,16 @@
     self.mapView.showsUserLocation=NO;
     self.tableView.backgroundColor = [UIColor clearColor];
     if(self.placeArray.count!=0){
-    CGRect placeRect = [MTPlace updateMemberPins:self.placeArray];
-    CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
-    
-    //MTPlace *place = self.placeArray[0];
-    int distance = MAX(placeRect.size.width, placeRect.size.height);
-    distance = MAX(1500,distance);
-    
-    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
-    [self.mapView setRegion:region animated:TRUE];
-    [self.mapView addAnnotations:self.placeArray];
+        CGRect placeRect = [MTPlace updateMemberPins:self.placeArray];
+        CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
+        
+        //MTPlace *place = self.placeArray[0];
+        int distance = placeRect.size.width;
+        distance = MAX(1500,distance);
+        
+        MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
+        [self.mapView setRegion:region animated:TRUE];
+        [self.mapView addAnnotations:self.placeArray];
     }
     
     self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-40);
