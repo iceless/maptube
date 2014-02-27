@@ -104,8 +104,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
       //delete board
     if(indexPath.section==2){
-        [self.mapObject deleteEventually];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.mapObject deleteInBackgroundWithBlock: ^(BOOL succeeded, NSError *error){
+            [self.navigationController popViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+        
+        
+        }];
         
     }
     
