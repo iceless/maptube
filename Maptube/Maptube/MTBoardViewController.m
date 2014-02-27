@@ -35,7 +35,7 @@
     self.mapView.zoomEnabled=YES;
     self.mapView.showsUserLocation=NO;
     self.tableView.backgroundColor = [UIColor clearColor];
-    
+    if(self.placeArray.count!=0){
     CGRect placeRect = [MTPlace updateMemberPins:self.placeArray];
     CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
     
@@ -46,6 +46,7 @@
     MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
     [self.mapView setRegion:region animated:TRUE];
     [self.mapView addAnnotations:self.placeArray];
+    }
     
     self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-40);
    
