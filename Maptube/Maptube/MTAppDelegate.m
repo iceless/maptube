@@ -7,14 +7,29 @@
 //
 
 #import <Parse/Parse.h>
+//#import <AVOSCloud/AVOSCloud.h>
+//#import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "MTAppDelegate.h"
 #import "Foursquare2.h"
 
 @implementation MTAppDelegate
+#define AVOSCloudAppID  @"866uv3tezwybhrzi272qh71vrmqhi51uscntnc9y8er4j2tq"
+#define AVOSCloudAppKey @"5q7r8ouyao6nvym71r2pmeq42dqz5cwc6duqh8c2yuzz3vl7"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    //设置AVOSCloud
+    /*
+    [AVOSCloud setApplicationId:AVOSCloudAppID
+                      clientKey:AVOSCloudAppKey];
+    
+    
+    //统计应用启动情况
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    */
+    
     [Parse setApplicationId:@"iMYrlUJLwqub93eBh6Jdjk6F2UgiTuBGcBewAAoi"
                   clientKey:@"bWqx8rTSb0GKfZLZCNF0ZAZRanah2ggtOJv0mhvS"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
@@ -22,6 +37,7 @@
     [Foursquare2 setupFoursquareWithClientId:@"XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ"
                                       secret:@"GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ"
                                  callbackURL:@"www.mapgis.com"];
+     
 
     return YES;
 }
