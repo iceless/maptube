@@ -206,10 +206,11 @@
             [mapView addAnnotations:array];
         }
          
-        
+        /*
         UIButton *button = (UIButton *)[cell viewWithTag:3];
         [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = 9+indexPath.row;
+         */
         
        
     }
