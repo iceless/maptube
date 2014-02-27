@@ -85,7 +85,7 @@
     
     self.titleLabel.text = [self.placeData objectForKey:@"name"];
     self.addressLabel.text = self.venue.location.address;
-    NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
+    //NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
     NSDictionary *pictureDict = [self.placeData objectForKey:@"photos"];
     NSArray *array = [pictureDict objectForKey:@"groups"];
     if(array.count!=0){
