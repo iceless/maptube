@@ -42,6 +42,7 @@
     self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;
     self.locationManager.distanceFilter=10.0f;
     [self.locationManager startUpdatingLocation];
+    NSLog(@"%f,%f,%f,%f",self.mapView.frame.origin.x,self.mapView.frame.origin.y,self.mapView.frame.size.width,self.mapView.frame.size.height);
     
     //self.table.tableFooterView = self.footer;
 }
