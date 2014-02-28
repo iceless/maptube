@@ -29,7 +29,10 @@
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     
-    
+    [Foursquare2 setupFoursquareWithClientId:@"XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ"
+                                      secret:@"GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ"
+                                 callbackURL:@"www.mapgis.com"];
+
     
      
 
