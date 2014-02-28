@@ -13,8 +13,8 @@
 #import "Foursquare2.h"
 
 @implementation MTAppDelegate
-#define AVOSCloudAppID  @"866uv3tezwybhrzi272qh71vrmqhi51uscntnc9y8er4j2tq"
-#define AVOSCloudAppKey @"5q7r8ouyao6nvym71r2pmeq42dqz5cwc6duqh8c2yuzz3vl7"
+#define AVOSCloudAppID  @"ni8qovqmlwvnsck9zfk5c4yaj88yku6kpdfz7aah0ip5wqh4"
+#define AVOSCloudAppKey @"9ttfy96pnup3gsbb902frx1hkyhy81mwwboye3emp74gkipd"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
