@@ -201,9 +201,15 @@
         NSArray *array = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
         array = [MTPlace convertPlaceArray:array];
         if(array.count!=0){
-            MTPlace *place = array[0];
-            MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(place.coordinate,2000 ,2000 );
-            [mapView setRegion:region];
+            CGRect placeRect = [MTPlace updateMemberPins:array];
+            CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
+            
+            //MTPlace *place = self.placeArray[0];
+            int distance = placeRect.size.width;
+            distance = MAX(1500,distance);
+            
+            MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
+            [mapView setRegion:region animated:TRUE];
             [mapView addAnnotations:array];
         }
          

@@ -43,7 +43,6 @@
         //MTPlace *place = self.placeArray[0];
         int distance = placeRect.size.width;
         distance = MAX(1500,distance);
-        
         MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
         [self.mapView setRegion:region animated:TRUE];
         [self.mapView addAnnotations:self.placeArray];

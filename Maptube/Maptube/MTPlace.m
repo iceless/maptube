@@ -30,14 +30,14 @@
 }
 
 + (CGRect)updateMemberPins:(NSArray *)members{
-    
+    MTPlace *firstPlace = members[0];
     //calculate new region to show on map
     double center_long = 0.0f;
     double center_lat = 0.0f;
-    double max_long = 0.0f;
-    double min_long = 0.0f;
-    double max_lat = 0.0f;
-    double min_lat = 0.0f;
+    double max_long = firstPlace.coordinate.longitude;
+    double min_long = firstPlace.coordinate.longitude;
+    double max_lat = firstPlace.coordinate.latitude;
+    double min_lat = firstPlace.coordinate.latitude;
     
     for (MTPlace *member in members) {
         double lat, lng;
@@ -62,6 +62,7 @@
     //NSLog(@"center long: %f, center lat: %f", center_long, center_lat);
     //NSLog(@"max_long: %f, min_long: %f, max_lat: %f, min_lat: %f", max_long, min_long, max_lat, min_lat);
     CLLocationDistance distance = [maxLocation distanceFromLocation:minLocation];
+   
     return CGRectMake(center_lat,center_long, distance/2+100 , distance/2+100 );
     
     //create new region and set map
