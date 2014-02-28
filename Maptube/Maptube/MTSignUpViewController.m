@@ -29,6 +29,12 @@
 	// Do any additional setup after loading the view.
 }
 
+-(IBAction)signUpClick:(id)sender{
+
+
+
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

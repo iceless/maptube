@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MTSignUpViewController : UIViewController
-
+@property (strong, nonatomic) IBOutlet UITextField *passwordField;
+@property (strong, nonatomic) IBOutlet UITextField *accountField;
+@property (strong, nonatomic) IBOutlet UITextField *emailField;
 @end
