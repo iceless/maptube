@@ -729,9 +729,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/**",
-					"/Users/Vivian/Downloads/iOS\\ 2/release-v2.3.2",
-					/Users/Vivian/maptube/Maptube/Maptube,
-					/Users/Vivian/maptube/Maptube,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
@@ -753,9 +750,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/**",
-					"/Users/Vivian/Downloads/iOS\\ 2/release-v2.3.2",
-					/Users/Vivian/maptube/Maptube/Maptube,
-					/Users/Vivian/maptube/Maptube,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
