@@ -68,9 +68,14 @@
                 PFRelation *placeRelation = [object relationforKey:Place];
                 PFQuery *query = [placeRelation query];
                 [query whereKey:VenueID containsString:self.venue.venueId];
-                NSArray *array = [query findObjects];
-                if(array.count!=0)
-                [self.boardArray addObject:object];
+                
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    if(objects.count!=0){
+                        [self.boardArray addObject:object];
+                        [self.table reloadData];
+                    }
+                    
+                }];
             }
             
                 [self.table reloadData];
@@ -120,8 +125,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.boardArray.count;
-    
-    
+       
 }
 
 
@@ -132,6 +136,7 @@
     
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
+   
     cell.textLabel.text = mapObject[Title];
     cell.textLabel.font = [UIFont systemFontOfSize:12];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
