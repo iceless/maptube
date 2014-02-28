@@ -42,6 +42,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.fields = @[@"Title", @"Description", @"Category", @"Secret"];
+    UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame=CGRectMake(0, 0, 50, 32);
+    [button addTarget:self action:@selector(saveBoard) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
+    [button setTitle:@"Save" forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem=barItem;
     
     
 }
@@ -124,6 +130,21 @@
         destViewController.detailValue = self.values[indexPath.row];
         destViewController.indexPathRow = indexPath.row;
     }
+}
+
+-(void)saveBoard{
+    self.mapObject[Title] = self.values[0];
+    self.mapObject[Description] = self.values[1];
+    self.mapObject[Category] = self.values[2];
+    self.mapObject[Secret] = self.values[3];
+    [self.mapObject saveInBackgroundWithBlock: ^(BOOL succeeded, NSError *error){
+        [self.navigationController popViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+        
+        
+    }];
+
+    
 }
 -(void)switchAction:(id)sender{
     UISwitch *switchButton = (UISwitch *)sender;
