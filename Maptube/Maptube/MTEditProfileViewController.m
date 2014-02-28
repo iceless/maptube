@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
-#import <Parse/Parse.h>
+#import <AVOSCloud/AVOSCloud.h>
 #import "MTEditProfileViewController.h"
 
 @interface MTEditProfileViewController ()

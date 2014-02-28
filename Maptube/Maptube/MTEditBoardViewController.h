@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MTEditDetailViewController.h"
-#import <Parse/Parse.h>
+#import <AVOSCloud/AVOSCloud.h>
 
 
 @interface MTEditBoardViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,MTEditDetailViewDelegate>

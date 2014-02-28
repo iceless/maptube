@@ -8,7 +8,7 @@
 
 #import "MTAddCollectionViewController.h"
 #import "MTEditDetailViewController.h"
-#import <Parse/Parse.h>
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface MTAddCollectionViewController ()
 

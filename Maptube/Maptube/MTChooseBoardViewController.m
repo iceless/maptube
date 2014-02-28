@@ -7,7 +7,7 @@
 //
 
 #import "MTChooseBoardViewController.h"
-#import <Parse/Parse.h>
+#import <AVOSCloud/AVOSCloud.h>
 #import "MTAddCollectionViewController.h"
 
 

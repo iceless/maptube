@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTRootTabBarController : UITabBarController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface MTRootTabBarController : UITabBarController
 
 @end

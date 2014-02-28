@@ -8,7 +8,7 @@
 
 #import "MTPlaceIntroductionViewController.h"
 #import "MTChooseBoardViewController.h"
-#import <Parse/Parse.h>
+#import <AVOSCloud/AVOSCloud.h>
 #import "MTPlace.h"
 
 @interface MTPlaceIntroductionViewController ()

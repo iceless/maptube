@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTSettingsViewController : UITableViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface MTSettingsViewController : UITableViewController
 
 - (IBAction)logOutButtonTapAction:(id)sender;
 

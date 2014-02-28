@@ -25,7 +25,6 @@
 		56F1CB0B1867DEEB008498DF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CAEA1867DEEB008498DF /* UIKit.framework */; };
 		56F1CB131867DEEB008498DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56F1CB111867DEEB008498DF /* InfoPlist.strings */; };
 		56F1CB151867DEEB008498DF /* MaptubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CB141867DEEB008498DF /* MaptubeTests.m */; };
-		56F1CB1F186969EC008498DF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CB1E186969EC008498DF /* Parse.framework */; };
 		56F1CB2118696A5B008498DF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CB2018696A5B008498DF /* AudioToolbox.framework */; };
 		56F1CB2318696A65008498DF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CB2218696A65008498DF /* CFNetwork.framework */; };
 		56F1CB2518696A78008498DF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CB2418696A77008498DF /* CoreLocation.framework */; };
@@ -56,6 +55,10 @@
 		5E95917218ADEEA30097B6BC /* FSConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95916F18ADEEA30097B6BC /* FSConverter.m */; };
 		5E95917318ADEEA30097B6BC /* FSVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95917118ADEEA30097B6BC /* FSVenue.m */; };
 		5E95917618ADF78E0097B6BC /* MTAddCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */; };
+		5E9A668918C018C5005E5169 /* MTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A668818C018C5005E5169 /* MTLoginViewController.m */; };
+		5E9A668C18C01C5D005E5169 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A668A18C01C28005E5169 /* AVOSCloud.framework */; };
+		5E9A669018C0269C005E5169 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A668F18C0269C005E5169 /* CoreTelephony.framework */; };
+		5E9A669318C029F5005E5169 /* MTSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A669218C029F5005E5169 /* MTSignUpViewController.m */; };
 		5E9B4CF918B1BEAE00D9D6A3 /* MTEditDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */; };
 		5E9B4CFB18B1F1E200D9D6A3 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9B4CFA18B1F1E200D9D6A3 /* board.png */; };
 		5E9B4CFE18B1F3E100D9D6A3 /* MTBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */; };
@@ -111,7 +114,6 @@
 		56F1CB101867DEEB008498DF /* MaptubeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MaptubeTests-Info.plist"; sourceTree = "<group>"; };
 		56F1CB121867DEEB008498DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		56F1CB141867DEEB008498DF /* MaptubeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaptubeTests.m; sourceTree = "<group>"; };
-		56F1CB1E186969EC008498DF /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		56F1CB2018696A5B008498DF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		56F1CB2218696A65008498DF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		56F1CB2418696A77008498DF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -156,6 +158,12 @@
 		5E95917118ADEEA30097B6BC /* FSVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSVenue.m; sourceTree = "<group>"; };
 		5E95917418ADF78E0097B6BC /* MTAddCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddCollectionViewController.h; sourceTree = "<group>"; };
 		5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddCollectionViewController.m; sourceTree = "<group>"; };
+		5E9A668718C018C5005E5169 /* MTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLoginViewController.h; sourceTree = "<group>"; };
+		5E9A668818C018C5005E5169 /* MTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLoginViewController.m; sourceTree = "<group>"; };
+		5E9A668A18C01C28005E5169 /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVOSCloud.framework; path = Maptube/AVOSCloud.framework; sourceTree = "<group>"; };
+		5E9A668F18C0269C005E5169 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		5E9A669118C029F5005E5169 /* MTSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSignUpViewController.h; sourceTree = "<group>"; };
+		5E9A669218C029F5005E5169 /* MTSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSignUpViewController.m; sourceTree = "<group>"; };
 		5E9B4CF718B1BEAE00D9D6A3 /* MTEditDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditDetailViewController.h; sourceTree = "<group>"; };
 		5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEditDetailViewController.m; sourceTree = "<group>"; };
 		5E9B4CFA18B1F1E200D9D6A3 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
@@ -195,11 +203,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E9A669018C0269C005E5169 /* CoreTelephony.framework in Frameworks */,
 				5E95914B18ADC24B0097B6BC /* MapKit.framework in Frameworks */,
 				56F1CB3118696AB7008498DF /* SystemConfiguration.framework in Frameworks */,
 				56F1CB2F18696AA9008498DF /* StoreKit.framework in Frameworks */,
 				56F1CB2D18696AA1008498DF /* Security.framework in Frameworks */,
 				56F1CB2B18696A99008498DF /* QuartzCore.framework in Frameworks */,
+				5E9A668C18C01C5D005E5169 /* AVOSCloud.framework in Frameworks */,
 				56F1CB2918696A90008498DF /* MobileCoreServices.framework in Frameworks */,
 				56F1CB2718696A87008498DF /* libz.1.1.3.dylib in Frameworks */,
 				56F1CB2518696A78008498DF /* CoreLocation.framework in Frameworks */,
@@ -207,7 +217,6 @@
 				56F1CB2318696A65008498DF /* CFNetwork.framework in Frameworks */,
 				56F1CB2118696A5B008498DF /* AudioToolbox.framework in Frameworks */,
 				56F1CAEB1867DEEB008498DF /* UIKit.framework in Frameworks */,
-				56F1CB1F186969EC008498DF /* Parse.framework in Frameworks */,
 				56F1CAE71867DEEB008498DF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +256,8 @@
 		56F1CAE51867DEEB008498DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E9A668F18C0269C005E5169 /* CoreTelephony.framework */,
+				5E9A668A18C01C28005E5169 /* AVOSCloud.framework */,
 				5E95914A18ADC24B0097B6BC /* MapKit.framework */,
 				56F1CB3018696AB7008498DF /* SystemConfiguration.framework */,
 				56F1CB2E18696AA9008498DF /* StoreKit.framework */,
@@ -257,7 +268,6 @@
 				56F1CB2418696A77008498DF /* CoreLocation.framework */,
 				56F1CB2218696A65008498DF /* CFNetwork.framework */,
 				56F1CB2018696A5B008498DF /* AudioToolbox.framework */,
-				56F1CB1E186969EC008498DF /* Parse.framework */,
 				56F1CAE61867DEEB008498DF /* Foundation.framework */,
 				56F1CAE81867DEEB008498DF /* CoreGraphics.framework */,
 				56F1CAEA1867DEEB008498DF /* UIKit.framework */,
@@ -308,6 +318,10 @@
 				5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */,
 				5E85E18D18B4420600A2A172 /* MTPlaceIntroductionViewController.h */,
 				5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */,
+				5E9A668718C018C5005E5169 /* MTLoginViewController.h */,
+				5E9A668818C018C5005E5169 /* MTLoginViewController.m */,
+				5E9A669118C029F5005E5169 /* MTSignUpViewController.h */,
+				5E9A669218C029F5005E5169 /* MTSignUpViewController.m */,
 				56F1CB011867DEEB008498DF /* Images.xcassets */,
 				56F1CAED1867DEEB008498DF /* Supporting Files */,
 			);
@@ -563,6 +577,7 @@
 				5E95916418ADEE310097B6BC /* FSRequester.m in Sources */,
 				5E95917618ADF78E0097B6BC /* MTAddCollectionViewController.m in Sources */,
 				5E85E18F18B4420600A2A172 /* MTPlaceIntroductionViewController.m in Sources */,
+				5E9A669318C029F5005E5169 /* MTSignUpViewController.m in Sources */,
 				5E95916C18ADEE310097B6BC /* FSOAuth.m in Sources */,
 				5E95916518ADEE310097B6BC /* FSTargetCallback.m in Sources */,
 				5E95917218ADEEA30097B6BC /* FSConverter.m in Sources */,
@@ -570,6 +585,7 @@
 				5E95916318ADEE310097B6BC /* Foursquare2.m in Sources */,
 				56F1CB34186976ED008498DF /* MTRootTabBarController.m in Sources */,
 				5E9B4D1B18B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m in Sources */,
+				5E9A668918C018C5005E5169 /* MTLoginViewController.m in Sources */,
 				5E9B4D1318B1FE3B00D9D6A3 /* AFHTTPClient.m in Sources */,
 				5E9B4D1618B1FE3B00D9D6A3 /* AFJSONRequestOperation.m in Sources */,
 				5E85E19518B483A000A2A172 /* MTTableView.m in Sources */,
@@ -714,6 +730,8 @@
 					"$(inherited)",
 					"$(SRCROOT)/**",
 					"/Users/Vivian/Downloads/iOS\\ 2/release-v2.3.2",
+					/Users/Vivian/maptube/Maptube/Maptube,
+					/Users/Vivian/maptube/Maptube,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
@@ -736,6 +754,8 @@
 					"$(inherited)",
 					"$(SRCROOT)/**",
 					"/Users/Vivian/Downloads/iOS\\ 2/release-v2.3.2",
+					/Users/Vivian/maptube/Maptube/Maptube,
+					/Users/Vivian/maptube/Maptube,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";

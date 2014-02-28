@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
-#import <Parse/Parse.h>
+#import <AVOSCloud/AVOSCloud.h>
 #import "MTRootTabBarController.h"
-//#import <AVOSCloud/AVUser.h>
+#import <AVOSCloud/AVUser.h>
+#import "MTLoginViewController.h"
 
 
 @interface MTRootTabBarController ()
@@ -38,23 +39,26 @@
 {
     [super viewDidAppear:animated];
     
-    if (![PFUser currentUser]) { // No user logged in
+    if (![AVUser currentUser]) { // No user logged in
         // Create the log in view controller
+        /*
         PFLogInViewController *logInViewController = [[PFLogInViewController alloc] init];
         [logInViewController setDelegate:self]; // Set ourselves as the delegate
         
         // Create the sign up view controller
         PFSignUpViewController *signUpViewController = [[PFSignUpViewController alloc] init];
         [signUpViewController setDelegate:self]; // Set ourselves as the delegate
+         */
+        MTLoginViewController *logInViewController = [[MTLoginViewController alloc]init];
         
         // Assign our sign up controller to be displayed from the login controller
-        [logInViewController setSignUpController:signUpViewController];
+        //[logInViewController setSignUpController:signUpViewController];
         
         // Present the log in view controller
         [self presentViewController:logInViewController animated:YES completion:NULL];
     }
 }
-
+/*
 #pragma mark - PFLogInViewControllerDelegate
 
 // Sent to the delegate to determine whether the log in request should be submitted to the server.
@@ -108,10 +112,7 @@
     return informationComplete;
 }
 
-/*//TODO: there is another similar Parse signup codes in MTSettingsViewController, 
- which is not supposed to have. It should keep only one single code block for Parse signup.
- */
-// Sent to the delegate when a PFUser is signed up.
+
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user {
     user[@"firstname"] = @"";
     user[@"lastname"] = @"";
@@ -130,6 +131,7 @@
 - (void)signUpViewControllerDidCancelSignUp:(PFSignUpViewController *)signUpController {
     NSLog(@"User dismissed the signUpViewController");
 }
+*/
 
 #pragma mark - ()
 

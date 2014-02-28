@@ -7,14 +7,15 @@
 //
 
 #import "MTPlace.h"
-#import <Parse/Parse.h>
+#import <AVOSCloud/AVObject.h>
+//#import <Parse/Parse.h>
 
 @implementation MTPlace
 
 +(NSArray *)convertPlaceArray:(NSArray *)array {
     
     NSMutableArray *placeArray = [NSMutableArray arrayWithCapacity:array.count];
-    for (PFObject  *dict  in array) {
+    for (AVObject  *dict  in array) {
         MTPlace *place = [[MTPlace alloc]init];
         place.name = dict[Title];
         place.venueId = dict[VenueID];

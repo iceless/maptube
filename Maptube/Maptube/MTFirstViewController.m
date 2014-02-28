@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
-#import <Parse/Parse.h>
+//#import <Parse/Parse.h>
 #import "MTFirstViewController.h"
 
 @interface MTFirstViewController ()

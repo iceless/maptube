@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
-#import <Parse/Parse.h>
-//#import <AVOSCloud/AVOSCloud.h>
+
+#import <AVOSCloud/AVOSCloud.h>
 //#import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "MTAppDelegate.h"
 #import "Foursquare2.h"
@@ -20,7 +20,7 @@
 {
     // Override point for customization after application launch.
     //设置AVOSCloud
-    /*
+    
     [AVOSCloud setApplicationId:AVOSCloudAppID
                       clientKey:AVOSCloudAppKey];
     
@@ -28,15 +28,9 @@
     //统计应用启动情况
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    */
     
-    [Parse setApplicationId:@"iMYrlUJLwqub93eBh6Jdjk6F2UgiTuBGcBewAAoi"
-                  clientKey:@"bWqx8rTSb0GKfZLZCNF0ZAZRanah2ggtOJv0mhvS"];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    [Foursquare2 setupFoursquareWithClientId:@"XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ"
-                                      secret:@"GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ"
-                                 callbackURL:@"www.mapgis.com"];
+    
      
 
     return YES;

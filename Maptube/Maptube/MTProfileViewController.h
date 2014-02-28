@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTProfileViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate,UITableViewDelegate, UITableViewDataSource>
+@interface MTProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) IBOutlet UINavigationItem *navItem;
 @property (nonatomic, strong) IBOutlet UITableView *table;

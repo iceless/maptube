@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "MTTableView.h"
-#import <Parse/Parse.h>
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface MTBoardViewController : UIViewController<CLLocationManagerDelegate,MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate>
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Bing W. All rights reserved.
 //
 
-#import <Parse/Parse.h>
+#import <AVOSCloud/AVOSCloud.h>
 #import <MapKit/MapKit.h>
 #import "MTProfileViewController.h"
 #import "MTAddCollectionViewController.h"
@@ -62,12 +62,13 @@
                
                PFObject *mapObject = [self.boardArray objectAtIndex:i];
                PFRelation *relation = [mapObject relationforKey:Place];
-               NSArray *objects =[[relation query] findObjects];
+               [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
                
                [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1]];
-              }
-            
-             [self.table reloadData];
+                   [self.table reloadData];
+               }];
+           }
+             //[self.table reloadData];
             
         }
         else {
