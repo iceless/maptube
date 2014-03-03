@@ -133,39 +133,60 @@
    // NSLog(@"%@",self.boardArray);
     PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
     
-    PFObject *placeObject = [PFObject objectWithClassName:Place];
-    [placeObject setObject:self.venue.title forKey:Title];
-    if(self.describeTextField.text.length!=0){
-          [placeObject setObject:self.describeTextField.text  forKey:Description];
-    }
-    [placeObject setObject:self.venue.venueId forKey:VenueID];
-    [placeObject setObject:self.venue.location.address forKey:VenueAddress];
-    NSNumber *number = [NSNumber numberWithDouble:self.venue.location.coordinate.longitude];
-    [placeObject setObject:number forKey:Longitude];
-    number = [NSNumber numberWithDouble:self.venue.location.coordinate.latitude];
-    [placeObject setObject:number forKey:Latitude];
-    [placeObject saveEventually: ^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            PFRelation *relation = [mapObject relationforKey:Place];
-            [relation addObject:placeObject];
-            [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
-                if (!error) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
-            }
-                  }];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+    PFRelation *relation = [mapObject relationforKey:Place];
+    
+    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for (PFObject *object in objects) {
+            if([object[VenueID] isEqualToString:self.venue.venueId]){
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"The place has exsited in the Map", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+                return ;
+                
+            }}
+        PFObject *placeObject = [PFObject objectWithClassName:Place];
+        [placeObject setObject:self.venue.title forKey:Title];
+        if(self.describeTextField.text.length!=0){
+            [placeObject setObject:self.describeTextField.text  forKey:Description];
         }
-    }];
+        [placeObject setObject:self.venue.venueId forKey:VenueID];
+        [placeObject setObject:self.venue.location.address forKey:VenueAddress];
+        NSNumber *number = [NSNumber numberWithDouble:self.venue.location.coordinate.longitude];
+        [placeObject setObject:number forKey:Longitude];
+        number = [NSNumber numberWithDouble:self.venue.location.coordinate.latitude];
+        [placeObject setObject:number forKey:Latitude];
+        [placeObject saveEventually: ^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                PFRelation *relation = [mapObject relationforKey:Place];
+                [relation addObject:placeObject];
+                [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+                    if (!error) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                }];
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+
+        
+    }
+     
+     ];
+           
+           
+            
+    
+    
+    
+    
+    //[venueDict setObject:self.venue.location.distance forKey:@"Distance"];
+    
+    
     
     
 
-//[venueDict setObject:self.venue.location.distance forKey:@"Distance"];
     
-    
-    
-    [self.navigationController popViewControllerAnimated:YES];
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
