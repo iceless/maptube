@@ -138,7 +138,7 @@
     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
             if([object[VenueID] isEqualToString:self.venue.venueId]){
-                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"The place has exsited in the Map", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"The place exsits in the Map", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
                 return ;
                 
             }

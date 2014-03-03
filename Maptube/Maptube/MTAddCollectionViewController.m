@@ -177,36 +177,39 @@
         for(AVObject *mapObject in objects){
             if([mapObject[Title] isEqualToString:self.values[0]])
             {
+                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"The same map name exsits,please change the title", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+                return ;
                 
             
             }
         
         }
+        PFObject *mapObject = [PFObject objectWithClassName:Map];
+        [mapObject setObject:self.values[0] forKey:Title];
+        [mapObject setObject:self.values[1] forKey:Description];
+        [mapObject setObject:self.values[2] forKey:Category];
+        [mapObject setObject: self.values[3] forKey:Secret];
+        [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+                [relation addObject:mapObject];
+                
+                [[PFUser currentUser] saveEventually: ^(BOOL succeeded, NSError *error) {
+                    if(succeeded){
+                        [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                }];
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+
     
     }];
-    PFObject *mapObject = [PFObject objectWithClassName:Map];
-    [mapObject setObject:self.values[0] forKey:Title];
-    [mapObject setObject:self.values[1] forKey:Description];
-    [mapObject setObject:self.values[2] forKey:Category];
-    [mapObject setObject: self.values[3] forKey:Secret];
-    [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
-            [relation addObject:mapObject];
-            
-            [[PFUser currentUser] saveEventually: ^(BOOL succeeded, NSError *error) {
-                if(succeeded){
-                   [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-                 }];
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-
+    
     
     
 }
