@@ -65,7 +65,7 @@
     
     self.addressLabel.text = self.venue.location.address;
     //NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
-    
+    //add scroll view
     if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0){
         self.automaticallyAdjustsScrollViewInsets = NO;
         self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+10, 320, 120)];
@@ -97,12 +97,44 @@
        
     }
     self.scrollView.contentSize = CGSizeMake(picArray.count*320, 140) ;
+    self.scrollView.delegate = self;
     [self.view addSubview:self.scrollView];
+    
+    //add pageControl
+    
+    self.pageControl = [[UIPageControl alloc] init];
+    
+    self.pageControl.frame = CGRectMake(150, 150, 20, 20);
+    self.pageControl.numberOfPages = picArray.count;
+    
+    self.pageControl.currentPage = 0;
+    [self.pageControl addTarget:self action:@selector(changePage:)forControlEvents:UIControlEventValueChanged];
+    
+ 
+  
+    
+    [self.view addSubview:self.pageControl];
+    
+    
     
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
 
+    
+}
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
+    
+    int page = self.scrollView.contentOffset.x / 310;
+    self.pageControl.currentPage = page;
+    
+}
+
+- (IBAction)changePage:(id)sender {
+    
+    int page = self.pageControl.currentPage;
+    
+    [self.scrollView setContentOffset:CGPointMake(320 * page, 0)];
     
 }
 

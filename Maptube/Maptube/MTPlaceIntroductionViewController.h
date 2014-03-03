@@ -14,6 +14,7 @@
 //@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) UIPageControl *pageControl;
 @property (strong, nonatomic) NSDictionary *placeData;
 @property (strong, nonatomic) FSVenue *venue;
 @property (strong, nonatomic) IBOutlet UITableView *table;
