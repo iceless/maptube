@@ -60,23 +60,44 @@
     
     self.boardArray = [NSMutableArray array];
 	[self updateBoard];
+    self.title = [self.placeData objectForKey:@"name"];
+
     
-    self.titleLabel.text = [self.placeData objectForKey:@"name"];
     self.addressLabel.text = self.venue.location.address;
     //NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
+    
+    if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0){
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+10, 320, 120)];
+    }
+    else {
+        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 120)];
+        
+    }
+    
+    [self.scrollView setPagingEnabled:YES];
+    self.scrollView.showsHorizontalScrollIndicator =YES;
     NSDictionary *pictureDict = [self.placeData objectForKey:@"photos"];
     NSArray *array = [pictureDict objectForKey:@"groups"];
-    if(array.count!=0){
-        pictureDict = [array objectAtIndex:0];
-        NSArray *picArray = [pictureDict objectForKey:@"items"];
-        
-        NSDictionary *picDict = [picArray objectAtIndex:0];
-        NSString *str= [picDict objectForKey:@"prefix"];
-        str = [str stringByAppendingString:@"60x60"];
-        str = [str stringByAppendingString:[picDict objectForKey:@"suffix"]];
-            NSLog(@"%@",str);
-        [self.iconImageView setImageWithURL:[NSURL URLWithString:str]];
+    pictureDict = [array objectAtIndex:0];
+    NSArray *picArray = [pictureDict objectForKey:@"items"];
+    if(picArray.count!=0){
+        for (int i=0; i<picArray.count; i++) {
+            
+            
+            NSDictionary *picDict = [picArray objectAtIndex:i];
+            NSString *str= [picDict objectForKey:@"prefix"];
+            str = [str stringByAppendingString:@"120x120"];
+            str = [str stringByAppendingString:[picDict objectForKey:@"suffix"]];
+            //NSLog(@"%@",str);
+            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320+40,0, 240, 120)] ;
+            [imgView setImageWithURL:[NSURL URLWithString:str]];
+            [self.scrollView addSubview:imgView];
+        }
+       
     }
+    self.scrollView.contentSize = CGSizeMake(picArray.count*320, 140) ;
+    [self.view addSubview:self.scrollView];
     
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.table setSeparatorInset:UIEdgeInsetsZero];
@@ -119,8 +140,9 @@
 }
 
 -(IBAction)pin:(id)sender {
-    
-    MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImage:self.iconImageView.image AndVenue:self.venue];
+    //to do
+    //MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImage:self.iconImageView.image AndVenue:self.venue];
+    MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
     controller.view.frame = CGRectMake(10, 100, self.view.frame.size.width-20, self.view.frame.size.height);
     
     [self.navigationController pushViewController:controller animated:YES];
@@ -145,7 +167,7 @@
    
     cell.textLabel.text = mapObject[Title];
     cell.textLabel.font = [UIFont systemFontOfSize:12];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
     
     
