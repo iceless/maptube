@@ -171,6 +171,19 @@
 
 }
 -(void)createBoard{
+    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+    
+    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for(AVObject *mapObject in objects){
+            if([mapObject[Title] isEqualToString:self.values[0]])
+            {
+                
+            
+            }
+        
+        }
+    
+    }];
     PFObject *mapObject = [PFObject objectWithClassName:Map];
     [mapObject setObject:self.values[0] forKey:Title];
     [mapObject setObject:self.values[1] forKey:Description];
@@ -182,8 +195,10 @@
             [relation addObject:mapObject];
             
             [[PFUser currentUser] saveEventually: ^(BOOL succeeded, NSError *error) {
-                    if(succeeded)
+                if(succeeded){
                    [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
                  }];
             
         } else {
@@ -192,7 +207,7 @@
         }
     }];
 
-    [self.navigationController popViewControllerAnimated:YES];
+    
     
 }
 

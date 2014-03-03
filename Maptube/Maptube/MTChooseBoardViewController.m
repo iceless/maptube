@@ -70,7 +70,13 @@
     
 	// Do any additional setup after loading the view.
 }
+
+
 - (void)viewWillAppear:(BOOL)animated {
+    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+    
+    self.boardArray = [[relation query] findObjects];
+
     [self.table reloadData];
     
 }
@@ -124,13 +130,7 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    /*
-    if(self.describeTextField.text.length==0){
-         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Please fill the describe first", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
-        return;
-    }
-     */
-   // NSLog(@"%@",self.boardArray);
+  
     PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
     
     PFRelation *relation = [mapObject relationforKey:Place];
@@ -141,7 +141,27 @@
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"The place has exsited in the Map", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
                 return ;
                 
-            }}
+            }
+        }
+        PFQuery *query = [PFQuery queryWithClassName:@"Place"];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            for (PFObject *object in objects) {
+                if([object[VenueID] isEqualToString:self.venue.venueId]){
+                    PFRelation *relation = [mapObject relationforKey:Place];
+                    [relation addObject:object];
+                    [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+                        if (!error) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+                            [self.navigationController popViewControllerAnimated:YES];
+                        }
+                    }];
+
+                    return ;
+                    
+            }
+            }
+        
+        
         PFObject *placeObject = [PFObject objectWithClassName:Place];
         [placeObject setObject:self.venue.title forKey:Title];
         if(self.describeTextField.text.length!=0){
@@ -170,22 +190,11 @@
         }];
 
         
-    }
+        }];
+         }
      
      ];
            
-           
-            
-    
-    
-    
-    
-    //[venueDict setObject:self.venue.location.distance forKey:@"Distance"];
-    
-    
-    
-    
-
     
     
 }

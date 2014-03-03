@@ -55,38 +55,11 @@
     MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(self.venue.coordinate,2000 ,2000 );
     [self.mapView setRegion:region];
     [self.mapView addAnnotation:self.venue];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
     
     
     self.boardArray = [NSMutableArray array];
-	
-    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
-    
-    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            for (PFObject *object in objects) {
-                
-                PFRelation *placeRelation = [object relationforKey:Place];
-                PFQuery *query = [placeRelation query];
-                [query whereKey:VenueID containsString:self.venue.venueId];
-                
-                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                    if(objects.count!=0){
-                        [self.boardArray addObject:object];
-                        [self.table reloadData];
-                    }
-                    
-                }];
-            }
-            
-                [self.table reloadData];
-                
-            
-            
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+	[self updateBoard];
     
     self.titleLabel.text = [self.placeData objectForKey:@"name"];
     self.addressLabel.text = self.venue.location.address;
@@ -108,6 +81,39 @@
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
+
+    
+}
+
+-(void)updateBoard{
+    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+    
+    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects) {
+                
+                PFRelation *placeRelation = [object relationforKey:Place];
+                PFQuery *query = [placeRelation query];
+                [query whereKey:VenueID containsString:self.venue.venueId];
+                
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    if(objects.count!=0){
+                        [self.boardArray addObject:object];
+                        [self.table reloadData];
+                    }
+                    
+                }];
+            }
+            
+            [self.table reloadData];
+            
+            
+            
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 
     
 }
@@ -155,6 +161,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)dealloc{
+   
+    [[NSNotificationCenter defaultCenter] removeObserver:ModifyProfileNotification];
 }
 
 @end
