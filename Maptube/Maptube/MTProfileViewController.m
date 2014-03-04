@@ -176,6 +176,8 @@
         label = (UILabel *)[cell viewWithTag:3];
         label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
         
+       
+        
     }else {
         
         UILabel *label;
@@ -186,6 +188,9 @@
         
         label = (UILabel *)[cell viewWithTag:4];
         label.text = [mapObject objectForKey:Description];
+        
+        label = (UILabel *)[cell viewWithTag:3];
+        label.text = [NSString stringWithFormat:@""];
         
        
         MKMapView *mapView = (MKMapView *)[cell viewWithTag:2];
@@ -199,6 +204,8 @@
        // NSLog(@"%@",[MTParse sharedInstance].placeArray);
 
         NSArray *array = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+        label = (UILabel *)[cell viewWithTag:5];
+        label.text = [NSString stringWithFormat:@"%d places",array.count];
         array = [MTPlace convertPlaceArray:array];
         if(array.count!=0){
             CGRect placeRect = [MTPlace updateMemberPins:array];
