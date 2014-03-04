@@ -94,7 +94,8 @@
         
         UIImageView *imgv;
         imgv = (UIImageView *)[cell.contentView viewWithTag:1];
-        imgv.image = [UIImage imageNamed:@"profilepic.JPG"];
+        imgv.image = [MTData sharedInstance].iconImage;
+
     } else if(indexPath.section == 1){
         static NSString *CellIdentifier = @"detailcell";
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

@@ -59,6 +59,7 @@
 		5E9A668C18C01C5D005E5169 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A668A18C01C28005E5169 /* AVOSCloud.framework */; };
 		5E9A669018C0269C005E5169 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A668F18C0269C005E5169 /* CoreTelephony.framework */; };
 		5E9A669318C029F5005E5169 /* MTSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A669218C029F5005E5169 /* MTSignUpViewController.m */; };
+		5E9ACD0818C5D49700E2F941 /* MTData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ACD0718C5D49700E2F941 /* MTData.m */; };
 		5E9B4CF918B1BEAE00D9D6A3 /* MTEditDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */; };
 		5E9B4CFB18B1F1E200D9D6A3 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9B4CFA18B1F1E200D9D6A3 /* board.png */; };
 		5E9B4CFE18B1F3E100D9D6A3 /* MTBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */; };
@@ -164,6 +165,8 @@
 		5E9A668F18C0269C005E5169 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		5E9A669118C029F5005E5169 /* MTSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSignUpViewController.h; sourceTree = "<group>"; };
 		5E9A669218C029F5005E5169 /* MTSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSignUpViewController.m; sourceTree = "<group>"; };
+		5E9ACD0618C5D49700E2F941 /* MTData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTData.h; sourceTree = "<group>"; };
+		5E9ACD0718C5D49700E2F941 /* MTData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTData.m; sourceTree = "<group>"; };
 		5E9B4CF718B1BEAE00D9D6A3 /* MTEditDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditDetailViewController.h; sourceTree = "<group>"; };
 		5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEditDetailViewController.m; sourceTree = "<group>"; };
 		5E9B4CFA18B1F1E200D9D6A3 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
@@ -441,6 +444,8 @@
 			children = (
 				5E9E0FF218B7252F008D89AD /* MTPlace.h */,
 				5E9E0FF318B7252F008D89AD /* MTPlace.m */,
+				5E9ACD0618C5D49700E2F941 /* MTData.h */,
+				5E9ACD0718C5D49700E2F941 /* MTData.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -589,6 +594,7 @@
 				5E9B4D1318B1FE3B00D9D6A3 /* AFHTTPClient.m in Sources */,
 				5E9B4D1618B1FE3B00D9D6A3 /* AFJSONRequestOperation.m in Sources */,
 				5E85E19518B483A000A2A172 /* MTTableView.m in Sources */,
+				5E9ACD0818C5D49700E2F941 /* MTData.m in Sources */,
 				56F1CAF71867DEEB008498DF /* MTAppDelegate.m in Sources */,
 				5E9B4D1718B1FE3B00D9D6A3 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */,
