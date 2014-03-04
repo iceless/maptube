@@ -199,7 +199,9 @@
         mapView.scrollEnabled = NO;
         mapView.showsUserLocation=NO;
         mapView.userInteractionEnabled = NO;
-        
+        mapView.layer.borderWidth =1.0;
+        mapView.layer.cornerRadius =5.0;
+        mapView.layer.borderColor = [UIColor grayColor].CGColor;
         
        // NSLog(@"%@",[MTParse sharedInstance].placeArray);
 

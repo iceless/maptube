@@ -46,6 +46,10 @@
     
     //self.table.tableFooterView = self.footer;
 }
+- (void)viewWillAppear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden = true;
+
+}
 #pragma mark - Map
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation

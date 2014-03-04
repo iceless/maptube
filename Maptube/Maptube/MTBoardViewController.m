@@ -64,6 +64,8 @@
 
 -(void)viewDidLayoutSubviews {
     
+    self.tabBarController.tabBar.hidden = false;
+    
     [super viewDidLayoutSubviews];
     
     self.tableView.contentInset = UIEdgeInsetsMake(self.mapView.frame.size.height+80, 0, 0, 0);

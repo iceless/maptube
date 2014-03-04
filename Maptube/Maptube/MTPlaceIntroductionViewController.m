@@ -51,11 +51,11 @@
     self.mapView.zoomEnabled=NO;
     self.mapView.scrollEnabled = NO;
     self.mapView.showsUserLocation=NO;
-    
+    self.tabBarController.tabBar.hidden = true;
     MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(self.venue.coordinate,2000 ,2000 );
     [self.mapView setRegion:region];
     [self.mapView addAnnotation:self.venue];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeChooseBoardView) name:CloseChooseBoardNotification object:nil];
     
