@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface MTAddPlaceViewController : UIViewController<CLLocationManagerDelegate,MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface MTAddPlaceViewController : UIViewController<CLLocationManagerDelegate,MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate>{
+   
+}
 @property (strong, nonatomic)  IBOutlet MKMapView  *mapView;
 @property (strong, nonatomic) NSArray *nearbyPlaces;
 @property (strong,nonatomic )  IBOutlet UITableView *table;

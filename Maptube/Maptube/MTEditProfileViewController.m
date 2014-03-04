@@ -228,6 +228,54 @@
     UIImageView *imgv;
     imgv = (UIImageView *)[cell.contentView viewWithTag:1];
     imgv.image = image;
+    
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
+    [self uploadImage:imageData];
+    
+    
+    
+}
+
+-(void)uploadImage:(NSData *)imageData{
+    PFFile *imageFile = [PFFile fileWithName:@"Image.jpg" data:imageData];
+    
+    //HUD creation here (see example for code)
+    
+    // Save PFFile
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            // Hide old HUD, show completed HUD (see example for code)
+            
+            // Create a PFObject around a PFFile and associate it with the current user
+            PFObject *userPhoto = [PFObject objectWithClassName:@"UserPhoto"];
+            [userPhoto setObject:imageFile forKey:@"imageFile"];
+            
+            // Set the access control list to current user for security purposes
+            userPhoto.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
+            
+            PFUser *user = [PFUser currentUser];
+            [userPhoto setObject:user forKey:@"user"];
+            
+            [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    //[self refresh:nil];
+                }
+                else{
+                    // Log details of the failure
+                    NSLog(@"Error: %@ %@", error, [error userInfo]);
+                }
+            }];
+        }
+        else{
+            //[HUD hide:YES];
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    } progressBlock:^(int percentDone) {
+        // Update your progress spinner here. percentDone will be between 0 and 100.
+       // HUD.progress = (float)percentDone/100;
+    }];
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

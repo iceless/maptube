@@ -168,13 +168,28 @@
         
         UIImageView *imgv;
         imgv = (UIImageView *)[cell viewWithTag:4];
-        imgv.image = [UIImage imageNamed:@"profilepic.JPG"];
+       // imgv.image = [UIImage imageNamed:@"profilepic.JPG"];
+        PFQuery *query = [PFQuery queryWithClassName:@"UserPhoto"];
+        PFUser *user = [PFUser currentUser];
+        [query whereKey:@"user" equalTo:user];
+         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+             if(objects.count!=0){
+             PFObject *object = [objects objectAtIndex:0];
+                 PFFile *theImage = [object objectForKey:@"imageFile"];
+                 NSData *imageData = [theImage getData];
+                 imgv.image = [UIImage imageWithData:imageData];
+             }
+             
+             
+         }];
+        
+        
         
         label = (UILabel *)[cell viewWithTag:2];
         label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"location"]];
         
-        label = (UILabel *)[cell viewWithTag:3];
-        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
+        //label = (UILabel *)[cell viewWithTag:3];
+        //label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
         
        
         
