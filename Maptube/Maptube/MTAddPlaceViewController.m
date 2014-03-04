@@ -47,7 +47,7 @@
     //self.table.tableFooterView = self.footer;
 }
 - (void)viewWillAppear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = true;
+    self.tabBarController.tabBar.hidden = false;
 
 }
 #pragma mark - Map
