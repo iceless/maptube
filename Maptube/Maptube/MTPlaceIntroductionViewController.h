@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FSVenue.h"
 #import <MapKit/MapKit.h>
-
+#import "MTChooseBoardViewController.h"
 @interface MTPlaceIntroductionViewController : UIViewController<MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate>
 //@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
@@ -20,6 +20,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) NSMutableArray *boardArray;
 @property (strong, nonatomic) IBOutlet MKMapView  *mapView;
-
+@property (strong, nonatomic) MTChooseBoardViewController *chooseBoardView;
 -(id)initWithData:(NSDictionary *)dict AndVenue:(FSVenue *)venue;
 @end

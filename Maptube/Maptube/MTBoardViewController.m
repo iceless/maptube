@@ -111,8 +111,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     MTPlace *place = self.placeArray[indexPath.row];
-
     label.text = place.name;
+    
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
     
     return cell;
 }

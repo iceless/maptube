@@ -7,7 +7,7 @@
 //
 
 #import "MTPlaceIntroductionViewController.h"
-#import "MTChooseBoardViewController.h"
+
 #import <AVOSCloud/AVOSCloud.h>
 #import "MTPlace.h"
 
@@ -57,6 +57,8 @@
     [self.mapView addAnnotation:self.venue];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeChooseBoardView) name:CloseChooseBoardNotification object:nil];
+    
     
     self.boardArray = [NSMutableArray array];
 	[self updateBoard];
@@ -79,6 +81,7 @@
     self.scrollView.showsHorizontalScrollIndicator =YES;
     NSDictionary *pictureDict = [self.placeData objectForKey:@"photos"];
     NSArray *array = [pictureDict objectForKey:@"groups"];
+    if(array.count!=0){
     pictureDict = [array objectAtIndex:0];
     NSArray *picArray = [pictureDict objectForKey:@"items"];
     if(picArray.count!=0){
@@ -96,30 +99,44 @@
         }
        
     }
-    self.scrollView.contentSize = CGSizeMake(picArray.count*320, 140) ;
-    self.scrollView.delegate = self;
-    [self.view addSubview:self.scrollView];
     
-    //add pageControl
+        self.scrollView.contentSize = CGSizeMake(picArray.count*320, 140) ;
+        self.scrollView.delegate = self;
+        [self.view addSubview:self.scrollView];
+        //add pageControl
+        
+        self.pageControl = [[UIPageControl alloc] init];
+        
+        self.pageControl.frame = CGRectMake(150, 150, 20, 20);
+        self.pageControl.numberOfPages = picArray.count;
+        
+        self.pageControl.currentPage = 0;
+        [self.pageControl addTarget:self action:@selector(changePage:)forControlEvents:UIControlEventValueChanged];
+        
+        
+        
+        
+        [self.view addSubview:self.pageControl];
+    }
     
-    self.pageControl = [[UIPageControl alloc] init];
     
-    self.pageControl.frame = CGRectMake(150, 150, 20, 20);
-    self.pageControl.numberOfPages = picArray.count;
-    
-    self.pageControl.currentPage = 0;
-    [self.pageControl addTarget:self action:@selector(changePage:)forControlEvents:UIControlEventValueChanged];
-    
- 
-  
-    
-    [self.view addSubview:self.pageControl];
     
     
     
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
+    
+    self.chooseBoardView = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
+    self.chooseBoardView.view.frame = CGRectMake(0, 130, self.view.frame.size.width, self.view.frame.size.height);
+    UIView *greyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    greyView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    greyView.tag = 101;
+    self.chooseBoardView.view.tag = 102;
+    greyView.hidden = true;
+    self.chooseBoardView.view.hidden = true;
+    [self.view addSubview:greyView];
+    [self.view addSubview:self.chooseBoardView.view];
 
     
 }
@@ -137,6 +154,7 @@
     [self.scrollView setContentOffset:CGPointMake(320 * page, 0)];
     
 }
+
 
 -(void)updateBoard{
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
@@ -170,14 +188,26 @@
 
     
 }
+-(void)closeChooseBoardView{
+    UIView *view = (UIView *)[self.view viewWithTag:101];
+    view.hidden = true;
+    view = (UIView *)[self.view viewWithTag:102];
+    view.hidden = true;
+    
+    
+    
+}
 
 -(IBAction)pin:(id)sender {
     //to do
     //MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImage:self.iconImageView.image AndVenue:self.venue];
-    MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
-    controller.view.frame = CGRectMake(10, 100, self.view.frame.size.width-20, self.view.frame.size.height);
     
-    [self.navigationController pushViewController:controller animated:YES];
+    UIView *view = (UIView *)[self.view viewWithTag:101];
+    view.hidden = false;
+    view = (UIView *)[self.view viewWithTag:102];
+    view.hidden = false;
+    
+    //[self.navigationController pushViewController:controller animated:YES];
     
 }
 

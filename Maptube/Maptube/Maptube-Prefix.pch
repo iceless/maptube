@@ -17,6 +17,7 @@
 
 #define ModifyProfileNotification @"EditProfileNotification"
 #define ModifyBoardNotification @"ModifyBoardNotification"
+#define CloseChooseBoardNotification @"CloseChooseBoardNotification"
 
 #define Map @"Map"
 #define User @"User"

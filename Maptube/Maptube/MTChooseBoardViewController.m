@@ -43,24 +43,31 @@
     [super viewDidLoad];
     //PFUser *user = [PFUser currentUser];
    // self.boardArray = user[@"Board"];
+    
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     
     self.boardArray = [[relation query] findObjects];
+    UINavigationItem *navigationItem =[[UINavigationItem alloc] initWithTitle:self.venue.name];
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
     [button addTarget:self action:@selector(navBack) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Close" forState:UIControlStateNormal];
-    self.navigationItem.leftBarButtonItem=barItem;
+    navigationItem.leftBarButtonItem=barItem;
     
     button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 100, 32);
     [button addTarget:self action:@selector(createBoard) forControlEvents:UIControlEventTouchUpInside];
-    barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"CreateBoard" forState:UIControlStateNormal];
+    barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     //[button setBackgroundColor:[UIColor redColor]];
-    self.navigationItem.rightBarButtonItem=barItem;
+    navigationItem.rightBarButtonItem=barItem;
+   
+    UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [bar pushNavigationItem:navigationItem animated:YES];
+    
+    [self.view addSubview:bar];
     
     
     //self.table.frame = CGRectMake(10, 100, self.view.frame.size.width-20, self.view.frame.size.height);
@@ -81,7 +88,8 @@
     
 }
 -(void)navBack{
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
 }
 -(void)createBoard{
     MTAddCollectionViewController *controller = [[MTAddCollectionViewController alloc]init];
