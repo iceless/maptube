@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FSVenue.h"
-#import <MapKit/MapKit.h>
+
 #import "MTChooseBoardViewController.h"
-@interface MTPlaceIntroductionViewController : UIViewController<MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface MTPlaceIntroductionViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 //@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) IBOutlet UIButton *mapButton;

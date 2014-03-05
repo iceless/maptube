@@ -82,6 +82,7 @@
 		5EBBFE9618C6DA89007B6109 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9118C6DA89007B6109 /* search.png */; };
 		5EBBFE9818C6F3A3007B6109 /* mappin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9718C6F3A3007B6109 /* mappin.png */; };
 		5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F1CAF81867DEEB008498DF /* Main.storyboard */; };
+		5EBCC21818C7044F00BA4CAC /* MTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +212,8 @@
 		5EBBFE9018C6DA89007B6109 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		5EBBFE9118C6DA89007B6109 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		5EBBFE9718C6F3A3007B6109 /* mappin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mappin.png; sourceTree = "<group>"; };
+		5EBCC21618C7044F00BA4CAC /* MTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapViewController.h; sourceTree = "<group>"; };
+		5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +336,8 @@
 				5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */,
 				5E85E18D18B4420600A2A172 /* MTPlaceIntroductionViewController.h */,
 				5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */,
+				5EBCC21618C7044F00BA4CAC /* MTMapViewController.h */,
+				5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */,
 				5E9A668718C018C5005E5169 /* MTLoginViewController.h */,
 				5E9A668818C018C5005E5169 /* MTLoginViewController.m */,
 				5E9A669118C029F5005E5169 /* MTSignUpViewController.h */,
@@ -613,6 +618,7 @@
 				5E9B4D1518B1FE3B00D9D6A3 /* AFImageRequestOperation.m in Sources */,
 				5E95916318ADEE310097B6BC /* Foursquare2.m in Sources */,
 				56F1CB34186976ED008498DF /* MTRootTabBarController.m in Sources */,
+				5EBCC21818C7044F00BA4CAC /* MTMapViewController.m in Sources */,
 				5E9B4D1B18B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m in Sources */,
 				5E9A668918C018C5005E5169 /* MTLoginViewController.m in Sources */,
 				5E9B4D1318B1FE3B00D9D6A3 /* AFHTTPClient.m in Sources */,

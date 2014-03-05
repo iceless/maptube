@@ -7,6 +7,7 @@
 //
 
 #import "MTPlaceIntroductionViewController.h"
+#import "MTMapViewController.h"
 
 #import <AVOSCloud/AVOSCloud.h>
 #import "MTPlace.h"
@@ -216,6 +217,14 @@
     
     //[self.navigationController pushViewController:controller animated:YES];
     
+}
+#pragma mark - segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Map"]){
+        MTMapViewController *destViewController = segue.destinationViewController;
+        destViewController.venue = self.venue;
+    }
 }
 
 #pragma mark - Table view data source
