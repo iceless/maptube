@@ -22,6 +22,7 @@
         place.venueAddress = dict[VenueAddress];
         [place setCoordinate:CLLocationCoordinate2DMake([dict[Latitude] doubleValue],
                                                                  [dict[Longitude] doubleValue])];
+        place.distance = dict[Distance];
         [placeArray addObject:place];
         
     }

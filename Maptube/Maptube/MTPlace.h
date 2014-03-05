@@ -14,6 +14,7 @@
 @property (nonatomic,strong)NSString *venueId;
 @property (nonatomic,strong)NSString *description;
 @property (nonatomic,strong)NSString *venueAddress;
+@property (nonatomic,strong)NSNumber *distance;
 @property (nonatomic,assign)CLLocationCoordinate2D coordinate;
 
 
