@@ -70,6 +70,7 @@
 
     
     self.addressLabel.text = self.venue.location.address;
+    self.distanceLabel.text = [NSString stringWithFormat:@"%@m", self.venue.location.distance];
     self.mapButton.layer.borderWidth = 1.0;
     self.mapButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     UIImageView *imageView = (UIImageView *)[self.view viewWithTag:1];
@@ -81,15 +82,15 @@
     //add scroll view
     if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0){
         self.automaticallyAdjustsScrollViewInsets = NO;
-        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+10, 320, 120)];
+        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+10, 320, 180)];
     }
     else {
-        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 120)];
+        self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
         
     }
     
     [self.scrollView setPagingEnabled:YES];
-    self.scrollView.showsHorizontalScrollIndicator =YES;
+    self.scrollView.showsHorizontalScrollIndicator =NO;
     NSDictionary *pictureDict = [self.placeData objectForKey:@"photos"];
     NSArray *array = [pictureDict objectForKey:@"groups"];
     if(array.count!=0){
@@ -104,21 +105,21 @@
             str = [str stringByAppendingString:@"120x120"];
             str = [str stringByAppendingString:[picDict objectForKey:@"suffix"]];
             //NSLog(@"%@",str);
-            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320+40,0, 240, 120)] ;
+            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 160)] ;
             [imgView setImageWithURL:[NSURL URLWithString:str]];
             [self.scrollView addSubview:imgView];
         }
        
     }
     
-        self.scrollView.contentSize = CGSizeMake(picArray.count*320, 140) ;
+        self.scrollView.contentSize = CGSizeMake(picArray.count*320, 180) ;
         self.scrollView.delegate = self;
         [self.view addSubview:self.scrollView];
         //add pageControl
         
         self.pageControl = [[UIPageControl alloc] init];
         
-        self.pageControl.frame = CGRectMake(150, 150, 20, 20);
+        self.pageControl.frame = CGRectMake(150, 200, 20, 20);
         self.pageControl.numberOfPages = picArray.count;
         
         self.pageControl.currentPage = 0;

@@ -13,6 +13,7 @@
 @interface MTPlaceIntroductionViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 //@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
+@property (strong, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (strong, nonatomic) IBOutlet UIButton *mapButton;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIPageControl *pageControl;
