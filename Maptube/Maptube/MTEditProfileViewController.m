@@ -37,11 +37,20 @@
     //initial setting up, retrieve user's info
     PFUser *user = [PFUser currentUser];
     self.fields = @[@"First Name", @"Last Name", @"Username", @"Description", @"Location"];
+    if(!user[@"firstname"]){
+        self.values = [@[@"",
+                         @"",
+                         @"",
+                         @"",
+                         @""]mutableCopy];
+    }
+    else{
     self.values = [@[user[@"firstname"],
                      user[@"lastname"],
                      user[@"username"],
                      user[@"description"],
                      user[@"location"]] mutableCopy];
+    }
 }
 
 //make sure everytime view appears, the table view's labels are updated from array values.
