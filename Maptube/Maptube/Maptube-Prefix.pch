@@ -32,5 +32,6 @@
 #define Latitude @"Latitude"
 #define VenueID @"VenueID"
 #define VenueAddress @"VenueAddress"
+#define Distance @"Distance"
 
 #endif

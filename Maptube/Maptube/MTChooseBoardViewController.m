@@ -181,6 +181,7 @@
         [placeObject setObject:number forKey:Longitude];
         number = [NSNumber numberWithDouble:self.venue.location.coordinate.latitude];
         [placeObject setObject:number forKey:Latitude];
+        [placeObject setObject:self.venue.location.distance forKey:Distance];
         [placeObject saveEventually: ^(BOOL succeeded, NSError *error) {
             if (!error) {
                 PFRelation *relation = [mapObject relationforKey:Place];
