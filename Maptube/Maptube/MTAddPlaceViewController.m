@@ -57,20 +57,20 @@
 {
     NSLog(@"newLocation:%@",[newLocation description]);
 
-    self.curLocation = newLocation.coordinate;
+    self.curLocation = newLocation;
     //设置显示区域
     MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(newLocation.coordinate,2000 ,2000 );
     [self.mapView setRegion:region animated:TRUE];
-    [self getVenuesForLocation:newLocation];
+    [self getVenuesForLocation:newLocation andquery:nil];
     [self.locationManager stopUpdatingLocation];
     
 }
 
-- (void)getVenuesForLocation:(CLLocation *)location {
+- (void)getVenuesForLocation:(CLLocation *)location andquery:(NSString *)str {
     
     [Foursquare2 venueSearchNearByLatitude:@(location.coordinate.latitude)
                                  longitude:@(location.coordinate.longitude)
-                                     query:nil
+                                     query:str
                                      limit:nil
                                     intent:intentCheckin
                                     radius:@(500)
@@ -106,6 +106,34 @@
     [self removeAllAnnotationExceptOfCurrentUser];
     [self.mapView addAnnotations:self.nearbyPlaces];
 }
+
+#pragma mark - SearchBar Delegate
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    
+    // NSLog(@"shouldBeginEditing");
+    self.searchBar.showsCancelButton  = YES;
+    
+    self.isSearching = true;
+    return true;
+    
+    
+}
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    self.isSearching = false;
+    [self.table reloadData];
+    searchBar.text = @"";
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self getVenuesForLocation:self.curLocation andquery:searchText];
+    
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    self.isSearching = false;
+    self.searchBar.showsCancelButton  = NO;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
