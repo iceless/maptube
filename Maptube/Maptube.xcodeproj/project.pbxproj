@@ -76,6 +76,11 @@
 		5E9E0FF418B7252F008D89AD /* MTPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E0FF318B7252F008D89AD /* MTPlace.m */; };
 		5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */; };
 		5EA684E918B32DA800679EDE /* MTChooseBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */; };
+		5EBBFE9218C6DA89007B6109 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8D18C6DA89007B6109 /* profile.png */; };
+		5EBBFE9318C6DA89007B6109 /* message.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8E18C6DA89007B6109 /* message.png */; };
+		5EBBFE9418C6DA89007B6109 /* check in.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8F18C6DA89007B6109 /* check in.png */; };
+		5EBBFE9518C6DA89007B6109 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9018C6DA89007B6109 /* home.png */; };
+		5EBBFE9618C6DA89007B6109 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9118C6DA89007B6109 /* search.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +204,11 @@
 		5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddPictureViewController.m; sourceTree = "<group>"; };
 		5EA684E718B32DA800679EDE /* MTChooseBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTChooseBoardViewController.h; sourceTree = "<group>"; };
 		5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTChooseBoardViewController.m; sourceTree = "<group>"; };
+		5EBBFE8D18C6DA89007B6109 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		5EBBFE8E18C6DA89007B6109 /* message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message.png; sourceTree = "<group>"; };
+		5EBBFE8F18C6DA89007B6109 /* check in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check in.png"; sourceTree = "<group>"; };
+		5EBBFE9018C6DA89007B6109 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		5EBBFE9118C6DA89007B6109 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +344,11 @@
 		56F1CAED1867DEEB008498DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5EBBFE8D18C6DA89007B6109 /* profile.png */,
+				5EBBFE8E18C6DA89007B6109 /* message.png */,
+				5EBBFE8F18C6DA89007B6109 /* check in.png */,
+				5EBBFE9018C6DA89007B6109 /* home.png */,
+				5EBBFE9118C6DA89007B6109 /* search.png */,
 				5E9B4CFA18B1F1E200D9D6A3 /* board.png */,
 				56F1CAEE1867DEEB008498DF /* Maptube-Info.plist */,
 				56F1CAEF1867DEEB008498DF /* InfoPlist.strings */,
@@ -540,11 +555,16 @@
 				5E9B4CFB18B1F1E200D9D6A3 /* board.png in Resources */,
 				56F1CB021867DEEB008498DF /* Images.xcassets in Resources */,
 				5E95916218ADEE310097B6BC /* CHANGELOG.md in Resources */,
+				5EBBFE9618C6DA89007B6109 /* search.png in Resources */,
+				5EBBFE9318C6DA89007B6109 /* message.png in Resources */,
+				5EBBFE9418C6DA89007B6109 /* check in.png in Resources */,
 				56F1CAF11867DEEB008498DF /* InfoPlist.strings in Resources */,
 				5E95916818ADEE310097B6BC /* pin.png in Resources */,
 				5E95916B18ADEE310097B6BC /* poweredByFoursquare_gray@2x.png in Resources */,
 				5E95916718ADEE310097B6BC /* FSWebLogin.xib in Resources */,
+				5EBBFE9218C6DA89007B6109 /* profile.png in Resources */,
 				5E95916A18ADEE310097B6BC /* poweredByFoursquare_gray.png in Resources */,
+				5EBBFE9518C6DA89007B6109 /* home.png in Resources */,
 				56F1CAFA1867DEEB008498DF /* Main.storyboard in Resources */,
 				5E95916918ADEE310097B6BC /* pin@2x.png in Resources */,
 				56C3C932186BFA8E00E9B892 /* profilepic.JPG in Resources */,

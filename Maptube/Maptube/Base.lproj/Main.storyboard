@@ -28,7 +28,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="second" id="u1e-5L-l1D"/>
+                    <tabBarItem key="tabBarItem" title="" image="home.png" id="u1e-5L-l1D"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
             </objects>
@@ -57,7 +57,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="Z7h-1E-pvt"/>
+                    <tabBarItem key="tabBarItem" image="search.png" id="Z7h-1E-pvt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>
             </objects>
@@ -622,11 +622,11 @@
             </objects>
             <point key="canvasLocation" x="-352" y="434"/>
         </scene>
-        <!--Navigation Controller - Profile-->
+        <!--Navigation Controller-->
         <scene sceneID="PEq-OQ-lU8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aMu-7s-CiY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="first" id="M2c-R0-zgc"/>
+                    <tabBarItem key="tabBarItem" title="" image="profile.png" id="M2c-R0-zgc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JBB-O0-L3I">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -767,11 +767,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mfx-hp-zbh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Navigation Controller - Add-->
+        <!--Navigation Controller-->
         <scene sceneID="Z0P-FK-Plm">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Lje-GP-1Gf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Add" id="qCE-vQ-kbj"/>
+                    <tabBarItem key="tabBarItem" title="" image="check in.png" id="qCE-vQ-kbj"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YXi-Hm-j49">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -972,8 +972,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="check in.png" width="32" height="32"/>
+        <image name="home.png" width="32" height="32"/>
+        <image name="profile.png" width="32" height="32"/>
+        <image name="search.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
