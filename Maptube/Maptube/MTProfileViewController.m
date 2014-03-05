@@ -179,6 +179,7 @@
             imgv = (UIImageView *)[cell viewWithTag:i];
             imgv.layer.borderWidth = 1;
             imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            
         }
 
         
@@ -209,8 +210,8 @@
         mapView.showsUserLocation=NO;
         mapView.userInteractionEnabled = NO;
         mapView.layer.borderWidth =1.0;
-        mapView.layer.cornerRadius =5.0;
-        mapView.layer.borderColor = [UIColor grayColor].CGColor;
+       // mapView.layer.cornerRadius =5.0;
+        mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
         
        // NSLog(@"%@",[MTParse sharedInstance].placeArray);
 

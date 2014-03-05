@@ -55,7 +55,6 @@
     [button addTarget:self action:@selector(editBoard) forControlEvents:UIControlEventTouchUpInside];
      UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Edit" forState:UIControlStateNormal];
-    
     self.navigationItem.rightBarButtonItem=barItem;
    
     
@@ -115,7 +114,7 @@
     MTPlace *place = self.placeArray[indexPath.row];
     label.text = place.name;
     
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
+    //UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
     
     return cell;
 }
