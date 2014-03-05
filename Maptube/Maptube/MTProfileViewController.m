@@ -175,6 +175,9 @@
         label = (UILabel *)[cell viewWithTag:2];
         label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"location"]];
         
+        label = (UILabel *)[cell viewWithTag:3];
+        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
+        
         for(int i=11;i<=14;i++){
             imgv = (UIImageView *)[cell viewWithTag:i];
             imgv.layer.borderWidth = 1;
