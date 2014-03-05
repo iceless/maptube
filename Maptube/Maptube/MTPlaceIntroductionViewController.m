@@ -47,14 +47,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tabBarController.tabBar.hidden = true;
+    /*
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.zoomEnabled=NO;
     self.mapView.scrollEnabled = NO;
     self.mapView.showsUserLocation=NO;
-    self.tabBarController.tabBar.hidden = true;
+    
     MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(self.venue.coordinate,2000 ,2000 );
     [self.mapView setRegion:region];
     [self.mapView addAnnotation:self.venue];
+     */
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeChooseBoardView) name:CloseChooseBoardNotification object:nil];
@@ -66,6 +69,13 @@
 
     
     self.addressLabel.text = self.venue.location.address;
+    self.mapButton.layer.borderWidth = 1.0;
+    self.mapButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    UIImageView *imageView = (UIImageView *)[self.view viewWithTag:1];
+    imageView.layer.borderWidth = 1.0;
+    imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    
     //NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
     //add scroll view
     if([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0){
@@ -193,9 +203,6 @@
     view.hidden = true;
     view = (UIView *)[self.view viewWithTag:102];
     view.hidden = true;
-    
-    
-    
 }
 
 -(IBAction)pin:(id)sender {

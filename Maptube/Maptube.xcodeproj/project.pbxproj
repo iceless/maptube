@@ -16,7 +16,6 @@
 		56F1CAF11867DEEB008498DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56F1CAEF1867DEEB008498DF /* InfoPlist.strings */; };
 		56F1CAF31867DEEB008498DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CAF21867DEEB008498DF /* main.m */; };
 		56F1CAF71867DEEB008498DF /* MTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CAF61867DEEB008498DF /* MTAppDelegate.m */; };
-		56F1CAFA1867DEEB008498DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F1CAF81867DEEB008498DF /* Main.storyboard */; };
 		56F1CAFD1867DEEB008498DF /* MTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CAFC1867DEEB008498DF /* MTFirstViewController.m */; };
 		56F1CB001867DEEB008498DF /* MTSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CAFF1867DEEB008498DF /* MTSecondViewController.m */; };
 		56F1CB021867DEEB008498DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56F1CB011867DEEB008498DF /* Images.xcassets */; };
@@ -81,6 +80,8 @@
 		5EBBFE9418C6DA89007B6109 /* check in.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8F18C6DA89007B6109 /* check in.png */; };
 		5EBBFE9518C6DA89007B6109 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9018C6DA89007B6109 /* home.png */; };
 		5EBBFE9618C6DA89007B6109 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9118C6DA89007B6109 /* search.png */; };
+		5EBBFE9818C6F3A3007B6109 /* mappin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9718C6F3A3007B6109 /* mappin.png */; };
+		5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F1CAF81867DEEB008498DF /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +210,7 @@
 		5EBBFE8F18C6DA89007B6109 /* check in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check in.png"; sourceTree = "<group>"; };
 		5EBBFE9018C6DA89007B6109 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		5EBBFE9118C6DA89007B6109 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		5EBBFE9718C6F3A3007B6109 /* mappin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mappin.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +346,7 @@
 		56F1CAED1867DEEB008498DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5EBBFE9718C6F3A3007B6109 /* mappin.png */,
 				5EBBFE8D18C6DA89007B6109 /* profile.png */,
 				5EBBFE8E18C6DA89007B6109 /* message.png */,
 				5EBBFE8F18C6DA89007B6109 /* check in.png */,
@@ -562,10 +565,11 @@
 				5E95916818ADEE310097B6BC /* pin.png in Resources */,
 				5E95916B18ADEE310097B6BC /* poweredByFoursquare_gray@2x.png in Resources */,
 				5E95916718ADEE310097B6BC /* FSWebLogin.xib in Resources */,
+				5EBBFE9818C6F3A3007B6109 /* mappin.png in Resources */,
+				5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */,
 				5EBBFE9218C6DA89007B6109 /* profile.png in Resources */,
 				5E95916A18ADEE310097B6BC /* poweredByFoursquare_gray.png in Resources */,
 				5EBBFE9518C6DA89007B6109 /* home.png in Resources */,
-				56F1CAFA1867DEEB008498DF /* Main.storyboard in Resources */,
 				5E95916918ADEE310097B6BC /* pin@2x.png in Resources */,
 				56C3C932186BFA8E00E9B892 /* profilepic.JPG in Resources */,
 			);
@@ -755,10 +759,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/**",
+					"$(SRCROOT)/Maptube",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Maptube/Maptube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -777,10 +782,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/**",
+					"$(SRCROOT)/Maptube",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Maptube/Maptube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
