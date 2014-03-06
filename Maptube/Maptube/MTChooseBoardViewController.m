@@ -47,7 +47,7 @@
     //PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     [self updateBoard];
     //self.boardArray = [[relation query] findObjects];
-    UINavigationItem *navigationItem =[[UINavigationItem alloc] initWithTitle:self.venue.name];
+    UINavigationItem *navigationItem =[[UINavigationItem alloc] initWithTitle:@"Pin to Map"];
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
