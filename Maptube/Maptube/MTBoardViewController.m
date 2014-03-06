@@ -155,7 +155,10 @@
     if([self.boardData objectForKey:Category])
         array[2] =[self.boardData objectForKey:Category];
     else array[2] = @"";
-    array[3] = [self.boardData objectForKey:Secret];
+    if([self.boardData objectForKey:Secret]){
+        array[3] = [self.boardData objectForKey:Secret];
+    }
+    else array[3] = @"";
     
     MTEditBoardViewController *controller = [[MTEditBoardViewController alloc]initWithData:array andPFObject:self.boardData];
     [self.navigationController pushViewController:controller animated:YES];
