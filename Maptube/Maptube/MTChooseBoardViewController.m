@@ -187,6 +187,63 @@
     }
     
 }
+-(void)addBoard:(NSString *)str{
+    
+    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+    
+    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for(AVObject *mapObject in objects){
+            if([mapObject[Title] isEqualToString:str])
+            {
+                [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"The same map name exsits,please change the title", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+                return ;
+                
+                
+            }
+            
+        }
+        PFObject *mapObject = [PFObject objectWithClassName:Map];
+        [mapObject setObject:str forKey:Title];
+        
+        [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+                [relation addObject:mapObject];
+                
+                [[PFUser currentUser] saveEventually: ^(BOOL succeeded, NSError *error) {
+                    if(succeeded){
+                        NSDictionary *dict=@{@"object": mapObject,@"exsist": @"0"};
+                        [self.boardArray addObject:dict];
+                        [self.table reloadData];
+                    }
+                }];
+                
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+        
+        
+    }];
+
+    
+}
+#pragma mark - textfield delegate
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    //NSLog(@"yeah inform someone of my change %@", textField.text);
+    [self addBoard:textField.text];
+    
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 
 
 #pragma mark - Table view data source
@@ -211,20 +268,17 @@
  */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     UITableViewCell *cell;
-    static NSString *cellIdentifier = @"PlaceCell";
+    
+    static NSString *cellIdentifier = @"NewMapCell";
     if(indexPath.section==0){
-        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        UIImageView *imgView = (UIImageView *)[cell viewWithTag:1];
-        imgView.image = self.image;
-        self.describeTextField = (UITextField *)[cell viewWithTag:2];
-        UILabel *placeTitle = (UILabel *)[cell viewWithTag:3];
-        placeTitle.text = self.venue.name;
+       cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        
         
     }
     else{
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+        cell= [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
         NSDictionary *dict = [self.boardArray objectAtIndex:indexPath.row];
 
         PFObject *mapObject = [dict objectForKey:@"object"];
@@ -241,6 +295,11 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if(indexPath.section==0){
+       
+        return;
+    }
+  
     NSMutableDictionary *dict = [[self.boardArray objectAtIndex:indexPath.row] mutableCopy];
   
     
@@ -326,11 +385,30 @@
     */
     
 }
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section==0)
+    return YES;
+    else return NO;
+
+
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    /*
+     typedef NS_ENUM(NSInteger, UITableViewCellEditingStyle) {
+     UITableViewCellEditingStyleNone,
+     UITableViewCellEditingStyleDelete,
+     UITableViewCellEditingStyleInsert
+     };
+     */
+    return UITableViewCellEditingStyleNone;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==0)
-        return 86;
-    else return 40;
+    //if(indexPath.section==0)
+      //  return 40;
+    //else
+        return 40;
 }
 - (void)didReceiveMemoryWarning
 {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FSVenue.h"
-@interface MTChooseBoardViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface MTChooseBoardViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 @property (strong, nonatomic) FSVenue *venue;
 @property (strong, nonatomic) NSMutableArray  *boardArray;
 @property (strong, nonatomic) UITextField *describeTextField;
