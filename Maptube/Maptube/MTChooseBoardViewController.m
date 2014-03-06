@@ -48,19 +48,19 @@
     [self updateBoard];
     //self.boardArray = [[relation query] findObjects];
     UINavigationItem *navigationItem =[[UINavigationItem alloc] initWithTitle:@"Pin to Map"];
-    
+    /*
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
     [button addTarget:self action:@selector(navBack) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Close" forState:UIControlStateNormal];
     navigationItem.leftBarButtonItem=barItem;
-    
-    button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    */
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 100, 32);
     [button addTarget:self action:@selector(addPlace) forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"Done" forState:UIControlStateNormal];
-    barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
+    UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     //[button setBackgroundColor:[UIColor redColor]];
     navigationItem.rightBarButtonItem=barItem;
    
@@ -201,12 +201,14 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
+/*
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if(section==1)
         return @"ALL BOARDS";
     else return nil;
     
 }
+ */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
