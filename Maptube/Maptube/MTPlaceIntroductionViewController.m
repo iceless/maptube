@@ -147,8 +147,8 @@
     self.chooseBoardView.view.tag = 102;
     greyView.hidden = true;
     self.chooseBoardView.view.hidden = true;
-    [self.view addSubview:greyView];
-    [self.view addSubview:self.chooseBoardView.view];
+    [[UIApplication sharedApplication].keyWindow addSubview:greyView];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.chooseBoardView.view];
 
     
 }
@@ -201,9 +201,9 @@
     
 }
 -(void)closeChooseBoardView{
-    UIView *view = (UIView *)[self.view viewWithTag:101];
+    UIView *view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:101];
     view.hidden = true;
-    view = (UIView *)[self.view viewWithTag:102];
+    view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:102];
     view.hidden = true;
 }
 
@@ -211,9 +211,9 @@
     //to do
     //MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImage:self.iconImageView.image AndVenue:self.venue];
     
-    UIView *view = (UIView *)[self.view viewWithTag:101];
+    UIView *view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:101];
     view.hidden = false;
-    view = (UIView *)[self.view viewWithTag:102];
+    view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:102];
     view.hidden = false;
     
     //[self.navigationController pushViewController:controller animated:YES];
