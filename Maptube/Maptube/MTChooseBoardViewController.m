@@ -43,10 +43,10 @@
     [super viewDidLoad];
     //PFUser *user = [PFUser currentUser];
    // self.boardArray = user[@"Board"];
-    
-    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
-    
-    self.boardArray = [[relation query] findObjects];
+    self.boardArray = [[NSMutableArray alloc]init];
+    //PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+    [self updateBoard];
+    //self.boardArray = [[relation query] findObjects];
     UINavigationItem *navigationItem =[[UINavigationItem alloc] initWithTitle:self.venue.name];
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -58,8 +58,8 @@
     
     button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 100, 32);
-    [button addTarget:self action:@selector(createBoard) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"CreateBoard" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(addPlace) forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:@"Done" forState:UIControlStateNormal];
     barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     //[button setBackgroundColor:[UIColor redColor]];
     navigationItem.rightBarButtonItem=barItem;
@@ -77,15 +77,36 @@
     
 	// Do any additional setup after loading the view.
 }
-
-
-- (void)viewWillAppear:(BOOL)animated {
+-(void)updateBoard{
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     
-    self.boardArray = [[relation query] findObjects];
+    NSArray *mapArray = [[relation query] findObjects];
+    for(PFObject *object in mapArray){
+        PFRelation *placeRelation = [object relationforKey:Place];
+        PFQuery *query = [placeRelation query];
+        [query whereKey:VenueID containsString:self.venue.venueId];
+        
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            NSDictionary *dict;
+            if(objects.count!=0){
+                dict =@{@"object": object,@"exsist": @"1"};
+                
+            }
+            else{
+                dict =@{@"object": object,@"exsist": @"0"};
+                
+            }
+            [self.boardArray addObject:dict];
+            [self.table reloadData];
+        }];
+        
+        
+    }
 
-    [self.table reloadData];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self updateBoard];
 }
 -(void)navBack{
     //[self.navigationController popViewControllerAnimated:YES];
@@ -96,6 +117,78 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
+
+-(void)addPlace{
+   
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Place"];
+    [query whereKey:VenueID containsString:self.venue.venueId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if(objects.count!=0){
+            PFObject * placeObject = (PFObject *)objects[0];
+             [self addPlaceRelation:placeObject];
+        }
+        else{
+            
+            PFObject *placeObject = [PFObject objectWithClassName:Place];
+            [placeObject setObject:self.venue.title forKey:Title];
+            if(self.describeTextField.text.length!=0){
+                [placeObject setObject:self.describeTextField.text  forKey:Description];
+            }
+            [placeObject setObject:self.venue.venueId forKey:VenueID];
+            [placeObject setObject:self.venue.location.address forKey:VenueAddress];
+            NSNumber *number = [NSNumber numberWithDouble:self.venue.location.coordinate.longitude];
+            [placeObject setObject:number forKey:Longitude];
+            number = [NSNumber numberWithDouble:self.venue.location.coordinate.latitude];
+            [placeObject setObject:number forKey:Latitude];
+            [placeObject setObject:self.venue.location.distance forKey:Distance];
+            [placeObject saveEventually: ^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    
+                    [self addPlaceRelation:placeObject];
+                    
+                }
+            }];
+    
+    }
+        
+    }];
+    [[NSNotificationCenter defaultCenter]postNotificationName:CloseChooseBoardNotification object:Nil];
+}
+
+-(void)addPlaceRelation:(PFObject *)placeObject{
+    
+    for(NSDictionary *dict in self.boardArray){
+        if([[dict objectForKey:@"exsist"] isEqualToString:@"1"]){
+            PFObject *mapObject = [dict objectForKey:@"object"];
+            PFRelation *relation = [mapObject relationforKey:Place];
+            
+            [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                for (PFObject *object in objects) {
+                    if([object[VenueID] isEqualToString:self.venue.venueId]){
+                        
+                        continue;
+                        
+                    }
+                }
+                PFRelation *relation = [mapObject relationforKey:Place];
+                [relation addObject:placeObject];
+                [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+                    if (!error) {
+                        
+                        
+                    }
+                }];
+                
+                
+            }];
+        }
+        
+    }
+    
+}
+
+
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -130,14 +223,38 @@
     }
     else{
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-        PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
+        NSDictionary *dict = [self.boardArray objectAtIndex:indexPath.row];
+
+        PFObject *mapObject = [dict objectForKey:@"object"];
+        NSString *str = [dict objectForKey:@"exsist"];
+        if([str isEqualToString:@"1"]){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        
         cell.textLabel.text = mapObject[Title];
         
     }
-    
+   
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSMutableDictionary *dict = [[self.boardArray objectAtIndex:indexPath.row] mutableCopy];
+  
+    
+    if(cell.accessoryType==UITableViewCellAccessoryCheckmark){
+        [dict setObject:@"0" forKey:@"exsist"];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+    }
+    else {
+       
+        [dict setObject:@"1" forKey:@"exsist"];
+        cell.accessoryType=UITableViewCellAccessoryCheckmark;
+    }
+    
+    [self.boardArray replaceObjectAtIndex:indexPath.row withObject:dict];
+    /*
   
     PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
     
@@ -204,7 +321,7 @@
      
      ];
            
-    
+    */
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
