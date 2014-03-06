@@ -143,6 +143,26 @@
     
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return  UITableViewCellEditingStyleDelete;
+    
+}
+
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    PFRelation *placeRelation = [self.boardData relationforKey:Place];
+    [placeRelation removeObject:[self.avPlaceArray objectAtIndex:indexPath.row]];
+    [self.boardData saveInBackground];
+    NSMutableArray *placeMutableArray = self.placeArray.mutableCopy;
+    [placeMutableArray removeObjectAtIndex:indexPath.row];
+    self.placeArray = placeMutableArray;
+    [self.tableView reloadData];
+    
+
+}
+
 -(void)editBoard{
     
  

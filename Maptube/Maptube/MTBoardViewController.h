@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic)  IBOutlet MKMapView  *mapView;
 @property (strong, nonatomic)  NSArray *placeArray;
+@property (strong, nonatomic)  NSArray *avPlaceArray;
 @property (strong, nonatomic)  PFObject *boardData;
 @property (weak, nonatomic) IBOutlet MTTableView *tableView;
 

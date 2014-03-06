@@ -293,6 +293,7 @@
         destViewController.boardData = [self.boardArray objectAtIndex:indexPath.row-1];
         if(places.count!=0){
             destViewController.placeArray = [MTPlace convertPlaceArray:places];
+            destViewController.avPlaceArray = places;
             
         }
     }
