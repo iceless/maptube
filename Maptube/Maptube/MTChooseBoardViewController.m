@@ -233,6 +233,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     //NSLog(@"yeah inform someone of my change %@", textField.text);
     [self addBoard:textField.text];
+    textField.text = @"+New Map";
     
 }
 
@@ -241,6 +242,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
     [textField resignFirstResponder];
     return YES;
 }
