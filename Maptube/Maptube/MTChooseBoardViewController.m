@@ -79,7 +79,7 @@
 }
 -(void)updateBoard{
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
-    
+    [self.boardArray removeAllObjects];
     NSArray *mapArray = [[relation query] findObjects];
     for(PFObject *object in mapArray){
         PFRelation *placeRelation = [object relationforKey:Place];
@@ -105,9 +105,7 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self updateBoard];
-}
+
 -(void)navBack{
     //[self.navigationController popViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
