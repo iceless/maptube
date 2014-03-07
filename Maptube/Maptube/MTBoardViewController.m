@@ -60,6 +60,10 @@
     
 
 }
+- (void)viewWillAppear:(BOOL)animated {
+    self.switchPage = NO;
+    [super viewWillAppear:animated];
+}
 
 -(void)viewDidLayoutSubviews {
     
@@ -119,6 +123,8 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(self.switchPage) return;
+    self.switchPage = true;
     MTPlace *place = self.placeArray[indexPath.row];
     FSVenue *venue = [[FSVenue alloc]init];
     venue.location.coordinate = place.coordinate;
