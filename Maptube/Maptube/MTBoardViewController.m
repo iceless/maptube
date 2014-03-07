@@ -115,6 +115,10 @@
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     MTPlace *place = self.placeArray[indexPath.row];
     label.text = place.name;
+    label = (UILabel *)[cell viewWithTag:2];
+    label.text = [NSString stringWithFormat:@"%@m",place.distance];
+    label = (UILabel *)[cell viewWithTag:3];
+    label.text = place.venueAddress;
     
     //UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
     
