@@ -15,6 +15,7 @@
     #import "AFNetworking.h"
     #import "AFHelper.h"
     #import "MTData.h"
+    #import "MTViewHelper.h"
 
 #define ModifyProfileNotification @"EditProfileNotification"
 #define ModifyBoardNotification @"ModifyBoardNotification"
