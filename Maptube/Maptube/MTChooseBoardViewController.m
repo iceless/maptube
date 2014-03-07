@@ -233,8 +233,14 @@
     
 }
 #pragma mark - textfield delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    textField.text = @"";
+    return YES;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     //NSLog(@"yeah inform someone of my change %@", textField.text);
+    if(textField.text&&textField.text.length)
     [self addBoard:textField.text];
     textField.text = @"+New Map";
     
