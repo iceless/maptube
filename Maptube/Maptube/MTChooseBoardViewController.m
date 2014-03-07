@@ -58,14 +58,16 @@
     navigationItem.leftBarButtonItem=barItem;
     */
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame=CGRectMake(0, 0, 100, 32);
+    button.frame=CGRectMake(0, 0, 40, 32);
     [button addTarget:self action:@selector(addPlace) forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"Done" forState:UIControlStateNormal];
     UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    
     //[button setBackgroundColor:[UIColor redColor]];
     navigationItem.rightBarButtonItem=barItem;
    
-    UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(40, 0, 320, 44)];
+    UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [bar pushNavigationItem:navigationItem animated:YES];
     
     [self.view addSubview:bar];
@@ -421,6 +423,7 @@
     //else
         return 40;
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

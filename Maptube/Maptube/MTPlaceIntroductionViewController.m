@@ -264,8 +264,12 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)dealloc{
+    UIView *greyView = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:101];
+
    
-    [[NSNotificationCenter defaultCenter] removeObserver:ModifyProfileNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:CloseChooseBoardNotification];
+    [self.chooseBoardView.view removeFromSuperview];
+    [greyView removeFromSuperview];
 }
 
 @end
