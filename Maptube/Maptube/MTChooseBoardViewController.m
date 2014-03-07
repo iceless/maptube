@@ -182,6 +182,14 @@
             }];
         }
         
+        else{
+            PFObject *mapObject = [dict objectForKey:@"object"];
+            PFRelation *relation = [mapObject relationforKey:Place];
+            [relation removeObject:placeObject];
+            [mapObject saveInBackground];
+            
+        }
+        
     }
     
 }
