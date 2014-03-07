@@ -65,7 +65,7 @@
     //[button setBackgroundColor:[UIColor redColor]];
     navigationItem.rightBarButtonItem=barItem;
    
-    UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(40, 0, 320, 44)];
     [bar pushNavigationItem:navigationItem animated:YES];
     
     [self.view addSubview:bar];
