@@ -114,8 +114,6 @@
             [self.boardArray addObject:dict];
             [self.table reloadData];
         }];
-        
-        
     }
 
 }
@@ -177,23 +175,19 @@
             PFRelation *relation = [mapObject relationforKey:Place];
             
             [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                BOOL exsistPlace = false;
                 for (PFObject *object in objects) {
                     if([object[VenueID] isEqualToString:self.venue.venueId]){
-                        
-                        continue;
-                        
+                        exsistPlace = true;
+                        break;
                     }
+                    
                 }
+                if(!exsistPlace){
                 PFRelation *relation = [mapObject relationforKey:Place];
                 [relation addObject:placeObject];
-                [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
-                    if (!error) {
-                        
-                        
-                    }
-                }];
-                
-                
+                [mapObject saveInBackground];
+                }
             }];
         }
         
