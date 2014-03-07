@@ -56,9 +56,7 @@
      UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Edit" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem=barItem;
-   
     
-
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.switchPage = NO;

@@ -38,19 +38,7 @@
     return self;
     
 }
-- (void)setExtraCellLineHidden: (UITableView *)tableView
 
-{
-    
-    UIView *view =[ [UIView alloc]init];
-    
-    view.backgroundColor = [UIColor clearColor];
-    
-    [tableView setTableFooterView:view];
-    
-    // [view release];
-    
-}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -82,7 +70,7 @@
     
     [self.view addSubview:bar];
     
-    [self setExtraCellLineHidden:self.table];
+    [MTViewHelper setExtraCellLineHidden:self.table];
     
     
     //self.table.frame = CGRectMake(10, 100, self.view.frame.size.width-20, self.view.frame.size.height);
