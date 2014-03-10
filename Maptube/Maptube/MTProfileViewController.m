@@ -170,6 +170,8 @@
         UIImageView *imgv;
         imgv = (UIImageView *)[cell viewWithTag:4];
         imgv.image = [MTData sharedInstance].iconImage;
+        imgv.layer.masksToBounds = YES;
+        imgv.layer.cornerRadius = 40;
         
         
         
