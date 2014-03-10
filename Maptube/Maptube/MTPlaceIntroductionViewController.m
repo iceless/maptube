@@ -102,7 +102,7 @@
             
             NSDictionary *picDict = [picArray objectAtIndex:i];
             NSString *str= [picDict objectForKey:@"prefix"];
-            str = [str stringByAppendingString:@"120x120"];
+            str = [str stringByAppendingString:@"300x300"];
             str = [str stringByAppendingString:[picDict objectForKey:@"suffix"]];
             //NSLog(@"%@",str);
             UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 160)] ;
