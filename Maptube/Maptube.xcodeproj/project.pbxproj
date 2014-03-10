@@ -35,6 +35,9 @@
 		56F1CB3118696AB7008498DF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F1CB3018696AB7008498DF /* SystemConfiguration.framework */; };
 		56F1CB34186976ED008498DF /* MTRootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CB33186976ED008498DF /* MTRootTabBarController.m */; };
 		56F1CB371869869D008498DF /* MTProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CB361869869D008498DF /* MTProfileViewController.m */; };
+		5E25CB9F18CD887800260E5A /* checkin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9C18CD887800260E5A /* checkin.png */; };
+		5E25CBA018CD887800260E5A /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9D18CD887800260E5A /* like.png */; };
+		5E25CBA118CD887800260E5A /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9E18CD887800260E5A /* pin.png */; };
 		5E51970D18C9963500504EBD /* MTViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E51970C18C9963500504EBD /* MTViewHelper.m */; };
 		5E62BB8E18B602C30061A48C /* MTEditBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */; };
 		5E85E18F18B4420600A2A172 /* MTPlaceIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */; };
@@ -136,6 +139,9 @@
 		56F1CB33186976ED008498DF /* MTRootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRootTabBarController.m; sourceTree = "<group>"; };
 		56F1CB351869869D008498DF /* MTProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTProfileViewController.h; sourceTree = "<group>"; };
 		56F1CB361869869D008498DF /* MTProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProfileViewController.m; sourceTree = "<group>"; };
+		5E25CB9C18CD887800260E5A /* checkin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkin.png; sourceTree = "<group>"; };
+		5E25CB9D18CD887800260E5A /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
+		5E25CB9E18CD887800260E5A /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		5E51970B18C9963500504EBD /* MTViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTViewHelper.h; sourceTree = "<group>"; };
 		5E51970C18C9963500504EBD /* MTViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTViewHelper.m; sourceTree = "<group>"; };
 		5E62BB8C18B602C30061A48C /* MTEditBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditBoardViewController.h; sourceTree = "<group>"; };
@@ -353,6 +359,9 @@
 		56F1CAED1867DEEB008498DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5E25CB9C18CD887800260E5A /* checkin.png */,
+				5E25CB9D18CD887800260E5A /* like.png */,
+				5E25CB9E18CD887800260E5A /* pin.png */,
 				5EBBFE9718C6F3A3007B6109 /* mappin.png */,
 				5EBBFE8D18C6DA89007B6109 /* profile.png */,
 				5EBBFE8E18C6DA89007B6109 /* message.png */,
@@ -585,9 +594,12 @@
 				5E95916718ADEE310097B6BC /* FSWebLogin.xib in Resources */,
 				5EBBFE9818C6F3A3007B6109 /* mappin.png in Resources */,
 				5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */,
+				5E25CBA018CD887800260E5A /* like.png in Resources */,
+				5E25CBA118CD887800260E5A /* pin.png in Resources */,
 				5EBBFE9218C6DA89007B6109 /* profile.png in Resources */,
 				5E95916A18ADEE310097B6BC /* poweredByFoursquare_gray.png in Resources */,
 				5EBBFE9518C6DA89007B6109 /* home.png in Resources */,
+				5E25CB9F18CD887800260E5A /* checkin.png in Resources */,
 				5E95916918ADEE310097B6BC /* pin@2x.png in Resources */,
 				56C3C932186BFA8E00E9B892 /* profilepic.JPG in Resources */,
 			);
@@ -775,8 +787,8 @@
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zhong sheng (Y2P65PB7UL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhong sheng (Y2P65PB7UL)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Maptube",
@@ -798,8 +810,8 @@
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Maptube",
