@@ -84,11 +84,11 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="dDy-Vc-0hI">
-                                            <rect key="frame" x="9" y="8" width="70" height="70"/>
+                                            <rect key="frame" x="8" y="3" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Picture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lgO-mD-9Td">
-                                            <rect key="frame" x="87" y="32" width="143" height="21"/>
+                                            <rect key="frame" x="96" y="32" width="143" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
@@ -355,11 +355,11 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Check In" id="i3U-sk-h5r"/>
+                                    <barButtonItem image="checkin.png" id="i3U-sk-h5r"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="nCI-Pi-FEa"/>
-                                    <barButtonItem title="Like" id="649-23-5Ej"/>
+                                    <barButtonItem image="like.png" id="649-23-5Ej"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="8BD-ng-Tk6"/>
-                                    <barButtonItem title="Pin" id="GEd-AN-cne">
+                                    <barButtonItem image="pin.png" id="GEd-AN-cne">
                                         <connections>
                                             <action selector="pin:" destination="uuu-o2-MAV" id="bYq-xT-yCL"/>
                                         </connections>
@@ -999,8 +999,11 @@
     </scenes>
     <resources>
         <image name="check in.png" width="32" height="32"/>
+        <image name="checkin.png" width="24" height="24"/>
         <image name="home.png" width="32" height="32"/>
+        <image name="like.png" width="24" height="24"/>
         <image name="mappin.png" width="36" height="36"/>
+        <image name="pin.png" width="13" height="20"/>
         <image name="profile.png" width="32" height="32"/>
         <image name="search.png" width="32" height="32"/>
     </resources>

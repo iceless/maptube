@@ -104,6 +104,8 @@
         UIImageView *imgv;
         imgv = (UIImageView *)[cell.contentView viewWithTag:1];
         imgv.image = [MTData sharedInstance].iconImage;
+        imgv.layer.masksToBounds = YES;
+        imgv.layer.cornerRadius = 40;
 
     } else if(indexPath.section == 1){
         static NSString *CellIdentifier = @"detailcell";
@@ -238,6 +240,7 @@
     UIImageView *imgv;
     imgv = (UIImageView *)[cell.contentView viewWithTag:1];
     imgv.image = image;
+   
     [MTData sharedInstance].iconImage = image;
     
     NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
