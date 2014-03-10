@@ -173,8 +173,6 @@
 
 -(void)editBoard{
     
- 
-    
     NSMutableArray *array = [NSMutableArray array];
     array[0] = [self.boardData objectForKey:Title];
     if([self.boardData objectForKey:Description])

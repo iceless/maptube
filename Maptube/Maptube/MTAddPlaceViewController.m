@@ -33,6 +33,7 @@
     [super viewDidLoad];
     //self.title = @"Find A Place";
 	// Do any additional setup after loading the view.
+    [self.navigationController setNavigationBarHidden:YES];
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.zoomEnabled=YES;
     self.mapView.showsUserLocation=YES;
@@ -63,6 +64,7 @@
     [self.mapView setRegion:region animated:TRUE];
     [self getVenuesForLocation:newLocation andquery:nil];
     [self.locationManager stopUpdatingLocation];
+    
     
 }
 
