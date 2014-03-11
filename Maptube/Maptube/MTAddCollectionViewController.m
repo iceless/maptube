@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title =@"Create Board";
+    self.title =@"Create Map";
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
@@ -46,8 +46,8 @@
     button.frame=CGRectMake(0, 0, 50, 32);
     [button addTarget:self action:@selector(createBoard) forControlEvents:UIControlEventTouchUpInside];
     barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Done" forState:UIControlStateNormal];
-    [button setBackgroundColor:[UIColor redColor]];
+    [button setTitle:@"Create" forState:UIControlStateNormal];
+    //[button setBackgroundColor:[UIColor redColor]];
     self.navigationItem.rightBarButtonItem=barItem;
     
     
