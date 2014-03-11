@@ -49,6 +49,7 @@
 {
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = true;
+    [self.navigationController setNavigationBarHidden:NO];
     /*
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.zoomEnabled=NO;

@@ -51,7 +51,7 @@
     self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-40);
     
     UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame=CGRectMake(0, 0, 50, 32);
+    button.frame=CGRectMake(0, 0, 40, 32);
     [button addTarget:self action:@selector(editBoard) forControlEvents:UIControlEventTouchUpInside];
      UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Edit" forState:UIControlStateNormal];

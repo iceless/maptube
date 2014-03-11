@@ -49,6 +49,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = false;
+    [self.navigationController setNavigationBarHidden:true];
 
 }
 #pragma mark - Map
