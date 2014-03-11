@@ -87,6 +87,8 @@
 		5EBBFE9818C6F3A3007B6109 /* mappin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9718C6F3A3007B6109 /* mappin.png */; };
 		5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F1CAF81867DEEB008498DF /* Main.storyboard */; };
 		5EBCC21818C7044F00BA4CAC /* MTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */; };
+		5EE7CC8D18CF0CAC0095D0B5 /* addmap.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE7CC8C18CF0CAC0095D0B5 /* addmap.png */; };
+		5EE7CC8F18CF0DE50095D0B5 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE7CC8E18CF0DE50095D0B5 /* setting.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +225,8 @@
 		5EBBFE9718C6F3A3007B6109 /* mappin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mappin.png; sourceTree = "<group>"; };
 		5EBCC21618C7044F00BA4CAC /* MTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapViewController.h; sourceTree = "<group>"; };
 		5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMapViewController.m; sourceTree = "<group>"; };
+		5EE7CC8C18CF0CAC0095D0B5 /* addmap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addmap.png; sourceTree = "<group>"; };
+		5EE7CC8E18CF0DE50095D0B5 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +363,8 @@
 		56F1CAED1867DEEB008498DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5EE7CC8E18CF0DE50095D0B5 /* setting.png */,
+				5EE7CC8C18CF0CAC0095D0B5 /* addmap.png */,
 				5E25CB9C18CD887800260E5A /* checkin.png */,
 				5E25CB9D18CD887800260E5A /* like.png */,
 				5E25CB9E18CD887800260E5A /* pin.png */,
@@ -597,6 +603,8 @@
 				5E25CBA018CD887800260E5A /* like.png in Resources */,
 				5E25CBA118CD887800260E5A /* pin.png in Resources */,
 				5EBBFE9218C6DA89007B6109 /* profile.png in Resources */,
+				5EE7CC8D18CF0CAC0095D0B5 /* addmap.png in Resources */,
+				5EE7CC8F18CF0DE50095D0B5 /* setting.png in Resources */,
 				5E95916A18ADEE310097B6BC /* poweredByFoursquare_gray.png in Resources */,
 				5EBBFE9518C6DA89007B6109 /* home.png in Resources */,
 				5E25CB9F18CD887800260E5A /* checkin.png in Resources */,

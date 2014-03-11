@@ -609,12 +609,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="nobody" id="MuI-Fl-Ht7">
-                        <barButtonItem key="leftBarButtonItem" title="Setting" id="t48-gc-oca">
+                        <barButtonItem key="leftBarButtonItem" image="setting.png" id="t48-gc-oca">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="OBV-xx-Esg" kind="push" id="wH0-Bo-tMP"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add Map" id="fgJ-iB-zTP">
+                        <barButtonItem key="rightBarButtonItem" image="addmap.png" id="fgJ-iB-zTP">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="clickAddCollection:" destination="Diz-Wc-4dc" id="GcU-eC-y4K"/>
                                 <segue destination="jOX-Vx-ZCc" kind="push" id="0QH-GD-gxo"/>
@@ -998,6 +1000,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addmap.png" width="36" height="36"/>
         <image name="check in.png" width="32" height="32"/>
         <image name="checkin.png" width="24" height="24"/>
         <image name="home.png" width="32" height="32"/>
@@ -1006,6 +1009,7 @@
         <image name="pin.png" width="13" height="20"/>
         <image name="profile.png" width="32" height="32"/>
         <image name="search.png" width="32" height="32"/>
+        <image name="setting.png" width="36" height="36"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
