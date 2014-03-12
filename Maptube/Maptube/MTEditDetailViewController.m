@@ -22,6 +22,18 @@
     }
     return self;
 }
+- (id)initWithValue:(NSString *)value andIndex:(NSUInteger)index{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.detailValue = value;
+        self.indexPathRow = index;
+        // Custom initialization
+    }
+    
+    
+    return self;
+}
+
 
 - (void)viewDidLoad
 {
@@ -35,6 +47,19 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     self.detailTextView.text = self.detailValue;
+    
+    UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(8,82,305,196)];
+    [self.view addSubview:textView];
+    self.view.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+    
+    UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame=CGRectMake(0, 0, 50, 32);
+    [button addTarget:self action:@selector(doneButtonTapAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
+    [button setTitle:@"Done" forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem=barItem;
+
+    
 }
 
 - (IBAction)doneButtonTapAction:(id)sender {

@@ -14,6 +14,7 @@
 @property (nonatomic) NSInteger indexPathRow;
 @property(nonatomic,weak)id<MTEditDetailViewDelegate>delegate;
 
+- (id)initWithValue:(NSString *)value andIndex:(NSUInteger)index;
 - (IBAction)doneButtonTapAction:(id)sender;
 
 @end
