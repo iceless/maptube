@@ -102,6 +102,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		52EB0F1E18D039F8008CF6E6 /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
 		56C3C931186BFA8E00E9B892 /* profilepic.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profilepic.JPG; sourceTree = "<group>"; };
 		56C3C933186C12B700E9B892 /* MTEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditProfileViewController.h; sourceTree = "<group>"; };
 		56C3C934186C12B700E9B892 /* MTEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEditProfileViewController.m; sourceTree = "<group>"; };
@@ -265,6 +266,102 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52EB0F1918D0387C008CF6E6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				56F1CB32186976ED008498DF /* MTRootTabBarController.h */,
+				56F1CB33186976ED008498DF /* MTRootTabBarController.m */,
+				56F1CAFB1867DEEB008498DF /* MTFirstViewController.h */,
+				56F1CAFC1867DEEB008498DF /* MTFirstViewController.m */,
+				56F1CAFE1867DEEB008498DF /* MTSecondViewController.h */,
+				56F1CAFF1867DEEB008498DF /* MTSecondViewController.m */,
+				56F1CB351869869D008498DF /* MTProfileViewController.h */,
+				56F1CB361869869D008498DF /* MTProfileViewController.m */,
+				56C3C933186C12B700E9B892 /* MTEditProfileViewController.h */,
+				56C3C934186C12B700E9B892 /* MTEditProfileViewController.m */,
+				5E9B4CF718B1BEAE00D9D6A3 /* MTEditDetailViewController.h */,
+				5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */,
+				56C3C936186C7DB800E9B892 /* MTSettingsViewController.h */,
+				56C3C937186C7DB800E9B892 /* MTSettingsViewController.m */,
+				5E95914C18ADE6260097B6BC /* MTAddPlaceViewController.h */,
+				5E95914D18ADE6260097B6BC /* MTAddPlaceViewController.m */,
+				5E95917418ADF78E0097B6BC /* MTAddCollectionViewController.h */,
+				5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */,
+				5E62BB8C18B602C30061A48C /* MTEditBoardViewController.h */,
+				5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */,
+				5E9B4CFC18B1F3E100D9D6A3 /* MTBoardViewController.h */,
+				5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */,
+				5E85E19318B483A000A2A172 /* MTTableView.h */,
+				5E85E19418B483A000A2A172 /* MTTableView.m */,
+				5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */,
+				5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */,
+				5EA684E718B32DA800679EDE /* MTChooseBoardViewController.h */,
+				5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */,
+				5E85E18D18B4420600A2A172 /* MTPlaceIntroductionViewController.h */,
+				5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */,
+				5EBCC21618C7044F00BA4CAC /* MTMapViewController.h */,
+				5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */,
+				5E9A668718C018C5005E5169 /* MTLoginViewController.h */,
+				5E9A668818C018C5005E5169 /* MTLoginViewController.m */,
+				5E9A669118C029F5005E5169 /* MTSignUpViewController.h */,
+				5E9A669218C029F5005E5169 /* MTSignUpViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		52EB0F1A18D03890008CF6E6 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				5E95914F18ADEE310097B6BC /* Foursquare2 */,
+				5E9B4CFF18B1FE3A00D9D6A3 /* AFNetworking */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		52EB0F1B18D038CE008CF6E6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5EA684E318B3010000679EDE /* Cell */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		52EB0F1C18D03930008CF6E6 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				5E9E0FF118B72501008D89AD /* Objects */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		52EB0F1D18D03959008CF6E6 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				5EE7CC8E18CF0DE50095D0B5 /* setting.png */,
+				5EE7CC8C18CF0CAC0095D0B5 /* addmap.png */,
+				5E25CB9C18CD887800260E5A /* checkin.png */,
+				5E25CB9D18CD887800260E5A /* like.png */,
+				5E25CB9E18CD887800260E5A /* pin.png */,
+				5EBBFE9718C6F3A3007B6109 /* mappin.png */,
+				5EBBFE8D18C6DA89007B6109 /* profile.png */,
+				5EBBFE8E18C6DA89007B6109 /* message.png */,
+				5EBBFE8F18C6DA89007B6109 /* check in.png */,
+				5EBBFE9018C6DA89007B6109 /* home.png */,
+				5EBBFE9118C6DA89007B6109 /* search.png */,
+				5E9B4CFA18B1F1E200D9D6A3 /* board.png */,
+				56C3C931186BFA8E00E9B892 /* profilepic.JPG */,
+			);
+			name = Image;
+			sourceTree = "<group>";
+		};
+		52EB0F1F18D039FD008CF6E6 /* Defines */ = {
+			isa = PBXGroup;
+			children = (
+				52EB0F1E18D039F8008CF6E6 /* Defines.h */,
+			);
+			name = Defines;
+			sourceTree = "<group>";
+		};
 		56F1CADA1867DEEB008498DF = {
 			isa = PBXGroup;
 			children = (
@@ -310,52 +407,18 @@
 		56F1CAEC1867DEEB008498DF /* Maptube */ = {
 			isa = PBXGroup;
 			children = (
-				5E51970A18C995FD00504EBD /* Utilities */,
-				5E9E0FF118B72501008D89AD /* Objects */,
-				5EA684E318B3010000679EDE /* Cell */,
-				5E9B4CFF18B1FE3A00D9D6A3 /* AFNetworking */,
-				5E95914F18ADEE310097B6BC /* Foursquare2 */,
 				56F1CAF51867DEEB008498DF /* MTAppDelegate.h */,
 				56F1CAF61867DEEB008498DF /* MTAppDelegate.m */,
 				56F1CAF81867DEEB008498DF /* Main.storyboard */,
-				56F1CB32186976ED008498DF /* MTRootTabBarController.h */,
-				56F1CB33186976ED008498DF /* MTRootTabBarController.m */,
-				56F1CAFB1867DEEB008498DF /* MTFirstViewController.h */,
-				56F1CAFC1867DEEB008498DF /* MTFirstViewController.m */,
-				56F1CAFE1867DEEB008498DF /* MTSecondViewController.h */,
-				56F1CAFF1867DEEB008498DF /* MTSecondViewController.m */,
-				56F1CB351869869D008498DF /* MTProfileViewController.h */,
-				56F1CB361869869D008498DF /* MTProfileViewController.m */,
-				56C3C933186C12B700E9B892 /* MTEditProfileViewController.h */,
-				56C3C934186C12B700E9B892 /* MTEditProfileViewController.m */,
-				5E9B4CF718B1BEAE00D9D6A3 /* MTEditDetailViewController.h */,
-				5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */,
-				56C3C936186C7DB800E9B892 /* MTSettingsViewController.h */,
-				56C3C937186C7DB800E9B892 /* MTSettingsViewController.m */,
-				5E95914C18ADE6260097B6BC /* MTAddPlaceViewController.h */,
-				5E95914D18ADE6260097B6BC /* MTAddPlaceViewController.m */,
-				5E95917418ADF78E0097B6BC /* MTAddCollectionViewController.h */,
-				5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */,
-				5E62BB8C18B602C30061A48C /* MTEditBoardViewController.h */,
-				5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */,
-				5E9B4CFC18B1F3E100D9D6A3 /* MTBoardViewController.h */,
-				5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */,
-				5E85E19318B483A000A2A172 /* MTTableView.h */,
-				5E85E19418B483A000A2A172 /* MTTableView.m */,
-				5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */,
-				5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */,
-				5EA684E718B32DA800679EDE /* MTChooseBoardViewController.h */,
-				5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */,
-				5E85E18D18B4420600A2A172 /* MTPlaceIntroductionViewController.h */,
-				5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */,
-				5EBCC21618C7044F00BA4CAC /* MTMapViewController.h */,
-				5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */,
-				5E9A668718C018C5005E5169 /* MTLoginViewController.h */,
-				5E9A668818C018C5005E5169 /* MTLoginViewController.m */,
-				5E9A669118C029F5005E5169 /* MTSignUpViewController.h */,
-				5E9A669218C029F5005E5169 /* MTSignUpViewController.m */,
-				56F1CB011867DEEB008498DF /* Images.xcassets */,
+				52EB0F1F18D039FD008CF6E6 /* Defines */,
+				52EB0F1C18D03930008CF6E6 /* DataModel */,
+				52EB0F1B18D038CE008CF6E6 /* Views */,
+				52EB0F1918D0387C008CF6E6 /* ViewControllers */,
+				5E51970A18C995FD00504EBD /* Utilities */,
+				52EB0F1A18D03890008CF6E6 /* ThirdParty */,
+				52EB0F1D18D03959008CF6E6 /* Image */,
 				56F1CAED1867DEEB008498DF /* Supporting Files */,
+				56F1CB011867DEEB008498DF /* Images.xcassets */,
 			);
 			path = Maptube;
 			sourceTree = "<group>";
@@ -363,23 +426,10 @@
 		56F1CAED1867DEEB008498DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5EE7CC8E18CF0DE50095D0B5 /* setting.png */,
-				5EE7CC8C18CF0CAC0095D0B5 /* addmap.png */,
-				5E25CB9C18CD887800260E5A /* checkin.png */,
-				5E25CB9D18CD887800260E5A /* like.png */,
-				5E25CB9E18CD887800260E5A /* pin.png */,
-				5EBBFE9718C6F3A3007B6109 /* mappin.png */,
-				5EBBFE8D18C6DA89007B6109 /* profile.png */,
-				5EBBFE8E18C6DA89007B6109 /* message.png */,
-				5EBBFE8F18C6DA89007B6109 /* check in.png */,
-				5EBBFE9018C6DA89007B6109 /* home.png */,
-				5EBBFE9118C6DA89007B6109 /* search.png */,
-				5E9B4CFA18B1F1E200D9D6A3 /* board.png */,
 				56F1CAEE1867DEEB008498DF /* Maptube-Info.plist */,
 				56F1CAEF1867DEEB008498DF /* InfoPlist.strings */,
 				56F1CAF21867DEEB008498DF /* main.m */,
 				56F1CAF41867DEEB008498DF /* Maptube-Prefix.pch */,
-				56C3C931186BFA8E00E9B892 /* profilepic.JPG */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
