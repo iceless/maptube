@@ -153,8 +153,10 @@
         cellIdentifier = @"MapCell";
     }
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
     
@@ -163,67 +165,94 @@
         NSString *name = [NSString stringWithFormat:NSLocalizedString(@"%@ %@", nil),
                           [PFUser currentUser][@"firstname"],
                           [PFUser currentUser][@"lastname"]];
-        UILabel *label;
-        label = (UILabel *)[cell viewWithTag:1];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(94,8,206,33)];
         label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), name];
+        label.font = [UIFont systemFontOfSize:20];
+        [cell.contentView addSubview:label];
         
-        UIImageView *imgv;
-        imgv = (UIImageView *)[cell viewWithTag:4];
+        UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(6,6,80,80)];
         imgv.image = [MTData sharedInstance].iconImage;
         imgv.layer.masksToBounds = YES;
         imgv.layer.cornerRadius = 40;
+        [cell.contentView addSubview:imgv];
         
         
-        
-        label = (UILabel *)[cell viewWithTag:2];
+        label = [[UILabel alloc]initWithFrame:CGRectMake(94,35,206,21)];
         label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"location"]];
+        label.font = [UIFont systemFontOfSize:13];
+        label.textColor = [UIColor darkGrayColor];
+        [cell.contentView addSubview:label];
         
-        label = (UILabel *)[cell viewWithTag:3];
-        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
+        UITextView *descriptionView= [[UITextView alloc]initWithFrame:CGRectMake(88,53,302,29)];
+        descriptionView.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
+        descriptionView.font = [UIFont systemFontOfSize:13];
+        [cell.contentView addSubview:descriptionView];
         
-        for(int i=11;i<=14;i++){
-            imgv = (UIImageView *)[cell viewWithTag:i];
-            imgv.layer.borderWidth = 1;
-            imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
-            
-        }
-
         
-        //label = (UILabel *)[cell viewWithTag:3];
-        //label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
+        imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,89,81,47)];
+        imgv.layer.borderWidth = 1;
+        imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [cell.contentView addSubview:imgv];
+        imgv = [[UIImageView alloc]initWithFrame:CGRectMake(80,89,81,47)];
+        imgv.layer.borderWidth = 1;
+        imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [cell.contentView addSubview:imgv];
+        imgv = [[UIImageView alloc]initWithFrame:CGRectMake(160,89,81,47)];
+        imgv.layer.borderWidth = 1;
+        imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [cell.contentView addSubview:imgv];
+        imgv = [[UIImageView alloc]initWithFrame:CGRectMake(240,89,80,47)];
+        imgv.layer.borderWidth = 1;
+        imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        [cell.contentView addSubview:imgv];
         
-       
+        label = [[UILabel alloc]initWithFrame:CGRectMake(20,115,46,21)];
+        label.text = @"Places";
+        label.textColor = [UIColor lightGrayColor];
+        label.font = [UIFont systemFontOfSize:14];
+        [cell.contentView addSubview:label];
+        label = [[UILabel alloc]initWithFrame:CGRectMake(103,115,36,21)];
+        label.text = @"Likes";
+        label.textColor = [UIColor lightGrayColor];
+        label.font = [UIFont systemFontOfSize:14];
+        [cell.contentView addSubview:label];
+        label = [[UILabel alloc]initWithFrame:CGRectMake(169,115,64,21)];
+        label.text = @"Followers";
+        label.textColor = [UIColor lightGrayColor];
+        label.font = [UIFont systemFontOfSize:14];
+        [cell.contentView addSubview:label];
+        label = [[UILabel alloc]initWithFrame:CGRectMake(251,115,64,21)];
+        label.text = @"Following";
+        label.textColor = [UIColor lightGrayColor];
+        label.font = [UIFont systemFontOfSize:14];
+        [cell.contentView addSubview:label];
+        
         
     }else {
         
-        UILabel *label;
-        label = (UILabel *)[cell viewWithTag:1];
-        
+        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(9,4,203,21)];
         PFObject *mapObject = [self.boardArray objectAtIndex:(indexPath.row-1)];
         label.text = [mapObject objectForKey:Title];
-        
-        label = (UILabel *)[cell viewWithTag:4];
-        label.text = [mapObject objectForKey:Description];
-        
-        label = (UILabel *)[cell viewWithTag:3];
-        label.text = [NSString stringWithFormat:@""];
+        [cell.contentView addSubview:label];
         
        
-        MKMapView *mapView = (MKMapView *)[cell viewWithTag:2];
+        MKMapView *mapView = [[MKMapView alloc]initWithFrame:CGRectMake(9,30,304,119)];
         mapView.mapType = MKMapTypeStandard;
         mapView.zoomEnabled=NO;
         mapView.scrollEnabled = NO;
         mapView.showsUserLocation=NO;
         mapView.userInteractionEnabled = NO;
         mapView.layer.borderWidth =1.0;
-       // mapView.layer.cornerRadius =5.0;
         mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        
-       // NSLog(@"%@",[MTParse sharedInstance].placeArray);
+        [cell.contentView addSubview:mapView];
+
 
         NSArray *array = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-        label = (UILabel *)[cell viewWithTag:5];
+        label = [[UILabel alloc]initWithFrame:CGRectMake(240,4,73,21)];
         label.text = [NSString stringWithFormat:@"%d places",array.count];
+        label.textColor = [UIColor lightGrayColor];
+        label.font = [UIFont systemFontOfSize:14];
+        [cell.contentView addSubview:label];
         array = [MTPlace convertPlaceArray:array];
         if(array.count!=0){
             CGRect placeRect = [MTPlace updateMemberPins:array];
@@ -259,17 +288,16 @@
      Each type of cell has a different height.
      self.model contains the data for the tableview
      */
-    static NSString *CellIdentifier;
+    
     if (indexPath.row == 0)
-        CellIdentifier = @"ProfileCell";
+        return 146;
     else
-        CellIdentifier = @"MapCell";
+        return 158;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    return cell.bounds.size.height;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+}
 
 
 -(void)clickEdit:(id)sender{
