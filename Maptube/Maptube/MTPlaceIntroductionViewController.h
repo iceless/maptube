@@ -12,14 +12,14 @@
 #import "MTChooseBoardViewController.h"
 @interface MTPlaceIntroductionViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 //@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *addressLabel;
-@property (strong, nonatomic) IBOutlet UILabel *distanceLabel;
-@property (strong, nonatomic) IBOutlet UIButton *mapButton;
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) UILabel *addressLabel;
+@property (strong, nonatomic) UILabel *distanceLabel;
+@property (strong, nonatomic) UIButton *mapButton;
+@property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) UIPageControl *pageControl;
 @property (strong, nonatomic) NSDictionary *placeData;
 @property (strong, nonatomic) FSVenue *venue;
-@property (strong, nonatomic) IBOutlet UITableView *table;
+@property (strong, nonatomic) UITableView *table;
 @property (strong, nonatomic) NSMutableArray *boardArray;
 //@property (strong, nonatomic) IBOutlet MKMapView  *mapView;
 @property (strong, nonatomic) MTChooseBoardViewController *chooseBoardView;

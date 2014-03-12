@@ -50,33 +50,37 @@
     [super viewDidLoad];
     self.tabBarController.tabBar.hidden = true;
     [self.navigationController setNavigationBarHidden:NO];
-    /*
-    self.mapView.mapType = MKMapTypeStandard;
-    self.mapView.zoomEnabled=NO;
-    self.mapView.scrollEnabled = NO;
-    self.mapView.showsUserLocation=NO;
-    
-    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(self.venue.coordinate,2000 ,2000 );
-    [self.mapView setRegion:region];
-    [self.mapView addAnnotation:self.venue];
-     */
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
-    
+  
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeChooseBoardView) name:CloseChooseBoardNotification object:nil];
-    
-    
     self.boardArray = [NSMutableArray array];
 	[self updateBoard];
     self.title = [self.placeData objectForKey:@"name"];
-
-    
+    self.addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,220,246,19)];
+    self.addressLabel.textAlignment = NSTextAlignmentCenter;
     self.addressLabel.text = self.venue.location.address;
+    self.addressLabel.font = [UIFont systemFontOfSize:15];
+    [self.view addSubview:self.addressLabel];
+    
+    
+    self.distanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,244,246,20)];
     self.distanceLabel.text = [NSString stringWithFormat:@"%@m", self.venue.location.distance];
+    self.distanceLabel.font = [UIFont systemFontOfSize:15];
+    self.distanceLabel.textColor = [UIColor lightGrayColor];
+    self.distanceLabel.textAlignment  = NSTextAlignmentCenter;
+    [self.view addSubview:self.distanceLabel];
+    
+    
+    self.mapButton = [[UIButton alloc]initWithFrame:CGRectMake(225,218,55,50)];
+    [self.mapButton setImage:[UIImage imageNamed:@"mappin.png"] forState:UIControlStateNormal];
     self.mapButton.layer.borderWidth = 1.0;
     self.mapButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    UIImageView *imageView = (UIImageView *)[self.view viewWithTag:1];
+    [self.mapButton addTarget:self action:@selector(showMap) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.mapButton];
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,218,246,50)];
     imageView.layer.borderWidth = 1.0;
     imageView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [self.view addSubview:imageView];
     
     
     //NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
@@ -151,6 +155,12 @@
     [[UIApplication sharedApplication].keyWindow addSubview:greyView];
     [[UIApplication sharedApplication].keyWindow addSubview:self.chooseBoardView.view];
 
+    
+}
+
+-(void)showMap{
+    MTMapViewController *viewController = [[MTMapViewController alloc]initWithVenue:self.venue];
+    [self.navigationController pushViewController:viewController animated:YES];
     
 }
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
