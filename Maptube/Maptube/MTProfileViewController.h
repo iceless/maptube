@@ -11,7 +11,7 @@
 @interface MTProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) IBOutlet UINavigationItem *navItem;
-@property (nonatomic, strong) IBOutlet UITableView *table;
+@property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSArray *boardArray;
 @property (nonatomic, strong) NSMutableDictionary *placeArray;
 

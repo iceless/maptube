@@ -38,9 +38,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    //recipes = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
-   // PFUser *user = [PFUser currentUser];
-    //NSMutableArray *boardArray = user[@"Board"];
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.table.delegate =self;
+    self.table.dataSource = self;
+    [self.view addSubview:self.table];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
@@ -63,9 +64,8 @@
                PFObject *mapObject = [self.boardArray objectAtIndex:i];
                PFRelation *relation = [mapObject relationforKey:Place];
                [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-               
                [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1]];
-                   [self.table reloadData];
+                [self.table reloadData];
                }];
            }
              //[self.table reloadData];
@@ -145,20 +145,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"errorCell";
-    if (indexPath.row == 0) {
-        cellIdentifier = @"ProfileCell";
-    }
-    else {
-        cellIdentifier = @"MapCell";
-    }
     
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    
     
     if (indexPath.row == 0) {
         
