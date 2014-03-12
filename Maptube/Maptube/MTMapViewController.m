@@ -23,15 +23,27 @@
     return self;
 }
 
+- (id)initWithVenue:(FSVenue *)venue{
+    
+    self = [super initWithNibName:nil bundle:nil];
+    if (self) {
+        self.venue = venue;
+        // Custom initialization
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+     self.mapView = [[MKMapView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)];
     
      self.mapView.mapType = MKMapTypeStandard;
      self.mapView.zoomEnabled=NO;
      self.mapView.scrollEnabled = NO;
      self.mapView.showsUserLocation=NO;
+    [self.view addSubview:self.mapView];
      
      MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(self.venue.coordinate,2000 ,2000 );
      [self.mapView setRegion:region];
