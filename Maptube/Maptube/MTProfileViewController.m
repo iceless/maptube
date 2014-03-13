@@ -38,6 +38,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    self.title = @"Profile";
+    
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44)];
     self.table.delegate =self;
     self.table.dataSource = self;
@@ -296,7 +298,16 @@
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    MTBoardViewController *destViewController = [[MTBoardViewController alloc] init];
+    //PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row-1];
+    NSArray *places = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+    destViewController.boardData = [self.boardArray objectAtIndex:indexPath.row-1];
+    if(places.count!=0){
+        destViewController.placeArray = [MTPlace convertPlaceArray:places];
+        destViewController.avPlaceArray = places;
+        
+    }
+    [self.navigationController pushViewController:destViewController animated:YES];
 }
 
 

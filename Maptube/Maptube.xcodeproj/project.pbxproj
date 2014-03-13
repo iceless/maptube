@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5227EE6818D20877002EB2AB /* PlaceSummaryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5227EE6718D20877002EB2AB /* PlaceSummaryCell.xib */; };
 		56C3C932186BFA8E00E9B892 /* profilepic@2x.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 56C3C931186BFA8E00E9B892 /* profilepic@2x.JPG */; };
 		56C3C935186C12B700E9B892 /* MTEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C3C934186C12B700E9B892 /* MTEditProfileViewController.m */; };
 		56C3C938186C7DB800E9B892 /* MTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C3C937186C7DB800E9B892 /* MTSettingsViewController.m */; };
@@ -102,6 +103,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5227EE6718D20877002EB2AB /* PlaceSummaryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceSummaryCell.xib; sourceTree = "<group>"; };
 		52EB0F1E18D039F8008CF6E6 /* Defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
 		56C3C931186BFA8E00E9B892 /* profilepic@2x.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "profilepic@2x.JPG"; sourceTree = "<group>"; };
 		56C3C933186C12B700E9B892 /* MTEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditProfileViewController.h; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 		5EA684E318B3010000679EDE /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				5227EE6718D20877002EB2AB /* PlaceSummaryCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				5EBBFE9218C6DA89007B6109 /* profile@2x.png in Resources */,
 				5EE7CC8D18CF0CAC0095D0B5 /* addmap@2x.png in Resources */,
 				5EE7CC8F18CF0DE50095D0B5 /* setting@2x.png in Resources */,
+				5227EE6818D20877002EB2AB /* PlaceSummaryCell.xib in Resources */,
 				5E95916A18ADEE310097B6BC /* poweredByFoursquare_gray.png in Resources */,
 				5EBBFE9518C6DA89007B6109 /* home@2x.png in Resources */,
 				5E25CB9F18CD887800260E5A /* checkin@2x.png in Resources */,
