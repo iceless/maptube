@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSArray *boardArray;
 @property (nonatomic, strong) NSMutableDictionary *placeArray;
+@property (nonatomic, strong) NSString *totalPlacesCount;
 
 
 //- (IBAction)logOutButtonTapAction:(id)sender;

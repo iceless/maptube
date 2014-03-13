@@ -38,7 +38,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44)];
     self.table.delegate =self;
     self.table.dataSource = self;
     [self.view addSubview:self.table];
@@ -52,6 +52,7 @@
 }
 -(void)updateBoard{
     
+    self.totalPlacesCount = [NSString stringWithFormat:@"%@",[[PFUser currentUser] objectForKey:@"PlacesCount"]];
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     
     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -64,8 +65,9 @@
                PFObject *mapObject = [self.boardArray objectAtIndex:i];
                PFRelation *relation = [mapObject relationforKey:Place];
                [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-               [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1]];
-                [self.table reloadData];
+                    [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1]];
+                    if(i==self.boardArray.count-1)
+                    [self.table reloadData];
                }];
            }
              //[self.table reloadData];
@@ -199,6 +201,16 @@
         label.textColor = [UIColor lightGrayColor];
         label.font = [UIFont systemFontOfSize:14];
         [cell.contentView addSubview:label];
+        
+        label = [[UILabel alloc]initWithFrame:CGRectMake(0,95,81,21)];
+        label.text = self.totalPlacesCount;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor lightGrayColor];
+        label.font = [UIFont systemFontOfSize:14];
+        [cell.contentView addSubview:label];
+        
+        
+        
         label = [[UILabel alloc]initWithFrame:CGRectMake(103,115,36,21)];
         label.text = @"Likes";
         label.textColor = [UIColor lightGrayColor];

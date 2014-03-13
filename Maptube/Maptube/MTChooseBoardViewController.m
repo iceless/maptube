@@ -145,7 +145,11 @@
             [placeObject setObject:self.venue.location.distance forKey:Distance];
             [placeObject saveEventually: ^(BOOL succeeded, NSError *error) {
                 if (!error) {
-                    
+                    NSNumber *number = [[AVUser currentUser] objectForKey:@"PlacesCount"];
+                    int count = number.integerValue;
+                    count++;
+                    [[AVUser currentUser] setObject:[NSNumber numberWithInteger:count] forKey:@"PlacesCount"];
+                    [[AVUser currentUser] saveEventually];
                     [self addPlaceRelation:placeObject];
                     
                 }
