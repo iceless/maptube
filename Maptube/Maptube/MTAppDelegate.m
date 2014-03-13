@@ -12,33 +12,74 @@
 #import "MTAppDelegate.h"
 #import "Foursquare2.h"
 
+#import "MTFirstViewController.h"
+#import "MTSecondViewController.h"
+#import "MTProfileViewController.h"
+#import "MTAddPlaceViewController.h"
+#import "MTRootTabBarController.h"
+
 @implementation MTAppDelegate
 #define AVOSCloudAppID  @"ni8qovqmlwvnsck9zfk5c4yaj88yku6kpdfz7aah0ip5wqh4"
 #define AVOSCloudAppKey @"9ttfy96pnup3gsbb902frx1hkyhy81mwwboye3emp74gkipd"
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    [self initViewControllers];
+    [self initAVOSCloudWithLaunchOptions:launchOptions];
+    [self initFoursquare];
+    
+    return YES;
+}
+
+- (void)initViewControllers
+{
+    MTFirstViewController *homeVC = [[MTFirstViewController alloc] init];
+    homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"home.png"] selectedImage:nil];
+    UINavigationController *homeNAV = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    
+    MTSecondViewController *searchVC = [[MTSecondViewController alloc] init];
+    searchVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Search" image:[UIImage imageNamed:@"search.png"] selectedImage:nil];
+    UINavigationController *searchNAV = [[UINavigationController alloc] initWithRootViewController:searchVC];
+    
+    MTProfileViewController *profileVC = [[MTProfileViewController alloc] init];
+    profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:[UIImage imageNamed:@"profile.png"] selectedImage:nil];
+    UINavigationController *profileNAV = [[UINavigationController alloc] initWithRootViewController:profileVC];
+    
+    MTAddPlaceViewController *addPlaceVC = [[MTAddPlaceViewController alloc] init];
+    addPlaceVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Add" image:[UIImage imageNamed:@"place.png"] selectedImage:nil];
+    UINavigationController *addPlaceNAV = [[UINavigationController alloc] initWithRootViewController:addPlaceVC];
+    
+    MTRootTabBarController *tabVC = [[MTRootTabBarController alloc] init];
+    tabVC.viewControllers = @[homeNAV, searchNAV, profileNAV, addPlaceNAV];
+    
+    UINavigationController *rootNAV = [[UINavigationController alloc] initWithRootViewController:tabVC];
+    self.window.rootViewController = rootNAV;
+    
+}
+
+- (void)initAVOSCloudWithLaunchOptions:(NSDictionary *)launchOptions
+{
     // Override point for customization after application launch.
     //设置AVOSCloud
-    
     [AVOSCloud setApplicationId:AVOSCloudAppID
                       clientKey:AVOSCloudAppKey];
     
     
     //统计应用启动情况
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
-    
+}
+
+- (void)initFoursquare
+{
     [Foursquare2 setupFoursquareWithClientId:@"XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ"
                                       secret:@"GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ"
                                  callbackURL:@"www.mapgis.com"];
-
-    
-     
-
-    return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
