@@ -60,11 +60,14 @@
     center_long = center_long / [members count];
     CLLocation *maxLocation = [[CLLocation alloc]initWithLatitude:max_lat longitude:max_long];
     CLLocation *minLocation = [[CLLocation alloc]initWithLatitude:min_lat longitude:min_long];
+    CLLocation *centerLocation  = [[CLLocation alloc]initWithLatitude:center_lat longitude:center_long];
     //NSLog(@"center long: %f, center lat: %f", center_long, center_lat);
     //NSLog(@"max_long: %f, min_long: %f, max_lat: %f, min_lat: %f", max_long, min_long, max_lat, min_lat);
-    CLLocationDistance distance = [maxLocation distanceFromLocation:minLocation];
+    CLLocationDistance distance1 = [maxLocation distanceFromLocation:centerLocation];
+    CLLocationDistance distance2 = [minLocation distanceFromLocation:centerLocation];
+    CLLocationDistance distance = MAX(distance1, distance2);
    
-    return CGRectMake(center_lat,center_long, distance/2+100 , distance/2+100 );
+    return CGRectMake(center_lat,center_long, distance*2+1500, distance*2+1500);
     
     //create new region and set map
     

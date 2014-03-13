@@ -11,6 +11,7 @@
 #import "FSVenue.h"
 
 @interface MTMapViewController : UIViewController<MKMapViewDelegate>
-@property (strong, nonatomic) IBOutlet MKMapView  *mapView;
+@property (strong, nonatomic) MKMapView  *mapView;
 @property (strong, nonatomic) FSVenue *venue;
+- (id)initWithVenue:(FSVenue *)venue;
 @end

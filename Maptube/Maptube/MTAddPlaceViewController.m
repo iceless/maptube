@@ -34,10 +34,22 @@
     //self.title = @"Find A Place";
 	// Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES];
+    self.mapView = [[MKMapView alloc]initWithFrame:CGRectMake(0,44,320,180)];
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.zoomEnabled=YES;
     self.mapView.showsUserLocation=YES;
     self.mapView.delegate=self;
+    [self.view addSubview:self.mapView];
+    
+    self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
+    self.searchBar.delegate = self;
+    [self.view addSubview:self.searchBar];
+    
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 226, self.view.frame.size.width, 360)];
+    self.table.delegate =self;
+    self.table.dataSource = self;
+    [self.view addSubview:self.table];
+    
     self.locationManager =[[CLLocationManager alloc] init];
     self.locationManager.delegate=self;
     self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;

@@ -21,9 +21,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        UIStoryboard * storyBoard  = [UIStoryboard
-                                      storyboardWithName:@"Main" bundle:nil];
-        self = [storyBoard instantiateViewControllerWithIdentifier:@"AddBoard"];
+        //UIStoryboard * storyBoard  = [UIStoryboard
+          //                            storyboardWithName:@"Main" bundle:nil];
+        //self = [storyBoard instantiateViewControllerWithIdentifier:@"AddBoard"];
         
     }
     return self;
@@ -33,7 +33,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
     self.title =@"Create Map";
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    self.table.delegate =self;
+    self.table.dataSource = self;
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
@@ -85,7 +89,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         if(indexPath.section==0){
-            cell =[tableView dequeueReusableCellWithIdentifier:@"CollectionDetailCell"];
+            //cell =[tableView dequeueReusableCellWithIdentifier:@"CollectionDetailCell"];
             cell.textLabel.text = self.fields[indexPath.row];
             cell.detailTextLabel.text = self.values[indexPath.row];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -146,6 +150,15 @@
         destViewController.detailValue = self.values[indexPath.row];
         destViewController.indexPathRow = indexPath.row;
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    MTEditDetailViewController *viewController = [[MTEditDetailViewController alloc]initWithValue:self.values[indexPath.row] andIndex:indexPath.row];
+    viewController.delegate =self;
+    [self.navigationController pushViewController:viewController animated:YES];
+    
+    
 }
 #pragma mark - MTEditDetailViewController source
 -(void)updateValue:(NSString *)str atIndex:(NSInteger)i{
