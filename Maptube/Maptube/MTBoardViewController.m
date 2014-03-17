@@ -12,7 +12,7 @@
 #import "MTPlaceIntroductionViewController.h"
 #import "MTEditBoardViewController.h"
 
-@interface MTBoardViewController ()
+@interface MTBoardViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -26,6 +26,25 @@
         
     }
     return self;
+}
+
+- (void)loadView
+{
+    [super loadView];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 80, 320, 180)];
+    [self.view addSubview:self.mapView];
+    
+    self.tableView = [[MTTableView alloc] initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"PlaceSummaryCell" bundle:nil] forCellReuseIdentifier:@"PlaceSummaryCell"];
+    UIView *footView = [[UIView alloc] initWithFrame:self.view.frame];
+    footView.backgroundColor = [UIColor whiteColor];
+//    self.tableView.tableFooterView = footView;
+    [self.view addSubview:self.tableView];
 }
 
 - (void)viewDidLoad
@@ -113,7 +132,7 @@
 
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"PlaceCell";
+    static NSString *CellIdentifier = @"PlaceSummaryCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     MTPlace *place = self.placeArray[indexPath.row];
