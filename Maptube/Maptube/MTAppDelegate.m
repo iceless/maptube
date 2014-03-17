@@ -57,6 +57,7 @@
     tabVC.viewControllers = @[homeNAV, searchNAV, profileNAV, addPlaceNAV];
     
     UINavigationController *rootNAV = [[UINavigationController alloc] initWithRootViewController:tabVC];
+    rootNAV.navigationBarHidden = YES;
     self.window.rootViewController = rootNAV;
     
 }
