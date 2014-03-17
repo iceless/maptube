@@ -29,9 +29,6 @@
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         // Custom initialization
-        UIStoryboard * storyBoard  = [UIStoryboard
-                                      storyboardWithName:@"Main" bundle:nil];
-        self = [storyBoard instantiateViewControllerWithIdentifier:@"ChooseBoard"];
         self.venue = venue;
         self.image = image;
     }
@@ -49,37 +46,17 @@
     [self updateBoard];
     //self.boardArray = [[relation query] findObjects];
     UINavigationItem *navigationItem =[[UINavigationItem alloc] initWithTitle:@"Pin to Map"];
-    /*
-    UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame=CGRectMake(0, 0, 50, 32);
-    [button addTarget:self action:@selector(navBack) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Close" forState:UIControlStateNormal];
-    navigationItem.leftBarButtonItem=barItem;
-    */
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 40, 32);
     [button addTarget:self action:@selector(addPlace) forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"Done" forState:UIControlStateNormal];
     UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    
-    
-    //[button setBackgroundColor:[UIColor redColor]];
     navigationItem.rightBarButtonItem=barItem;
    
     UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [bar pushNavigationItem:navigationItem animated:YES];
-    
     [self.view addSubview:bar];
-    
     [MTViewHelper setExtraCellLineHidden:self.table];
-    
-    
-    //self.table.frame = CGRectMake(10, 100, self.view.frame.size.width-20, self.view.frame.size.height);
-    
-    
-    
-    
 	// Do any additional setup after loading the view.
 }
 -(void)updateBoard{
@@ -275,23 +252,19 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
-/*
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section==1)
-        return @"ALL BOARDS";
-    else return nil;
-    
-}
- */
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
     
-    static NSString *cellIdentifier = @"NewMapCell";
+    //static NSString *cellIdentifier = @"NewMapCell";
     if(indexPath.section==0){
-       cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        
-        
+       //cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(10, 5, 305, 30)];
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.text = @"+New Map";
+        textField.delegate = self;
+        [cell.contentView addSubview:textField];
         
     }
     else{
