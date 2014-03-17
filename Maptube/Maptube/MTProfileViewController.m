@@ -14,7 +14,7 @@
 #import "FSConverter.h"
 #import "MTPlace.h"
 #import "MTEditBoardViewController.h"
-
+#import "MTSettingsViewController.h"
 
 @interface MTProfileViewController ()
 
@@ -38,6 +38,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingBtnPressed:)];
+    self.navigationItem.leftBarButtonItem = settingItem;
+    
+    UIBarButtonItem *addMapItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addmap.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addMapBtnPressed:)];
+    self.navigationItem.rightBarButtonItem = addMapItem;
+    
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44)];
     self.table.delegate =self;
     self.table.dataSource = self;
@@ -50,6 +56,19 @@
     [self updateBoard];
     
 }
+
+- (void)settingBtnPressed:(id)sender
+{
+    MTSettingsViewController *targetVC = [[MTSettingsViewController alloc] init];
+    [self.navigationController pushViewController:targetVC animated:YES];
+}
+
+- (void)addMapBtnPressed:(id)sender
+{
+    MTAddCollectionViewController *targetVC = [[MTAddCollectionViewController alloc] init];
+    [self.navigationController pushViewController:targetVC animated:YES];
+}
+
 -(void)updateBoard{
     
     self.totalPlacesCount = [NSString stringWithFormat:@"%@",[[PFUser currentUser] objectForKey:@"PlacesCount"]];
