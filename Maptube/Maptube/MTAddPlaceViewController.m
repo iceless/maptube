@@ -28,6 +28,14 @@
     return self;
 }
 
+- (void)loadView
+{
+    [super loadView];
+    
+    self.title = @"Add Place";
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

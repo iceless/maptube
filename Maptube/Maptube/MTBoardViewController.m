@@ -28,6 +28,26 @@
     return self;
 }
 
+- (void)loadView
+{
+    [super loadView];
+    
+    [self configViewHierarchy];
+}
+
+- (void)configViewHierarchy
+{
+    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 80, 320, 180)];
+    [self.view addSubview:self.mapView];
+    
+    self.tableView = [[MTTableView alloc] initWithFrame:CGRectMake(0, self.mapView.frame.origin.y + self.mapView.frame.size.height, 320, self.view.frame.size.height - 44 - 180 - 44) style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"PlaceSummaryCell" bundle:nil]forCellReuseIdentifier:@"PlaceSummaryCell"];
+    [self.view addSubview:self.tableView];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,7 +55,7 @@
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.zoomEnabled=YES;
     self.mapView.showsUserLocation=NO;
-    self.tableView.backgroundColor = [UIColor clearColor];
+//    self.tableView.backgroundColor = [UIColor clearColor];
     if(self.placeArray.count!=0){
         CGRect placeRect = [MTPlace updateMemberPins:self.placeArray];
         CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
@@ -49,7 +69,7 @@
         [self.mapView addAnnotations:self.placeArray];
     }
     
-    self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-40);
+//    self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-40);
     
     UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 40, 32);
@@ -72,7 +92,7 @@
     
     [super viewDidLayoutSubviews];
     
-    self.tableView.contentInset = UIEdgeInsetsMake(self.mapView.frame.size.height+80, 0, 0, 0);
+//    self.tableView.contentInset = UIEdgeInsetsMake(self.mapView.frame.size.height+80, 0, 0, 0);
     
     
     
@@ -113,7 +133,7 @@
 
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"PlaceCell";
+    static NSString *CellIdentifier = @"PlaceSummaryCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     MTPlace *place = self.placeArray[indexPath.row];
