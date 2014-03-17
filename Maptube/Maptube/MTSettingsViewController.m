@@ -87,7 +87,7 @@
     else if (indexPath.section == 1) {
         
     }
-    else if (indexPath.section == 0) {
+    else if (indexPath.section == 2) {
         [AVUser logOut];
         
         MTLoginViewController *logInViewController = [[MTLoginViewController alloc]init];
