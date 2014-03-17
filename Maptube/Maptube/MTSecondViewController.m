@@ -20,6 +20,14 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+
+- (void)loadView
+{
+    [super loadView];
+    
+    self.title = @"Search";
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
