@@ -39,6 +39,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.detailTextView= [[UITextView alloc]initWithFrame:CGRectMake(8,82,305,196)];
     self.detailTextView.layer.borderWidth =1.0;
     self.detailTextView.layer.cornerRadius =5.0;
     self.detailTextView.layer.borderColor = [UIColor grayColor].CGColor;
@@ -48,8 +49,7 @@
     }
     self.detailTextView.text = self.detailValue;
     
-    UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(8,82,305,196)];
-    [self.view addSubview:textView];
+    [self.view addSubview:self.detailTextView];
     self.view.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
     
     UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];

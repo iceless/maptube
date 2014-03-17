@@ -56,7 +56,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
     self.placeArray = [NSMutableDictionary dictionary];
-
+    
+    self.locationManager =[[CLLocationManager alloc] init];
+    self.locationManager.delegate=self;
+    self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter=10.0f;
+    [self.locationManager startUpdatingLocation];
+    
     [self updateBoard];
     
 }
@@ -104,7 +110,15 @@
 
     
 }
-
+#pragma mark - Location Delegation
+- (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation
+            fromLocation:(CLLocation *)oldLocation
+{
+    [MTData sharedInstance].curCoordinate = newLocation.coordinate;
+    [self.locationManager stopUpdatingLocation];
+    
+    
+}
 - (void)viewWillAppear:(BOOL)animated {
     [self updateBoard];
     [super viewWillAppear:animated];

@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @interface MTData : NSObject
 @property(nonatomic,strong)UIImage *iconImage;
+@property (nonatomic, assign) CLLocationCoordinate2D curCoordinate;
 +(MTData*)sharedInstance;
 @end

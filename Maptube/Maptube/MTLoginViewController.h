@@ -10,7 +10,7 @@
 
 @interface MTLoginViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UITextField *accountField;
-@property (strong, nonatomic) IBOutlet UITextField *passwordField;
+@property (strong, nonatomic)  UITextField *accountField;
+@property (strong, nonatomic)  UITextField *passwordField;
 
 @end
