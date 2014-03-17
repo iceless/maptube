@@ -88,38 +88,31 @@
     UITableViewCell *cell;
     
     if(indexPath.section == 0){
-        static NSString *CellIdentifier = @"profilepiccell";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-//            NSLog(@"not supposed to be here!!");
-        }
-        
-        UILabel *label;
-        
-        label = (UILabel *)[cell.contentView viewWithTag:2];
+       // static NSString *CellIdentifier = @"profilepiccell";
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        UILabel *label =[[UILabel alloc]initWithFrame:CGRectMake(96, 32, 143, 21)];
         label.text = @"Profile Picture";
-        
-        UIImageView *imgv;
-        imgv = (UIImageView *)[cell.contentView viewWithTag:1];
+        [cell.contentView addSubview:label];
+        UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(8, 3, 80, 80)];
         imgv.image = [MTData sharedInstance].iconImage;
         imgv.layer.masksToBounds = YES;
         imgv.layer.cornerRadius = 40;
+        [cell.contentView addSubview:imgv];
 
     } else if(indexPath.section == 1){
-        static NSString *CellIdentifier = @"detailcell";
-        cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        //static NSString *CellIdentifier = @"detailcell";
+        //cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
+        //if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        //}
         
-        UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
-        UILabel *labelValue = (UILabel *)[cell.contentView viewWithTag:2];
+        //UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
+       //UILabel *labelValue = (UILabel *)[cell.contentView viewWithTag:2];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-        label.text = self.fields[indexPath.row];
-        labelValue.text = self.values[indexPath.row];
+        cell.textLabel.text = self.fields[indexPath.row];
+        cell.detailTextLabel.text = self.values[indexPath.row];
     }
     // Configure the cell...
     
@@ -154,15 +147,14 @@
      Each type of cell has a different height.
      self.model contains the data for the tableview
      */
-    static NSString *cellIdentifier;
+    
+    //static NSString *cellIdentifier;
     if (indexPath.section == 0)
-        cellIdentifier = @"profilepiccell";
-    else if (indexPath.section == 1)
-        cellIdentifier = @"detailcell";
+        return 100;
+    else
+        return 40;
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    return cell.bounds.size.height;
+   
 }
 /*
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -185,6 +177,15 @@
     actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
     actionSheet.tag = 21;
     [actionSheet showInView:self.view];
+    }
+    else{
+        
+        MTEditDetailViewController *destViewController = [[MTEditDetailViewController alloc]init];
+        destViewController.delegate = self;
+        destViewController.detailValue = self.values[indexPath.row];
+        destViewController.indexPathRow = indexPath.row;
+        [self.navigationController pushViewController:destViewController animated:YES];
+
     }
 }
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
