@@ -18,6 +18,6 @@
 @property (strong, nonatomic)  NSArray *avPlaceArray;
 @property (strong, nonatomic)  PFObject *boardData;
 @property (readwrite, nonatomic) BOOL switchPage;
-@property (strong, nonatomic) MTTableView *tableView;
+@property (weak, nonatomic) IBOutlet MTTableView *tableView;
 
 @end
