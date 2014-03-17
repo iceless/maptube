@@ -34,9 +34,9 @@
         
         
         //self.view.backgroundColor = [UIColor grayColor];
-        UIStoryboard * storyBoard  = [UIStoryboard
-                                      storyboardWithName:@"Main" bundle:nil];
-        self = [storyBoard instantiateViewControllerWithIdentifier:@"PlaceIntroduction"];
+        //UIStoryboard * storyBoard  = [UIStoryboard
+         //                             storyboardWithName:@"Main" bundle:nil];
+        //self = [storyBoard instantiateViewControllerWithIdentifier:@"PlaceIntroduction"];
         self.placeData = dict;
         self.venue = venue;
         
@@ -70,7 +70,7 @@
     [self.view addSubview:self.distanceLabel];
     
     
-    self.mapButton = [[UIButton alloc]initWithFrame:CGRectMake(225,218,55,50)];
+    self.mapButton = [[UIButton alloc]initWithFrame:CGRectMake(255,218,55,50)];
     [self.mapButton setImage:[UIImage imageNamed:@"mappin.png"] forState:UIControlStateNormal];
     self.mapButton.layer.borderWidth = 1.0;
     self.mapButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -130,15 +130,8 @@
         self.pageControl.currentPage = 0;
         [self.pageControl addTarget:self action:@selector(changePage:)forControlEvents:UIControlEventValueChanged];
         
-        
-        
-        
         [self.view addSubview:self.pageControl];
     }
-    
-    
-    
-    
     
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.table setSeparatorInset:UIEdgeInsetsZero];

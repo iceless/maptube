@@ -136,9 +136,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     MTPlace *place = self.placeArray[indexPath.row];
+    
     label.text = place.name;
     label = (UILabel *)[cell viewWithTag:2];
-    label.text = [NSString stringWithFormat:@"%@m",place.distance];
+    CLLocation *curLocation  = [[CLLocation alloc]initWithLatitude:[MTData sharedInstance].curCoordinate.latitude longitude:[MTData sharedInstance].curCoordinate.longitude];
+    CLLocation *venueLocation  = [[CLLocation alloc]initWithLatitude:place.coordinate.latitude longitude:place.coordinate.longitude];
+    CLLocationDistance distance = [curLocation distanceFromLocation:venueLocation];
+    label.text = [NSString stringWithFormat:@"%dm",(int)distance];
+
+    
     label = (UILabel *)[cell viewWithTag:3];
     label.text = place.venueAddress;
     
@@ -155,8 +161,11 @@
     venue.name = place.name;
     venue.venueId = place.venueId;
     venue.location.address = place.venueAddress;
-    venue.location.distance = place.distance;
-    
+    //venue.location.distance = place.distance;
+    CLLocation *curLocation  = [[CLLocation alloc]initWithLatitude:[MTData sharedInstance].curCoordinate.latitude longitude:[MTData sharedInstance].curCoordinate.longitude];
+    CLLocation *venueLocation  = [[CLLocation alloc]initWithLatitude:venue.location.coordinate.latitude longitude:venue.location.coordinate.longitude];
+    CLLocationDistance distance = [curLocation distanceFromLocation:venueLocation];
+    venue.location.distance = [NSNumber numberWithInt:(int)distance];
     
     [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",place.venueId]] andStr:nil compeletion:^(id data){
         //获取Foursquare venue信息
@@ -166,7 +175,6 @@
         dict = [dict objectForKey:@"venue"];
         MTPlaceIntroductionViewController *controller = [[MTPlaceIntroductionViewController  alloc]initWithData:dict AndVenue:venue];
         [self.navigationController pushViewController:controller animated:YES];
-        
         
     }];
 
