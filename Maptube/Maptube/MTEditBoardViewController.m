@@ -14,23 +14,19 @@
 
 @implementation MTEditBoardViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        
     }
     return self;
 }
 
 -(id)initWithData:(NSMutableArray *)array andPFObject:(PFObject *)object{
-    self = [super initWithNibName:nil bundle:nil];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         // Custom initialization
-        UIStoryboard * storyBoard  = [UIStoryboard
-                                      storyboardWithName:@"Main" bundle:nil];
-        self = [storyBoard instantiateViewControllerWithIdentifier:@"EditBoard"];
         self.values = array;
         self.mapObject = object;
     }
@@ -48,12 +44,13 @@
     UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Save" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem=barItem;
+   
     
     
 }
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.table reloadData];
+    [self.tableView reloadData];
 }
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -66,10 +63,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UITableViewCell *cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     
     if(indexPath.section==0){
-        cell =[tableView dequeueReusableCellWithIdentifier:@"CollectionDetailCell"];
+        //cell =[tableView dequeueReusableCellWithIdentifier:n];
         cell.textLabel.text = self.fields[indexPath.row];
         cell.detailTextLabel.text = self.values[indexPath.row];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -113,23 +110,18 @@
         [self.mapObject deleteInBackgroundWithBlock: ^(BOOL succeeded, NSError *error){
             [self.navigationController popViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
-        
-        
         }];
         
     }
-    
-
-}
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"EditBoardDetail"]) {
-        NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
-        MTEditDetailViewController *destViewController = segue.destinationViewController;
+    else{
+        MTEditDetailViewController *destViewController = [[MTEditDetailViewController alloc]init];
         destViewController.delegate = self;
         destViewController.detailValue = self.values[indexPath.row];
         destViewController.indexPathRow = indexPath.row;
+        [self.navigationController pushViewController:destViewController animated:YES];
+
     }
+
 }
 
 -(void)saveBoard{
