@@ -53,7 +53,7 @@
     self.searchBar.delegate = self;
     [self.view addSubview:self.searchBar];
     
-    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 226, self.view.frame.size.width, 360)];
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 226, self.view.frame.size.width, self.view.frame.size.height-226-50)];
     self.table.delegate =self;
     self.table.dataSource = self;
     [self.view addSubview:self.table];
