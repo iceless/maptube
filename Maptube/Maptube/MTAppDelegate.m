@@ -17,6 +17,7 @@
 #import "MTProfileViewController.h"
 #import "MTAddPlaceViewController.h"
 #import "MTRootTabBarController.h"
+#import "MTPlace.h"
 
 @implementation MTAppDelegate
 #define AVOSCloudAppID  @"ni8qovqmlwvnsck9zfk5c4yaj88yku6kpdfz7aah0ip5wqh4"
@@ -72,6 +73,7 @@
     
     //统计应用启动情况
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [MTPlace registerSubclass];
 }
 
 - (void)initFoursquare

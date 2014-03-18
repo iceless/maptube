@@ -11,7 +11,9 @@
 //#import <Parse/Parse.h>
 
 @implementation MTPlace
-
++ (NSString *)parseClassName {
+    return @"Place";
+}
 +(NSArray *)convertPlaceArray:(NSArray *)array {
     
     NSMutableArray *placeArray = [NSMutableArray arrayWithCapacity:array.count];
@@ -22,7 +24,7 @@
         place.venueAddress = dict[VenueAddress];
         [place setCoordinate:CLLocationCoordinate2DMake([dict[Latitude] doubleValue],
                                                                  [dict[Longitude] doubleValue])];
-        place.distance = dict[Distance];
+        //place.distance = dict[Distance];
         [placeArray addObject:place];
         
     }

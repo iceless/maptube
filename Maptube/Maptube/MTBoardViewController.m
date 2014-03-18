@@ -191,7 +191,7 @@
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     PFRelation *placeRelation = [self.boardData relationforKey:Place];
-    [placeRelation removeObject:[self.avPlaceArray objectAtIndex:indexPath.row]];
+    [placeRelation removeObject:[self.placeArray objectAtIndex:indexPath.row]];
     [self.boardData saveInBackground];
     NSMutableArray *placeMutableArray = self.placeArray.mutableCopy;
     [placeMutableArray removeObjectAtIndex:indexPath.row];

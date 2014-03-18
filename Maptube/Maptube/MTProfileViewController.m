@@ -94,6 +94,7 @@
                PFObject *mapObject = [self.boardArray objectAtIndex:i];
                PFRelation *relation = [mapObject relationforKey:Place];
                [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+                   if(objects.count!=0)
                     [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1]];
                     if(i==self.boardArray.count-1)
                     [self.table reloadData];
@@ -316,6 +317,10 @@
     return cell;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -339,7 +344,7 @@
     destViewController.boardData = [self.boardArray objectAtIndex:indexPath.row-1];
     if(places.count!=0){
         destViewController.placeArray = [MTPlace convertPlaceArray:places];
-        destViewController.avPlaceArray = places;
+        //destViewController.avPlaceArray = places;
         
     }
     [self.navigationController pushViewController:destViewController animated:YES];
@@ -360,25 +365,7 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"BoardDetail"]) {
-        NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
-        MTBoardViewController *destViewController = segue.destinationViewController;
-        //PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row-1];
-        NSArray *places = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-        destViewController.boardData = [self.boardArray objectAtIndex:indexPath.row-1];
-        if(places.count!=0){
-            destViewController.placeArray = [MTPlace convertPlaceArray:places];
-            destViewController.avPlaceArray = places;
-            
-        }
-    }
-    
-   
-    
-    
-}
+
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:ModifyBoardNotification];
     [[NSNotificationCenter defaultCenter] removeObserver:ModifyProfileNotification];
