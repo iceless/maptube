@@ -80,6 +80,7 @@
    
     
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     self.switchPage = NO;
     [super viewWillAppear:animated];
@@ -92,9 +93,7 @@
     [super viewDidLayoutSubviews];
     
     self.tableView.contentInset = UIEdgeInsetsMake(self.mapView.frame.size.height+80, 0, 0, 0);
-    
-    
-    
+
     
 }
 
@@ -103,8 +102,6 @@
     if (scrollView.contentOffset.y < (self.mapView.frame.size.height+80)*-1 ) {
         [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, (self.mapView.frame.size.height+80)*-1)];
     }
-    
-   
 }
 /*
 #pragma mark - touch
@@ -131,6 +128,7 @@
     return self.placeArray.count;
 
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"PlaceSummaryCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];

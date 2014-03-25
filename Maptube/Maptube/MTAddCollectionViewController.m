@@ -73,9 +73,11 @@
     
     
 }
+
 -(void)navBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section==0) return 3;
@@ -226,7 +228,6 @@
     
     
 }
-
 
 - (void)didReceiveMemoryWarning
 {

@@ -37,6 +37,7 @@
         //UIStoryboard * storyBoard  = [UIStoryboard
          //                             storyboardWithName:@"Main" bundle:nil];
         //self = [storyBoard instantiateViewControllerWithIdentifier:@"PlaceIntroduction"];
+      
         self.placeData = dict;
         self.venue = venue;
         
@@ -267,6 +268,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(void)dealloc{
     UIView *greyView = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:101];
 

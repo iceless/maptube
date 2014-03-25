@@ -62,6 +62,7 @@
     
     
 }
+
 -(void)loginClick{
     if(!self.accountField.text.length||!self.passwordField.text.length){
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Missing Information", nil) message:NSLocalizedString(@"Make sure you fill out all of the information!", nil) delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];

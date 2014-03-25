@@ -23,6 +23,7 @@
     }
     return self;
 }
+
 -(id)initWithImageArray:(NSArray *)array AndVenue:(FSVenue *)venue{
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
@@ -34,6 +35,7 @@
     return self;
     
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -64,6 +66,7 @@
         
     }
 }
+
 -(void)clickPicture:(id)sender{
    // UIButton *button = (UIButton *)sender;
    // MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImageStr:[self.picArray objectAtIndex:button.tag] AndVenue:self.venue];

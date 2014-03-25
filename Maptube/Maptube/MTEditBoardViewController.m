@@ -38,10 +38,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.fields = @[@"Title", @"Description", @"Category", @"Secret"];
-    UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
     [button addTarget:self action:@selector(saveBoard) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
+    UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Save" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem=barItem;
    
@@ -90,13 +90,11 @@
         
     }
    
-    else{
+    else {
         UILabel *label = [[UILabel alloc]initWithFrame:cell.frame];
         label.text =@"Delete Board";
         label.textAlignment = NSTextAlignmentCenter;
-       
         [cell.contentView addSubview:label];
-        
     }
     
     
@@ -132,12 +130,9 @@
     [self.mapObject saveInBackgroundWithBlock: ^(BOOL succeeded, NSError *error){
         [self.navigationController popViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
-        
-        
     }];
-
-    
 }
+
 -(void)switchAction:(id)sender{
     UISwitch *switchButton = (UISwitch *)sender;
     //if(switchButton.tag==11){
@@ -146,9 +141,11 @@
     else
         self.values[3] = [NSNumber numberWithBool:YES];
 }
+
 -(void)updateValue:(NSString *)str atIndex:(NSInteger)i{
     self.values[i] = str;
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -35,7 +35,6 @@
     self.title = @"Add Place";
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,6 +71,7 @@
     [self.navigationController setNavigationBarHidden:true];
 
 }
+
 #pragma mark - Map
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation
@@ -125,6 +125,7 @@
     
     [self.mapView removeAnnotations:annForRemove];
 }
+
 - (void)proccessAnnotations {
     [self removeAllAnnotationExceptOfCurrentUser];
     [self.mapView addAnnotations:self.nearbyPlaces];
@@ -141,6 +142,7 @@
     
     
 }
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
@@ -148,10 +150,12 @@
     [self.table reloadData];
     searchBar.text = @"";
 }
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [self getVenuesForLocation:self.curLocation andquery:searchText];
     
 }
+
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     self.isSearching = false;
     self.searchBar.showsCancelButton  = NO;
@@ -193,6 +197,7 @@
     
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FSVenue *venue = self.nearbyPlaces[indexPath.row];
     

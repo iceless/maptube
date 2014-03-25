@@ -25,6 +25,7 @@
     }
     return self;
 }
+
 -(id)initWithImage:(UIImage *)image AndVenue:(FSVenue *)venue{
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
@@ -59,6 +60,7 @@
     [MTViewHelper setExtraCellLineHidden:self.table];
 	// Do any additional setup after loading the view.
 }
+
 -(void)updateBoard{
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     [self.boardArray removeAllObjects];
@@ -90,6 +92,7 @@
     //[self.navigationController popViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
 }
+
 -(void)createBoard{
     MTAddCollectionViewController *controller = [[MTAddCollectionViewController alloc]init];
     [self.navigationController pushViewController:controller animated:YES];
@@ -98,7 +101,6 @@
 
 -(void)addPlace{
    
-    
     PFQuery *query = [PFQuery queryWithClassName:@"Place"];
     [query whereKey:VenueID containsString:self.venue.venueId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -173,6 +175,7 @@
     }
     
 }
+
 -(void)addBoard:(NSString *)str{
     
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
@@ -283,6 +286,7 @@
    
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if(indexPath.section==0){
@@ -375,6 +379,7 @@
     */
     
 }
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section==0)
     return YES;
@@ -382,6 +387,7 @@
 
 
 }
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     /*
@@ -393,6 +399,7 @@
      */
     return UITableViewCellEditingStyleNone;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //if(indexPath.section==0)
