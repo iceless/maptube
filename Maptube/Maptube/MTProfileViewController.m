@@ -216,7 +216,7 @@
         descriptionView.font = [UIFont systemFontOfSize:13];
         [cell.contentView addSubview:descriptionView];
         
-        
+        /*
         imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,89,81,47)];
         imgv.layer.borderWidth = 1;
         imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -265,7 +265,7 @@
         label.font = [UIFont systemFontOfSize:14];
         [cell.contentView addSubview:label];
         
-        
+        */
     }else {
         
         UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(9,4,203,21)];
