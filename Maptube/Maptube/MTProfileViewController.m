@@ -46,6 +46,7 @@
     self.navigationItem.rightBarButtonItem = addMapItem;
 
     self.title = @"Profile";
+    self.currentMap = 1;
 
     
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44)];
@@ -65,6 +66,53 @@
     
     [self updateBoard];
     
+}
+
+-(void)initProfile {
+    NSString *name = [NSString stringWithFormat:NSLocalizedString(@"%@ %@", nil),
+                      [PFUser currentUser][@"firstname"],
+                      [PFUser currentUser][@"lastname"]];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(94,8,206,33)];
+    label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), name];
+    label.font = [UIFont systemFontOfSize:20];
+    [self.view addSubview:label];
+    
+    UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(6,6,80,80)];
+    imgv.image = [MTData sharedInstance].iconImage;
+    imgv.layer.masksToBounds = YES;
+    imgv.layer.cornerRadius = 40;
+    [self.view addSubview:imgv];
+    
+    
+    label = [[UILabel alloc]initWithFrame:CGRectMake(94,35,206,21)];
+    label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"location"]];
+    label.font = [UIFont systemFontOfSize:13];
+    label.textColor = [UIColor darkGrayColor];
+    [self.view addSubview:label];
+    
+    UITextView *descriptionView= [[UITextView alloc]initWithFrame:CGRectMake(88,53,302,29)];
+    descriptionView.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
+    descriptionView.font = [UIFont systemFontOfSize:13];
+    [self.view addSubview:descriptionView];
+    
+    self.myMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.myMapButton.frame = CGRectMake(0, 89, 160, 47);
+    [self.myMapButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
+    [self.myMapButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+    [self.myMapButton setTitle:@"My Map" forState:UIControlStateNormal];
+    [self.myMapButton addTarget:self action:@selector(clickMyMapButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.myMapButton setSelected:YES];
+    
+    [self.view addSubview:self.myMapButton];
+    
+    self.collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.collectionButton.frame = CGRectMake(161, 89, 160, 47);
+    [self.collectionButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
+    [self.collectionButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+    [self.collectionButton setTitle:@"Favorate" forState:UIControlStateNormal];
+    [self.collectionButton addTarget:self action:@selector(clickFavorateButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.collectionButton];
 }
 
 - (void)settingBtnPressed:(id)sender
@@ -216,6 +264,29 @@
         descriptionView.font = [UIFont systemFontOfSize:13];
         [cell.contentView addSubview:descriptionView];
         
+        self.myMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.myMapButton.frame = CGRectMake(0, 89, 160, 47);
+        [self.myMapButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
+        [self.myMapButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+        [self.myMapButton setTitle:@"My Map" forState:UIControlStateNormal];
+        [self.myMapButton addTarget:self action:@selector(clickMyMapButton:) forControlEvents:UIControlEventTouchUpInside];
+        if(self.currentMap == 1)
+        [self.myMapButton setSelected:YES];
+        
+        [cell.contentView addSubview:self.myMapButton];
+        
+        self.collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.collectionButton.frame = CGRectMake(161, 89, 160, 47);
+        [self.collectionButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
+        [self.collectionButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+        [self.collectionButton setTitle:@"Favorate" forState:UIControlStateNormal];
+        [self.collectionButton addTarget:self action:@selector(clickFavorateButton:) forControlEvents:UIControlEventTouchUpInside];
+        if(self.currentMap == 2)
+            [self.collectionButton setSelected:YES];
+        
+        [cell.contentView addSubview:self.collectionButton];
+        
+        
         /*
         imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,89,81,47)];
         imgv.layer.borderWidth = 1;
@@ -317,11 +388,6 @@
     return cell;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -338,6 +404,7 @@
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row != 0){
     MTBoardViewController *destViewController = [[MTBoardViewController alloc] init];
     //PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row-1];
     NSArray *places = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
@@ -348,8 +415,28 @@
         
     }
     [self.navigationController pushViewController:destViewController animated:YES];
+    }
 }
 
+-(void)clickMyMapButton:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    [button setSelected:YES];
+    if(self.currentMap==2)
+        [self.table reloadData];
+    self.currentMap = 1;
+    [self.collectionButton setSelected:NO];
+    
+}
+-(void)clickFavorateButton:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    [button setSelected:YES];
+    if(self.currentMap==1)
+        [self.table reloadData];
+    self.currentMap = 2;
+    [self.myMapButton setSelected:NO];
+    
+    
+}
 
 -(void)clickEdit:(id)sender{
     UIButton *button = (UIButton *)sender;

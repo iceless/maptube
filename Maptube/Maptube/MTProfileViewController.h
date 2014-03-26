@@ -16,8 +16,9 @@
 @property (nonatomic, strong) NSMutableDictionary *placeArray;
 @property (nonatomic, strong) NSString *totalPlacesCount;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-
-
+@property (strong, nonatomic) UIButton *myMapButton;
+@property (strong, nonatomic) UIButton *collectionButton;
+@property (assign, nonatomic) int currentMap; 
 //- (IBAction)logOutButtonTapAction:(id)sender;
 
 @end
