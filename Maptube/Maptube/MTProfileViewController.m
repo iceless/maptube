@@ -15,6 +15,7 @@
 #import "MTPlace.h"
 #import "MTEditBoardViewController.h"
 #import "MTSettingsViewController.h"
+#import "MTEditProfileViewController.h"
 
 @interface MTProfileViewController ()
 
@@ -285,6 +286,8 @@
             [self.collectionButton setSelected:YES];
         
         [cell.contentView addSubview:self.collectionButton];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
         
         
         /*
@@ -415,6 +418,10 @@
         
     }
     [self.navigationController pushViewController:destViewController animated:YES];
+    }
+    else{
+        MTEditProfileViewController  *controller = [[MTEditProfileViewController alloc]init];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 
