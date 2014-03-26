@@ -53,7 +53,7 @@
     UINavigationController *addPlaceNAV = [[UINavigationController alloc] initWithRootViewController:addPlaceVC];
     
     MTRootTabBarController *tabVC = [[MTRootTabBarController alloc] init];
-    tabVC.viewControllers = @[homeNAV, profileNAV, addPlaceNAV];
+    tabVC.viewControllers = @[homeNAV, addPlaceNAV,profileNAV];
     
     UINavigationController *rootNAV = [[UINavigationController alloc] initWithRootViewController:tabVC];
     rootNAV.navigationBarHidden = YES;
