@@ -26,6 +26,7 @@
 #define VenueID @"VenueID"
 #define VenueAddress @"VenueAddress"
 #define Distance @"Distance"
+#define CollectUser @"CollectUser"
 
 
 #pragma mark - Notification

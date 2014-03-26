@@ -38,7 +38,7 @@
 		56F1CB371869869D008498DF /* MTProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CB361869869D008498DF /* MTProfileViewController.m */; };
 		5E25CB9F18CD887800260E5A /* checkin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9C18CD887800260E5A /* checkin@2x.png */; };
 		5E25CBA018CD887800260E5A /* like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9D18CD887800260E5A /* like@2x.png */; };
-		5E25CBA118CD887800260E5A /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9E18CD887800260E5A /* pin@2x.png */; };
+		5E25CBA118CD887800260E5A /* mappin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9E18CD887800260E5A /* mappin@2x.png */; };
 		5E51970D18C9963500504EBD /* MTViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E51970C18C9963500504EBD /* MTViewHelper.m */; };
 		5E62BB8E18B602C30061A48C /* MTEditBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */; };
 		5E85E18F18B4420600A2A172 /* MTPlaceIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */; };
@@ -86,7 +86,7 @@
 		5EBBFE9418C6DA89007B6109 /* place@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8F18C6DA89007B6109 /* place@2x.png */; };
 		5EBBFE9518C6DA89007B6109 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9018C6DA89007B6109 /* home@2x.png */; };
 		5EBBFE9618C6DA89007B6109 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9118C6DA89007B6109 /* search@2x.png */; };
-		5EBBFE9818C6F3A3007B6109 /* mappin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9718C6F3A3007B6109 /* mappin@2x.png */; };
+		5EBBFE9818C6F3A3007B6109 /* placepin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9718C6F3A3007B6109 /* placepin@2x.png */; };
 		5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F1CAF81867DEEB008498DF /* Main.storyboard */; };
 		5EBCC21818C7044F00BA4CAC /* MTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */; };
 		5EE7CC8D18CF0CAC0095D0B5 /* addmap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE7CC8C18CF0CAC0095D0B5 /* addmap@2x.png */; };
@@ -147,7 +147,7 @@
 		56F1CB361869869D008498DF /* MTProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProfileViewController.m; sourceTree = "<group>"; };
 		5E25CB9C18CD887800260E5A /* checkin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkin@2x.png"; sourceTree = "<group>"; };
 		5E25CB9D18CD887800260E5A /* like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like@2x.png"; sourceTree = "<group>"; };
-		5E25CB9E18CD887800260E5A /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
+		5E25CB9E18CD887800260E5A /* mappin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mappin@2x.png"; sourceTree = "<group>"; };
 		5E51970B18C9963500504EBD /* MTViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTViewHelper.h; sourceTree = "<group>"; };
 		5E51970C18C9963500504EBD /* MTViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTViewHelper.m; sourceTree = "<group>"; };
 		5E62BB8C18B602C30061A48C /* MTEditBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditBoardViewController.h; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 		5EBBFE8F18C6DA89007B6109 /* place@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place@2x.png"; sourceTree = "<group>"; };
 		5EBBFE9018C6DA89007B6109 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
 		5EBBFE9118C6DA89007B6109 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
-		5EBBFE9718C6F3A3007B6109 /* mappin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mappin@2x.png"; sourceTree = "<group>"; };
+		5EBBFE9718C6F3A3007B6109 /* placepin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placepin@2x.png"; sourceTree = "<group>"; };
 		5EBCC21618C7044F00BA4CAC /* MTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapViewController.h; sourceTree = "<group>"; };
 		5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMapViewController.m; sourceTree = "<group>"; };
 		5EE7CC8C18CF0CAC0095D0B5 /* addmap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addmap@2x.png"; sourceTree = "<group>"; };
@@ -348,8 +348,8 @@
 				5EE7CC8C18CF0CAC0095D0B5 /* addmap@2x.png */,
 				5E25CB9C18CD887800260E5A /* checkin@2x.png */,
 				5E25CB9D18CD887800260E5A /* like@2x.png */,
-				5E25CB9E18CD887800260E5A /* pin@2x.png */,
-				5EBBFE9718C6F3A3007B6109 /* mappin@2x.png */,
+				5E25CB9E18CD887800260E5A /* mappin@2x.png */,
+				5EBBFE9718C6F3A3007B6109 /* placepin@2x.png */,
 				5EBBFE8D18C6DA89007B6109 /* profile@2x.png */,
 				5EBBFE8E18C6DA89007B6109 /* message@2x.png */,
 				5EBBFE8F18C6DA89007B6109 /* place@2x.png */,
@@ -656,10 +656,10 @@
 				5E95916818ADEE310097B6BC /* pin.png in Resources */,
 				5E95916B18ADEE310097B6BC /* poweredByFoursquare_gray@2x.png in Resources */,
 				5E95916718ADEE310097B6BC /* FSWebLogin.xib in Resources */,
-				5EBBFE9818C6F3A3007B6109 /* mappin@2x.png in Resources */,
+				5EBBFE9818C6F3A3007B6109 /* placepin@2x.png in Resources */,
 				5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */,
 				5E25CBA018CD887800260E5A /* like@2x.png in Resources */,
-				5E25CBA118CD887800260E5A /* pin@2x.png in Resources */,
+				5E25CBA118CD887800260E5A /* mappin@2x.png in Resources */,
 				5EBBFE9218C6DA89007B6109 /* profile@2x.png in Resources */,
 				5EE7CC8D18CF0CAC0095D0B5 /* addmap@2x.png in Resources */,
 				5EE7CC8F18CF0DE50095D0B5 /* setting@2x.png in Resources */,

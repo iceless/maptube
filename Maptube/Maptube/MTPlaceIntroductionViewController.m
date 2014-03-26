@@ -72,7 +72,7 @@
     
     
     self.mapButton = [[UIButton alloc]initWithFrame:CGRectMake(255,218,55,50)];
-    [self.mapButton setImage:[UIImage imageNamed:@"mappin.png"] forState:UIControlStateNormal];
+    [self.mapButton setImage:[UIImage imageNamed:@"placepin.png"] forState:UIControlStateNormal];
     self.mapButton.layer.borderWidth = 1.0;
     self.mapButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [self.mapButton addTarget:self action:@selector(showMap) forControlEvents:UIControlEventTouchUpInside];

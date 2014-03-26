@@ -69,52 +69,7 @@
     
 }
 
--(void)initProfile {
-    NSString *name = [NSString stringWithFormat:NSLocalizedString(@"%@ %@", nil),
-                      [PFUser currentUser][@"firstname"],
-                      [PFUser currentUser][@"lastname"]];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(94,8,206,33)];
-    label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), name];
-    label.font = [UIFont systemFontOfSize:20];
-    [self.view addSubview:label];
-    
-    UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(6,6,80,80)];
-    imgv.image = [MTData sharedInstance].iconImage;
-    imgv.layer.masksToBounds = YES;
-    imgv.layer.cornerRadius = 40;
-    [self.view addSubview:imgv];
-    
-    
-    label = [[UILabel alloc]initWithFrame:CGRectMake(94,35,206,21)];
-    label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"location"]];
-    label.font = [UIFont systemFontOfSize:13];
-    label.textColor = [UIColor darkGrayColor];
-    [self.view addSubview:label];
-    
-    UITextView *descriptionView= [[UITextView alloc]initWithFrame:CGRectMake(88,53,302,29)];
-    descriptionView.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
-    descriptionView.font = [UIFont systemFontOfSize:13];
-    [self.view addSubview:descriptionView];
-    
-    self.myMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.myMapButton.frame = CGRectMake(0, 89, 160, 47);
-    [self.myMapButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
-    [self.myMapButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-    [self.myMapButton setTitle:@"My Map" forState:UIControlStateNormal];
-    [self.myMapButton addTarget:self action:@selector(clickMyMapButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.myMapButton setSelected:YES];
-    
-    [self.view addSubview:self.myMapButton];
-    
-    self.collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.collectionButton.frame = CGRectMake(161, 89, 160, 47);
-    [self.collectionButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
-    [self.collectionButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-    [self.collectionButton setTitle:@"Favorate" forState:UIControlStateNormal];
-    [self.collectionButton addTarget:self action:@selector(clickFavorateButton:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:self.collectionButton];
-}
+
 
 - (void)settingBtnPressed:(id)sender
 {
@@ -360,11 +315,33 @@
 
 
         NSArray *array = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-        label = [[UILabel alloc]initWithFrame:CGRectMake(240,4,73,21)];
-        label.text = [NSString stringWithFormat:@"%d places",array.count];
+        label = [[UILabel alloc]initWithFrame:CGRectMake(235,4,73,21)];
+        label.text = [NSString stringWithFormat:@"%d",array.count];
+        label.textAlignment = NSTextAlignmentLeft;
         label.textColor = [UIColor lightGrayColor];
         label.font = [UIFont systemFontOfSize:14];
         [cell.contentView addSubview:label];
+        
+        UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mappin"]];
+        imgView.frame = CGRectMake(220,4,18,18);
+        [cell.contentView addSubview:imgView];
+        
+       
+        AVRelation *collectRelation = [mapObject objectForKey:CollectUser];
+        NSArray *userCollectArray = [collectRelation.query findObjects];
+        label = [[UILabel alloc]initWithFrame:CGRectMake(280,4,73,21)];
+        label.text = [NSString stringWithFormat:@"%d",userCollectArray.count];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.textColor = [UIColor lightGrayColor];
+        label.font = [UIFont systemFontOfSize:14];
+        [cell.contentView addSubview:label];
+        
+        imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"like"]];
+        imgView.frame = CGRectMake(260,4,18,18);
+        [cell.contentView addSubview:imgView];
+        
+        
+    
         array = [MTPlace convertPlaceArray:array];
         if(array.count!=0){
             CGRect placeRect = [MTPlace updateMemberPins:array];

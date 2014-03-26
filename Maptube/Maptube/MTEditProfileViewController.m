@@ -51,7 +51,11 @@
                      user[@"description"],
                      user[@"location"]] mutableCopy];
     }
+    
+    UIBarButtonItem *addMapItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonTapAction:)];
+    self.navigationItem.rightBarButtonItem = addMapItem;
 }
+
 
 //make sure everytime view appears, the table view's labels are updated from array values.
 - (void)viewWillAppear:(BOOL)animated
@@ -90,10 +94,12 @@
     if(indexPath.section == 0){
        // static NSString *CellIdentifier = @"profilepiccell";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        /*
         UILabel *label =[[UILabel alloc]initWithFrame:CGRectMake(96, 32, 143, 21)];
         label.text = @"Profile Picture";
         [cell.contentView addSubview:label];
-        UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(8, 3, 80, 80)];
+         */
+        UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(120, 3, 80, 80)];
         imgv.image = [MTData sharedInstance].iconImage;
         imgv.layer.masksToBounds = YES;
         imgv.layer.cornerRadius = 40;
@@ -106,13 +112,18 @@
         //if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         //}
+        UITextField *textField= [[UITextField alloc]initWithFrame:CGRectMake(150,5,302,29)];
+        textField.text = self.values[indexPath.row];
+        textField.delegate = self;
+        textField.tag = indexPath.row;
+        [cell.contentView addSubview:textField];
         
         //UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
        //UILabel *labelValue = (UILabel *)[cell.contentView viewWithTag:2];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         cell.textLabel.text = self.fields[indexPath.row];
-        cell.detailTextLabel.text = self.values[indexPath.row];
+        //cell.detailTextLabel.text = self.values[indexPath.row];
     }
     // Configure the cell...
     
@@ -179,12 +190,14 @@
     [actionSheet showInView:self.view];
     }
     else{
+        /*
         
         MTEditDetailViewController *destViewController = [[MTEditDetailViewController alloc]init];
         destViewController.delegate = self;
         destViewController.detailValue = self.values[indexPath.row];
         destViewController.indexPathRow = indexPath.row;
         [self.navigationController pushViewController:destViewController animated:YES];
+         */
 
     }
 }
@@ -324,6 +337,42 @@
     self.values[i] = str;
 }
 //saveButton to set the infos into PFUser, and send it to remote parse server
+
+
+#pragma mark - textfield delegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    //textField.text = @"";
+    if(!self.isEditing){
+        CGRect newRect;
+        newRect=self.view.frame;
+        newRect.origin.y-=110;
+        self.view.frame = newRect;
+        self.isEditing = true;
+    }
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    //NSLog(@"yeah inform someone of my change %@", textField.text);
+    int i = textField.tag;
+    _values[i] = textField.text;
+    
+    
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    self.isEditing = false;
+    CGRect newRect;
+    newRect=self.view.frame;
+    newRect.origin.y += 110;
+    self.view.frame = newRect;
+    [textField resignFirstResponder];
+    return YES;
+}
 - (IBAction)saveButtonTapAction:(id)sender
 {
     PFUser *user = [PFUser currentUser];
