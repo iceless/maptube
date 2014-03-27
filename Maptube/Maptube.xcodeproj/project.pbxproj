@@ -949,7 +949,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Mapbox-iOS-SDK\"/**";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/MapView\"/**";
 				INFOPLIST_FILE = "Maptube/Maptube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
@@ -973,7 +973,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
-				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Mapbox-iOS-SDK\"/**";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/MapView\"/**";
 				INFOPLIST_FILE = "Maptube/Maptube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";

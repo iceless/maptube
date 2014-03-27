@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "FSVenue.h"
+#import "Mapbox.h"
 
 @interface MTMapViewController : UIViewController<MKMapViewDelegate>
 @property (strong, nonatomic) MKMapView  *mapView;
