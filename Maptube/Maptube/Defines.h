@@ -28,6 +28,10 @@
 #define Distance @"Distance"
 #define CollectUser @"CollectUser"
 
+#define MapId @"bluefeather.hkh8138o"
+#define MapBoxPictureAPI @"http://api.tiles.mapbox.com/v3/"
+//http://api.tiles.mapbox.com/v3/{mapid}/{lon},{lat},{z}/{width}x{height}.{format}
+
 
 #pragma mark - Notification
 #define ModifyProfileNotification @"EditProfileNotification"

@@ -43,6 +43,7 @@
 		5E62BB8E18B602C30061A48C /* MTEditBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */; };
 		5E85E18F18B4420600A2A172 /* MTPlaceIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */; };
 		5E85E19518B483A000A2A172 /* MTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85E19418B483A000A2A172 /* MTTableView.m */; };
+		5E91992B18E4078E00EC3107 /* UIView+GeometryShortAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91992A18E4078E00EC3107 /* UIView+GeometryShortAccess.m */; };
 		5E956D0D18E17B1D000FD70B /* MTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E956D0C18E17B1D000FD70B /* MTHomeViewController.m */; };
 		5E95914B18ADC24B0097B6BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E95914A18ADC24B0097B6BC /* MapKit.framework */; };
 		5E95914E18ADE6260097B6BC /* MTAddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95914D18ADE6260097B6BC /* MTAddPlaceViewController.m */; };
@@ -188,6 +189,8 @@
 		5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlaceIntroductionViewController.m; sourceTree = "<group>"; };
 		5E85E19318B483A000A2A172 /* MTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTableView.h; sourceTree = "<group>"; };
 		5E85E19418B483A000A2A172 /* MTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTableView.m; sourceTree = "<group>"; };
+		5E91992918E4078E00EC3107 /* UIView+GeometryShortAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GeometryShortAccess.h"; sourceTree = "<group>"; };
+		5E91992A18E4078E00EC3107 /* UIView+GeometryShortAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GeometryShortAccess.m"; sourceTree = "<group>"; };
 		5E956D0B18E17B1D000FD70B /* MTHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTHomeViewController.h; sourceTree = "<group>"; };
 		5E956D0C18E17B1D000FD70B /* MTHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHomeViewController.m; sourceTree = "<group>"; };
 		5E95914A18ADC24B0097B6BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -503,6 +506,8 @@
 		5E51970A18C995FD00504EBD /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5E91992918E4078E00EC3107 /* UIView+GeometryShortAccess.h */,
+				5E91992A18E4078E00EC3107 /* UIView+GeometryShortAccess.m */,
 				5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */,
 				5E9B4D1D18B1FEB000D9D6A3 /* AFHelper.h */,
 				5E51970B18C9963500504EBD /* MTViewHelper.h */,
@@ -774,6 +779,7 @@
 				5E9B4D1418B1FE3B00D9D6A3 /* AFHTTPRequestOperation.m in Sources */,
 				5E62BB8E18B602C30061A48C /* MTEditBoardViewController.m in Sources */,
 				5E9B4CF918B1BEAE00D9D6A3 /* MTEditDetailViewController.m in Sources */,
+				5E91992B18E4078E00EC3107 /* UIView+GeometryShortAccess.m in Sources */,
 				56C3C935186C12B700E9B892 /* MTEditProfileViewController.m in Sources */,
 				5E9B4D1A18B1FE3B00D9D6A3 /* AFXMLRequestOperation.m in Sources */,
 				5E95916418ADEE310097B6BC /* FSRequester.m in Sources */,

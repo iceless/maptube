@@ -11,8 +11,16 @@
 #import "MTPlace.h"
 #import "MTPlaceIntroductionViewController.h"
 #import "MTEditBoardViewController.h"
+#import "UIView+GeometryShortAccess.h"
 
-@interface MTBoardViewController () <UITableViewDataSource, UITableViewDelegate>
+#define BECH_OFFSET_X 40
+#define BECH_OFFSET_Y 40
+
+#define CONTENT_LAYER_STATE_FULL 0
+#define CONTENT_LAYER_STATE_BOTT 1
+#define CONTENT_LAYER_STATE_ANIMATION 2
+
+@interface MTBoardViewController () <UITableViewDataSource, UITableViewDelegate,UIScrollViewDelegate>
 
 @end
 
@@ -34,17 +42,13 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 80, 320, 180)];
-    [self.view addSubview:self.mapView];
+    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0,0,360,480)];
+    //[self.view addSubview:self.mapView];
     
-    self.tableView = [[MTTableView alloc] initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"PlaceSummaryCell" bundle:nil] forCellReuseIdentifier:@"PlaceSummaryCell"];
-    UIView *footView = [[UIView alloc] initWithFrame:self.view.frame];
-    footView.backgroundColor = [UIColor whiteColor];
-//    self.tableView.tableFooterView = footView;
-    [self.view addSubview:self.tableView];
+    
+    
+    
+
 }
 
 - (void)viewDidLoad
@@ -55,6 +59,8 @@
     self.mapView.zoomEnabled=YES;
     self.mapView.showsUserLocation=NO;
     self.tableView.backgroundColor = [UIColor clearColor];
+    
+    
     if(self.placeArray.count!=0){
         CGRect placeRect = [MTPlace updateMemberPins:self.placeArray];
         CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
@@ -68,17 +74,114 @@
         [self.mapView addAnnotations:self.placeArray];
     }
     
-    self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-40);
-    
-    UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+        UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 40, 32);
     [button addTarget:self action:@selector(editBoard) forControlEvents:UIControlEventTouchUpInside];
      UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Edit" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem=barItem;
     
+    
+    [self configViewHierarchy];
+    
    
     
+}
+
+- (void)configViewHierarchy{
+    self.mapScrollView = [[UIScrollView alloc] initWithFrame:self.mapView.bounds];
+    self.mapScrollView.x = -BECH_OFFSET_X;
+    self.mapScrollView.y = (44 - BECH_OFFSET_Y);
+    self.mapScrollView.delegate = self;
+    self.mapScrollView.userInteractionEnabled = NO;
+    self.mapScrollView.minimumZoomScale = 1;
+    self.mapScrollView.maximumZoomScale = 2;
+    [self.mapScrollView addSubview:self.mapView];
+    [self.view addSubview:self.mapScrollView];
+    
+   
+    
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, (20 + 44 + 80), self.view.frame.size.width, self.view.frame.size.height-20-44-80) style:UITableViewStylePlain];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"PlaceSummaryCell" bundle:nil] forCellReuseIdentifier:@"PlaceSummaryCell"];
+    UIView *footView = [[UIView alloc] initWithFrame:self.view.frame];
+    footView.backgroundColor = [UIColor whiteColor];
+    //    self.tableView.tableFooterView = footView;
+    [self.view addSubview:self.tableView];
+    
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(contentSwipped:)];
+    swipe.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.tableView addGestureRecognizer:swipe];
+
+    
+    
+    // content scrollview
+    self.tableViewScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20 + 44 , 320, self.view.height - 20 - 44)];
+    self.tableViewScrollView.contentSize = CGSizeMake(320, self.tableView.frame.size.height+120);
+    self.tableViewScrollView.backgroundColor = [UIColor clearColor];
+    self.tableViewScrollView.showsHorizontalScrollIndicator = self.tableViewScrollView.showsVerticalScrollIndicator = YES;
+    self.tableViewScrollView.delegate = self;
+    self._contentLayerState = CONTENT_LAYER_STATE_FULL;
+    [self.view addSubview:self.tableViewScrollView];
+    
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    if (scrollView == self.mapScrollView) {
+        return self.mapView;
+    }
+    else{
+        return Nil;
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView == self.tableViewScrollView) {
+        if ((self._contentLayerState == CONTENT_LAYER_STATE_FULL) &&
+            (self._contentLayerState != CONTENT_LAYER_STATE_ANIMATION)) {
+            self.mapScrollView.y = (44 - BECH_OFFSET_Y) + - scrollView.contentOffset.y / 9;
+            self.tableView.y = (20 + 44 + 80) + (-scrollView.contentOffset.y);
+        }
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (scrollView == self.tableViewScrollView) {
+        if (scrollView.contentOffset.y <= -90) {
+            self._contentLayerState = CONTENT_LAYER_STATE_ANIMATION;
+            self.tableViewScrollView.userInteractionEnabled = NO;
+            [UIView animateWithDuration:0.25F animations:^{
+                self.tableView.y = (20 + 44 + 80) + 240;
+                self.tableView.scrollEnabled = NO;
+                self.mapScrollView.zoomScale = 1.2;
+                
+                //self.tableView.y = self.view.height;
+            } completion:^(BOOL finished) {
+                self._contentLayerState = CONTENT_LAYER_STATE_BOTT;
+            }];
+        }
+    }
+}
+
+- (void)contentSwipped:(UISwipeGestureRecognizer *)ges
+{
+    self._contentLayerState = CONTENT_LAYER_STATE_ANIMATION;
+    [UIView animateWithDuration:0.25F animations:^{
+        self.tableView.y = (20 + 44 + 80);
+        self.mapScrollView.y = (44 - BECH_OFFSET_Y);
+        self.mapScrollView.zoomScale = 1;
+        
+        //self.tableView.y = self.view.height - self.tableView.height;
+    } completion:^(BOOL finished) {
+        self._contentLayerState = CONTENT_LAYER_STATE_FULL;
+        self.tableViewScrollView.userInteractionEnabled = YES;
+        self.tableView.scrollEnabled = YES;
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,23 +189,6 @@
     [super viewWillAppear:animated];
 }
 
--(void)viewDidLayoutSubviews {
-    
-    self.tabBarController.tabBar.hidden = false;
-    
-    [super viewDidLayoutSubviews];
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(self.mapView.frame.size.height+80, 0, 0, 0);
-
-    
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    if (scrollView.contentOffset.y < (self.mapView.frame.size.height+80)*-1 ) {
-        [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, (self.mapView.frame.size.height+80)*-1)];
-    }
-}
 /*
 #pragma mark - touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
