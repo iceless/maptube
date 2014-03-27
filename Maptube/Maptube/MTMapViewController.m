@@ -7,6 +7,7 @@
 //
 
 #import "MTMapViewController.h"
+#import "Mapbox.h"
 
 @interface MTMapViewController ()
 
@@ -36,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
      self.mapView = [[MKMapView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)];
     

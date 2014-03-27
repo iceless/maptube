@@ -78,6 +78,10 @@
 		5E9B4D1A18B1FE3B00D9D6A3 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1018B1FE3B00D9D6A3 /* AFXMLRequestOperation.m */; };
 		5E9B4D1B18B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1218B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m */; };
 		5E9B4D1E18B1FEB000D9D6A3 /* AFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */; };
+		5E9C0DC818E2CAED00040114 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9C0DC718E2CAED00040114 /* libsqlite3.0.dylib */; };
+		5E9C0DCA18E2CAFA00040114 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9C0DC918E2CAFA00040114 /* libz.dylib */; };
+		5E9C0DD518E2CE3600040114 /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5E9C0DD418E2CE2800040114 /* Mapbox.bundle */; };
+		5E9C0DD618E2CE3F00040114 /* libMapbox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9C0DD218E2CE2800040114 /* libMapbox.a */; };
 		5E9E0FF418B7252F008D89AD /* MTPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E0FF318B7252F008D89AD /* MTPlace.m */; };
 		5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */; };
 		5EA684E918B32DA800679EDE /* MTChooseBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */; };
@@ -100,6 +104,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 56F1CAE21867DEEB008498DF;
 			remoteInfo = Maptube;
+		};
+		5E9C0DD118E2CE2800040114 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17F31EFA1331050A00122B16;
+			remoteInfo = MapView;
+		};
+		5E9C0DD318E2CE2800040114 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DD6A83751644A20C0097F31F;
+			remoteInfo = Resources;
+		};
+		5E9C0DD718E2CE5100040114 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B8C974130E8A19B2007D16AD;
+			remoteInfo = MapView;
+		};
+		5E9C0DD918E2CE5100040114 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DD6A83741644A20C0097F31F;
+			remoteInfo = Resources;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -217,6 +249,9 @@
 		5E9B4D1218B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHelper.m; path = AFNetworking/AFHelper.m; sourceTree = "<group>"; };
 		5E9B4D1D18B1FEB000D9D6A3 /* AFHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHelper.h; path = AFNetworking/AFHelper.h; sourceTree = "<group>"; };
+		5E9C0DC718E2CAED00040114 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		5E9C0DC918E2CAFA00040114 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = MapView/MapView.xcodeproj; sourceTree = "<group>"; };
 		5E9E0FF218B7252F008D89AD /* MTPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlace.h; sourceTree = "<group>"; };
 		5E9E0FF318B7252F008D89AD /* MTPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlace.m; sourceTree = "<group>"; };
 		5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddPictureViewController.h; sourceTree = "<group>"; };
@@ -240,6 +275,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E9C0DD618E2CE3F00040114 /* libMapbox.a in Frameworks */,
+				5E9C0DCA18E2CAFA00040114 /* libz.dylib in Frameworks */,
+				5E9C0DC818E2CAED00040114 /* libsqlite3.0.dylib in Frameworks */,
 				5E9A669018C0269C005E5169 /* CoreTelephony.framework in Frameworks */,
 				5E95914B18ADC24B0097B6BC /* MapKit.framework in Frameworks */,
 				56F1CB3118696AB7008498DF /* SystemConfiguration.framework in Frameworks */,
@@ -372,6 +410,7 @@
 		56F1CADA1867DEEB008498DF = {
 			isa = PBXGroup;
 			children = (
+				5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */,
 				56F1CAEC1867DEEB008498DF /* Maptube */,
 				56F1CB0E1867DEEB008498DF /* MaptubeTests */,
 				56F1CAE51867DEEB008498DF /* Frameworks */,
@@ -391,6 +430,8 @@
 		56F1CAE51867DEEB008498DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E9C0DC918E2CAFA00040114 /* libz.dylib */,
+				5E9C0DC718E2CAED00040114 /* libsqlite3.0.dylib */,
 				5E9A668F18C0269C005E5169 /* CoreTelephony.framework */,
 				5E9A668A18C01C28005E5169 /* AVOSCloud.framework */,
 				5E95914A18ADC24B0097B6BC /* MapKit.framework */,
@@ -547,6 +588,15 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		5E9C0DCD18E2CE2800040114 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E9C0DD218E2CE2800040114 /* libMapbox.a */,
+				5E9C0DD418E2CE2800040114 /* Mapbox.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5E9E0FF118B72501008D89AD /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,6 +630,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				5E9C0DD818E2CE5100040114 /* PBXTargetDependency */,
+				5E9C0DDA18E2CE5100040114 /* PBXTargetDependency */,
 			);
 			name = Maptube;
 			productName = Maptube;
@@ -633,6 +685,12 @@
 			mainGroup = 56F1CADA1867DEEB008498DF;
 			productRefGroup = 56F1CAE41867DEEB008498DF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5E9C0DCD18E2CE2800040114 /* Products */;
+					ProjectRef = 5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				56F1CAE21867DEEB008498DF /* Maptube */,
@@ -640,6 +698,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5E9C0DD218E2CE2800040114 /* libMapbox.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMapbox.a;
+			remoteRef = 5E9C0DD118E2CE2800040114 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5E9C0DD418E2CE2800040114 /* Mapbox.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Mapbox.bundle;
+			remoteRef = 5E9C0DD318E2CE2800040114 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		56F1CAE11867DEEB008498DF /* Resources */ = {
@@ -649,6 +724,7 @@
 				5E9B4CFB18B1F1E200D9D6A3 /* board@2x.png in Resources */,
 				56F1CB021867DEEB008498DF /* Images.xcassets in Resources */,
 				5E95916218ADEE310097B6BC /* CHANGELOG.md in Resources */,
+				5E9C0DD518E2CE3600040114 /* Mapbox.bundle in Resources */,
 				5EBBFE9618C6DA89007B6109 /* search@2x.png in Resources */,
 				5EBBFE9318C6DA89007B6109 /* message@2x.png in Resources */,
 				5EBBFE9418C6DA89007B6109 /* place@2x.png in Resources */,
@@ -746,6 +822,16 @@
 			isa = PBXTargetDependency;
 			target = 56F1CAE21867DEEB008498DF /* Maptube */;
 			targetProxy = 56F1CB0C1867DEEB008498DF /* PBXContainerItemProxy */;
+		};
+		5E9C0DD818E2CE5100040114 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MapView;
+			targetProxy = 5E9C0DD718E2CE5100040114 /* PBXContainerItemProxy */;
+		};
+		5E9C0DDA18E2CE5100040114 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Resources;
+			targetProxy = 5E9C0DD918E2CE5100040114 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -863,9 +949,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Mapbox-iOS-SDK\"/**";
 				INFOPLIST_FILE = "Maptube/Maptube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -886,9 +973,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Mapbox-iOS-SDK\"/**";
 				INFOPLIST_FILE = "Maptube/Maptube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
