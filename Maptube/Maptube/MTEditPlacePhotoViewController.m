@@ -85,13 +85,17 @@
         else if(i>5) y = 330;
         else y = 225;
         view.frame = CGRectMake(x, y, width, height);
-        [self.view addSubview:view];
+     
         view.tag = i;
-        UIGestureRecognizer *singleTap = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(clickImage:)];
+        view.userInteractionEnabled = YES;
+        UITapGestureRecognizer  *singleTap = [[UITapGestureRecognizer  alloc]initWithTarget:self action:@selector(clickImage:)];
+        
         [view addGestureRecognizer:singleTap];
+        
         [view setImageWithURL:[NSURL URLWithString:str]];
         UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mark.png"]];
-        imgView.frame = CGRectMake(80, 5, 30, 30);
+        imgView.tag = 1;
+        imgView.frame = CGRectMake(80, 0, 15, 15);
         [view addSubview:imgView];
         imgView.hidden = YES;
         [self.view addSubview:view];
@@ -101,8 +105,8 @@
 
 -(void)clickImage:(id)sender{
     
-    UIImageView *view = (UIImageView *)sender;
-  
+    NSInteger index = [(UIGestureRecognizer *)sender view].tag;
+    UIImageView *view = (UIImageView *)[self.view viewWithTag:index];
     UIImageView *imgView = (UIImageView *)[view viewWithTag:1];
     imgView.hidden = !imgView.hidden;
     
