@@ -11,6 +11,7 @@
 #import "MTAddCollectionViewController.h"
 
 
+
 @interface MTChooseBoardViewController ()
 
 @end
@@ -44,24 +45,32 @@
    // self.boardArray = user[@"Board"];
     self.boardArray = [[NSMutableArray alloc]init];
     //PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
-    [self updateBoard];
+   
     //self.boardArray = [[relation query] findObjects];
-    UINavigationItem *navigationItem =[[UINavigationItem alloc] initWithTitle:@"Pin to Map"];
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, 320, 568)];
+    self.table.dataSource = self;
+    self.table.delegate = self;
+    [self.view addSubview:self.table];
+    
+    UINavigationItem *navigationItem =[[UINavigationItem alloc] initWithTitle:@"Pick a Map"];
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 40, 32);
-    [button addTarget:self action:@selector(addPlace) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"Done" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(createBoard) forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[UIImage imageNamed:@"addmap"] forState:UIControlStateNormal];
     UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     navigationItem.rightBarButtonItem=barItem;
+    navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(navBack)];
    
     UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [bar pushNavigationItem:navigationItem animated:YES];
     [self.view addSubview:bar];
     [MTViewHelper setExtraCellLineHidden:self.table];
+     [self updateBoard];
 	// Do any additional setup after loading the view.
 }
 
--(void)updateBoard{
+-(void)updateBoard {
+    /*
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     [self.boardArray removeAllObjects];
     NSArray *mapArray = [[relation query] findObjects];
@@ -84,7 +93,10 @@
             [self.table reloadData];
         }];
     }
-
+*/
+    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+    self.boardArray = [[relation query] findObjects];
+    [self.table reloadData];
 }
 
 
@@ -175,7 +187,7 @@
     }
     
 }
-
+/*
 -(void)addBoard:(NSString *)str{
     
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
@@ -218,30 +230,8 @@
 
     
 }
-#pragma mark - textfield delegate
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    textField.text = @"";
-    return YES;
-}
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    //NSLog(@"yeah inform someone of my change %@", textField.text);
-    if(textField.text&&textField.text.length)
-    [self addBoard:textField.text];
-    textField.text = @"+New Map";
-    
-}
-
-- (BOOL)textFieldShouldClear:(UITextField *)textField {
-    return YES;
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    [textField resignFirstResponder];
-    return YES;
-}
-
+*/
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -258,27 +248,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     
     //static NSString *cellIdentifier = @"NewMapCell";
+    
     if(indexPath.section==0){
        //cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(10, 5, 305, 30)];
-        textField.borderStyle = UITextBorderStyleRoundedRect;
-        textField.text = @"+New Map";
-        textField.delegate = self;
-        [cell.contentView addSubview:textField];
+        cell.textLabel.text = self.venue.name;
         
     }
     else{
-        cell= [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-        NSDictionary *dict = [self.boardArray objectAtIndex:indexPath.row];
+     
 
-        PFObject *mapObject = [dict objectForKey:@"object"];
-        NSString *str = [dict objectForKey:@"exsist"];
-        if([str isEqualToString:@"1"]){
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
+        PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
+
         
         cell.textLabel.text = mapObject[Title];
         
@@ -287,12 +270,24 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if(indexPath.section==0){
-       
-        return;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if(section==1) {
+        return @"My Maps";
     }
+    return nil;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(indexPath.section==0){
+        [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PopUpEditPlacePhotoNotification object:nil];
+        return;
+        
+    }
+    /*
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
   
     NSMutableDictionary *dict = [[self.boardArray objectAtIndex:indexPath.row] mutableCopy];
   
@@ -307,9 +302,9 @@
         [dict setObject:@"1" forKey:@"exsist"];
         cell.accessoryType=UITableViewCellAccessoryCheckmark;
     }
+    */
+   // [self.boardArray replaceObjectAtIndex:indexPath.row withObject:dict];
     
-    [self.boardArray replaceObjectAtIndex:indexPath.row withObject:dict];
-    /*
   
     PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
     
@@ -335,9 +330,7 @@
                             [self.navigationController popViewControllerAnimated:YES];
                         }
                     }];
-
                     return ;
-                    
             }
             }
         
@@ -353,7 +346,7 @@
         [placeObject setObject:number forKey:Longitude];
         number = [NSNumber numberWithDouble:self.venue.location.coordinate.latitude];
         [placeObject setObject:number forKey:Latitude];
-        [placeObject setObject:self.venue.location.distance forKey:Distance];
+        //[placeObject setObject:self.venue.location.distance forKey:Distance];
         [placeObject saveEventually: ^(BOOL succeeded, NSError *error) {
             if (!error) {
                 PFRelation *relation = [mapObject relationforKey:Place];
@@ -376,29 +369,12 @@
      
      ];
            
-    */
+    
     
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.section==0)
-    return YES;
-    else return NO;
 
 
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    /*
-     typedef NS_ENUM(NSInteger, UITableViewCellEditingStyle) {
-     UITableViewCellEditingStyleNone,
-     UITableViewCellEditingStyleDelete,
-     UITableViewCellEditingStyleInsert
-     };
-     */
-    return UITableViewCellEditingStyleNone;
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

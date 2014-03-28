@@ -10,10 +10,11 @@
 #import "FSVenue.h"
 @interface MTChooseBoardViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 @property (strong, nonatomic) FSVenue *venue;
-@property (strong, nonatomic) NSMutableArray  *boardArray;
+@property (strong, nonatomic) NSArray  *boardArray;
 @property (strong, nonatomic) UITextField *describeTextField;
 @property (strong, nonatomic) UIImage *image;
-@property (strong, nonatomic) IBOutlet UITableView *table;
+@property (strong, nonatomic) UITableView *table;
+@property (strong, nonatomic) NSMutableArray *imageUrlArray;
 //@property (strong, nonatomic) IBOutlet  UINavigationItem *myNavigationItem;
 -(id)initWithImage:(UIImage *)image AndVenue:(FSVenue *)venue;
 
