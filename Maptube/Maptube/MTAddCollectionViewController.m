@@ -38,6 +38,7 @@
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.table.delegate =self;
     self.table.dataSource = self;
+    [self.view addSubview:self.table];
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
