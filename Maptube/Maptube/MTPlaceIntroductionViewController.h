@@ -21,6 +21,7 @@
 @property (strong, nonatomic) FSVenue *venue;
 @property (strong, nonatomic) UITableView *table;
 @property (strong, nonatomic) NSMutableArray *boardArray;
+@property (strong, nonatomic) NSMutableArray *imageUrlArray;
 //@property (strong, nonatomic) IBOutlet MKMapView  *mapView;
 @property (strong, nonatomic) MTChooseBoardViewController *chooseBoardView;
 -(id)initWithData:(NSDictionary *)dict AndVenue:(FSVenue *)venue;

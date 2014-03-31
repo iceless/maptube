@@ -37,5 +37,6 @@
 #define ModifyProfileNotification @"EditProfileNotification"
 #define ModifyBoardNotification @"ModifyBoardNotification"
 #define CloseChooseBoardNotification @"CloseChooseBoardNotification"
+#define PopUpEditPlacePhotoNotification @"PopUpEditPlacePhotoNotification"
 
 #endif
