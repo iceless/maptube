@@ -40,24 +40,24 @@
     
 	// Do any additional setup after loading the view.
     
-     self.mapView = [[RMMapView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height) andTilesource:[[RMMapboxSource alloc] initWithMapID:MapId]];
+    self.mapView = [[RMMapView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height) andTilesource:[[RMMapboxSource alloc] initWithMapID:MapId]];
     
-     //self.mapView.mapType = MKMapTypeStandard;
-    // self.mapView.zoomEnabled=NO;
-    // self.mapView.scrollEnabled = NO;
-    // self.mapView.showsUserLocation=NO;
     [self.view addSubview:self.mapView];
     [self.mapView setCenterCoordinate:self.venue.coordinate];
     
+   
+    self.mapView.delegate = self;
+    self.mapView.debugTiles = NO;
+    
     RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:self.mapView
-                                                           coordinate:self.mapView.centerCoordinate
-                                                             andTitle:self.venue.title];
+                                                          coordinate:self.mapView.centerCoordinate
+                                                            andTitle:self.venue.title];
     
     annotation.userInfo = @"test";
-     //[self.mapView ];
+    annotation.annotationIcon = [UIImage imageNamed:@"placepin.png"];
+    //[self.mapView ];
     [self.mapView addAnnotation:annotation];
-    self.mapView.delegate = self;
-         
+    
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
@@ -66,15 +66,8 @@
         return nil;
     
     RMMarker *marker;
+     marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"placepin.png"]];
     
-    if ([annotation.userInfo isEqualToString:@"small"])
-    {
-        marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"factory_small.png"]];
-    }
-    else if ([annotation.userInfo isEqualToString:@"big"])
-    {
-        marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"factory_big.png"]];
-    }
     
     marker.canShowCallout = YES;
     
