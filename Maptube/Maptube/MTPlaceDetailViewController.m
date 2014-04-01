@@ -10,6 +10,7 @@
 #import "MTPlaceImageViewController.h"
 
 
+
 @interface MTPlaceDetailViewController ()
 
 @end
@@ -30,7 +31,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-     self.imageUrlArray = [[NSMutableArray alloc]init];
+    UIBarButtonItem *pinItem = [[UIBarButtonItem alloc] initWithTitle:@"Pin" style:UIBarButtonItemStylePlain target:self action:@selector(pin:)];
+    self.navigationItem.rightBarButtonItem = pinItem;
+
+    
+    self.imageUrlArray = [[NSMutableArray alloc]init];
     self.mapView = [[RMMapView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height) andTilesource:[[RMMapboxSource alloc] initWithMapID:MapId]];
     
     [self.view addSubview:self.mapView];
@@ -62,6 +67,18 @@
     }];
     [operation start];
     
+    
+    self.chooseBoardView = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
+    self.chooseBoardView.view.frame = CGRectMake(0, 130, self.view.frame.size.width, self.view.frame.size.height);
+    UIView *greyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    greyView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    greyView.tag = 101;
+    self.chooseBoardView.view.tag = 102;
+    greyView.hidden = true;
+    self.chooseBoardView.view.hidden = true;
+    [[UIApplication sharedApplication].keyWindow addSubview:greyView];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.chooseBoardView.view];
+    
 }
 
 -(void)initImageURL{
@@ -86,6 +103,16 @@
             
         }
     }
+}
+
+-(IBAction)pin:(id)sender {
+    
+    UIView *view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:101];
+    view.hidden = false;
+    view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:102];
+    view.hidden = false;
+    
+   
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
