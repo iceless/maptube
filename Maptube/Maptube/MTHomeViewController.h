@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTHomeViewController : UIViewController
-
+@interface MTHomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) UITableView *table;
+@property (nonatomic, strong) NSMutableArray *mapList;
 @end

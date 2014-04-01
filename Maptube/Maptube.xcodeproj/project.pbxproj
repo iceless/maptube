@@ -98,6 +98,8 @@
 		5EBBFE9818C6F3A3007B6109 /* placepin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9718C6F3A3007B6109 /* placepin@2x.png */; };
 		5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F1CAF81867DEEB008498DF /* Main.storyboard */; };
 		5EBCC21818C7044F00BA4CAC /* MTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */; };
+		5EE4F28418EAA47B00ECE09C /* MapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EE4F28318EAA47B00ECE09C /* MapCell.xib */; };
+		5EE4F28718EAA61100ECE09C /* MTMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE4F28618EAA61100ECE09C /* MTMapCell.m */; };
 		5EE7CC8D18CF0CAC0095D0B5 /* addmap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE7CC8C18CF0CAC0095D0B5 /* addmap@2x.png */; };
 		5EE7CC8F18CF0DE50095D0B5 /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE7CC8E18CF0DE50095D0B5 /* setting@2x.png */; };
 /* End PBXBuildFile section */
@@ -280,6 +282,9 @@
 		5EBBFE9718C6F3A3007B6109 /* placepin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placepin@2x.png"; sourceTree = "<group>"; };
 		5EBCC21618C7044F00BA4CAC /* MTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapViewController.h; sourceTree = "<group>"; };
 		5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMapViewController.m; sourceTree = "<group>"; };
+		5EE4F28318EAA47B00ECE09C /* MapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapCell.xib; sourceTree = "<group>"; };
+		5EE4F28518EAA61100ECE09C /* MTMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapCell.h; sourceTree = "<group>"; };
+		5EE4F28618EAA61100ECE09C /* MTMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMapCell.m; sourceTree = "<group>"; };
 		5EE7CC8C18CF0CAC0095D0B5 /* addmap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addmap@2x.png"; sourceTree = "<group>"; };
 		5EE7CC8E18CF0DE50095D0B5 /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -635,6 +640,9 @@
 			isa = PBXGroup;
 			children = (
 				5227EE6718D20877002EB2AB /* PlaceSummaryCell.xib */,
+				5EE4F28318EAA47B00ECE09C /* MapCell.xib */,
+				5EE4F28518EAA61100ECE09C /* MTMapCell.h */,
+				5EE4F28618EAA61100ECE09C /* MTMapCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -760,6 +768,7 @@
 				5E25CBA018CD887800260E5A /* like@2x.png in Resources */,
 				5E25CBA118CD887800260E5A /* mappin@2x.png in Resources */,
 				5EBBFE9218C6DA89007B6109 /* profile@2x.png in Resources */,
+				5EE4F28418EAA47B00ECE09C /* MapCell.xib in Resources */,
 				5EE7CC8D18CF0CAC0095D0B5 /* addmap@2x.png in Resources */,
 				5EE7CC8F18CF0DE50095D0B5 /* setting@2x.png in Resources */,
 				5227EE6818D20877002EB2AB /* PlaceSummaryCell.xib in Resources */,
@@ -796,6 +805,7 @@
 				5E95916618ADEE310097B6BC /* FSWebLogin.m in Sources */,
 				5E9E0FF418B7252F008D89AD /* MTPlace.m in Sources */,
 				56F1CAFD1867DEEB008498DF /* MTFirstViewController.m in Sources */,
+				5EE4F28718EAA61100ECE09C /* MTMapCell.m in Sources */,
 				5E9B4D1418B1FE3B00D9D6A3 /* AFHTTPRequestOperation.m in Sources */,
 				5E62BB8E18B602C30061A48C /* MTEditBoardViewController.m in Sources */,
 				5E9B4CF918B1BEAE00D9D6A3 /* MTEditDetailViewController.m in Sources */,
