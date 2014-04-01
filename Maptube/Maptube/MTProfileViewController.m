@@ -302,7 +302,7 @@
         label.text = [mapObject objectForKey:Title];
         [cell.contentView addSubview:label];
         
-       
+       /*
         MKMapView *mapView = [[MKMapView alloc]initWithFrame:CGRectMake(9,30,304,119)];
         mapView.mapType = MKMapTypeStandard;
         mapView.zoomEnabled=NO;
@@ -312,8 +312,11 @@
         mapView.layer.borderWidth =1.0;
         mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
         [cell.contentView addSubview:mapView];
-
-
+       */
+        UIImageView *mapImgView = [[UIImageView alloc]initWithFrame:CGRectMake(9,30,304,119)];
+        [cell.contentView addSubview:mapImgView];
+        
+        
         NSArray *array = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
         label = [[UILabel alloc]initWithFrame:CGRectMake(235,4,73,21)];
         label.text = [NSString stringWithFormat:@"%d",array.count];
@@ -344,6 +347,7 @@
     
         array = [MTPlace convertPlaceArray:array];
         if(array.count!=0){
+            
             CGRect placeRect = [MTPlace updateMemberPins:array];
             CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
             
@@ -353,15 +357,20 @@
             distance = MIN(distance, 15000000);
             
             MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
-            [mapView setRegion:region animated:TRUE];
-            [mapView addAnnotations:array];
+          
+            NSString *markStr = @"/";
+            for (MTPlace *place in array){
+                NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f),",place.coordinate.longitude,place.coordinate.latitude];
+                markStr = [markStr stringByAppendingString:str];
+            }
+            markStr = [markStr substringToIndex:([markStr length]-1)];
+            NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxPictureAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
+            [mapImgView setImageWithURL:[NSURL URLWithString:urlStr]];
+           // [mapView setRegion:region animated:TRUE];
+            //[mapView addAnnotations:array];
         }
          
-        /*
-        UIButton *button = (UIButton *)[cell viewWithTag:3];
-        [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
-        button.tag = 9+indexPath.row;
-         */
+       
         
        
     }
