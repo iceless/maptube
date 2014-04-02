@@ -90,7 +90,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UITableViewCell *cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         if(indexPath.section==0){
             //cell =[tableView dequeueReusableCellWithIdentifier:@"CollectionDetailCell"];
             cell.textLabel.text = self.fields[indexPath.row];
@@ -205,6 +205,7 @@
         [mapObject setObject:self.values[1] forKey:Description];
         [mapObject setObject:self.values[2] forKey:Category];
         [mapObject setObject: self.values[3] forKey:Secret];
+        [mapObject setObject:[AVUser currentUser] forKey:Author];
         [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
             if (!error) {
                 PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
