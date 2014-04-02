@@ -11,7 +11,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 
 
-@interface MTEditBoardViewController : UITableViewController<MTEditDetailViewDelegate>
+@interface MTEditBoardViewController : UITableViewController<MTEditDetailViewDelegate,UITextFieldDelegate>
 //static string array for profile detail fields
 @property (nonatomic, strong) NSArray *fields;
 //mutable string array for profile detail values

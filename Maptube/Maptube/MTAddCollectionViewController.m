@@ -94,8 +94,21 @@
         if(indexPath.section==0){
             //cell =[tableView dequeueReusableCellWithIdentifier:@"CollectionDetailCell"];
             cell.textLabel.text = self.fields[indexPath.row];
+            if(indexPath.row!=0){
             cell.detailTextLabel.text = self.values[indexPath.row];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            else{
+                UITextField *textField= [[UITextField alloc]initWithFrame:CGRectMake(80,10,200,29)];
+                textField.text = self.values[indexPath.row];
+                textField.textAlignment = NSTextAlignmentRight;
+                textField.delegate = self;
+                textField.tag = indexPath.row;
+                [cell.contentView addSubview:textField];
+
+                
+            }
+            
         }
     /*
         else if(indexPath.section==1){
@@ -135,6 +148,19 @@
     
     return cell;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    _values[0] = textField.text;
+    
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return YES;
+}
 /*
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MTEditDetailViewController *controller=[[MTEditDetailViewController alloc] init];
@@ -156,10 +182,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if(indexPath.section!=0||indexPath.row!=0){
     MTEditDetailViewController *viewController = [[MTEditDetailViewController alloc]initWithValue:self.values[indexPath.row] andIndex:indexPath.row];
     viewController.delegate =self;
     [self.navigationController pushViewController:viewController animated:YES];
+    }
     
     
 }

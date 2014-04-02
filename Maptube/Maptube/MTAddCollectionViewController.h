@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MTEditDetailViewController.h"
 
-@interface MTAddCollectionViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,MTEditDetailViewDelegate>
+@interface MTAddCollectionViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,MTEditDetailViewDelegate,UITextFieldDelegate>
 @property (strong,nonatomic ) UITableView *table;
 //static string array for profile detail fields
 @property (nonatomic, strong) NSArray *fields;

@@ -68,8 +68,21 @@
     if(indexPath.section==0){
         //cell =[tableView dequeueReusableCellWithIdentifier:n];
         cell.textLabel.text = self.fields[indexPath.row];
-        cell.detailTextLabel.text = self.values[indexPath.row];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if(indexPath.row!=0){
+            cell.detailTextLabel.text = self.values[indexPath.row];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        else{
+            UITextField *textField= [[UITextField alloc]initWithFrame:CGRectMake(80,10,200,29)];
+            textField.text = self.values[indexPath.row];
+            textField.textAlignment = NSTextAlignmentRight;
+            textField.delegate = self;
+            textField.tag = indexPath.row;
+            [cell.contentView addSubview:textField];
+            
+            
+        }
+
     }
     else if(indexPath.section==1){
         cell.textLabel.text = @"Secret";
@@ -120,6 +133,19 @@
 
     }
 
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    _values[0] = textField.text;
+    
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(void)saveBoard{
