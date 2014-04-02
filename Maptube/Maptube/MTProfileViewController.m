@@ -140,10 +140,7 @@
 -(void)editProfile{
     [self.table reloadData];
 }
--(IBAction)clickAddCollection:(id)sender{
-   // MTAddCollectionViewController *viewController = [[MTAddCollectionViewController alloc]init];
-   // [self.navigationController pushViewController:viewController animated:YES];
-}
+
 
 - (void)didReceiveMemoryWarning
 {
