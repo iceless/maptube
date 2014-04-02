@@ -15,6 +15,7 @@
 #pragma mark - Constant
 #define Map @"Map"
 #define User @"User"
+#define UserId @"UserId"
 #define Description @"Description"
 #define Secret @"Secret"
 #define Category @"Category"
@@ -27,6 +28,7 @@
 #define VenueAddress @"VenueAddress"
 #define Distance @"Distance"
 #define CollectUser @"CollectUser"
+#define Author @"Author"
 
 #define MapId @"bluefeather.hkh8138o"
 #define MapBoxPictureAPI @"http://api.tiles.mapbox.com/v3/"
