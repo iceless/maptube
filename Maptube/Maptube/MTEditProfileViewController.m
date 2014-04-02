@@ -60,7 +60,7 @@
 //make sure everytime view appears, the table view's labels are updated from array values.
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self refreshTableViewData];
+    [self.tableView reloadData];
 }
 
 //refresh the tableview data, assign array string values to labels respectively 
@@ -335,6 +335,7 @@
 //MTEditDetailViewdelegate
 -(void)updateValue:(NSString *)str atIndex:(NSInteger)i{
     self.values[i] = str;
+  
 }
 //saveButton to set the infos into PFUser, and send it to remote parse server
 
