@@ -55,8 +55,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    PFRelation *mapRelation = [[AVUser currentUser] relationforKey:CollectMap];
+    AVQuery *query = [mapRelation query];
+    [query whereKey:@"objectId" equalTo:[self.boardData objectForKey:@"objectId"]];
+    NSArray *arrays =  [query findObjects];
+    if(arrays.count==0) self.isCollected = NO;
+    else self.isCollected = YES;
+    
 
     [self configViewHierarchy];
+    
 }
 
 
@@ -315,15 +323,35 @@
 
 }
 -(void)collect{
-    PFRelation *relation = [self.boardData relationforKey:CollectUser];
     
-    [relation addObject:[AVUser currentUser]];
-
-    [self.boardData saveEventually: ^(BOOL succeeded, NSError *error) {
-        NSLog(@"%@",error);
+     PFRelation *relation = [self.boardData relationforKey:CollectUser];
+     AVUser *user = [AVUser currentUser];
+     PFRelation *mapRelation = [user relationforKey:CollectMap];
+    if(!self.isCollected){
         
-    }];
+        
+        [relation addObject:user];
+        
+        [self.boardData saveEventually: ^(BOOL succeeded, NSError *error) {
+            NSLog(@"%@",error);
+            
+        }];
+       
+       
+        [mapRelation addObject:self.boardData];
+        
+        self.isCollected = YES;
+    }
     
+    
+    else{
+        [mapRelation removeObject:self.boardData];
+        [relation removeObject:user];
+        
+        self.isCollected = NO;
+    }
+    [user saveEventually];
+    [self.boardData saveEventually];
     
 }
 

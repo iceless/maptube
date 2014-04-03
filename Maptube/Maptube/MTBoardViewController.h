@@ -23,4 +23,5 @@
 
 @property (strong, nonatomic)UIScrollView *tableViewScrollView;
 @property (assign, nonatomic) int _contentLayerState;
+@property (assign, nonatomic) bool isCollected;
 @end

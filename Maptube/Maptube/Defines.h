@@ -28,6 +28,7 @@
 #define VenueAddress @"VenueAddress"
 #define Distance @"Distance"
 #define CollectUser @"CollectUser"
+#define CollectMap @"CollectMap"
 #define Author @"Author"
 
 #define MapId @"bluefeather.hkh8138o"
