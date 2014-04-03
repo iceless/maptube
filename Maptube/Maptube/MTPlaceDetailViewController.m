@@ -55,7 +55,7 @@
     self.imgView = [[UIImageView alloc] init];
     self.imgView.frame = CGRectMake(0, 0, 30, 30);
     //[self.mapView ];
-    
+    if(self.imageUrlArray.count!=0){
     AFImageRequestOperation *operation;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[self.imageUrlArray objectAtIndex:0]]];
     
@@ -66,6 +66,8 @@
             NSLog(@"%@", [error localizedDescription]);
     }];
     [operation start];
+    }
+    else [self.mapView addAnnotation:annotation];
     
     
     self.chooseBoardView = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
