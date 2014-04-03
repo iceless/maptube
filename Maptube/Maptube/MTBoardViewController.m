@@ -121,7 +121,7 @@
     
     UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 40, 32);
-    [button addTarget:self action:@selector(editBoard) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Edit" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem=barItem;
@@ -314,6 +314,19 @@
     [self.navigationController pushViewController:controller animated:YES];
 
 }
+-(void)collect{
+    PFRelation *relation = [self.boardData relationforKey:CollectUser];
+    
+    [relation addObject:[AVUser currentUser]];
+
+    [self.boardData saveEventually: ^(BOOL succeeded, NSError *error) {
+        NSLog(@"%@",error);
+        
+    }];
+    
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
