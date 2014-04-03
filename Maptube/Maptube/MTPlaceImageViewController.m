@@ -30,14 +30,14 @@
     self.scrollView.backgroundColor = [UIColor blackColor];
     [self.scrollView setPagingEnabled:YES];
     self.scrollView.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width*self.imageUrlArray.count, self.view.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width*self.imageUrlArray.count, 280);
     
 
     
      for (int i=0; i<self.imageUrlArray.count; i++){
         
         NSString *imgStr = [self.imageUrlArray objectAtIndex:i];
-        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width*i+20, self.view.frame.size.height/2-140, 280, 280)];
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width*i+20, self.view.frame.size.height/2-200, 280, 280)];
         [imgView setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:nil];
         [imgView setUserInteractionEnabled:YES];
         
@@ -45,7 +45,7 @@
     }
     [self.view addSubview:self.scrollView];
     
-    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.scrollView.frame.size.height - 60, 320, 20)];
+    self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 80, 320, 20)];
     [self.pageControl setBackgroundColor:[UIColor blackColor]];
     self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     self.pageControl.currentPage = 0;
