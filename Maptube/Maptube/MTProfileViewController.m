@@ -57,7 +57,8 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
-    self.placeArray = [NSMutableDictionary dictionary];
+    self.myPlaceArray = [NSMutableDictionary dictionary];
+    self.favoratePlaceArray = [NSMutableDictionary dictionary];
     
     self.locationManager =[[CLLocationManager alloc] init];
     self.locationManager.delegate=self;
@@ -85,35 +86,29 @@
 
 -(void)updateBoard{
     
-    self.totalPlacesCount = [NSString stringWithFormat:@"%@",[[PFUser currentUser] objectForKey:@"PlacesCount"]];
+    //self.totalPlacesCount = [NSString stringWithFormat:@"%@",[[PFUser currentUser] objectForKey:@"PlacesCount"]];
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
-    
-    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            self.boardArray = objects;
+    self.myMapArray = [[relation query] findObjects];
             
-            
-           for (int i=0;i<self.boardArray.count;i++) {
+    for (int i=0;i<self.myMapArray.count;i++) {
                
-               PFObject *mapObject = [self.boardArray objectAtIndex:i];
-               PFRelation *relation = [mapObject relationforKey:Place];
-               [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-                   if(objects.count!=0)
-                    [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1]];
-                    if(i==self.boardArray.count-1)
-                    [self.table reloadData];
-               }];
-           }
-             //[self.table reloadData];
-            
-        }
-        else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-
+        PFObject *mapObject = [self.myMapArray objectAtIndex:i];
+        PFRelation *relation = [mapObject relationforKey:Place];
+        [self.myPlaceArray setObject:[[relation query] findObjects] forKey:[NSString stringWithFormat:@"%d",i+1]];
+    }
     
+    
+    
+    PFRelation *favorateMapRelation = [[PFUser currentUser] relationforKey:CollectMap];
+    self.favorateMapArray = [[favorateMapRelation query] findObjects];
+    for (int i=0;i<self.favorateMapArray.count;i++) {
+        PFObject *mapObject = [self.favorateMapArray objectAtIndex:i];
+        PFRelation *relation = [mapObject relationforKey:Place];
+        [self.favoratePlaceArray setObject:[[relation query] findObjects] forKey:[NSString stringWithFormat:@"%d",i+1]];
+     }
+
+    [self.table reloadData];
+
 }
 #pragma mark - Location Delegation
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation
@@ -180,8 +175,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //return [recipes count];
-   
-    return self.boardArray.count+1;
+    if(self.currentMap==1)
+        return self.myMapArray.count+1;
+    else
+        return self.favorateMapArray.count+1;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -295,7 +293,11 @@
     }else {
         
         UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(9,4,203,21)];
-        PFObject *mapObject = [self.boardArray objectAtIndex:(indexPath.row-1)];
+        PFObject *mapObject;
+        if(self.currentMap==1)
+            mapObject= [self.myMapArray objectAtIndex:(indexPath.row-1)];
+        else mapObject= [self.favorateMapArray objectAtIndex:(indexPath.row-1)];
+        
         label.text = [mapObject objectForKey:Title];
         [cell.contentView addSubview:label];
         
@@ -314,7 +316,10 @@
         [cell.contentView addSubview:mapImgView];
         
         
-        NSArray *array = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+        NSArray *array;
+       if(self.currentMap==1)
+           array= [self.myPlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+        else array= [self.favoratePlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
         label = [[UILabel alloc]initWithFrame:CGRectMake(235,4,73,21)];
         label.text = [NSString stringWithFormat:@"%d",array.count];
         label.textAlignment = NSTextAlignmentLeft;
@@ -348,7 +353,7 @@
             CGRect placeRect = [MTPlace updateMemberPins:array];
             CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
             
-            //MTPlace *place = self.placeArray[0];
+            //MTPlace *place = self.myPlaceArray[0];
             int distance = placeRect.size.width;
             distance = MAX(1500,distance);
             distance = MIN(distance, 15000000);
@@ -392,12 +397,17 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row != 0){
     MTBoardViewController *destViewController = [[MTBoardViewController alloc] init];
-    //PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row-1];
-    NSArray *places = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-    destViewController.boardData = [self.boardArray objectAtIndex:indexPath.row-1];
+    
+        
+        NSArray *places;
+        if(self.currentMap ==1)
+          places= [self.myPlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+        else
+          places= [self.favoratePlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+    destViewController.boardData = [self.myMapArray objectAtIndex:indexPath.row-1];
     if(places.count!=0){
         destViewController.placeArray = [MTPlace convertPlaceArray:places];
-        //destViewController.avPlaceArray = places;
+        //destViewController.avmyPlaceArray = places;
         
     }
     [self.navigationController pushViewController:destViewController animated:YES];
@@ -411,8 +421,10 @@
 -(void)clickMyMapButton:(id)sender{
     UIButton *button = (UIButton *)sender;
     [button setSelected:YES];
-    if(self.currentMap==2)
+    if(self.currentMap==2){
+         self.currentMap = 1;
         [self.table reloadData];
+    }
     self.currentMap = 1;
     [self.collectionButton setSelected:NO];
     
@@ -420,9 +432,11 @@
 -(void)clickFavorateButton:(id)sender{
     UIButton *button = (UIButton *)sender;
     [button setSelected:YES];
-    if(self.currentMap==1)
+    if(self.currentMap==1){
+          self.currentMap = 2;
         [self.table reloadData];
-    self.currentMap = 2;
+    }
+  
     [self.myMapButton setSelected:NO];
     
     
@@ -431,7 +445,7 @@
 -(void)clickEdit:(id)sender{
     UIButton *button = (UIButton *)sender;
     int index = button.tag-10;
-    PFObject *mapObject = [self.boardArray objectAtIndex:index];
+    PFObject *mapObject = [self.myMapArray objectAtIndex:index];
     NSMutableArray *array = [NSMutableArray array];
     array[0] = [mapObject objectForKey:Title];
     array[1] = [mapObject objectForKey:Description];

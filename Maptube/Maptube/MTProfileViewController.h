@@ -12,8 +12,10 @@
 
 @property (nonatomic, strong) IBOutlet UINavigationItem *navItem;
 @property (nonatomic, strong) UITableView *table;
-@property (nonatomic, strong) NSArray *boardArray;
-@property (nonatomic, strong) NSMutableDictionary *placeArray;
+@property (nonatomic, strong) NSArray *myMapArray;
+@property (nonatomic, strong) NSArray *favorateMapArray;
+@property (nonatomic, strong) NSMutableDictionary *myPlaceArray;
+@property (nonatomic, strong) NSMutableDictionary *favoratePlaceArray;
 @property (nonatomic, strong) NSString *totalPlacesCount;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) UIButton *myMapButton;
