@@ -10,6 +10,7 @@
 #import "MTMapCell.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "MTPlace.h"
+#import "MTBoardViewController.h"
 
 @interface MTHomeViewController ()
 
@@ -52,12 +53,18 @@
 
 -(void)updateMap{
     AVQuery *query = [AVQuery queryWithClassName:Map];
-    //[query addDescendingOrder:CollectUser];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"%@",error);
+        //NSLog(@"%@",error);
         if(!error){
         for(int i=0;i<10;i++){
-            [self.mapList addObject:[objects objectAtIndex:i]];
+            PFObject *mapObject = [objects objectAtIndex:i];
+            [self.mapList addObject:mapObject];
+            /*
+            PFRelation *relation = [mapObject relationforKey:Place];
+            NSArray *array = [[relation query] findObjects];
+            [self.placeArray addObject:array];
+             */
+
         }
     
         [self.table reloadData];
@@ -102,7 +109,11 @@
     AVRelation *collectRelation = [mapObject objectForKey:CollectUser];
     NSArray *userCollectArray = [collectRelation.query findObjects];
     cell.likeCountLabel.text = [NSString stringWithFormat:@"%d",userCollectArray.count];
+
+    
     PFRelation *relation = [mapObject relationforKey:Place];
+    
+  
     NSArray *placeArray = [[relation query] findObjects];
     cell.placeCountLabel.text = [NSString stringWithFormat:@"%d",placeArray.count];
     
@@ -127,6 +138,11 @@
         markStr = [markStr substringToIndex:([markStr length]-1)];
         NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxPictureAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,cell.mapImageView.frame.size.width,cell.mapImageView.frame.size.height];
         [cell.mapImageView setImageWithURL:[NSURL URLWithString:urlStr]];
+        cell.mapImageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *sigleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMapImage:)];
+        [cell.mapImageView addGestureRecognizer:sigleTapRecognizer];
+        cell.mapImageView.tag = indexPath.row;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         // [mapView setRegion:region animated:TRUE];
         //[mapView addAnnotations:array];
     }
@@ -141,6 +157,25 @@
 {
     
     return 185;
+    
+}
+
+-(void)clickMapImage:(id)sender{
+    
+    NSInteger index = [(UIGestureRecognizer *)sender view].tag;
+    /*
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    UITableViewCell *cell =  [self.table cellForRowAtIndexPath:indexPath];
+    UIImageView *view = (UIImageView *)[cell.contentView viewWithTag:index];
+     */
+    MTBoardViewController *viewController = [[MTBoardViewController alloc] init];
+    viewController.boardData = [self.mapList objectAtIndex:index];
+    PFRelation *relation = [viewController.boardData relationforKey:Place];
+   
+    NSArray  *places= [[relation query] findObjects];    if(places!=0)
+        viewController.placeArray = [MTPlace convertPlaceArray:places];
+     [self.navigationController pushViewController:viewController animated:YES];
+    
     
 }
 

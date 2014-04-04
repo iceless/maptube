@@ -11,4 +11,5 @@
 @interface MTHomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *mapList;
+@property (nonatomic, strong) NSMutableArray *placeArray;
 @end
