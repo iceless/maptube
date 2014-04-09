@@ -396,21 +396,24 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row != 0){
-    MTBoardViewController *destViewController = [[MTBoardViewController alloc] init];
-    
+        MTBoardViewController *destViewController = [[MTBoardViewController alloc] init];
         
         NSArray *places;
-        if(self.currentMap ==1)
-          places= [self.myPlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-        else
-          places= [self.favoratePlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-    destViewController.boardData = [self.myMapArray objectAtIndex:indexPath.row-1];
-    if(places.count!=0){
-        destViewController.placeArray = [MTPlace convertPlaceArray:places];
-        //destViewController.avmyPlaceArray = places;
+        if(self.currentMap ==1){
+            places= [self.myPlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+            destViewController.boardData = [self.myMapArray objectAtIndex:indexPath.row-1];
+        }
+        else {
+            places= [self.favoratePlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+            destViewController.boardData = [self.favorateMapArray objectAtIndex:indexPath.row-1];
+        }
         
-    }
-    [self.navigationController pushViewController:destViewController animated:YES];
+        if(places.count!=0){
+            destViewController.placeArray = [MTPlace convertPlaceArray:places];
+            //destViewController.avmyPlaceArray = places;
+            
+        }
+        [self.navigationController pushViewController:destViewController animated:YES];
     }
     else{
         MTEditProfileViewController  *controller = [[MTEditProfileViewController alloc]init];
