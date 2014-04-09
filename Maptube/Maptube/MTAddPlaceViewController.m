@@ -12,6 +12,7 @@
 #import "FSConverter.h"
 #import "MTAddPictureViewController.h"
 #import "MTPlaceIntroductionViewController.h"
+#import "MTPlaceDetailViewController.h"
 
 @interface MTAddPlaceViewController ()
 
@@ -200,7 +201,21 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FSVenue *venue = self.nearbyPlaces[indexPath.row];
-    
+    [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",venue.venueId]] andStr:nil compeletion:^(id data){
+        //获取Foursquare venue信息
+        
+        NSDictionary *dict = data;
+        dict = [dict objectForKey:@"response"];
+        dict = [dict objectForKey:@"venue"];
+        
+        MTPlaceDetailViewController *controller = [[MTPlaceDetailViewController  alloc]init];
+        controller.venue = venue;
+        controller.placeData = dict;
+        
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    }];
+/*
     
     //NSLog(@"%@",venue.venueId);
     [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",venue.venueId]] andStr:nil compeletion:^(id data){
@@ -214,7 +229,7 @@
         
     }];
     
-    
+    */
 
 }
 
