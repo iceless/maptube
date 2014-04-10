@@ -127,11 +127,24 @@
         [self.mapView addAnnotations:self.placeArray];
     }
     
+    
     UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame=CGRectMake(0, 0, 40, 32);
-    [button addTarget:self action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
+    button.frame=CGRectMake(0, 0, 60, 32);
+    AVUser *user = [self.boardData objectForKey:Author];
+    NSString *userID = [[AVUser currentUser] objectId];
+    if([[user objectId] isEqualToString:userID])
+    {
+        [button addTarget:self action:@selector(editBoard) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"Edit" forState:UIControlStateNormal];
+    }
+    else{
+        [button addTarget:self action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"Collect" forState:UIControlStateNormal];
+
+        
+    }
     UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Edit" forState:UIControlStateNormal];
+   
     self.navigationItem.rightBarButtonItem=barItem;
 }
 
