@@ -16,6 +16,7 @@
 #import "MTEditBoardViewController.h"
 #import "MTSettingsViewController.h"
 #import "MTEditProfileViewController.h"
+#import "MTMap.h"
 
 @interface MTProfileViewController ()
 
@@ -57,16 +58,17 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
-    self.myPlaceArray = [NSMutableDictionary dictionary];
-    self.favoratePlaceArray = [NSMutableDictionary dictionary];
+    self.myMapArray = [NSMutableArray array];
+    self.favorateMapArray = [NSMutableArray array];
     
     self.locationManager =[[CLLocationManager alloc] init];
     self.locationManager.delegate=self;
     self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;
     self.locationManager.distanceFilter=10.0f;
     [self.locationManager startUpdatingLocation];
+    [self performSelectorInBackground:@selector(updateBoard) withObject:nil];
+
     
-    [self updateBoard];
     
 }
 
@@ -86,30 +88,40 @@
 
 -(void)updateBoard{
     
-    //self.totalPlacesCount = [NSString stringWithFormat:@"%@",[[PFUser currentUser] objectForKey:@"PlacesCount"]];
+    [self.myMapArray removeAllObjects];
+    [self.favorateMapArray removeAllObjects];
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
-    self.myMapArray = [[relation query] findObjects];
-            
-    for (int i=0;i<self.myMapArray.count;i++) {
-               
-        PFObject *mapObject = [self.myMapArray objectAtIndex:i];
-        PFRelation *relation = [mapObject relationforKey:Place];
-        [self.myPlaceArray setObject:[[relation query] findObjects] forKey:[NSString stringWithFormat:@"%d",i+1]];
-    }
-    
-    
+     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+         
+        for (int i=0;i<objects.count;i++) {
+            MTMap *map = [[MTMap alloc]init];
+            map.mapObject = objects[i];
+            [map initPlace];
+            [self.myMapArray addObject:map];
+            if(i==self.myMapArray.count-1)
+            [self.table reloadData];
+        
+        }
+    }];
     
     PFRelation *favorateMapRelation = [[PFUser currentUser] relationforKey:CollectMap];
-    self.favorateMapArray = [[favorateMapRelation query] findObjects];
-    for (int i=0;i<self.favorateMapArray.count;i++) {
-        PFObject *mapObject = [self.favorateMapArray objectAtIndex:i];
-        PFRelation *relation = [mapObject relationforKey:Place];
-        [self.favoratePlaceArray setObject:[[relation query] findObjects] forKey:[NSString stringWithFormat:@"%d",i+1]];
-     }
-
-    [self.table reloadData];
-
+     [[favorateMapRelation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+         
+         for (int i=0;i<objects.count;i++) {
+             MTMap *map = [[MTMap alloc]init];
+             map.mapObject = objects[i];
+             [map initPlace];
+             [self.favorateMapArray addObject:map];
+             if(i==self.favorateMapArray.count-1)
+                 [self.table reloadData];
+             
+         }
+         
+     }];
+    
 }
+
+
 #pragma mark - Location Delegation
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation
             fromLocation:(CLLocation *)oldLocation
@@ -120,13 +132,13 @@
     
 }
 - (void)viewWillAppear:(BOOL)animated {
-    [self updateBoard];
+   // [self updateBoard];
     [super viewWillAppear:animated];
     if ([PFUser currentUser]) {
-//        self.nameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
+
         self.navItem.title = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
     } else {
-//        self.nameLabel.text = NSLocalizedString(@"Not logged in", nil);
+
         self.navItem.title = @"nobody";
     }
     
@@ -293,12 +305,12 @@
     }else {
         
         UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(9,4,203,21)];
-        PFObject *mapObject;
+        MTMap *map;
         if(self.currentMap==1)
-            mapObject= [self.myMapArray objectAtIndex:(indexPath.row-1)];
-        else mapObject= [self.favorateMapArray objectAtIndex:(indexPath.row-1)];
+            map= [self.myMapArray objectAtIndex:(indexPath.row-1)];
+        else map= [self.favorateMapArray objectAtIndex:(indexPath.row-1)];
         
-        label.text = [mapObject objectForKey:Title];
+        label.text = [map.mapObject objectForKey:Title];
         [cell.contentView addSubview:label];
         
        /*
@@ -316,12 +328,9 @@
         [cell.contentView addSubview:mapImgView];
         
         
-        NSArray *array;
-       if(self.currentMap==1)
-           array= [self.myPlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-        else array= [self.favoratePlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
+       
         label = [[UILabel alloc]initWithFrame:CGRectMake(235,4,73,21)];
-        label.text = [NSString stringWithFormat:@"%d",array.count];
+        label.text = [NSString stringWithFormat:@"%d",map.placeArray.count];
         label.textAlignment = NSTextAlignmentLeft;
         label.textColor = [UIColor lightGrayColor];
         label.font = [UIFont systemFontOfSize:14];
@@ -332,10 +341,9 @@
         [cell.contentView addSubview:imgView];
         
        
-        AVRelation *collectRelation = [mapObject objectForKey:CollectUser];
-        NSArray *userCollectArray = [collectRelation.query findObjects];
+       
         label = [[UILabel alloc]initWithFrame:CGRectMake(280,4,73,21)];
-        label.text = [NSString stringWithFormat:@"%d",userCollectArray.count];
+        label.text = [NSString stringWithFormat:@"%d",map.collectUsers.count];
         label.textAlignment = NSTextAlignmentLeft;
         label.textColor = [UIColor lightGrayColor];
         label.font = [UIFont systemFontOfSize:14];
@@ -345,9 +353,9 @@
         imgView.frame = CGRectMake(260,4,18,18);
         [cell.contentView addSubview:imgView];
         
-        
+        NSArray *array;
     
-        array = [MTPlace convertPlaceArray:array];
+        array = [MTPlace convertPlaceArray:map.placeArray];
         if(array.count!=0){
             
             CGRect placeRect = [MTPlace updateMemberPins:array];
@@ -358,7 +366,7 @@
             distance = MAX(1500,distance);
             distance = MIN(distance, 15000000);
             
-            MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
+            //MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
           
             NSString *markStr = @"/";
             for (MTPlace *place in array){
@@ -368,8 +376,11 @@
             markStr = [markStr substringToIndex:([markStr length]-1)];
             NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxPictureAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
             [mapImgView setImageWithURL:[NSURL URLWithString:urlStr]];
-           // [mapView setRegion:region animated:TRUE];
-            //[mapView addAnnotations:array];
+        
+        }
+        
+        else{
+            //mapImgView放置默认图片
         }
          
        
@@ -400,12 +411,16 @@
         
         NSArray *places;
         if(self.currentMap ==1){
-            places= [self.myPlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-            destViewController.boardData = [self.myMapArray objectAtIndex:indexPath.row-1];
+            MTMap *map = [self.myMapArray objectAtIndex:indexPath.row-1];
+            places = map.placeArray;
+            destViewController.boardData = map.mapObject;
         }
         else {
-            places= [self.favoratePlaceArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-            destViewController.boardData = [self.favorateMapArray objectAtIndex:indexPath.row-1];
+            MTMap *map = [self.favorateMapArray objectAtIndex:indexPath.row-1];
+
+            places = map.placeArray;
+
+            destViewController.boardData = map.mapObject;
         }
         
         if(places.count!=0){

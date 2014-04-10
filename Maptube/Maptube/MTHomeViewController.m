@@ -11,6 +11,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "MTPlace.h"
 #import "MTBoardViewController.h"
+#import "MTMap.h"
 
 @interface MTHomeViewController ()
 
@@ -56,18 +57,15 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         //NSLog(@"%@",error);
         if(!error){
-        for(int i=0;i<10;i++){
-            PFObject *mapObject = [objects objectAtIndex:i];
-            [self.mapList addObject:mapObject];
-            /*
-            PFRelation *relation = [mapObject relationforKey:Place];
-            NSArray *array = [[relation query] findObjects];
-            [self.placeArray addObject:array];
-             */
-
-        }
-    
-        [self.table reloadData];
+            for(int i=0;i<10;i++){
+                MTMap *map = [[MTMap alloc]init];
+                map.mapObject = objects[i];
+                [map initData];
+                [self.mapList addObject:map];
+                if(i==9)
+                    [self.table reloadData];
+            }
+            
         }
     }];
     
@@ -86,38 +84,22 @@
     
     MTMapCell *cell = (MTMapCell *)[tableView dequeueReusableCellWithIdentifier:@"MapCell"];
     
-    AVObject *mapObject = [self.mapList objectAtIndex:indexPath.row];
-    cell.nameLabel.text = [mapObject objectForKey:Title];
-    AVUser *user = [mapObject objectForKey:Author];
-    AVQuery *query =[AVQuery queryWithClassName:@"_User"];
-    [query whereKey:@"objectId" equalTo:[user objectForKey:@"objectId"]];
-    NSArray *uArray = [query findObjects];
+    MTMap *map = [self.mapList objectAtIndex:indexPath.row];
+    cell.nameLabel.text = [map.mapObject objectForKey:Title];
     
-    cell.authorLabel.text = [uArray[0] objectForKey:@"username"];
+    
+    cell.authorLabel.text = [map.author objectForKey:@"username"];
     cell.iconImage.layer.masksToBounds = YES;
     cell.iconImage.layer.cornerRadius =15;
-    
-    AVQuery *photoQuery = [AVQuery queryWithClassName:@"UserPhoto"];
    
-    [photoQuery whereKey:@"user" equalTo:user];
-    NSArray *pArray = [photoQuery findObjects];
-    AVObject *photoObject = pArray[0];
-    AVFile *theImage = [photoObject objectForKey:@"imageFile"];
-    NSData *imageData = [theImage getData];
-    cell.iconImage.image = [UIImage imageWithData:imageData];
     
-    AVRelation *collectRelation = [mapObject objectForKey:CollectUser];
-    NSArray *userCollectArray = [collectRelation.query findObjects];
-    cell.likeCountLabel.text = [NSString stringWithFormat:@"%d",userCollectArray.count];
+    cell.iconImage.image = map.authorImage;
+    cell.likeCountLabel.text = [NSString stringWithFormat:@"%d",map.collectUsers.count];
 
+   
+    cell.placeCountLabel.text = [NSString stringWithFormat:@"%d",map.placeArray.count];
     
-    PFRelation *relation = [mapObject relationforKey:Place];
-    
-  
-    NSArray *placeArray = [[relation query] findObjects];
-    cell.placeCountLabel.text = [NSString stringWithFormat:@"%d",placeArray.count];
-    
-    NSArray * array = [MTPlace convertPlaceArray:placeArray];
+    NSArray * array = [MTPlace convertPlaceArray:map.placeArray];
     if(array.count!=0){
         
         CGRect placeRect = [MTPlace updateMemberPins:array];

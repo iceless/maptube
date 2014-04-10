@@ -30,6 +30,7 @@
 #define CollectUser @"CollectUser"
 #define CollectMap @"CollectMap"
 #define Author @"Author"
+#define PlacePhotos @"PlacePhotos"
 
 #define MapId @"bluefeather.hkh8138o"
 #define MapBoxPictureAPI @"http://api.tiles.mapbox.com/v3/"
@@ -45,5 +46,6 @@
 #define ModifyBoardNotification @"ModifyBoardNotification"
 #define CloseChooseBoardNotification @"CloseChooseBoardNotification"
 #define PopUpEditPlacePhotoNotification @"PopUpEditPlacePhotoNotification"
+//#define FinishInitMapNotification @"FinishInitMapNotification"
 
 #endif
