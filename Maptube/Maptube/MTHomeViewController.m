@@ -151,11 +151,9 @@
     UIImageView *view = (UIImageView *)[cell.contentView viewWithTag:index];
      */
     MTBoardViewController *viewController = [[MTBoardViewController alloc] init];
-    viewController.boardData = [self.mapList objectAtIndex:index];
-    PFRelation *relation = [viewController.boardData relationforKey:Place];
-   
-    NSArray  *places= [[relation query] findObjects];    if(places!=0)
-        viewController.placeArray = [MTPlace convertPlaceArray:places];
+    MTMap *map = [self.mapList objectAtIndex:index];
+    viewController.boardData = map.mapObject;
+    viewController.placeArray = [MTPlace convertPlaceArray:map.placeArray];
      [self.navigationController pushViewController:viewController animated:YES];
     
     
