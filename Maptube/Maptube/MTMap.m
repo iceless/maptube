@@ -50,7 +50,9 @@
 }
 
 -(void)initIcon{
-    NSString *fileObjectId = [self.author objectForKey:@"Icon"];
+    AVObject *fileObject = [self.author objectForKey:@"Icon"];
+    if(fileObject){
+    NSString *fileObjectId = fileObject.objectId;
     AVQuery *photoQuery = [AVQuery queryWithClassName:@"UserPhoto"];
     [photoQuery whereKey:@"objectId" equalTo:fileObjectId];
     [photoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -63,5 +65,6 @@
             self.finishInit = true;
         }
     }];
+    }
 }
 @end
