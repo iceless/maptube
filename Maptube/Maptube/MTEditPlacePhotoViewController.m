@@ -75,14 +75,14 @@
         UIImageView *view = [[UIImageView alloc]init];
         
         if(i%3==0)
-            x = 15;
-        else if(i%3==1)
             x = 115;
-        else{
+        else if(i%3==1)
             x = 215;
+        else{
+            x = 15;
         }
-        if(i<=2) y = 120;
-        else if(i>5) y = 330;
+        if(i<=1) y = 120;
+        else if(i>4) y = 330;
         else y = 225;
         view.frame = CGRectMake(x, y, width, height);
      

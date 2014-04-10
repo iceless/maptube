@@ -309,7 +309,7 @@
                 // Log details of the failure
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
-        } progressBlock:^(int percentDone) {
+        } progressBlock:^(NSInteger percentDone) {
             // Update your progress spinner here. percentDone will be between 0 and 100.
             // HUD.progress = (float)percentDone/100;
         }];
