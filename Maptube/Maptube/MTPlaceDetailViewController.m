@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+   
     UIBarButtonItem *pinItem = [[UIBarButtonItem alloc] initWithTitle:@"Pin" style:UIBarButtonItemStylePlain target:self action:@selector(pin:)];
     self.navigationItem.rightBarButtonItem = pinItem;
 
@@ -81,6 +81,15 @@
     [[UIApplication sharedApplication].keyWindow addSubview:greyView];
     [[UIApplication sharedApplication].keyWindow addSubview:self.chooseBoardView.view];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeChooseBoardView) name:CloseChooseBoardNotification object:nil];
+    
+}
+
+
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 -(void)initImageURL{
@@ -115,6 +124,13 @@
     view.hidden = false;
     
    
+}
+
+-(void)closeChooseBoardView{
+    UIView *view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:101];
+    view.hidden = true;
+    view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:102];
+    view.hidden = true;
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
