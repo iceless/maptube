@@ -24,6 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES];
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
@@ -53,6 +54,14 @@
     //[self.pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_pageControl];
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(back:)];
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void)back:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
