@@ -49,13 +49,13 @@
     [self.view addSubview:self.passwordField];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame =  CGRectMake(0,238,144,37);
+    button.frame =  CGRectMake(0,188,144,37);
     [button setTitle:@"SignUp" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(signUpClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
     button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(171,237,134,38);
+    button.frame = CGRectMake(171,187,134,38);
     [button setTitle:@"Login" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(loginClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
