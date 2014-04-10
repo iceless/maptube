@@ -11,6 +11,7 @@
 
 #import <AVOSCloud/AVOSCloud.h>
 #import "MTPlace.h"
+#import  "MTEditPlacePhotoViewController.h"
 
 @interface MTPlaceIntroductionViewController ()
 
@@ -37,6 +38,7 @@
         //UIStoryboard * storyBoard  = [UIStoryboard
          //                             storyboardWithName:@"Main" bundle:nil];
         //self = [storyBoard instantiateViewControllerWithIdentifier:@"PlaceIntroduction"];
+      
         self.placeData = dict;
         self.venue = venue;
         
@@ -48,10 +50,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tabBarController.tabBar.hidden = true;
+    //self.tabBarController.tabBar.hidden = true;
     [self.navigationController setNavigationBarHidden:NO];
-  
+    self.imageUrlArray = [[NSMutableArray alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeChooseBoardView) name:CloseChooseBoardNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEditPlacePhotoView) name:PopUpEditPlacePhotoNotification object:nil];
     self.boardArray = [NSMutableArray array];
 	[self updateBoard];
     self.title = [self.placeData objectForKey:@"name"];
@@ -71,11 +74,22 @@
     
     
     self.mapButton = [[UIButton alloc]initWithFrame:CGRectMake(255,218,55,50)];
-    [self.mapButton setImage:[UIImage imageNamed:@"mappin.png"] forState:UIControlStateNormal];
+    [self.mapButton setImage:[UIImage imageNamed:@"placepin.png"] forState:UIControlStateNormal];
     self.mapButton.layer.borderWidth = 1.0;
     self.mapButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
     [self.mapButton addTarget:self action:@selector(showMap) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.mapButton];
+    
+    self.chooseBoardView = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
+    self.chooseBoardView.view.frame = CGRectMake(0, 130, self.view.frame.size.width, self.view.frame.size.height);
+    UIView *greyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    greyView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+    greyView.tag = 101;
+    self.chooseBoardView.view.tag = 102;
+    greyView.hidden = true;
+    self.chooseBoardView.view.hidden = true;
+    [[UIApplication sharedApplication].keyWindow addSubview:greyView];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.chooseBoardView.view];
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10,218,246,50)];
     imageView.layer.borderWidth = 1.0;
@@ -113,6 +127,9 @@
             UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 160)] ;
             [imgView setImageWithURL:[NSURL URLWithString:str]];
             [self.scrollView addSubview:imgView];
+            [self.imageUrlArray addObject:str];
+           
+            
         }
        
     }
@@ -137,22 +154,19 @@
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
     
-    self.chooseBoardView = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
-    self.chooseBoardView.view.frame = CGRectMake(0, 130, self.view.frame.size.width, self.view.frame.size.height);
-    UIView *greyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    greyView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-    greyView.tag = 101;
-    self.chooseBoardView.view.tag = 102;
-    greyView.hidden = true;
-    self.chooseBoardView.view.hidden = true;
-    [[UIApplication sharedApplication].keyWindow addSubview:greyView];
-    [[UIApplication sharedApplication].keyWindow addSubview:self.chooseBoardView.view];
+    
+    
+    UIBarButtonItem *pinItem = [[UIBarButtonItem alloc] initWithTitle:@"Pin" style:UIBarButtonItemStylePlain target:self action:@selector(pin:)];
+    self.navigationItem.rightBarButtonItem = pinItem;
+
 
     
 }
 
+
 -(void)showMap{
     MTMapViewController *viewController = [[MTMapViewController alloc]initWithVenue:self.venue];
+    
     [self.navigationController pushViewController:viewController animated:YES];
     
 }
@@ -210,6 +224,12 @@
     view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:102];
     view.hidden = true;
 }
+-(void)showEditPlacePhotoView{
+    MTEditPlacePhotoViewController *viewController = [[MTEditPlacePhotoViewController alloc]init];
+    viewController.imageStrArray = self.imageUrlArray;
+    viewController.placeName = self.venue.name;
+    viewController.location = self.venue.location.address;
+    [self.navigationController pushViewController:viewController animated:NO];}
 
 -(IBAction)pin:(id)sender {
     //to do
@@ -267,6 +287,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 -(void)dealloc{
     UIView *greyView = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:101];
 

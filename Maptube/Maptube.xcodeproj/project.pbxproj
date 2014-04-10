@@ -38,11 +38,16 @@
 		56F1CB371869869D008498DF /* MTProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F1CB361869869D008498DF /* MTProfileViewController.m */; };
 		5E25CB9F18CD887800260E5A /* checkin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9C18CD887800260E5A /* checkin@2x.png */; };
 		5E25CBA018CD887800260E5A /* like@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9D18CD887800260E5A /* like@2x.png */; };
-		5E25CBA118CD887800260E5A /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9E18CD887800260E5A /* pin@2x.png */; };
+		5E25CBA118CD887800260E5A /* mappin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E25CB9E18CD887800260E5A /* mappin@2x.png */; };
 		5E51970D18C9963500504EBD /* MTViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E51970C18C9963500504EBD /* MTViewHelper.m */; };
 		5E62BB8E18B602C30061A48C /* MTEditBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */; };
 		5E85E18F18B4420600A2A172 /* MTPlaceIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */; };
 		5E85E19518B483A000A2A172 /* MTTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E85E19418B483A000A2A172 /* MTTableView.m */; };
+		5E91992B18E4078E00EC3107 /* UIView+GeometryShortAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91992A18E4078E00EC3107 /* UIView+GeometryShortAccess.m */; };
+		5E91992E18E51B0700EC3107 /* MTEditPlacePhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91992D18E51B0700EC3107 /* MTEditPlacePhotoViewController.m */; };
+		5E91993018E5469900EC3107 /* mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E91992F18E5469900EC3107 /* mark@2x.png */; };
+		5E91993318E54AB500EC3107 /* MTPlaceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E91993218E54AB500EC3107 /* MTPlaceDetailViewController.m */; };
+		5E956D0D18E17B1D000FD70B /* MTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E956D0C18E17B1D000FD70B /* MTHomeViewController.m */; };
 		5E95914B18ADC24B0097B6BC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E95914A18ADC24B0097B6BC /* MapKit.framework */; };
 		5E95914E18ADE6260097B6BC /* MTAddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95914D18ADE6260097B6BC /* MTAddPlaceViewController.m */; };
 		5E95916218ADEE310097B6BC /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 5E95915018ADEE310097B6BC /* CHANGELOG.md */; };
@@ -59,8 +64,10 @@
 		5E95917218ADEEA30097B6BC /* FSConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95916F18ADEEA30097B6BC /* FSConverter.m */; };
 		5E95917318ADEEA30097B6BC /* FSVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95917118ADEEA30097B6BC /* FSVenue.m */; };
 		5E95917618ADF78E0097B6BC /* MTAddCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */; };
+		5E963D3A18F3859700132DF6 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E963D3918F3859700132DF6 /* AVOSCloud.framework */; };
+		5E963D4618F6320800132DF6 /* MTMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E963D4518F6320800132DF6 /* MTMap.m */; };
+		5E99478118E94CF300F0D938 /* MTPlaceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99478018E94CF300F0D938 /* MTPlaceImageViewController.m */; };
 		5E9A668918C018C5005E5169 /* MTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A668818C018C5005E5169 /* MTLoginViewController.m */; };
-		5E9A668C18C01C5D005E5169 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A668A18C01C28005E5169 /* AVOSCloud.framework */; };
 		5E9A669018C0269C005E5169 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A668F18C0269C005E5169 /* CoreTelephony.framework */; };
 		5E9A669318C029F5005E5169 /* MTSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A669218C029F5005E5169 /* MTSignUpViewController.m */; };
 		5E9ACD0818C5D49700E2F941 /* MTData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ACD0718C5D49700E2F941 /* MTData.m */; };
@@ -77,6 +84,10 @@
 		5E9B4D1A18B1FE3B00D9D6A3 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1018B1FE3B00D9D6A3 /* AFXMLRequestOperation.m */; };
 		5E9B4D1B18B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1218B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m */; };
 		5E9B4D1E18B1FEB000D9D6A3 /* AFHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */; };
+		5E9C0DC818E2CAED00040114 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9C0DC718E2CAED00040114 /* libsqlite3.0.dylib */; };
+		5E9C0DCA18E2CAFA00040114 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9C0DC918E2CAFA00040114 /* libz.dylib */; };
+		5E9C0DD518E2CE3600040114 /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5E9C0DD418E2CE2800040114 /* Mapbox.bundle */; };
+		5E9C0DD618E2CE3F00040114 /* libMapbox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9C0DD218E2CE2800040114 /* libMapbox.a */; };
 		5E9E0FF418B7252F008D89AD /* MTPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E0FF318B7252F008D89AD /* MTPlace.m */; };
 		5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */; };
 		5EA684E918B32DA800679EDE /* MTChooseBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */; };
@@ -85,9 +96,11 @@
 		5EBBFE9418C6DA89007B6109 /* place@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8F18C6DA89007B6109 /* place@2x.png */; };
 		5EBBFE9518C6DA89007B6109 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9018C6DA89007B6109 /* home@2x.png */; };
 		5EBBFE9618C6DA89007B6109 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9118C6DA89007B6109 /* search@2x.png */; };
-		5EBBFE9818C6F3A3007B6109 /* mappin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9718C6F3A3007B6109 /* mappin@2x.png */; };
+		5EBBFE9818C6F3A3007B6109 /* placepin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE9718C6F3A3007B6109 /* placepin@2x.png */; };
 		5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56F1CAF81867DEEB008498DF /* Main.storyboard */; };
 		5EBCC21818C7044F00BA4CAC /* MTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */; };
+		5EE4F28418EAA47B00ECE09C /* MapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EE4F28318EAA47B00ECE09C /* MapCell.xib */; };
+		5EE4F28718EAA61100ECE09C /* MTMapCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE4F28618EAA61100ECE09C /* MTMapCell.m */; };
 		5EE7CC8D18CF0CAC0095D0B5 /* addmap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE7CC8C18CF0CAC0095D0B5 /* addmap@2x.png */; };
 		5EE7CC8F18CF0DE50095D0B5 /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE7CC8E18CF0DE50095D0B5 /* setting@2x.png */; };
 /* End PBXBuildFile section */
@@ -99,6 +112,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 56F1CAE21867DEEB008498DF;
 			remoteInfo = Maptube;
+		};
+		5E9C0DD118E2CE2800040114 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17F31EFA1331050A00122B16;
+			remoteInfo = MapView;
+		};
+		5E9C0DD318E2CE2800040114 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DD6A83751644A20C0097F31F;
+			remoteInfo = Resources;
+		};
+		5E9C0DD718E2CE5100040114 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B8C974130E8A19B2007D16AD;
+			remoteInfo = MapView;
+		};
+		5E9C0DD918E2CE5100040114 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DD6A83741644A20C0097F31F;
+			remoteInfo = Resources;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -146,7 +187,7 @@
 		56F1CB361869869D008498DF /* MTProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTProfileViewController.m; sourceTree = "<group>"; };
 		5E25CB9C18CD887800260E5A /* checkin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkin@2x.png"; sourceTree = "<group>"; };
 		5E25CB9D18CD887800260E5A /* like@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like@2x.png"; sourceTree = "<group>"; };
-		5E25CB9E18CD887800260E5A /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
+		5E25CB9E18CD887800260E5A /* mappin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mappin@2x.png"; sourceTree = "<group>"; };
 		5E51970B18C9963500504EBD /* MTViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTViewHelper.h; sourceTree = "<group>"; };
 		5E51970C18C9963500504EBD /* MTViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTViewHelper.m; sourceTree = "<group>"; };
 		5E62BB8C18B602C30061A48C /* MTEditBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditBoardViewController.h; sourceTree = "<group>"; };
@@ -155,6 +196,15 @@
 		5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlaceIntroductionViewController.m; sourceTree = "<group>"; };
 		5E85E19318B483A000A2A172 /* MTTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTableView.h; sourceTree = "<group>"; };
 		5E85E19418B483A000A2A172 /* MTTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTableView.m; sourceTree = "<group>"; };
+		5E91992918E4078E00EC3107 /* UIView+GeometryShortAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GeometryShortAccess.h"; sourceTree = "<group>"; };
+		5E91992A18E4078E00EC3107 /* UIView+GeometryShortAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GeometryShortAccess.m"; sourceTree = "<group>"; };
+		5E91992C18E51B0700EC3107 /* MTEditPlacePhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditPlacePhotoViewController.h; sourceTree = "<group>"; };
+		5E91992D18E51B0700EC3107 /* MTEditPlacePhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEditPlacePhotoViewController.m; sourceTree = "<group>"; };
+		5E91992F18E5469900EC3107 /* mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mark@2x.png"; sourceTree = "<group>"; };
+		5E91993118E54AB500EC3107 /* MTPlaceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlaceDetailViewController.h; sourceTree = "<group>"; };
+		5E91993218E54AB500EC3107 /* MTPlaceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlaceDetailViewController.m; sourceTree = "<group>"; };
+		5E956D0B18E17B1D000FD70B /* MTHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTHomeViewController.h; sourceTree = "<group>"; };
+		5E956D0C18E17B1D000FD70B /* MTHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTHomeViewController.m; sourceTree = "<group>"; };
 		5E95914A18ADC24B0097B6BC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5E95914C18ADE6260097B6BC /* MTAddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddPlaceViewController.h; sourceTree = "<group>"; };
 		5E95914D18ADE6260097B6BC /* MTAddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddPlaceViewController.m; sourceTree = "<group>"; };
@@ -180,9 +230,13 @@
 		5E95917118ADEEA30097B6BC /* FSVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSVenue.m; sourceTree = "<group>"; };
 		5E95917418ADF78E0097B6BC /* MTAddCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddCollectionViewController.h; sourceTree = "<group>"; };
 		5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddCollectionViewController.m; sourceTree = "<group>"; };
+		5E963D3918F3859700132DF6 /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVOSCloud.framework; path = Maptube/AVOSCloud.framework; sourceTree = "<group>"; };
+		5E963D4418F6320800132DF6 /* MTMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMap.h; sourceTree = "<group>"; };
+		5E963D4518F6320800132DF6 /* MTMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMap.m; sourceTree = "<group>"; };
+		5E99477F18E94CF300F0D938 /* MTPlaceImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlaceImageViewController.h; sourceTree = "<group>"; };
+		5E99478018E94CF300F0D938 /* MTPlaceImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlaceImageViewController.m; sourceTree = "<group>"; };
 		5E9A668718C018C5005E5169 /* MTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLoginViewController.h; sourceTree = "<group>"; };
 		5E9A668818C018C5005E5169 /* MTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTLoginViewController.m; sourceTree = "<group>"; };
-		5E9A668A18C01C28005E5169 /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVOSCloud.framework; path = Maptube/AVOSCloud.framework; sourceTree = "<group>"; };
 		5E9A668F18C0269C005E5169 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		5E9A669118C029F5005E5169 /* MTSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTSignUpViewController.h; sourceTree = "<group>"; };
 		5E9A669218C029F5005E5169 /* MTSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTSignUpViewController.m; sourceTree = "<group>"; };
@@ -214,6 +268,9 @@
 		5E9B4D1218B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHelper.m; path = AFNetworking/AFHelper.m; sourceTree = "<group>"; };
 		5E9B4D1D18B1FEB000D9D6A3 /* AFHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHelper.h; path = AFNetworking/AFHelper.h; sourceTree = "<group>"; };
+		5E9C0DC718E2CAED00040114 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		5E9C0DC918E2CAFA00040114 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = MapView/MapView.xcodeproj; sourceTree = "<group>"; };
 		5E9E0FF218B7252F008D89AD /* MTPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlace.h; sourceTree = "<group>"; };
 		5E9E0FF318B7252F008D89AD /* MTPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlace.m; sourceTree = "<group>"; };
 		5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddPictureViewController.h; sourceTree = "<group>"; };
@@ -225,9 +282,12 @@
 		5EBBFE8F18C6DA89007B6109 /* place@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place@2x.png"; sourceTree = "<group>"; };
 		5EBBFE9018C6DA89007B6109 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
 		5EBBFE9118C6DA89007B6109 /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
-		5EBBFE9718C6F3A3007B6109 /* mappin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mappin@2x.png"; sourceTree = "<group>"; };
+		5EBBFE9718C6F3A3007B6109 /* placepin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placepin@2x.png"; sourceTree = "<group>"; };
 		5EBCC21618C7044F00BA4CAC /* MTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapViewController.h; sourceTree = "<group>"; };
 		5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMapViewController.m; sourceTree = "<group>"; };
+		5EE4F28318EAA47B00ECE09C /* MapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapCell.xib; sourceTree = "<group>"; };
+		5EE4F28518EAA61100ECE09C /* MTMapCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapCell.h; sourceTree = "<group>"; };
+		5EE4F28618EAA61100ECE09C /* MTMapCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMapCell.m; sourceTree = "<group>"; };
 		5EE7CC8C18CF0CAC0095D0B5 /* addmap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addmap@2x.png"; sourceTree = "<group>"; };
 		5EE7CC8E18CF0DE50095D0B5 /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,13 +297,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E9C0DD618E2CE3F00040114 /* libMapbox.a in Frameworks */,
+				5E9C0DCA18E2CAFA00040114 /* libz.dylib in Frameworks */,
+				5E9C0DC818E2CAED00040114 /* libsqlite3.0.dylib in Frameworks */,
 				5E9A669018C0269C005E5169 /* CoreTelephony.framework in Frameworks */,
 				5E95914B18ADC24B0097B6BC /* MapKit.framework in Frameworks */,
 				56F1CB3118696AB7008498DF /* SystemConfiguration.framework in Frameworks */,
 				56F1CB2F18696AA9008498DF /* StoreKit.framework in Frameworks */,
 				56F1CB2D18696AA1008498DF /* Security.framework in Frameworks */,
 				56F1CB2B18696A99008498DF /* QuartzCore.framework in Frameworks */,
-				5E9A668C18C01C5D005E5169 /* AVOSCloud.framework in Frameworks */,
 				56F1CB2918696A90008498DF /* MobileCoreServices.framework in Frameworks */,
 				56F1CB2718696A87008498DF /* libz.1.1.3.dylib in Frameworks */,
 				56F1CB2518696A78008498DF /* CoreLocation.framework in Frameworks */,
@@ -252,6 +314,7 @@
 				56F1CB2118696A5B008498DF /* AudioToolbox.framework in Frameworks */,
 				56F1CAEB1867DEEB008498DF /* UIKit.framework in Frameworks */,
 				56F1CAE71867DEEB008498DF /* Foundation.framework in Frameworks */,
+				5E963D3A18F3859700132DF6 /* AVOSCloud.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +340,8 @@
 				56F1CAFC1867DEEB008498DF /* MTFirstViewController.m */,
 				56F1CAFE1867DEEB008498DF /* MTSecondViewController.h */,
 				56F1CAFF1867DEEB008498DF /* MTSecondViewController.m */,
+				5E956D0B18E17B1D000FD70B /* MTHomeViewController.h */,
+				5E956D0C18E17B1D000FD70B /* MTHomeViewController.m */,
 				56F1CB351869869D008498DF /* MTProfileViewController.h */,
 				56F1CB361869869D008498DF /* MTProfileViewController.m */,
 				56C3C933186C12B700E9B892 /* MTEditProfileViewController.h */,
@@ -287,6 +352,8 @@
 				56C3C937186C7DB800E9B892 /* MTSettingsViewController.m */,
 				5E95914C18ADE6260097B6BC /* MTAddPlaceViewController.h */,
 				5E95914D18ADE6260097B6BC /* MTAddPlaceViewController.m */,
+				5E91992C18E51B0700EC3107 /* MTEditPlacePhotoViewController.h */,
+				5E91992D18E51B0700EC3107 /* MTEditPlacePhotoViewController.m */,
 				5E95917418ADF78E0097B6BC /* MTAddCollectionViewController.h */,
 				5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */,
 				5E62BB8C18B602C30061A48C /* MTEditBoardViewController.h */,
@@ -301,6 +368,10 @@
 				5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */,
 				5E85E18D18B4420600A2A172 /* MTPlaceIntroductionViewController.h */,
 				5E85E18E18B4420600A2A172 /* MTPlaceIntroductionViewController.m */,
+				5E91993118E54AB500EC3107 /* MTPlaceDetailViewController.h */,
+				5E91993218E54AB500EC3107 /* MTPlaceDetailViewController.m */,
+				5E99477F18E94CF300F0D938 /* MTPlaceImageViewController.h */,
+				5E99478018E94CF300F0D938 /* MTPlaceImageViewController.m */,
 				5EBCC21618C7044F00BA4CAC /* MTMapViewController.h */,
 				5EBCC21718C7044F00BA4CAC /* MTMapViewController.m */,
 				5E9A668718C018C5005E5169 /* MTLoginViewController.h */,
@@ -339,12 +410,13 @@
 		52EB0F1D18D03959008CF6E6 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				5E91992F18E5469900EC3107 /* mark@2x.png */,
 				5EE7CC8E18CF0DE50095D0B5 /* setting@2x.png */,
 				5EE7CC8C18CF0CAC0095D0B5 /* addmap@2x.png */,
 				5E25CB9C18CD887800260E5A /* checkin@2x.png */,
 				5E25CB9D18CD887800260E5A /* like@2x.png */,
-				5E25CB9E18CD887800260E5A /* pin@2x.png */,
-				5EBBFE9718C6F3A3007B6109 /* mappin@2x.png */,
+				5E25CB9E18CD887800260E5A /* mappin@2x.png */,
+				5EBBFE9718C6F3A3007B6109 /* placepin@2x.png */,
 				5EBBFE8D18C6DA89007B6109 /* profile@2x.png */,
 				5EBBFE8E18C6DA89007B6109 /* message@2x.png */,
 				5EBBFE8F18C6DA89007B6109 /* place@2x.png */,
@@ -367,6 +439,7 @@
 		56F1CADA1867DEEB008498DF = {
 			isa = PBXGroup;
 			children = (
+				5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */,
 				56F1CAEC1867DEEB008498DF /* Maptube */,
 				56F1CB0E1867DEEB008498DF /* MaptubeTests */,
 				56F1CAE51867DEEB008498DF /* Frameworks */,
@@ -386,8 +459,10 @@
 		56F1CAE51867DEEB008498DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E963D3918F3859700132DF6 /* AVOSCloud.framework */,
+				5E9C0DC918E2CAFA00040114 /* libz.dylib */,
+				5E9C0DC718E2CAED00040114 /* libsqlite3.0.dylib */,
 				5E9A668F18C0269C005E5169 /* CoreTelephony.framework */,
-				5E9A668A18C01C28005E5169 /* AVOSCloud.framework */,
 				5E95914A18ADC24B0097B6BC /* MapKit.framework */,
 				56F1CB3018696AB7008498DF /* SystemConfiguration.framework */,
 				56F1CB2E18696AA9008498DF /* StoreKit.framework */,
@@ -457,6 +532,8 @@
 		5E51970A18C995FD00504EBD /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5E91992918E4078E00EC3107 /* UIView+GeometryShortAccess.h */,
+				5E91992A18E4078E00EC3107 /* UIView+GeometryShortAccess.m */,
 				5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */,
 				5E9B4D1D18B1FEB000D9D6A3 /* AFHelper.h */,
 				5E51970B18C9963500504EBD /* MTViewHelper.h */,
@@ -542,6 +619,15 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		5E9C0DCD18E2CE2800040114 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E9C0DD218E2CE2800040114 /* libMapbox.a */,
+				5E9C0DD418E2CE2800040114 /* Mapbox.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5E9E0FF118B72501008D89AD /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,6 +635,8 @@
 				5E9E0FF318B7252F008D89AD /* MTPlace.m */,
 				5E9ACD0618C5D49700E2F941 /* MTData.h */,
 				5E9ACD0718C5D49700E2F941 /* MTData.m */,
+				5E963D4418F6320800132DF6 /* MTMap.h */,
+				5E963D4518F6320800132DF6 /* MTMap.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -557,6 +645,9 @@
 			isa = PBXGroup;
 			children = (
 				5227EE6718D20877002EB2AB /* PlaceSummaryCell.xib */,
+				5EE4F28318EAA47B00ECE09C /* MapCell.xib */,
+				5EE4F28518EAA61100ECE09C /* MTMapCell.h */,
+				5EE4F28618EAA61100ECE09C /* MTMapCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -575,6 +666,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				5E9C0DD818E2CE5100040114 /* PBXTargetDependency */,
+				5E9C0DDA18E2CE5100040114 /* PBXTargetDependency */,
 			);
 			name = Maptube;
 			productName = Maptube;
@@ -628,6 +721,12 @@
 			mainGroup = 56F1CADA1867DEEB008498DF;
 			productRefGroup = 56F1CAE41867DEEB008498DF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5E9C0DCD18E2CE2800040114 /* Products */;
+					ProjectRef = 5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				56F1CAE21867DEEB008498DF /* Maptube */,
@@ -635,6 +734,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5E9C0DD218E2CE2800040114 /* libMapbox.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMapbox.a;
+			remoteRef = 5E9C0DD118E2CE2800040114 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5E9C0DD418E2CE2800040114 /* Mapbox.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Mapbox.bundle;
+			remoteRef = 5E9C0DD318E2CE2800040114 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		56F1CAE11867DEEB008498DF /* Resources */ = {
@@ -644,6 +760,7 @@
 				5E9B4CFB18B1F1E200D9D6A3 /* board@2x.png in Resources */,
 				56F1CB021867DEEB008498DF /* Images.xcassets in Resources */,
 				5E95916218ADEE310097B6BC /* CHANGELOG.md in Resources */,
+				5E9C0DD518E2CE3600040114 /* Mapbox.bundle in Resources */,
 				5EBBFE9618C6DA89007B6109 /* search@2x.png in Resources */,
 				5EBBFE9318C6DA89007B6109 /* message@2x.png in Resources */,
 				5EBBFE9418C6DA89007B6109 /* place@2x.png in Resources */,
@@ -651,11 +768,12 @@
 				5E95916818ADEE310097B6BC /* pin.png in Resources */,
 				5E95916B18ADEE310097B6BC /* poweredByFoursquare_gray@2x.png in Resources */,
 				5E95916718ADEE310097B6BC /* FSWebLogin.xib in Resources */,
-				5EBBFE9818C6F3A3007B6109 /* mappin@2x.png in Resources */,
+				5EBBFE9818C6F3A3007B6109 /* placepin@2x.png in Resources */,
 				5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */,
 				5E25CBA018CD887800260E5A /* like@2x.png in Resources */,
-				5E25CBA118CD887800260E5A /* pin@2x.png in Resources */,
+				5E25CBA118CD887800260E5A /* mappin@2x.png in Resources */,
 				5EBBFE9218C6DA89007B6109 /* profile@2x.png in Resources */,
+				5EE4F28418EAA47B00ECE09C /* MapCell.xib in Resources */,
 				5EE7CC8D18CF0CAC0095D0B5 /* addmap@2x.png in Resources */,
 				5EE7CC8F18CF0DE50095D0B5 /* setting@2x.png in Resources */,
 				5227EE6818D20877002EB2AB /* PlaceSummaryCell.xib in Resources */,
@@ -664,6 +782,7 @@
 				5E25CB9F18CD887800260E5A /* checkin@2x.png in Resources */,
 				5E95916918ADEE310097B6BC /* pin@2x.png in Resources */,
 				56C3C932186BFA8E00E9B892 /* profilepic@2x.JPG in Resources */,
+				5E91993018E5469900EC3107 /* mark@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,13 +805,16 @@
 				5E95914E18ADE6260097B6BC /* MTAddPlaceViewController.m in Sources */,
 				5E9B4CFE18B1F3E100D9D6A3 /* MTBoardViewController.m in Sources */,
 				56F1CAF31867DEEB008498DF /* main.m in Sources */,
+				5E99478118E94CF300F0D938 /* MTPlaceImageViewController.m in Sources */,
 				56F1CB371869869D008498DF /* MTProfileViewController.m in Sources */,
 				5E95916618ADEE310097B6BC /* FSWebLogin.m in Sources */,
 				5E9E0FF418B7252F008D89AD /* MTPlace.m in Sources */,
 				56F1CAFD1867DEEB008498DF /* MTFirstViewController.m in Sources */,
+				5EE4F28718EAA61100ECE09C /* MTMapCell.m in Sources */,
 				5E9B4D1418B1FE3B00D9D6A3 /* AFHTTPRequestOperation.m in Sources */,
 				5E62BB8E18B602C30061A48C /* MTEditBoardViewController.m in Sources */,
 				5E9B4CF918B1BEAE00D9D6A3 /* MTEditDetailViewController.m in Sources */,
+				5E91992B18E4078E00EC3107 /* UIView+GeometryShortAccess.m in Sources */,
 				56C3C935186C12B700E9B892 /* MTEditProfileViewController.m in Sources */,
 				5E9B4D1A18B1FE3B00D9D6A3 /* AFXMLRequestOperation.m in Sources */,
 				5E95916418ADEE310097B6BC /* FSRequester.m in Sources */,
@@ -701,16 +823,20 @@
 				5E9A669318C029F5005E5169 /* MTSignUpViewController.m in Sources */,
 				5E95916C18ADEE310097B6BC /* FSOAuth.m in Sources */,
 				5E95916518ADEE310097B6BC /* FSTargetCallback.m in Sources */,
+				5E956D0D18E17B1D000FD70B /* MTHomeViewController.m in Sources */,
 				5E95917218ADEEA30097B6BC /* FSConverter.m in Sources */,
+				5E91992E18E51B0700EC3107 /* MTEditPlacePhotoViewController.m in Sources */,
 				5E9B4D1518B1FE3B00D9D6A3 /* AFImageRequestOperation.m in Sources */,
 				5E51970D18C9963500504EBD /* MTViewHelper.m in Sources */,
 				5E95916318ADEE310097B6BC /* Foursquare2.m in Sources */,
 				56F1CB34186976ED008498DF /* MTRootTabBarController.m in Sources */,
 				5EBCC21818C7044F00BA4CAC /* MTMapViewController.m in Sources */,
 				5E9B4D1B18B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m in Sources */,
+				5E963D4618F6320800132DF6 /* MTMap.m in Sources */,
 				5E9A668918C018C5005E5169 /* MTLoginViewController.m in Sources */,
 				5E9B4D1318B1FE3B00D9D6A3 /* AFHTTPClient.m in Sources */,
 				5E9B4D1618B1FE3B00D9D6A3 /* AFJSONRequestOperation.m in Sources */,
+				5E91993318E54AB500EC3107 /* MTPlaceDetailViewController.m in Sources */,
 				5E85E19518B483A000A2A172 /* MTTableView.m in Sources */,
 				5E9ACD0818C5D49700E2F941 /* MTData.m in Sources */,
 				56F1CAF71867DEEB008498DF /* MTAppDelegate.m in Sources */,
@@ -740,6 +866,16 @@
 			isa = PBXTargetDependency;
 			target = 56F1CAE21867DEEB008498DF /* Maptube */;
 			targetProxy = 56F1CB0C1867DEEB008498DF /* PBXContainerItemProxy */;
+		};
+		5E9C0DD818E2CE5100040114 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MapView;
+			targetProxy = 5E9C0DD718E2CE5100040114 /* PBXContainerItemProxy */;
+		};
+		5E9C0DDA18E2CE5100040114 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Resources;
+			targetProxy = 5E9C0DD918E2CE5100040114 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -846,22 +982,30 @@
 		56F1CB191867DEEB008498DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					armv7,
+					armv7s,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: zhong sheng (Y2P65PB7UL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhong sheng (Y2P65PB7UL)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Maptube",
+					"$(PROJECT_DIR)/Maptube",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/MapView\"/**";
 				INFOPLIST_FILE = "Maptube/Maptube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -869,7 +1013,11 @@
 		56F1CB1A1867DEEB008498DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					armv7,
+					armv7s,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -877,14 +1025,18 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Maptube",
+					"$(PROJECT_DIR)/Maptube",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Maptube/Maptube-Prefix.pch";
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/MapView\"/**";
 				INFOPLIST_FILE = "Maptube/Maptube-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

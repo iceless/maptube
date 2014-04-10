@@ -13,10 +13,11 @@
 #import "Foursquare2.h"
 
 #import "MTFirstViewController.h"
-#import "MTSecondViewController.h"
+#import "MTHomeViewController.h"
 #import "MTProfileViewController.h"
 #import "MTAddPlaceViewController.h"
 #import "MTRootTabBarController.h"
+#import "MTPlace.h"
 
 @implementation MTAppDelegate
 #define AVOSCloudAppID  @"ni8qovqmlwvnsck9zfk5c4yaj88yku6kpdfz7aah0ip5wqh4"
@@ -27,23 +28,21 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
-    [self initViewControllers];
     [self initAVOSCloudWithLaunchOptions:launchOptions];
     [self initFoursquare];
+    [self initViewControllers];
+   
     
     return YES;
 }
 
 - (void)initViewControllers
 {
-    MTFirstViewController *homeVC = [[MTFirstViewController alloc] init];
+    MTHomeViewController *homeVC = [[MTHomeViewController alloc] init];
     homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"home.png"] selectedImage:nil];
     UINavigationController *homeNAV = [[UINavigationController alloc] initWithRootViewController:homeVC];
     
-    MTSecondViewController *searchVC = [[MTSecondViewController alloc] init];
-    searchVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Search" image:[UIImage imageNamed:@"search.png"] selectedImage:nil];
-    UINavigationController *searchNAV = [[UINavigationController alloc] initWithRootViewController:searchVC];
+    
     
     MTProfileViewController *profileVC = [[MTProfileViewController alloc] init];
     profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:[UIImage imageNamed:@"profile.png"] selectedImage:nil];
@@ -54,7 +53,7 @@
     UINavigationController *addPlaceNAV = [[UINavigationController alloc] initWithRootViewController:addPlaceVC];
     
     MTRootTabBarController *tabVC = [[MTRootTabBarController alloc] init];
-    tabVC.viewControllers = @[homeNAV, searchNAV, profileNAV, addPlaceNAV];
+    tabVC.viewControllers = @[homeNAV, addPlaceNAV,profileNAV];
     
     UINavigationController *rootNAV = [[UINavigationController alloc] initWithRootViewController:tabVC];
     rootNAV.navigationBarHidden = YES;
@@ -72,6 +71,7 @@
     
     //统计应用启动情况
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [MTPlace registerSubclass];
 }
 
 - (void)initFoursquare

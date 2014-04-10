@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MTEditDetailViewController.h"
-@interface MTEditProfileViewController : UITableViewController<MTEditDetailViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface MTEditProfileViewController : UITableViewController<MTEditDetailViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
 
 //static string array for profile detail fields
 @property (nonatomic, strong) NSArray *fields;
 //mutable string array for profile detail values
 @property (nonatomic, strong) NSMutableArray *values;
-
+@property (nonatomic, assign) BOOL isEditing;
 - (IBAction)saveButtonTapAction:(id)sender;
 
 @end

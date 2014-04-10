@@ -7,6 +7,7 @@
 //
 
 #import "MTMapViewController.h"
+#import "Mapbox.h"
 
 @interface MTMapViewController ()
 
@@ -36,20 +37,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-     self.mapView = [[MKMapView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height)];
     
-     self.mapView.mapType = MKMapTypeStandard;
-     self.mapView.zoomEnabled=NO;
-     self.mapView.scrollEnabled = NO;
-     self.mapView.showsUserLocation=NO;
+	// Do any additional setup after loading the view.
+    
+    self.mapView = [[RMMapView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,self.view.frame.size.height) andTilesource:[[RMMapboxSource alloc] initWithMapID:MapId]];
+    
     [self.view addSubview:self.mapView];
-     
-     MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(self.venue.coordinate,2000 ,2000 );
-     [self.mapView setRegion:region];
-     [self.mapView addAnnotation:self.venue];
-     
+    [self.mapView setCenterCoordinate:self.venue.coordinate];
+    
+   
+    self.mapView.delegate = self;
+    self.mapView.debugTiles = NO;
+    
+    RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:self.mapView
+                                                          coordinate:self.mapView.centerCoordinate
+                                                            andTitle:self.venue.title];
+    
+    annotation.userInfo = @"test";
+    annotation.annotationIcon = [UIImage imageNamed:@"placepin.png"];
+    //[self.mapView ];
+    [self.mapView addAnnotation:annotation];
+    
 }
+
+- (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
+{
+    if (annotation.isUserLocationAnnotation)
+        return nil;
+    
+    RMMarker *marker;
+     marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"placepin.png"]];
+    
+    
+    marker.canShowCallout = YES;
+    
+    return marker;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

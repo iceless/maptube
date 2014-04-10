@@ -14,23 +14,19 @@
 
 @implementation MTEditBoardViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        
     }
     return self;
 }
 
 -(id)initWithData:(NSMutableArray *)array andPFObject:(PFObject *)object{
-    self = [super initWithNibName:nil bundle:nil];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         // Custom initialization
-        UIStoryboard * storyBoard  = [UIStoryboard
-                                      storyboardWithName:@"Main" bundle:nil];
-        self = [storyBoard instantiateViewControllerWithIdentifier:@"EditBoard"];
         self.values = array;
         self.mapObject = object;
     }
@@ -42,18 +38,19 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.fields = @[@"Title", @"Description", @"Category", @"Secret"];
-    UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
     [button addTarget:self action:@selector(saveBoard) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
+    UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     [button setTitle:@"Save" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem=barItem;
+   
     
     
 }
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.table reloadData];
+    [self.tableView reloadData];
 }
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -66,13 +63,26 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UITableViewCell *cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
     
     if(indexPath.section==0){
-        cell =[tableView dequeueReusableCellWithIdentifier:@"CollectionDetailCell"];
+        //cell =[tableView dequeueReusableCellWithIdentifier:n];
         cell.textLabel.text = self.fields[indexPath.row];
-        cell.detailTextLabel.text = self.values[indexPath.row];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        if(indexPath.row!=0){
+            cell.detailTextLabel.text = self.values[indexPath.row];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        else{
+            UITextField *textField= [[UITextField alloc]initWithFrame:CGRectMake(80,10,200,29)];
+            textField.text = self.values[indexPath.row];
+            textField.textAlignment = NSTextAlignmentRight;
+            textField.delegate = self;
+            textField.tag = indexPath.row;
+            [cell.contentView addSubview:textField];
+            
+            
+        }
+
     }
     else if(indexPath.section==1){
         cell.textLabel.text = @"Secret";
@@ -93,13 +103,11 @@
         
     }
    
-    else{
+    else {
         UILabel *label = [[UILabel alloc]initWithFrame:cell.frame];
         label.text =@"Delete Board";
         label.textAlignment = NSTextAlignmentCenter;
-       
         [cell.contentView addSubview:label];
-        
     }
     
     
@@ -113,23 +121,31 @@
         [self.mapObject deleteInBackgroundWithBlock: ^(BOOL succeeded, NSError *error){
             [self.navigationController popViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
-        
-        
         }];
         
     }
-    
-
-}
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"EditBoardDetail"]) {
-        NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
-        MTEditDetailViewController *destViewController = segue.destinationViewController;
+    else{
+        MTEditDetailViewController *destViewController = [[MTEditDetailViewController alloc]init];
         destViewController.delegate = self;
         destViewController.detailValue = self.values[indexPath.row];
         destViewController.indexPathRow = indexPath.row;
+        [self.navigationController pushViewController:destViewController animated:YES];
+
     }
+
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    _values[0] = textField.text;
+    
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return YES;
 }
 
 -(void)saveBoard{
@@ -140,12 +156,9 @@
     [self.mapObject saveInBackgroundWithBlock: ^(BOOL succeeded, NSError *error){
         [self.navigationController popViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
-        
-        
     }];
-
-    
 }
+
 -(void)switchAction:(id)sender{
     UISwitch *switchButton = (UISwitch *)sender;
     //if(switchButton.tag==11){
@@ -154,9 +167,11 @@
     else
         self.values[3] = [NSNumber numberWithBool:YES];
 }
+
 -(void)updateValue:(NSString *)str atIndex:(NSInteger)i{
     self.values[i] = str;
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

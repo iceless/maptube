@@ -18,9 +18,10 @@
     }
     return self;
 }
+
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     id hitView = [super hitTest:point withEvent:event];
-    if (point.y<0) {
+    if (point.y < 0) {
         return nil;
     }
     return hitView;

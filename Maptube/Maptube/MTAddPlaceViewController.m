@@ -12,6 +12,7 @@
 #import "FSConverter.h"
 #import "MTAddPictureViewController.h"
 #import "MTPlaceIntroductionViewController.h"
+#import "MTPlaceDetailViewController.h"
 
 @interface MTAddPlaceViewController ()
 
@@ -35,7 +36,6 @@
     self.title = @"Add Place";
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -53,7 +53,7 @@
     self.searchBar.delegate = self;
     [self.view addSubview:self.searchBar];
     
-    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 226, self.view.frame.size.width, 360)];
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 226, self.view.frame.size.width, self.view.frame.size.height-226-50)];
     self.table.delegate =self;
     self.table.dataSource = self;
     [self.view addSubview:self.table];
@@ -72,6 +72,7 @@
     [self.navigationController setNavigationBarHidden:true];
 
 }
+
 #pragma mark - Map
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation
@@ -125,6 +126,7 @@
     
     [self.mapView removeAnnotations:annForRemove];
 }
+
 - (void)proccessAnnotations {
     [self removeAllAnnotationExceptOfCurrentUser];
     [self.mapView addAnnotations:self.nearbyPlaces];
@@ -141,6 +143,7 @@
     
     
 }
+
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
@@ -148,10 +151,12 @@
     [self.table reloadData];
     searchBar.text = @"";
 }
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     [self getVenuesForLocation:self.curLocation andquery:searchText];
     
 }
+
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     self.isSearching = false;
     self.searchBar.showsCancelButton  = NO;
@@ -193,9 +198,24 @@
     
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     FSVenue *venue = self.nearbyPlaces[indexPath.row];
-    
+    [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",venue.venueId]] andStr:nil compeletion:^(id data){
+        //获取Foursquare venue信息
+        
+        NSDictionary *dict = data;
+        dict = [dict objectForKey:@"response"];
+        dict = [dict objectForKey:@"venue"];
+        
+        MTPlaceDetailViewController *controller = [[MTPlaceDetailViewController  alloc]init];
+        controller.venue = venue;
+        controller.placeData = dict;
+        
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    }];
+/*
     
     //NSLog(@"%@",venue.venueId);
     [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",venue.venueId]] andStr:nil compeletion:^(id data){
@@ -209,7 +229,7 @@
         
     }];
     
-    
+    */
 
 }
 

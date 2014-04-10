@@ -1005,7 +1005,7 @@
         <image name="checkin.png" width="12" height="12"/>
         <image name="home.png" width="16" height="16"/>
         <image name="like.png" width="12" height="12"/>
-        <image name="mappin.png" width="18" height="18"/>
+        <image name="mappin.png" width="12" height="12"/>
         <image name="pin.png" width="13" height="20"/>
         <image name="profile.png" width="16" height="16"/>
         <image name="search.png" width="16" height="16"/>

@@ -22,6 +22,7 @@
     }
     return self;
 }
+
 - (id)initWithValue:(NSString *)value andIndex:(NSUInteger)index{
     self = [super initWithNibName:nil bundle:nil];
     if (self) {

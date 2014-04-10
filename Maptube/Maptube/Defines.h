@@ -15,6 +15,7 @@
 #pragma mark - Constant
 #define Map @"Map"
 #define User @"User"
+#define UserId @"UserId"
 #define Description @"Description"
 #define Secret @"Secret"
 #define Category @"Category"
@@ -26,11 +27,25 @@
 #define VenueID @"VenueID"
 #define VenueAddress @"VenueAddress"
 #define Distance @"Distance"
+#define CollectUser @"CollectUser"
+#define CollectMap @"CollectMap"
+#define Author @"Author"
+#define PlacePhotos @"PlacePhotos"
 
+#define MapId @"bluefeather.hkh8138o"
+#define MapBoxPictureAPI @"http://api.tiles.mapbox.com/v3/"
+//http://api.tiles.mapbox.com/v3/{mapid}/{markers}/{lon},{lat},{z}/{width}x{height}.{format}
+//The optional {markers} parameter can include one or more markers in a comma-separated list. See the Markers section for options
 
+//markers: {name}-{label}+{color}({lon},{lat})
+//color	 An 3 or 6 digit RGB hex color.
+//name	 Marker shape and size.
+//pin-s, pin-m, pin-l
 #pragma mark - Notification
 #define ModifyProfileNotification @"EditProfileNotification"
 #define ModifyBoardNotification @"ModifyBoardNotification"
 #define CloseChooseBoardNotification @"CloseChooseBoardNotification"
+#define PopUpEditPlacePhotoNotification @"PopUpEditPlacePhotoNotification"
+//#define FinishInitMapNotification @"FinishInitMapNotification"
 
 #endif

@@ -38,6 +38,7 @@
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     self.table.delegate =self;
     self.table.dataSource = self;
+    [self.view addSubview:self.table];
     
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 50, 32);
@@ -73,9 +74,11 @@
     
     
 }
+
 -(void)navBack{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section==0) return 3;
@@ -87,12 +90,25 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UITableViewCell *cell= [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         if(indexPath.section==0){
             //cell =[tableView dequeueReusableCellWithIdentifier:@"CollectionDetailCell"];
             cell.textLabel.text = self.fields[indexPath.row];
+            if(indexPath.row!=0){
             cell.detailTextLabel.text = self.values[indexPath.row];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
+            else{
+                UITextField *textField= [[UITextField alloc]initWithFrame:CGRectMake(80,10,200,29)];
+                textField.text = self.values[indexPath.row];
+                textField.textAlignment = NSTextAlignmentRight;
+                textField.delegate = self;
+                textField.tag = indexPath.row;
+                [cell.contentView addSubview:textField];
+
+                
+            }
+            
         }
     /*
         else if(indexPath.section==1){
@@ -132,6 +148,19 @@
     
     return cell;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    _values[0] = textField.text;
+    
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return YES;
+}
 /*
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     MTEditDetailViewController *controller=[[MTEditDetailViewController alloc] init];
@@ -153,10 +182,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if(indexPath.section!=0||indexPath.row!=0){
     MTEditDetailViewController *viewController = [[MTEditDetailViewController alloc]initWithValue:self.values[indexPath.row] andIndex:indexPath.row];
     viewController.delegate =self;
     [self.navigationController pushViewController:viewController animated:YES];
+    }
     
     
 }
@@ -202,6 +232,7 @@
         [mapObject setObject:self.values[1] forKey:Description];
         [mapObject setObject:self.values[2] forKey:Category];
         [mapObject setObject: self.values[3] forKey:Secret];
+        [mapObject setObject:[AVUser currentUser] forKey:Author];
         [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
             if (!error) {
                 PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
@@ -226,7 +257,6 @@
     
     
 }
-
 
 - (void)didReceiveMemoryWarning
 {

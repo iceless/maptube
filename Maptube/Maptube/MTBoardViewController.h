@@ -13,11 +13,15 @@
 
 @interface MTBoardViewController : UIViewController<CLLocationManagerDelegate,MKMapViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
-@property (strong, nonatomic)  IBOutlet MKMapView  *mapView;
+@property (strong, nonatomic)  MKMapView  *mapView;
 @property (strong, nonatomic)  NSArray *placeArray;
-@property (strong, nonatomic)  NSArray *avPlaceArray;
 @property (strong, nonatomic)  PFObject *boardData;
 @property (readwrite, nonatomic) BOOL switchPage;
-@property (strong, nonatomic) IBOutlet MTTableView *tableView;
+@property (strong, nonatomic)  UITableView *tableView;
 
+@property (strong, nonatomic)UIScrollView *mapScrollView;
+
+@property (strong, nonatomic)UIScrollView *tableViewScrollView;
+@property (assign, nonatomic) int _contentLayerState;
+@property (assign, nonatomic) bool isCollected;
 @end

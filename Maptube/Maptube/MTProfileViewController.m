@@ -15,6 +15,8 @@
 #import "MTPlace.h"
 #import "MTEditBoardViewController.h"
 #import "MTSettingsViewController.h"
+#import "MTEditProfileViewController.h"
+#import "MTMap.h"
 
 @interface MTProfileViewController ()
 
@@ -46,6 +48,7 @@
     self.navigationItem.rightBarButtonItem = addMapItem;
 
     self.title = @"Profile";
+    self.currentMap = 1;
 
     
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44)];
@@ -55,17 +58,21 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
-    self.placeArray = [NSMutableDictionary dictionary];
+    self.myMapArray = [NSMutableArray array];
+    self.favorateMapArray = [NSMutableArray array];
     
     self.locationManager =[[CLLocationManager alloc] init];
     self.locationManager.delegate=self;
     self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;
     self.locationManager.distanceFilter=10.0f;
     [self.locationManager startUpdatingLocation];
+    [self performSelectorInBackground:@selector(updateBoard) withObject:nil];
+
     
-    [self updateBoard];
     
 }
+
+
 
 - (void)settingBtnPressed:(id)sender
 {
@@ -81,35 +88,40 @@
 
 -(void)updateBoard{
     
-    self.totalPlacesCount = [NSString stringWithFormat:@"%@",[[PFUser currentUser] objectForKey:@"PlacesCount"]];
+    [self.myMapArray removeAllObjects];
+    [self.favorateMapArray removeAllObjects];
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
-    
-    [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            self.boardArray = objects;
-            
-            
-           for (int i=0;i<self.boardArray.count;i++) {
-               
-               PFObject *mapObject = [self.boardArray objectAtIndex:i];
-               PFRelation *relation = [mapObject relationforKey:Place];
-               [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-                    [self.placeArray setObject:objects forKey:[NSString stringWithFormat:@"%d",i+1]];
-                    if(i==self.boardArray.count-1)
-                    [self.table reloadData];
-               }];
-           }
-             //[self.table reloadData];
-            
-        }
-        else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
+     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+         
+        for (int i=0;i<objects.count;i++) {
+            MTMap *map = [[MTMap alloc]init];
+            map.mapObject = objects[i];
+            [map initPlace];
+            [self.myMapArray addObject:map];
+            if(i==self.myMapArray.count-1)
+            [self.table reloadData];
+        
         }
     }];
-
+    
+    PFRelation *favorateMapRelation = [[PFUser currentUser] relationforKey:CollectMap];
+     [[favorateMapRelation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+         
+         for (int i=0;i<objects.count;i++) {
+             MTMap *map = [[MTMap alloc]init];
+             map.mapObject = objects[i];
+             [map initPlace];
+             [self.favorateMapArray addObject:map];
+             if(i==self.favorateMapArray.count-1)
+                 [self.table reloadData];
+             
+         }
+         
+     }];
     
 }
+
+
 #pragma mark - Location Delegation
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation
             fromLocation:(CLLocation *)oldLocation
@@ -120,13 +132,13 @@
     
 }
 - (void)viewWillAppear:(BOOL)animated {
-    [self updateBoard];
+   // [self updateBoard];
     [super viewWillAppear:animated];
     if ([PFUser currentUser]) {
-//        self.nameLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
+
         self.navItem.title = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
     } else {
-//        self.nameLabel.text = NSLocalizedString(@"Not logged in", nil);
+
         self.navItem.title = @"nobody";
     }
     
@@ -135,10 +147,7 @@
 -(void)editProfile{
     [self.table reloadData];
 }
--(IBAction)clickAddCollection:(id)sender{
-   // MTAddCollectionViewController *viewController = [[MTAddCollectionViewController alloc]init];
-   // [self.navigationController pushViewController:viewController animated:YES];
-}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -178,8 +187,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //return [recipes count];
-   
-    return self.boardArray.count+1;
+    if(self.currentMap==1)
+        return self.myMapArray.count+1;
+    else
+        return self.favorateMapArray.count+1;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -215,7 +227,32 @@
         descriptionView.font = [UIFont systemFontOfSize:13];
         [cell.contentView addSubview:descriptionView];
         
+        self.myMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.myMapButton.frame = CGRectMake(0, 89, 160, 47);
+        [self.myMapButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
+        [self.myMapButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+        [self.myMapButton setTitle:@"My Map" forState:UIControlStateNormal];
+        [self.myMapButton addTarget:self action:@selector(clickMyMapButton:) forControlEvents:UIControlEventTouchUpInside];
+        if(self.currentMap == 1)
+        [self.myMapButton setSelected:YES];
         
+        [cell.contentView addSubview:self.myMapButton];
+        
+        self.collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.collectionButton.frame = CGRectMake(161, 89, 160, 47);
+        [self.collectionButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
+        [self.collectionButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
+        [self.collectionButton setTitle:@"Favorate" forState:UIControlStateNormal];
+        [self.collectionButton addTarget:self action:@selector(clickFavorateButton:) forControlEvents:UIControlEventTouchUpInside];
+        if(self.currentMap == 2)
+            [self.collectionButton setSelected:YES];
+        
+        [cell.contentView addSubview:self.collectionButton];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+        
+        
+        /*
         imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,89,81,47)];
         imgv.layer.borderWidth = 1;
         imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -264,15 +301,19 @@
         label.font = [UIFont systemFontOfSize:14];
         [cell.contentView addSubview:label];
         
-        
+        */
     }else {
         
         UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(9,4,203,21)];
-        PFObject *mapObject = [self.boardArray objectAtIndex:(indexPath.row-1)];
-        label.text = [mapObject objectForKey:Title];
+        MTMap *map;
+        if(self.currentMap==1)
+            map= [self.myMapArray objectAtIndex:(indexPath.row-1)];
+        else map= [self.favorateMapArray objectAtIndex:(indexPath.row-1)];
+        
+        label.text = [map.mapObject objectForKey:Title];
         [cell.contentView addSubview:label];
         
-       
+       /*
         MKMapView *mapView = [[MKMapView alloc]initWithFrame:CGRectMake(9,30,304,119)];
         mapView.mapType = MKMapTypeStandard;
         mapView.zoomEnabled=NO;
@@ -282,40 +323,72 @@
         mapView.layer.borderWidth =1.0;
         mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
         [cell.contentView addSubview:mapView];
-
-
-        NSArray *array = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-        label = [[UILabel alloc]initWithFrame:CGRectMake(240,4,73,21)];
-        label.text = [NSString stringWithFormat:@"%d places",array.count];
+       */
+        UIImageView *mapImgView = [[UIImageView alloc]initWithFrame:CGRectMake(9,30,304,119)];
+        [cell.contentView addSubview:mapImgView];
+        
+        
+       
+        label = [[UILabel alloc]initWithFrame:CGRectMake(235,4,73,21)];
+        label.text = [NSString stringWithFormat:@"%d",map.placeArray.count];
+        label.textAlignment = NSTextAlignmentLeft;
         label.textColor = [UIColor lightGrayColor];
         label.font = [UIFont systemFontOfSize:14];
         [cell.contentView addSubview:label];
-        array = [MTPlace convertPlaceArray:array];
+        
+        UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mappin"]];
+        imgView.frame = CGRectMake(220,4,18,18);
+        [cell.contentView addSubview:imgView];
+        
+       
+       
+        label = [[UILabel alloc]initWithFrame:CGRectMake(280,4,73,21)];
+        label.text = [NSString stringWithFormat:@"%d",map.collectUsers.count];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.textColor = [UIColor lightGrayColor];
+        label.font = [UIFont systemFontOfSize:14];
+        [cell.contentView addSubview:label];
+        
+        imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"like"]];
+        imgView.frame = CGRectMake(260,4,18,18);
+        [cell.contentView addSubview:imgView];
+        
+        NSArray *array;
+    
+        array = [MTPlace convertPlaceArray:map.placeArray];
         if(array.count!=0){
+            
             CGRect placeRect = [MTPlace updateMemberPins:array];
             CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
             
-            //MTPlace *place = self.placeArray[0];
+            //MTPlace *place = self.myPlaceArray[0];
             int distance = placeRect.size.width;
             distance = MAX(1500,distance);
             distance = MIN(distance, 15000000);
             
-            MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
-            [mapView setRegion:region animated:TRUE];
-            [mapView addAnnotations:array];
+            //MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
+          
+            NSString *markStr = @"/";
+            for (MTPlace *place in array){
+                NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f),",place.coordinate.longitude,place.coordinate.latitude];
+                markStr = [markStr stringByAppendingString:str];
+            }
+            markStr = [markStr substringToIndex:([markStr length]-1)];
+            NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxPictureAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
+            [mapImgView setImageWithURL:[NSURL URLWithString:urlStr]];
+        
+        }
+        
+        else{
+            //mapImgView放置默认图片
         }
          
-        /*
-        UIButton *button = (UIButton *)[cell viewWithTag:3];
-        [button addTarget:self action:@selector(clickEdit:) forControlEvents:UIControlEventTouchUpInside];
-        button.tag = 9+indexPath.row;
-         */
+       
         
        
     }
     return cell;
 }
-
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -333,23 +406,64 @@
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    MTBoardViewController *destViewController = [[MTBoardViewController alloc] init];
-    //PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row-1];
-    NSArray *places = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-    destViewController.boardData = [self.boardArray objectAtIndex:indexPath.row-1];
-    if(places.count!=0){
-        destViewController.placeArray = [MTPlace convertPlaceArray:places];
-        destViewController.avPlaceArray = places;
+    if(indexPath.row != 0){
+        MTBoardViewController *destViewController = [[MTBoardViewController alloc] init];
         
+        NSArray *places;
+        if(self.currentMap ==1){
+            MTMap *map = [self.myMapArray objectAtIndex:indexPath.row-1];
+            places = map.placeArray;
+            destViewController.boardData = map.mapObject;
+        }
+        else {
+            MTMap *map = [self.favorateMapArray objectAtIndex:indexPath.row-1];
+
+            places = map.placeArray;
+
+            destViewController.boardData = map.mapObject;
+        }
+        
+        if(places.count!=0){
+            destViewController.placeArray = [MTPlace convertPlaceArray:places];
+            //destViewController.avmyPlaceArray = places;
+            
+        }
+        [self.navigationController pushViewController:destViewController animated:YES];
     }
-    [self.navigationController pushViewController:destViewController animated:YES];
+    else{
+        MTEditProfileViewController  *controller = [[MTEditProfileViewController alloc]init];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
+-(void)clickMyMapButton:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    [button setSelected:YES];
+    if(self.currentMap==2){
+         self.currentMap = 1;
+        [self.table reloadData];
+    }
+    self.currentMap = 1;
+    [self.collectionButton setSelected:NO];
+    
+}
+-(void)clickFavorateButton:(id)sender{
+    UIButton *button = (UIButton *)sender;
+    [button setSelected:YES];
+    if(self.currentMap==1){
+          self.currentMap = 2;
+        [self.table reloadData];
+    }
+  
+    [self.myMapButton setSelected:NO];
+    
+    
+}
 
 -(void)clickEdit:(id)sender{
     UIButton *button = (UIButton *)sender;
     int index = button.tag-10;
-    PFObject *mapObject = [self.boardArray objectAtIndex:index];
+    PFObject *mapObject = [self.myMapArray objectAtIndex:index];
     NSMutableArray *array = [NSMutableArray array];
     array[0] = [mapObject objectForKey:Title];
     array[1] = [mapObject objectForKey:Description];
@@ -360,25 +474,7 @@
     [self.navigationController pushViewController:controller animated:YES];
     
 }
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"BoardDetail"]) {
-        NSIndexPath *indexPath = [self.table indexPathForSelectedRow];
-        MTBoardViewController *destViewController = segue.destinationViewController;
-        //PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row-1];
-        NSArray *places = [self.placeArray objectForKey:[NSString stringWithFormat:@"%d",indexPath.row]];
-        destViewController.boardData = [self.boardArray objectAtIndex:indexPath.row-1];
-        if(places.count!=0){
-            destViewController.placeArray = [MTPlace convertPlaceArray:places];
-            destViewController.avPlaceArray = places;
-            
-        }
-    }
-    
-   
-    
-    
-}
+
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:ModifyBoardNotification];
     [[NSNotificationCenter defaultCenter] removeObserver:ModifyProfileNotification];
