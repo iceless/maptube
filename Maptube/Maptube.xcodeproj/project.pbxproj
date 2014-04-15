@@ -66,6 +66,7 @@
 		5E95917618ADF78E0097B6BC /* MTAddCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */; };
 		5E963D3A18F3859700132DF6 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E963D3918F3859700132DF6 /* AVOSCloud.framework */; };
 		5E963D4618F6320800132DF6 /* MTMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E963D4518F6320800132DF6 /* MTMap.m */; };
+		5E963D4918FB8B3000132DF6 /* MTMapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E963D4818FB8B3000132DF6 /* MTMapDetailViewController.m */; };
 		5E99478118E94CF300F0D938 /* MTPlaceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99478018E94CF300F0D938 /* MTPlaceImageViewController.m */; };
 		5E9A668918C018C5005E5169 /* MTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A668818C018C5005E5169 /* MTLoginViewController.m */; };
 		5E9A669018C0269C005E5169 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A668F18C0269C005E5169 /* CoreTelephony.framework */; };
@@ -233,6 +234,8 @@
 		5E963D3918F3859700132DF6 /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVOSCloud.framework; path = Maptube/AVOSCloud.framework; sourceTree = "<group>"; };
 		5E963D4418F6320800132DF6 /* MTMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMap.h; sourceTree = "<group>"; };
 		5E963D4518F6320800132DF6 /* MTMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMap.m; sourceTree = "<group>"; };
+		5E963D4718FB8B3000132DF6 /* MTMapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapDetailViewController.h; sourceTree = "<group>"; };
+		5E963D4818FB8B3000132DF6 /* MTMapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMapDetailViewController.m; sourceTree = "<group>"; };
 		5E99477F18E94CF300F0D938 /* MTPlaceImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlaceImageViewController.h; sourceTree = "<group>"; };
 		5E99478018E94CF300F0D938 /* MTPlaceImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlaceImageViewController.m; sourceTree = "<group>"; };
 		5E9A668718C018C5005E5169 /* MTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLoginViewController.h; sourceTree = "<group>"; };
@@ -360,6 +363,8 @@
 				5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */,
 				5E9B4CFC18B1F3E100D9D6A3 /* MTBoardViewController.h */,
 				5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */,
+				5E963D4718FB8B3000132DF6 /* MTMapDetailViewController.h */,
+				5E963D4818FB8B3000132DF6 /* MTMapDetailViewController.m */,
 				5E85E19318B483A000A2A172 /* MTTableView.h */,
 				5E85E19418B483A000A2A172 /* MTTableView.m */,
 				5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */,
@@ -824,6 +829,7 @@
 				5E95916C18ADEE310097B6BC /* FSOAuth.m in Sources */,
 				5E95916518ADEE310097B6BC /* FSTargetCallback.m in Sources */,
 				5E956D0D18E17B1D000FD70B /* MTHomeViewController.m in Sources */,
+				5E963D4918FB8B3000132DF6 /* MTMapDetailViewController.m in Sources */,
 				5E95917218ADEEA30097B6BC /* FSConverter.m in Sources */,
 				5E91992E18E51B0700EC3107 /* MTEditPlacePhotoViewController.m in Sources */,
 				5E9B4D1518B1FE3B00D9D6A3 /* AFImageRequestOperation.m in Sources */,

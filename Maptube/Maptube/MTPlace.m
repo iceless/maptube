@@ -18,8 +18,9 @@
     
     NSMutableArray *placeArray = [NSMutableArray arrayWithCapacity:array.count];
     for (AVObject  *dict  in array) {
-        MTPlace *place = [[MTPlace alloc]init];
-        place.name = dict[Title];
+        MTPlace *place = [[MTPlace alloc]initWithMapView:nil coordinate:CLLocationCoordinate2DMake([dict[Latitude] doubleValue],
+                                                                                                   [dict[Longitude] doubleValue]) andTitle:dict[Title]];
+     
         place.venueId = dict[VenueID];
         place.venueAddress = dict[VenueAddress];
         [place setCoordinate:CLLocationCoordinate2DMake([dict[Latitude] doubleValue],

@@ -7,18 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
+#import "Mapbox.h"
 #import <AVOSCloud/AVOSCloud.h>
 
-@interface MTPlace  : AVObject<MKAnnotation,AVSubclassing>
+@interface MTPlace  : RMAnnotation
 @property (nonatomic,strong)NSString *name;
 @property (nonatomic,strong)NSString *venueId;
 @property (nonatomic,strong)NSString *description;
 @property (nonatomic,strong)NSString *venueAddress;
 //@property (nonatomic,strong)NSNumber *distance;
 @property (nonatomic,assign)CLLocationCoordinate2D coordinate;
-@property (nonatomic, readonly, copy) NSString *title;
-@property (nonatomic, readonly, copy) NSString *subtitle;
+
 
 +(NSArray *)convertPlaceArray:(NSArray *)array;
 + (CGRect)updateMemberPins:(NSArray *)members;
