@@ -17,6 +17,7 @@
 #import "MTSettingsViewController.h"
 #import "MTEditProfileViewController.h"
 #import "MTMap.h"
+#import "MTMapDetailViewController.h"
 
 @interface MTProfileViewController ()
 
@@ -96,7 +97,7 @@
         for (int i=0;i<objects.count;i++) {
             MTMap *map = [[MTMap alloc]init];
             map.mapObject = objects[i];
-            [map initPlace];
+            [map initData];
             [self.myMapArray addObject:map];
             if(i==self.myMapArray.count-1)
             [self.table reloadData];
@@ -110,7 +111,7 @@
          for (int i=0;i<objects.count;i++) {
              MTMap *map = [[MTMap alloc]init];
              map.mapObject = objects[i];
-             [map initPlace];
+             [map initData];
              [self.favorateMapArray addObject:map];
              if(i==self.favorateMapArray.count-1)
                  [self.table reloadData];
@@ -407,20 +408,20 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row != 0){
-        MTBoardViewController *destViewController = [[MTBoardViewController alloc] init];
+        MTMapDetailViewController *destViewController = [[MTMapDetailViewController alloc] init];
         
         NSArray *places;
         if(self.currentMap ==1){
             MTMap *map = [self.myMapArray objectAtIndex:indexPath.row-1];
             places = map.placeArray;
-            destViewController.boardData = map.mapObject;
+            destViewController.mapData = map;
         }
         else {
             MTMap *map = [self.favorateMapArray objectAtIndex:indexPath.row-1];
 
             places = map.placeArray;
 
-            destViewController.boardData = map.mapObject;
+            destViewController.mapData = map;
         }
         
         if(places.count!=0){
@@ -428,6 +429,7 @@
             //destViewController.avmyPlaceArray = places;
             
         }
+        destViewController.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:destViewController animated:YES];
     }
     else{
