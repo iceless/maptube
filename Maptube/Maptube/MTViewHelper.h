@@ -10,4 +10,5 @@
 
 @interface MTViewHelper : UIView
 + (void)setExtraCellLineHidden: (UITableView *)tableView;
++(CGSize)getSizebyString:(NSString *)str;
 @end

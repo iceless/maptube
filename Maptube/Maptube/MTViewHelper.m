@@ -28,4 +28,13 @@
     
 }
 
++(CGSize)getSizebyString:(NSString *)str{
+    UILabel *label = [[UILabel alloc] init];
+    label.font = [UIFont systemFontOfSize:12];
+    label.text = str;
+    label.numberOfLines = 0;
+    CGSize maximumLabelSize = CGSizeMake(310, 300);
+    return  [label sizeThatFits:maximumLabelSize];
+}
+
 @end
