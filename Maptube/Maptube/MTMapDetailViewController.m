@@ -48,6 +48,7 @@
     self.storyView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, expectedSize.height+85) style:UITableViewStylePlain];
     self.storyView.hidden = YES;
     self.isShowStory = NO;
+    self.isTableViewFolded = YES;
     self.storyView.dataSource = self;
     self.storyView.delegate = self;
     [self.view addSubview:self.storyView];
@@ -58,6 +59,7 @@
         [self.storyView setSeparatorInset:UIEdgeInsetsZero];
     }
     [MTViewHelper setExtraCellLineHidden:self.storyView];
+    
     
 
 }
@@ -170,6 +172,21 @@
     return 45;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if(tableView != self.storyView){
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(150, 0, 20, 20)];
+        [button setBackgroundColor:[UIColor greenColor]];
+        [view addSubview:button];
+        [button addTarget:self action:@selector(clickFold) forControlEvents:UIControlEventTouchUpInside];
+        return view;
+        
+        
+    }
+    return nil;
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(tableView==self.storyView){
         UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
@@ -266,6 +283,29 @@
         
     }];
     
+
+}
+
+-(void)clickFold{
+    CGRect foldRect = CGRectMake(0, 400, self.view.frame.size.width, self.view.frame.size.height - 400);
+    CGRect unFoldRect = CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height );
+    
+    if(!self.isTableViewFolded) {
+        self.isTableViewFolded = true;
+        self.tableView.frame = unFoldRect;
+        [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+        self.tableView.frame = foldRect;
+       
+    }
+    else {
+        self.isTableViewFolded = false;
+        self.tableView.frame = foldRect;
+        [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+        self.tableView.frame = unFoldRect;
+     
+    }
 
 }
 
