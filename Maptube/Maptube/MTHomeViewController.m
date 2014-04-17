@@ -10,7 +10,7 @@
 #import "MTMapCell.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "MTPlace.h"
-#import "MTBoardViewController.h"
+#import "MTMapDetailViewController.h"
 #import "MTMap.h"
 
 @interface MTHomeViewController ()
@@ -150,11 +150,12 @@
     UITableViewCell *cell =  [self.table cellForRowAtIndexPath:indexPath];
     UIImageView *view = (UIImageView *)[cell.contentView viewWithTag:index];
      */
-    MTBoardViewController *viewController = [[MTBoardViewController alloc] init];
+    MTMapDetailViewController *viewController = [[MTMapDetailViewController alloc] init];
     MTMap *map = [self.mapList objectAtIndex:index];
-    viewController.boardData = map.mapObject;
+    viewController.mapData = map;
     viewController.placeArray = [MTPlace convertPlaceArray:map.placeArray];
-     [self.navigationController pushViewController:viewController animated:YES];
+    viewController.hidesBottomBarWhenPushed=YES;
+    [self.navigationController pushViewController:viewController animated:YES];
     
     
 }
