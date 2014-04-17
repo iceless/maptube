@@ -9,6 +9,7 @@
 #import "MTMapDetailViewController.h"
 #import "MTPlace.h"
 #import "MTEditBoardViewController.h"
+#import "MTPlaceIntroductionViewController.h"
 
 @interface MTMapDetailViewController ()
 
@@ -32,6 +33,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setUpMapView];
+
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 400, self.view.frame.size.width, self.view.frame.size.height - 400) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
@@ -42,8 +44,10 @@
     
    
     CGSize expectedSize = [MTViewHelper getSizebyString:[self.mapData.mapObject objectForKey:Description]];
+    self.storyViewHeight = expectedSize.height+85;
     self.storyView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, expectedSize.height+85) style:UITableViewStylePlain];
-
+    self.storyView.hidden = YES;
+    self.isShowStory = NO;
     self.storyView.dataSource = self;
     self.storyView.delegate = self;
     [self.view addSubview:self.storyView];
@@ -56,6 +60,12 @@
     [MTViewHelper setExtraCellLineHidden:self.storyView];
     
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 
@@ -82,6 +92,8 @@
     self.mapView.delegate = self;
 }
 
+
+
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
 {
     if (annotation.isUserLocationAnnotation)
@@ -100,6 +112,13 @@
 -(void)showStory{
     if(!self.isShowStory) {
         self.isShowStory = true;
+        CGRect frame = self.storyView.frame;
+        frame.size.height = 0;
+        self.storyView.frame = frame;
+        frame.size.height = self.storyViewHeight;
+        [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+        self.storyView.frame = frame;
         self.storyView.hidden = NO;
     }
     else {
@@ -207,6 +226,47 @@
     //UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    MTPlace *place = self.placeArray[indexPath.row];
+    FSVenue *venue = [[FSVenue alloc]init];
+    venue.location.coordinate = place.coordinate;
+    venue.name = place.name;
+    venue.venueId = place.venueId;
+    venue.location.address = place.venueAddress;
+    //venue.location.distance = place.distance;
+    CLLocation *curLocation  = [[CLLocation alloc]initWithLatitude:[MTData sharedInstance].curCoordinate.latitude longitude:[MTData sharedInstance].curCoordinate.longitude];
+    CLLocation *venueLocation  = [[CLLocation alloc]initWithLatitude:venue.location.coordinate.latitude longitude:venue.location.coordinate.longitude];
+    CLLocationDistance distance = [curLocation distanceFromLocation:venueLocation];
+    venue.location.distance = [NSNumber numberWithInt:(int)distance];
+    MTPlaceIntroductionViewController *controller = [[MTPlaceIntroductionViewController  alloc]init];
+    controller.map = self.mapData;
+    controller.mapPlaceArray = self.placeArray;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+    
+    [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",place.venueId]] andStr:nil compeletion:^(id data){
+        //获取Foursquare venue信息
+        
+        NSDictionary *dict = data;
+        dict = [dict objectForKey:@"response"];
+        dict = [dict objectForKey:@"venue"];
+        
+        
+        controller.venue = venue;
+        controller.placeData = dict;
+        [controller initData];
+        
+        
+        
+        
+    }];
+    
+
 }
 
 - (void)didReceiveMemoryWarning

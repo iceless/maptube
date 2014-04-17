@@ -18,6 +18,6 @@
 @property (strong, nonatomic) MTMap *mapData;
 @property (assign, nonatomic) bool isCollected;
 @property (assign, nonatomic) bool isShowStory;
-
+@property (assign, nonatomic) int storyViewHeight;
 
 @end
