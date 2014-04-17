@@ -12,7 +12,7 @@
 #import "FSConverter.h"
 #import "MTAddPictureViewController.h"
 #import "MTPlaceIntroductionViewController.h"
-#import "MTPlaceDetailViewController.h"
+//#import "MTPlaceDetailViewController.h"
 
 @interface MTAddPlaceViewController ()
 
@@ -208,10 +208,10 @@
         dict = [dict objectForKey:@"response"];
         dict = [dict objectForKey:@"venue"];
         
-        MTPlaceDetailViewController *controller = [[MTPlaceDetailViewController  alloc]init];
+        MTPlaceIntroductionViewController *controller = [[MTPlaceIntroductionViewController  alloc]init];
         controller.venue = venue;
         controller.placeData = dict;
-        
+        controller.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:controller animated:YES];
         
     }];
