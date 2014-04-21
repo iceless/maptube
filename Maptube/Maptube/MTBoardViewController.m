@@ -245,10 +245,10 @@
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     MTPlace *place = self.placeArray[indexPath.row];
     
-    label.text = place.name;
+    label.text = place.title;
     label = (UILabel *)[cell viewWithTag:2];
     CLLocation *curLocation  = [[CLLocation alloc]initWithLatitude:[MTData sharedInstance].curCoordinate.latitude longitude:[MTData sharedInstance].curCoordinate.longitude];
-    CLLocation *venueLocation  = [[CLLocation alloc]initWithLatitude:place.coordinate.latitude longitude:place.coordinate.longitude];
+    CLLocation *venueLocation  = [[CLLocation alloc]initWithLatitude:place.longitude.doubleValue longitude:place.longitude.doubleValue];
     CLLocationDistance distance = [curLocation distanceFromLocation:venueLocation];
     label.text = [NSString stringWithFormat:@"%dm",(int)distance];
 
@@ -266,12 +266,14 @@
     
     if(self.switchPage) return;
     self.switchPage = true;
+    /*
     MTPlace *place = self.placeArray[indexPath.row];
     FSVenue *venue = [[FSVenue alloc]init];
-    venue.location.coordinate = place.coordinate;
-    venue.name = place.name;
+    venue.location.coordinate = place.coordinat;
+    venue.name = place.title;
     venue.venueId = place.venueId;
     venue.location.address = place.venueAddress;
+     
     //venue.location.distance = place.distance;
     CLLocation *curLocation  = [[CLLocation alloc]initWithLatitude:[MTData sharedInstance].curCoordinate.latitude longitude:[MTData sharedInstance].curCoordinate.longitude];
     CLLocation *venueLocation  = [[CLLocation alloc]initWithLatitude:venue.location.coordinate.latitude longitude:venue.location.coordinate.longitude];
@@ -293,7 +295,7 @@
         
     }];
 
-    
+    */
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath

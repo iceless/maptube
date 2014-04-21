@@ -78,10 +78,12 @@
     
     [self.view addSubview:self.mapView];
     MTPlace *place = self.placeArray[0];
-    [self.mapView setCenterCoordinate:place.coordinate];
+    [self.mapView setCenterCoordinate:CLLocationCoordinate2DMake(place.latitude.doubleValue,
+                                                                 place.longitude.doubleValue)];
     for(MTPlace *place in self.placeArray){
         RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:self.mapView
-                                                              coordinate:place.coordinate
+                                                              coordinate:CLLocationCoordinate2DMake(place.latitude.doubleValue,
+                                                                                                    place.longitude.doubleValue)
                                                                 andTitle:place.title];
         
         annotation.userInfo = @"test";
@@ -164,7 +166,6 @@
         if(indexPath.row==1){
             CGSize expectedSize = [MTViewHelper getSizebyString:[self.mapData.mapObject objectForKey:Description]];
             return expectedSize.height+10;
-            
         }
         else return 40;
     }
@@ -234,7 +235,7 @@
     label.text = place.title;
     label = (UILabel *)[cell viewWithTag:2];
     CLLocation *curLocation  = [[CLLocation alloc]initWithLatitude:[MTData sharedInstance].curCoordinate.latitude longitude:[MTData sharedInstance].curCoordinate.longitude];
-    CLLocation *venueLocation  = [[CLLocation alloc]initWithLatitude:place.coordinate.latitude longitude:place.coordinate.longitude];
+    CLLocation *venueLocation  = [[CLLocation alloc]initWithLatitude:place.latitude.doubleValue longitude:place.longitude.doubleValue];
     CLLocationDistance distance = [curLocation distanceFromLocation:venueLocation];
     label.text = [NSString stringWithFormat:@"%dm",(int)distance];
     label = (UILabel *)[cell viewWithTag:3];
@@ -250,39 +251,34 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     MTPlace *place = self.placeArray[indexPath.row];
-    FSVenue *venue = [[FSVenue alloc]init];
-    venue.location.coordinate = place.coordinate;
-    venue.name = place.name;
-    venue.venueId = place.venueId;
-    venue.location.address = place.venueAddress;
+    //FSVenue *venue = [[FSVenue alloc]init];
+   // venue.location.coordinate = place.coordinate;
+   // venue.name = place.title;
+   // venue.venueId = place.venueId;
+   // venue.location.address = place.venueAddress;
     //venue.location.distance = place.distance;
     CLLocation *curLocation  = [[CLLocation alloc]initWithLatitude:[MTData sharedInstance].curCoordinate.latitude longitude:[MTData sharedInstance].curCoordinate.longitude];
-    CLLocation *venueLocation  = [[CLLocation alloc]initWithLatitude:venue.location.coordinate.latitude longitude:venue.location.coordinate.longitude];
+    CLLocation *venueLocation  = [[CLLocation alloc]initWithLatitude:place.latitude.doubleValue longitude:place.longitude.doubleValue];
     CLLocationDistance distance = [curLocation distanceFromLocation:venueLocation];
-    venue.location.distance = [NSNumber numberWithInt:(int)distance];
+    //venue.location.distance = [NSNumber numberWithInt:(int)distance];
     MTPlaceIntroductionViewController *controller = [[MTPlaceIntroductionViewController  alloc]init];
     controller.map = self.mapData;
     controller.mapPlaceArray = self.placeArray;
-    
+    controller.place = place;
+    [controller initData];
     [self.navigationController pushViewController:controller animated:YES];
-    
+    /*
     [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",place.venueId]] andStr:nil compeletion:^(id data){
         //获取Foursquare venue信息
-        
         NSDictionary *dict = data;
         dict = [dict objectForKey:@"response"];
         dict = [dict objectForKey:@"venue"];
-        
-        
-        controller.venue = venue;
+        //controller.venue = venue;
         controller.placeData = dict;
         [controller initData];
         
-        
-        
-        
     }];
-    
+    */
 
 }
 
