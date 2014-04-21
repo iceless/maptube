@@ -71,7 +71,7 @@
     
     //统计应用启动情况
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    //[MTPlace registerSubclass];
+    [MTPlace registerSubclass];
 }
 
 - (void)initFoursquare
