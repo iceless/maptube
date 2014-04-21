@@ -237,6 +237,7 @@
 -(void)clickImage:(id)sender{
     MTPlaceImageViewController *controller = [[MTPlaceImageViewController alloc]init];
     controller.imageUrlArray = self.imageUrlArray;
+    controller.avFileImageArray = self.place.placePhotos;
     [self.navigationController pushViewController:controller animated:YES];
     
 }

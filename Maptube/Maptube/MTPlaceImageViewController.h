@@ -11,5 +11,6 @@
 @interface MTPlaceImageViewController : UIViewController<UIScrollViewDelegate>
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) NSMutableArray *imageUrlArray;
+@property (strong, nonatomic) NSMutableArray *avFileImageArray;
 @property(nonatomic, strong)UIPageControl *pageControl;
 @end

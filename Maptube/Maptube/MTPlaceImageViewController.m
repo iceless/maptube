@@ -7,6 +7,7 @@
 //
 
 #import "MTPlaceImageViewController.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @implementation MTPlaceImageViewController
 
@@ -43,6 +44,16 @@
         [imgView setUserInteractionEnabled:YES];
         
         [self.scrollView addSubview:imgView];
+    }
+    for (int i=0; i<self.avFileImageArray.count; i++){
+        AVFile *picObject = self.avFileImageArray[i];
+        NSData *imageData = [picObject getData];
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width*i+20, self.view.frame.size.height/2-200, 280, 280)];
+        [imgView setImage:[UIImage imageWithData:imageData]];
+        [imgView setUserInteractionEnabled:YES];
+        
+        [self.scrollView addSubview:imgView];
+    
     }
     [self.view addSubview:self.scrollView];
     
