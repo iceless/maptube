@@ -281,6 +281,41 @@
     */
 
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    if(scrollView==self.tableView){
+        //UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        NSArray *cellArray = [self.tableView visibleCells];
+        UITableViewCell *cell = cellArray[0];
+        NSIndexPath *path = [self.tableView indexPathForCell:cell];
+        MTPlace *place = self.placeArray[path.row];
+        
+        for(RMAnnotation *annotation in self.mapView.annotations){
+            RMMarker *marker = (RMMarker *)annotation.layer;
+            if(place.latitude.doubleValue == annotation.coordinate.latitude&&place.longitude.doubleValue == annotation.coordinate.longitude){
+                
+                [marker replaceUIImage:[UIImage imageNamed:@"mappin.png"]];
+            }
+            else {
+                [marker replaceUIImage:[UIImage imageNamed:@"placepin.png"]];
+            }
+            
+        }
+        
+        
+        
+    }
+    
+}
+
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    
+    
+    
+    
+}
 
 -(void)clickFold{
     CGRect foldRect = CGRectMake(0, 400, self.view.frame.size.width, self.view.frame.size.height - 400);
