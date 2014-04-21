@@ -99,7 +99,7 @@
    
     cell.placeCountLabel.text = [NSString stringWithFormat:@"%d",map.placeArray.count];
     
-    NSArray * array = [MTPlace convertPlaceArray:map.placeArray];
+    NSArray * array = map.placeArray;
     if(array.count!=0){
         
         CGRect placeRect = [MTPlace updateMemberPins:array];
@@ -114,7 +114,7 @@
         
         NSString *markStr = @"/";
         for (MTPlace *place in array){
-            NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f),",place.coordinate.longitude,place.coordinate.latitude];
+            NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f),",place.longitude.doubleValue,place.latitude.doubleValue];
             markStr = [markStr stringByAppendingString:str];
         }
         markStr = [markStr substringToIndex:([markStr length]-1)];

@@ -356,7 +356,7 @@
         
         NSArray *array;
     
-        array = [MTPlace convertPlaceArray:map.placeArray];
+        array = map.placeArray;
         if(array.count!=0){
             
             CGRect placeRect = [MTPlace updateMemberPins:array];
@@ -371,7 +371,7 @@
           
             NSString *markStr = @"/";
             for (MTPlace *place in array){
-                NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f),",place.coordinate.longitude,place.coordinate.latitude];
+                NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f),",place.longitude.doubleValue,place.latitude.doubleValue];
                 markStr = [markStr stringByAppendingString:str];
             }
             markStr = [markStr substringToIndex:([markStr length]-1)];
@@ -425,8 +425,8 @@
         }
         
         if(places.count!=0){
-            destViewController.placeArray = [MTPlace convertPlaceArray:places];
-            //destViewController.avmyPlaceArray = places;
+            //destViewController.placeArray = [MTPlace convertPlaceArray:places];
+            destViewController.placeArray = places;
             
         }
         destViewController.hidesBottomBarWhenPushed=YES;
