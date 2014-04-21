@@ -67,6 +67,7 @@
 		5E963D3A18F3859700132DF6 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E963D3918F3859700132DF6 /* AVOSCloud.framework */; };
 		5E963D4618F6320800132DF6 /* MTMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E963D4518F6320800132DF6 /* MTMap.m */; };
 		5E963D4918FB8B3000132DF6 /* MTMapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E963D4818FB8B3000132DF6 /* MTMapDetailViewController.m */; };
+		5E963D541900C20A00132DF6 /* addpic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E963D531900C20A00132DF6 /* addpic@2x.png */; };
 		5E99478118E94CF300F0D938 /* MTPlaceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99478018E94CF300F0D938 /* MTPlaceImageViewController.m */; };
 		5E9A668918C018C5005E5169 /* MTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A668818C018C5005E5169 /* MTLoginViewController.m */; };
 		5E9A669018C0269C005E5169 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A668F18C0269C005E5169 /* CoreTelephony.framework */; };
@@ -236,6 +237,7 @@
 		5E963D4518F6320800132DF6 /* MTMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMap.m; sourceTree = "<group>"; };
 		5E963D4718FB8B3000132DF6 /* MTMapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTMapDetailViewController.h; sourceTree = "<group>"; };
 		5E963D4818FB8B3000132DF6 /* MTMapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTMapDetailViewController.m; sourceTree = "<group>"; };
+		5E963D531900C20A00132DF6 /* addpic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addpic@2x.png"; sourceTree = "<group>"; };
 		5E99477F18E94CF300F0D938 /* MTPlaceImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlaceImageViewController.h; sourceTree = "<group>"; };
 		5E99478018E94CF300F0D938 /* MTPlaceImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlaceImageViewController.m; sourceTree = "<group>"; };
 		5E9A668718C018C5005E5169 /* MTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLoginViewController.h; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 		52EB0F1D18D03959008CF6E6 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				5E963D531900C20A00132DF6 /* addpic@2x.png */,
 				5E91992F18E5469900EC3107 /* mark@2x.png */,
 				5EE7CC8E18CF0DE50095D0B5 /* setting@2x.png */,
 				5EE7CC8C18CF0CAC0095D0B5 /* addmap@2x.png */,
@@ -774,6 +777,7 @@
 				5E95916B18ADEE310097B6BC /* poweredByFoursquare_gray@2x.png in Resources */,
 				5E95916718ADEE310097B6BC /* FSWebLogin.xib in Resources */,
 				5EBBFE9818C6F3A3007B6109 /* placepin@2x.png in Resources */,
+				5E963D541900C20A00132DF6 /* addpic@2x.png in Resources */,
 				5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */,
 				5E25CBA018CD887800260E5A /* like@2x.png in Resources */,
 				5E25CBA118CD887800260E5A /* mappin@2x.png in Resources */,
