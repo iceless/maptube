@@ -153,7 +153,7 @@
     MTMapDetailViewController *viewController = [[MTMapDetailViewController alloc] init];
     MTMap *map = [self.mapList objectAtIndex:index];
     viewController.mapData = map;
-    viewController.placeArray = [MTPlace convertPlaceArray:map.placeArray];
+    viewController.placeArray = map.placeArray;
     viewController.hidesBottomBarWhenPushed=YES;
     [self.navigationController pushViewController:viewController animated:YES];
     
