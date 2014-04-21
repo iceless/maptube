@@ -201,6 +201,7 @@
 
     }
 }
+
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSUInteger sourceType = 0;
@@ -227,11 +228,8 @@
         } else {
             
             sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-            
         }
-        
     }
-    
     
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
     

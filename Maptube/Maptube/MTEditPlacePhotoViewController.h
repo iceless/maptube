@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MTPlace.h"
 
-@interface MTEditPlacePhotoViewController : UIViewController
+@interface MTEditPlacePhotoViewController : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (strong, nonatomic) NSArray *imageStrArray;
-@property (strong, nonatomic) NSString *placeName;
+//@property (strong, nonatomic) NSString *placeName;
 @property (strong, nonatomic) NSString *location;
-
+@property (strong, nonatomic) MTPlace *place;
+@property (strong, nonatomic) NSMutableArray *selectImageArray;
 @end
