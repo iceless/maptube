@@ -11,6 +11,10 @@
 //#import <Parse/Parse.h>
 
 @implementation MTPlace
+
+
+
+
 + (NSString *)parseClassName {
     return @"Place";
 }
@@ -18,13 +22,16 @@
     
     NSMutableArray *placeArray = [NSMutableArray arrayWithCapacity:array.count];
     for (AVObject  *dict  in array) {
-        MTPlace *place = [[MTPlace alloc]initWithMapView:nil coordinate:CLLocationCoordinate2DMake([dict[Latitude] doubleValue],
-                                                                                                   [dict[Longitude] doubleValue]) andTitle:dict[Title]];
+        MTPlace *place = [[MTPlace alloc]init];
+    
+        place.title = dict[Title];
      
         place.venueId = dict[VenueID];
         place.venueAddress = dict[VenueAddress];
-        [place setCoordinate:CLLocationCoordinate2DMake([dict[Latitude] doubleValue],
-                                                                 [dict[Longitude] doubleValue])];
+     
+        //place.placePhotos = [dict relationforKey:PlacePhotos];
+
+        
         //place.distance = dict[Distance];
         [placeArray addObject:place];
         
@@ -38,15 +45,15 @@
     //calculate new region to show on map
     double center_long = 0.0f;
     double center_lat = 0.0f;
-    double max_long = firstPlace.coordinate.longitude;
-    double min_long = firstPlace.coordinate.longitude;
-    double max_lat = firstPlace.coordinate.latitude;
-    double min_lat = firstPlace.coordinate.latitude;
+    double max_long = firstPlace.longitude.doubleValue;
+    double min_long = firstPlace.longitude.doubleValue;
+    double max_lat = firstPlace.latitude.doubleValue;
+    double min_lat = firstPlace.latitude.doubleValue;
     
     for (MTPlace *member in members) {
         double lat, lng;
-        lat = (double)member.coordinate.latitude;
-        lng = (double)member.coordinate.longitude;
+        lat = (double)member.latitude.doubleValue;
+        lng = (double)member.longitude.doubleValue;
         //find min and max values
         if (lat > max_lat) {max_lat = lat;}
         if (lat < min_lat) {min_lat = lat;}
