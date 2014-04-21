@@ -283,7 +283,7 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    if(scrollView==self.tableView){
+    if(scrollView==self.tableView&&!self.isTableViewFolded){
         //UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         NSArray *cellArray = [self.tableView visibleCells];
         UITableViewCell *cell = cellArray[0];

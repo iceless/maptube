@@ -42,8 +42,13 @@
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:RefreshTableViewNotification object:nil];
 
      [self updateMap];
+}
+
+-(void)refreshTableView{
+    [self.table reloadData];
 }
 
 - (void)didReceiveMemoryWarning

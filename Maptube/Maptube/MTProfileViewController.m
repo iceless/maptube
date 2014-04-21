@@ -59,6 +59,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:RefreshTableViewNotification object:nil];
     self.myMapArray = [NSMutableArray array];
     self.favorateMapArray = [NSMutableArray array];
     
@@ -73,6 +74,9 @@
     
 }
 
+-(void)refreshTableView{
+    [self.table reloadData];
+}
 
 
 - (void)settingBtnPressed:(id)sender

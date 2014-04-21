@@ -10,14 +10,15 @@
 
 @implementation MTMap
 -(void)initData{
-    self.finishInit = NO;
+
     PFRelation *placeRelation = [self.mapObject relationforKey:Place];
     AVQuery *pquery = [placeRelation query];
     [pquery includeKey:PlacePhotos];
     [pquery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.placeArray = objects;
-        if(self.authorImage&&self.collectUsers)
-            self.finishInit = true;
+        [[NSNotificationCenter defaultCenter] postNotificationName:RefreshTableViewNotification object:nil];
+        //if(self.authorImage&&self.collectUsers)
+            //self.finishInit = true;
     }];
     
     AVUser *user = [self.mapObject objectForKey:Author];
@@ -31,8 +32,9 @@
     AVRelation *collectRelation = [self.mapObject objectForKey:CollectUser];
     [collectRelation.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.collectUsers = objects;
-        if(self.authorImage&&self.placeArray)
-            self.finishInit = true;
+        [[NSNotificationCenter defaultCenter] postNotificationName:RefreshTableViewNotification object:nil];
+        //if(self.authorImage&&self.placeArray)
+            //self.finishInit = true;
     }];
     
 }
@@ -63,8 +65,9 @@
         AVFile *theImage = [photoObject objectForKey:@"imageFile"];
         NSData *imageData = [theImage getData];
         self.authorImage = [UIImage imageWithData:imageData];
-        if(self.collectUsers&&self.placeArray)
-            self.finishInit = true;
+            [[NSNotificationCenter defaultCenter] postNotificationName:RefreshTableViewNotification object:nil];
+        //if(self.collectUsers&&self.placeArray)
+           // self.finishInit = true;
         }
     }];
     }

@@ -15,7 +15,7 @@
 @property (nonatomic,strong)NSArray *placeArray;
 @property (nonatomic,strong)NSArray *collectUsers;
 @property (nonatomic,strong)UIImage *authorImage;
-@property (nonatomic,assign)BOOL finishInit;
+
 -(void)initData;
 -(void)initPlace;
 @end

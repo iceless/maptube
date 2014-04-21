@@ -47,6 +47,6 @@
 #define ModifyBoardNotification @"ModifyBoardNotification"
 #define CloseChooseBoardNotification @"CloseChooseBoardNotification"
 #define PopUpEditPlacePhotoNotification @"PopUpEditPlacePhotoNotification"
-//#define FinishInitMapNotification @"FinishInitMapNotification"
+#define RefreshTableViewNotification @"RefreshTableViewNotification"
 
 #endif
