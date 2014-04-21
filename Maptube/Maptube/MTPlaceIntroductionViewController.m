@@ -40,7 +40,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeChooseBoardView) name:CloseChooseBoardNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEditPlacePhotoView) name:PopUpEditPlacePhotoNotification object:nil];
     self.boardArray = [NSMutableArray array];
-	[self updateBoard];
+	//[self updateBoard];
     //self.title = [self.placeData objectForKey:@"name"];
     /*
     self.addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,220,246,19)];
@@ -67,7 +67,7 @@
     //NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
     //add scroll view
   
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 160)];
         
     
     
@@ -76,7 +76,7 @@
     [self.view addSubview:self.scrollView];
     
    
-    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 180, 320, 270) style:UITableViewStyleGrouped];
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(5, 200, 310, 270) style:UITableViewStyleGrouped];
     self.table.delegate = self;
     self.table.dataSource = self;
     [self.view addSubview:self.table];
@@ -91,8 +91,22 @@
     [self.view addSubview:backButton];
     [backButton addTarget:self action:@selector(navBack) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *pinItem = [[UIBarButtonItem alloc] initWithTitle:@"Pin" style:UIBarButtonItemStylePlain target:self action:@selector(pin:)];
-    self.navigationItem.rightBarButtonItem = pinItem;
+    //UIBarButtonItem *pinItem = [[UIBarButtonItem alloc] initWithTitle:@"Pin" style:UIBarButtonItemStylePlain target:self action:@selector(pin:)];
+   // self.navigationItem.rightBarButtonItem = pinItem;
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(180, 170, 60, 20);
+   
+    if([self.map.author.objectId isEqualToString:[AVUser currentUser].objectId]){
+        [button setTitle:@"Edit" forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(showEditPlacePhotoView) forControlEvents:UIControlEventTouchUpInside];
+    }
+    else {
+        [button setTitle:@"Pin" forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [self.view addSubview:button];
+    
+    
 
 
     
@@ -109,12 +123,12 @@
 }
 
 -(void)initData{
-    
+    NSArray *picArray;
     NSDictionary *pictureDict = [self.placeData objectForKey:@"photos"];
     NSArray *array = [pictureDict objectForKey:@"groups"];
     if(array.count!=0){
         pictureDict = [array objectAtIndex:0];
-        NSArray *picArray = [pictureDict objectForKey:@"items"];
+        picArray = [pictureDict objectForKey:@"items"];
         if(picArray.count!=0){
             for (int i=0; i<picArray.count; i++) {
                 
@@ -133,8 +147,24 @@
             }
             
         }
+    }
+    else if(self.place.placePhotos.count!=0){
         
-        self.scrollView.contentSize = CGSizeMake(picArray.count*320, 160) ;
+            for (int i=0; i<self.place.placePhotos.count; i++)  {
+                AVFile *picObject = self.place.placePhotos[i];
+                NSData *imageData = [picObject getData];
+                UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 160)] ;
+                [imgView setImage:[UIImage imageWithData:imageData]];
+                [self.scrollView addSubview:imgView];
+                
+            }
+        picArray = self.place.placePhotos;
+    }
+    
+        
+    if(array.count!=0||self.place.placePhotos.count!=0){
+
+        self.scrollView.contentSize = CGSizeMake(picArray.count*320, 180) ;
         self.scrollView.delegate = self;
         
         UITapGestureRecognizer *sigleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickImage:)];
@@ -155,9 +185,12 @@
         numberLabel.text = [NSString stringWithFormat:@"%d",self.imageUrlArray.count];
         numberLabel.textColor = [UIColor blueColor];
         [self.view addSubview:numberLabel];
-        
     }
-
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 170, 160, 40)];
+    titleLabel.text = self.venue.name;
+    titleLabel.font = [UIFont systemFontOfSize:14];
+    [self.view addSubview:titleLabel];
     [self.table reloadData];
     
 }
@@ -234,8 +267,9 @@
 -(void)showEditPlacePhotoView{
     MTEditPlacePhotoViewController *viewController = [[MTEditPlacePhotoViewController alloc]init];
     viewController.imageStrArray = self.imageUrlArray;
-    viewController.placeName = self.venue.name;
+    //viewController.placeName = self.venue.name;
     viewController.location = self.venue.location.address;
+    viewController.place = self.place;
     [self.navigationController pushViewController:viewController animated:NO];
 }
 

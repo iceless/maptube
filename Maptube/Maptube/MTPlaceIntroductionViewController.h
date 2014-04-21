@@ -10,6 +10,7 @@
 #import "FSVenue.h"
 #import "MTChooseBoardViewController.h"
 #import "MTMap.h"
+#import "MTPlace.h"
 
 
 @interface MTPlaceIntroductionViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
@@ -18,12 +19,14 @@
 @property (strong, nonatomic) UILabel *distanceLabel;
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) UIPageControl *pageControl;
-@property (strong, nonatomic) NSDictionary *placeData;
+@property (strong, nonatomic) NSDictionary *placeData;  //从foursquare取得的place数据
 @property (strong, nonatomic) FSVenue *venue;
 @property (strong, nonatomic) UITableView *table;
+@property (strong, nonatomic) UITableView *mapTable;
 @property (strong, nonatomic) NSMutableArray *boardArray;
 @property (strong, nonatomic) NSMutableArray *imageUrlArray;
 @property (strong, nonatomic) MTMap *map;
+@property (strong, nonatomic) MTPlace *place;
 @property (strong, nonatomic) NSArray *mapPlaceArray;
 //@property (strong, nonatomic) IBOutlet MKMapView  *mapView;
 @property (strong, nonatomic) MTChooseBoardViewController *chooseBoardView;
