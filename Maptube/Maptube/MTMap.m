@@ -12,7 +12,9 @@
 -(void)initData{
     self.finishInit = NO;
     PFRelation *placeRelation = [self.mapObject relationforKey:Place];
-    [[placeRelation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    AVQuery *pquery = [placeRelation query];
+    [pquery includeKey:PlacePhotos];
+    [pquery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.placeArray = objects;
         if(self.authorImage&&self.collectUsers)
             self.finishInit = true;

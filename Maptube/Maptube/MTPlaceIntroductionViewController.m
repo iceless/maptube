@@ -39,6 +39,7 @@
     self.imageUrlArray = [[NSMutableArray alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeChooseBoardView) name:CloseChooseBoardNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEditPlacePhotoView) name:PopUpEditPlacePhotoNotification object:nil];
+  //  self.place.placePhotos = [self.place objectForKey:PlacePhotos];
     self.boardArray = [NSMutableArray array];
 	//[self updateBoard];
     //self.title = [self.placeData objectForKey:@"name"];
@@ -66,14 +67,14 @@
     
     //NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
     //add scroll view
-  
     self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 160)];
-        
+    
     
     
     [self.scrollView setPagingEnabled:YES];
     self.scrollView.showsHorizontalScrollIndicator =NO;
     [self.view addSubview:self.scrollView];
+    
     
    
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(5, 200, 310, 270) style:UITableViewStyleGrouped];
@@ -107,7 +108,7 @@
     [self.view addSubview:button];
     
     
-
+    [self initData];
 
     
 }
@@ -123,6 +124,7 @@
 }
 
 -(void)initData{
+    
     NSArray *picArray;
     NSDictionary *pictureDict = [self.placeData objectForKey:@"photos"];
     NSArray *array = [pictureDict objectForKey:@"groups"];
@@ -151,11 +153,25 @@
     else if(self.place.placePhotos.count!=0){
         
             for (int i=0; i<self.place.placePhotos.count; i++)  {
+                
                 AVFile *picObject = self.place.placePhotos[i];
                 NSData *imageData = [picObject getData];
                 UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 160)] ;
                 [imgView setImage:[UIImage imageWithData:imageData]];
                 [self.scrollView addSubview:imgView];
+                
+                /*
+                AVQuery *query =[AVQuery queryWithClassName:@"_File"];
+                [query whereKey:@"objectId" equalTo:picObject.objectId];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    AVFile *file = objects[0];
+                    NSData *imageData = [file getData];
+                    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 160)] ;
+                    [imgView setImage:[UIImage imageWithData:imageData]];
+                    [self.scrollView addSubview:imgView];
+
+                }];
+                */
                 
             }
         picArray = self.place.placePhotos;

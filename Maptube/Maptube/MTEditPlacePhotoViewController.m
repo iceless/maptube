@@ -134,9 +134,11 @@
     else y = 225;
     view.frame = CGRectMake(x, y, width, height);
     view.userInteractionEnabled = YES;
+    
     UITapGestureRecognizer  *singleTap = [[UITapGestureRecognizer  alloc]initWithTarget:self action:@selector(clickImage:)];
     [view addGestureRecognizer:singleTap];
     view.image = image;
+    
     UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mark.png"]];
     imgView.tag = 1;
     imgView.frame = CGRectMake(80, 0, 15, 15);
@@ -148,17 +150,16 @@
     
 }
 
--(void)clickImage:(id)sender{
-    
-    NSInteger index = [(UIGestureRecognizer *)sender view].tag;
-    UIImageView *view = (UIImageView *)[self.view viewWithTag:index];
+-(void)clickImage:(UITapGestureRecognizer *)gestureRecognizer{
+   
+    UIImageView *view = (UIImageView*)gestureRecognizer.view;
     UIImageView *imgView = (UIImageView *)[view viewWithTag:1];
     imgView.hidden = !imgView.hidden;
     if(imgView.hidden){
-        [self.selectImageArray removeObject:imgView.image];
+        [self.selectImageArray removeObject:view.image];
     }
     else {
-        [self.selectImageArray addObject:imgView.image];
+        [self.selectImageArray addObject:view.image];
     }
     
 }
@@ -175,8 +176,9 @@
         AVFile *imageFile = [AVFile fileWithName:str data:imageData];
         [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
-                if(!self.place.placePhotos) self.place.placePhotos = [[NSMutableArray alloc]initWithCapacity:10];
+               if(!self.place.placePhotos) self.place.placePhotos = [[NSMutableArray alloc]initWithCapacity:10];
                 [self.place.placePhotos addObject:imageFile];
+                [self.place setObject:self.place.placePhotos forKey:PlacePhotos];
                 
                 
                 [self.place saveInBackground];
