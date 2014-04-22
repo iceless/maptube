@@ -13,4 +13,5 @@
 @property(nonatomic,strong)UIImage *iconImage;
 @property (nonatomic, assign) CLLocationCoordinate2D curCoordinate;
 +(MTData*)sharedInstance;
++(NSString *)getCity:(NSDictionary *)dict;
 @end

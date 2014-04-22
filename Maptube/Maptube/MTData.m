@@ -40,4 +40,20 @@
     }
     return self;
 }
+
++(NSString *)getCity:(NSDictionary *)dict{
+    NSArray *array = dict[@"results"][0];
+    for(NSDictionary *resultDict in array)
+    {
+        NSString *str = resultDict[@"type"];
+        if([str isEqualToString:@"city"]){
+            
+            return resultDict[@"name"];
+        }
+    
+    }
+    
+    
+    return nil;
+}
 @end
