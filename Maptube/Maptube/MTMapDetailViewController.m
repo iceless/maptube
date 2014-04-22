@@ -11,6 +11,7 @@
 #import "MTEditBoardViewController.h"
 #import "MTPlaceIntroductionViewController.h"
 
+
 @interface MTMapDetailViewController ()
 
 @end
@@ -34,11 +35,12 @@
     // Do any additional setup after loading the view.
     [self setUpMapView];
 
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 400, self.view.frame.size.width, self.view.frame.size.height - 80) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 45*3-20, self.view.frame.size.width, 45*3+20) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"PlaceSummaryCell" bundle:nil] forCellReuseIdentifier:@"PlaceSummaryCell"];
+    
 
     [self.view addSubview:self.tableView];
     
@@ -208,7 +210,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if(tableView != self.storyView){
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
-        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(150, 0, 20, 20)];
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(130, 0, 60, 20)];
         [button setBackgroundColor:[UIColor greenColor]];
         [view addSubview:button];
         [button addTarget:self action:@selector(clickFold) forControlEvents:UIControlEventTouchUpInside];
@@ -267,7 +269,20 @@
         }
         else{
             UILabel *label = [[UILabel alloc]init];
-            label.text = @"New York";
+            NSArray *array = self.mapData.mapObject[City];
+            MTPlace *place = self.mapData.placeArray[0];
+            if(array||array.count==0){
+                [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@/geocode/%f,%f.json",MapBoxAPI,MapId,place.longitude.doubleValue,place.latitude.doubleValue]] andStr:nil compeletion:^(id data){
+                    
+                    NSDictionary *dict = data;
+                    NSString *str =  [MTData getCity:dict];
+                    label.text = str;
+                    
+                }];
+                
+                
+            }
+            //label.text = @"New York";
             label.font = [UIFont systemFontOfSize:12];
             label.frame = CGRectMake(5, 5, 80, 20);
             [cell.contentView addSubview:label];
@@ -288,6 +303,7 @@
     label = (UILabel *)[cell viewWithTag:3];
     label.text = place.venueAddress;
     
+    if(indexPath.row==0) cell.backgroundColor = [UIColor yellowColor];
     //UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
     
     return cell;
@@ -330,10 +346,16 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    if(scrollView==self.tableView&&!self.isTableViewFolded){
+    if(scrollView==self.tableView&&self.isTableViewFolded){
         //UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
         NSArray *cellArray = [self.tableView visibleCells];
+        for(int i = 1;i<cellArray.count;i++){
+             UITableViewCell *cell = cellArray[i];
+            cell.backgroundColor = [UIColor whiteColor];
+        }
         UITableViewCell *cell = cellArray[0];
+        cell.backgroundColor = [UIColor yellowColor];
+        
         NSIndexPath *path = [self.tableView indexPathForCell:cell];
         MTPlace *place = self.placeArray[path.row];
         
@@ -365,7 +387,7 @@
 }
 
 -(void)clickFold{
-    CGRect foldRect = CGRectMake(0, 400, self.view.frame.size.width, self.view.frame.size.height - 400);
+    CGRect foldRect = CGRectMake(0, self.view.frame.size.height - 45*3-20, self.view.frame.size.width, 45*3+20);
     CGRect unFoldRect = CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height );
     
     if(!self.isTableViewFolded) {
