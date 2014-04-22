@@ -325,7 +325,7 @@
             markStr = [markStr stringByAppendingString:str];
             UIImageView *mapImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 120)];
             
-            NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxPictureAPI,MapId,markStr,self.venue.coordinate.longitude,self.venue.coordinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
+            NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxAPI,MapId,markStr,self.venue.coordinate.longitude,self.venue.coordinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
             [mapImgView setImageWithURL:[NSURL URLWithString:urlStr]];
             [cell.contentView addSubview:mapImgView];
             
