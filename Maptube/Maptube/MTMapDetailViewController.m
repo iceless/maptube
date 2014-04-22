@@ -152,6 +152,30 @@
     
 }
 
+-(void)collect{
+    
+    PFRelation *relation = [self.mapData.mapObject relationforKey:CollectUser];
+    AVUser *user = [AVUser currentUser];
+    PFRelation *mapRelation = [user relationforKey:CollectMap];
+    if(!self.isCollected){
+
+        [relation addObject:user];
+        [mapRelation addObject:self.mapData.mapObject];
+        self.isCollected = YES;
+    }
+    
+    
+    else{
+        [mapRelation removeObject:self.mapData.mapObject];
+        [relation removeObject:user];
+        
+        self.isCollected = NO;
+    }
+    [user saveEventually];
+    [self.mapData.mapObject saveEventually];
+    
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -210,11 +234,26 @@
             imgView.layer.masksToBounds = YES;
             imgView.layer.cornerRadius =15;
             [cell.contentView addSubview:imgView];
-            UIButton *editButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [editButton addTarget:self action:@selector(editMap) forControlEvents:UIControlEventTouchUpInside];
-            [editButton setTitle:@"Edit" forState:UIControlStateNormal];
-            editButton.frame = CGRectMake(270, 10, 50, 20);
-            [cell.contentView addSubview:editButton];
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            button.frame = CGRectMake(270, 10, 50, 20);
+            AVUser *user = self.mapData.author;
+            NSString *userID = [[AVUser currentUser] objectId];
+            if([[user objectId] isEqualToString:userID])
+            {
+                [button addTarget:self action:@selector(editMap) forControlEvents:UIControlEventTouchUpInside];
+                [button setTitle:@"Edit" forState:UIControlStateNormal];
+            }
+            else{
+                [button addTarget:self action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
+                [button setTitle:@"Collect" forState:UIControlStateNormal];
+                
+                
+            }
+
+            
+          
+            
+            [cell.contentView addSubview:button];
         }
         else if(indexPath.row==1){
             UILabel *descriptionLabel = [[UILabel alloc] init];
