@@ -67,7 +67,7 @@
     
     //NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
     //add scroll view
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 160)];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
     
     
     
@@ -95,7 +95,7 @@
     //UIBarButtonItem *pinItem = [[UIBarButtonItem alloc] initWithTitle:@"Pin" style:UIBarButtonItemStylePlain target:self action:@selector(pin:)];
    // self.navigationItem.rightBarButtonItem = pinItem;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(180, 170, 60, 20);
+    button.frame = CGRectMake(180, 180, 60, 20);
    
     if([self.map.author.objectId isEqualToString:[AVUser currentUser].objectId]){
         [button setTitle:@"Edit" forState:UIControlStateNormal];
@@ -180,7 +180,7 @@
         
     if(array.count!=0||self.place.placePhotos.count!=0){
 
-        self.scrollView.contentSize = CGSizeMake(picArray.count*320, 180) ;
+        self.scrollView.contentSize = CGSizeMake(picArray.count*320, 160) ;
         self.scrollView.delegate = self;
         
         UITapGestureRecognizer *sigleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickImage:)];
