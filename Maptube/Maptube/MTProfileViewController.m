@@ -56,6 +56,9 @@
     self.table.delegate =self;
     self.table.dataSource = self;
     [self.view addSubview:self.table];
+    if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.table setSeparatorInset:UIEdgeInsetsZero];
+    }
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:ModifyProfileNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
@@ -378,7 +381,7 @@
                 markStr = [markStr stringByAppendingString:str];
             }
             markStr = [markStr substringToIndex:([markStr length]-1)];
-            NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxPictureAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
+            NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
             [mapImgView setImageWithURL:[NSURL URLWithString:urlStr]];
         
         }
