@@ -57,7 +57,7 @@
     self.table.dataSource = self;
     [self.view addSubview:self.table];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editProfile) name:ModifyProfileNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:ModifyProfileNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:RefreshTableViewNotification object:nil];
     self.myMapArray = [NSMutableArray array];
@@ -70,6 +70,21 @@
     [self.locationManager startUpdatingLocation];
     [self performSelectorInBackground:@selector(updateBoard) withObject:nil];
 
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // [self updateBoard];
+    [super viewWillAppear:animated];
+    if ([PFUser currentUser]) {
+        
+        self.navItem.title = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
+    } else {
+        
+        self.navItem.title = @"nobody";
+    }
+   
     
     
 }
@@ -136,29 +151,11 @@
     
     
 }
-- (void)viewWillAppear:(BOOL)animated {
-   // [self updateBoard];
-    [super viewWillAppear:animated];
-    if ([PFUser currentUser]) {
-
-        self.navItem.title = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
-    } else {
-
-        self.navItem.title = @"nobody";
-    }
-    
-    
-}
--(void)editProfile{
-    [self.table reloadData];
-}
 
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
+
+
 /*
 - (IBAction)logOutButtonTapAction:(id)sender {
     [PFUser logOut];
@@ -188,6 +185,7 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 */
+#pragma mark - TableView Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -230,6 +228,7 @@
         UITextView *descriptionView= [[UITextView alloc]initWithFrame:CGRectMake(88,53,302,29)];
         descriptionView.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
         descriptionView.font = [UIFont systemFontOfSize:13];
+        descriptionView.delegate = self;
         [cell.contentView addSubview:descriptionView];
         
         self.myMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -411,6 +410,8 @@
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if(indexPath.row != 0){
         MTMapDetailViewController *destViewController = [[MTMapDetailViewController alloc] init];
         
@@ -441,6 +442,29 @@
         [self.navigationController pushViewController:controller animated:YES];
     }
 }
+
+
+#pragma mark - TextView Delegate
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    AVUser *user = [AVUser currentUser];
+    user[@"description"] = textView.text;
+    [user saveEventually];
+    [textView resignFirstResponder];
+    
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString*)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+
+#pragma mark - Action
 
 -(void)clickMyMapButton:(id)sender{
     UIButton *button = (UIButton *)sender;
@@ -481,9 +505,16 @@
     
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:ModifyBoardNotification];
     [[NSNotificationCenter defaultCenter] removeObserver:ModifyProfileNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:RefreshTableViewNotification];
 }
 
 @end

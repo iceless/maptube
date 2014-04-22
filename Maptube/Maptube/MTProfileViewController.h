@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,CLLocationManagerDelegate>
+@interface MTProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,CLLocationManagerDelegate,UITextViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UINavigationItem *navItem;
 @property (nonatomic, strong) UITableView *table;
