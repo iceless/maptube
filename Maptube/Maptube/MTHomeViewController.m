@@ -59,6 +59,7 @@
 
 -(void)updateMap{
     AVQuery *query = [AVQuery queryWithClassName:Map];
+    [query addDescendingOrder:CollectUserCount];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         //NSLog(@"%@",error);
         if(!error){
@@ -105,8 +106,9 @@
     cell.placeCountLabel.text = [NSString stringWithFormat:@"%d",map.placeArray.count];
     
     NSArray * array = map.placeArray;
+    
     if(array.count!=0){
-        
+       
         CGRect placeRect = [MTPlace updateMemberPins:array];
         CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
         
@@ -126,8 +128,8 @@
         NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,cell.mapImageView.frame.size.width,cell.mapImageView.frame.size.height];
         [cell.mapImageView setImageWithURL:[NSURL URLWithString:urlStr]];
         cell.mapImageView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *sigleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMapImage:)];
-        [cell.mapImageView addGestureRecognizer:sigleTapRecognizer];
+        UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMapImage:)];
+        [cell.mapImageView addGestureRecognizer:singleTapRecognizer];
         cell.mapImageView.tag = indexPath.row;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         // [mapView setRegion:region animated:TRUE];

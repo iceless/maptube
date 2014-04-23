@@ -29,6 +29,7 @@
 #define VenueAddress @"venueAddress"
 #define Distance @"distance"
 #define CollectUser @"CollectUser"
+#define CollectUserCount @"collectUserCount"
 #define CollectMap @"CollectMap"
 #define Author @"Author"
 #define PlacePhotos @"placePhotos"
