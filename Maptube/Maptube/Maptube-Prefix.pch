@@ -15,6 +15,6 @@
     #import "AFNetworking.h"
     #import "AFHelper.h"
     #import "MTData.h"
-    #import "MTViewHelper.h"
+    #import "MTBaseViewController.h"
     #import "Defines.h"
 #endif

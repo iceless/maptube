@@ -10,7 +10,7 @@
 #import "Mapbox.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "MTMap.h"
-@interface MTMapDetailViewController : UIViewController<RMMapViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface MTMapDetailViewController : MTBaseViewController<RMMapViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) RMMapView  *mapView;
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UITableView *storyView;

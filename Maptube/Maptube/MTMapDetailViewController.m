@@ -23,8 +23,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        UIBarButtonItem *addMapItem = [[UIBarButtonItem alloc] initWithTitle:@"Story" style:UIBarButtonItemStylePlain target:self action:@selector(showStory)];
-        self.navigationItem.rightBarButtonItem = addMapItem;
+        
+       
     }
     return self;
 }
@@ -34,6 +34,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setUpMapView];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 24, 24);
+    [button setImage:[UIImage imageNamed:@"story.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(showStory) forControlEvents:UIControlEventTouchUpInside];
+    [self useCustomBackBarButtonItem];
+    
+    UIBarButtonItem *mapItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = mapItem;
 
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 45*3-20, self.view.frame.size.width, 45*3+20) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor whiteColor];
@@ -45,7 +54,7 @@
     [self.view addSubview:self.tableView];
     
    
-    CGSize expectedSize = [MTViewHelper getSizebyString:[self.mapData.mapObject objectForKey:Description]];
+    CGSize expectedSize = [MTData getSizebyString:[self.mapData.mapObject objectForKey:Description]];
     self.storyViewHeight = expectedSize.height+85;
     self.storyView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, expectedSize.height+85) style:UITableViewStylePlain];
     self.storyView.hidden = YES;
@@ -60,8 +69,8 @@
     if ([self.storyView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.storyView setSeparatorInset:UIEdgeInsetsZero];
     }
-    [MTViewHelper setExtraCellLineHidden:self.storyView];
-    [MTViewHelper setExtraCellLineHidden:self.tableView];
+    [self setExtraCellLineHidden:self.storyView];
+    [self setExtraCellLineHidden:self.tableView];
     
     
 
@@ -107,7 +116,7 @@
         return nil;
     
     RMMarker *marker;
-    marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"placepin.png"]];
+    marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"location_blue.png"]];
     
     
     marker.canShowCallout = YES;
@@ -191,7 +200,7 @@
 {
     if(tableView == self.storyView){
         if(indexPath.row==1){
-            CGSize expectedSize = [MTViewHelper getSizebyString:[self.mapData.mapObject objectForKey:Description]];
+            CGSize expectedSize = [MTData getSizebyString:[self.mapData.mapObject objectForKey:Description]];
             return expectedSize.height+10;
         }
         else return 40;
@@ -210,9 +219,16 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if(tableView != self.storyView){
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
-        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(130, 0, 60, 20)];
-        [button setBackgroundColor:[UIColor greenColor]];
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(290, 0, 30, 30)];
+        if(self.isTableViewFolded){
+          [button setImage:[UIImage imageNamed:@"mapdetail_list button-1.png"] forState:UIControlStateNormal];
+        }
+        else{
+            [button setImage:[UIImage imageNamed:@"mapdetail_list button-2.png"] forState:UIControlStateNormal];
+            
+        }
+        
         [view addSubview:button];
         [button addTarget:self action:@selector(clickFold) forControlEvents:UIControlEventTouchUpInside];
         return view;
@@ -364,10 +380,10 @@
             RMMarker *marker = (RMMarker *)annotation.layer;
             if(place.latitude.doubleValue == annotation.coordinate.latitude&&place.longitude.doubleValue == annotation.coordinate.longitude){
                 
-                [marker replaceUIImage:[UIImage imageNamed:@"mappin.png"]];
+                [marker replaceUIImage:[UIImage imageNamed:@"location_red.png"]];
             }
             else {
-                [marker replaceUIImage:[UIImage imageNamed:@"placepin.png"]];
+                [marker replaceUIImage:[UIImage imageNamed:@"location_blue.png"]];
             }
             
         }
