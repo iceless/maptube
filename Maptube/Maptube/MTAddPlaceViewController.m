@@ -41,7 +41,7 @@
     [super viewDidLoad];
     //self.title = @"Find A Place";
 	// Do any additional setup after loading the view.
-    [self.navigationController setNavigationBarHidden:YES];
+    //[self.navigationController setNavigationBarHidden:YES];
     self.mapView = [[MKMapView alloc]initWithFrame:CGRectMake(0,44,320,180)];
     self.mapView.mapType = MKMapTypeStandard;
     self.mapView.zoomEnabled=YES;
@@ -51,7 +51,9 @@
     
     self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, 320, 44)];
     self.searchBar.delegate = self;
-    [self.view addSubview:self.searchBar];
+    //[self.view addSubview:self.searchBar];
+    [self.navigationController.view addSubview:self.searchBar];
+    self.searchBar.backgroundImage = [self createImageWithColor:[UIColor clearColor]];
     
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 226, self.view.frame.size.width, self.view.frame.size.height-226-50)];
     self.table.delegate =self;
@@ -69,8 +71,21 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = false;
-    [self.navigationController setNavigationBarHidden:true];
+    //[self.navigationController setNavigationBarHidden:true];
 
+}
+
+- (UIImage *)createImageWithColor: (UIColor *) color
+{
+    CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
 }
 
 #pragma mark - Map
