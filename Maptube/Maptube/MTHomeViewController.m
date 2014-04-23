@@ -118,14 +118,14 @@
         distance = MIN(distance, 15000000);
         
         //MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
-        
+        float zoom=12;
         NSString *markStr = @"/";
         for (MTPlace *place in array){
             NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f),",place.longitude.doubleValue,place.latitude.doubleValue];
             markStr = [markStr stringByAppendingString:str];
         }
         markStr = [markStr substringToIndex:([markStr length]-1)];
-        NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,cell.mapImageView.frame.size.width,cell.mapImageView.frame.size.height];
+        NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,%f/%.0fx%.0f.png",MapBoxAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,zoom,cell.mapImageView.frame.size.width,cell.mapImageView.frame.size.height];
         [cell.mapImageView setImageWithURL:[NSURL URLWithString:urlStr]];
         cell.mapImageView.userInteractionEnabled = YES;
         UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMapImage:)];
