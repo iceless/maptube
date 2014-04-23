@@ -40,17 +40,17 @@
 - (void)initViewControllers
 {
     MTHomeViewController *homeVC = [[MTHomeViewController alloc] init];
-    homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"home.png"] selectedImage:nil];
+    homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"home_normal.png"] selectedImage:[UIImage imageNamed:@"home_active.png"]];
     UINavigationController *homeNAV = [[UINavigationController alloc] initWithRootViewController:homeVC];
     
     
     
     MTProfileViewController *profileVC = [[MTProfileViewController alloc] init];
-    profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:[UIImage imageNamed:@"profile.png"] selectedImage:nil];
+    profileVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Profile" image:[UIImage imageNamed:@"profile_normal.png"] selectedImage:[UIImage imageNamed:@"profile_active.png"]];
     UINavigationController *profileNAV = [[UINavigationController alloc] initWithRootViewController:profileVC];
     
     MTAddPlaceViewController *addPlaceVC = [[MTAddPlaceViewController alloc] init];
-    addPlaceVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Add" image:[UIImage imageNamed:@"place.png"] selectedImage:nil];
+    addPlaceVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Pin" image:[UIImage imageNamed:@"pin_normal.png"] selectedImage:[UIImage imageNamed:@"pin_active.png"]];
     UINavigationController *addPlaceNAV = [[UINavigationController alloc] initWithRootViewController:addPlaceVC];
     
     MTRootTabBarController *tabVC = [[MTRootTabBarController alloc] init];
@@ -85,6 +85,10 @@
 -(void)initStyle{
     [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:1 green:1 blue:1 alpha:1.0],NSForegroundColorAttributeName,[UIFont systemFontOfSize:18],NSFontAttributeName, nil]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:18.0/255 green:97.0/255 blue:131.0/255 alpha:1]];
+    
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    
+  
     
 }
 
