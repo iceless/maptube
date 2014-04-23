@@ -41,6 +41,15 @@
     return self;
 }
 
++(CGSize)getSizebyString:(NSString *)str{
+    UILabel *label = [[UILabel alloc] init];
+    label.font = [UIFont systemFontOfSize:12];
+    label.text = str;
+    label.numberOfLines = 0;
+    CGSize maximumLabelSize = CGSizeMake(310, 300);
+    return  [label sizeThatFits:maximumLabelSize];
+}
+
 +(NSString *)getCity:(NSDictionary *)dict{
     NSArray *array = dict[@"results"][0];
     for(NSDictionary *resultDict in array)
@@ -55,5 +64,17 @@
     
     
     return nil;
+}
+
++ (UIImage*) createImageWithColor: (UIColor*) color
+{
+    CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage* theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
 }
 @end

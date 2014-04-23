@@ -14,4 +14,6 @@
 @property (nonatomic, assign) CLLocationCoordinate2D curCoordinate;
 +(MTData*)sharedInstance;
 +(NSString *)getCity:(NSDictionary *)dict;
++(CGSize)getSizebyString:(NSString *)str;
++ (UIImage*) createImageWithColor: (UIColor*) color;
 @end
