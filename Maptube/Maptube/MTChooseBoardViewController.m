@@ -64,8 +64,8 @@
     UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [bar pushNavigationItem:navigationItem animated:YES];
     [self.view addSubview:bar];
-    [MTViewHelper setExtraCellLineHidden:self.table];
-     [self updateBoard];
+    [self setExtraCellLineHidden:self.table];
+    [self updateBoard];
 	// Do any additional setup after loading the view.
 }
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTViewHelper : UIView
-+ (void)setExtraCellLineHidden: (UITableView *)tableView;
-+(CGSize)getSizebyString:(NSString *)str;
+@interface MTBaseViewController : UIViewController
+-(void)setExtraCellLineHidden: (UITableView *)tableView;
+-(void)useCustomBackBarButtonItem;
 @end
