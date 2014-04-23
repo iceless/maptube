@@ -36,7 +36,7 @@
     [self setUpMapView];
 
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 45*3-20, self.view.frame.size.width, 45*3+20) style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"PlaceSummaryCell" bundle:nil] forCellReuseIdentifier:@"PlaceSummaryCell"];
@@ -61,6 +61,7 @@
         [self.storyView setSeparatorInset:UIEdgeInsetsZero];
     }
     [MTViewHelper setExtraCellLineHidden:self.storyView];
+    [MTViewHelper setExtraCellLineHidden:self.tableView];
     
     
 
