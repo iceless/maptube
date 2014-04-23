@@ -47,7 +47,7 @@
     
    
     self.mapView.delegate = self;
-    self.mapView.debugTiles = NO;
+    //self.mapView.debugTiles = NO;
     
     RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:self.mapView
                                                           coordinate:self.mapView.centerCoordinate
@@ -58,6 +58,12 @@
     //[self.mapView ];
     [self.mapView addAnnotation:annotation];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation

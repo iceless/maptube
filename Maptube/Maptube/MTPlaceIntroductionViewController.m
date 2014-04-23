@@ -327,6 +327,9 @@
             
             NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxAPI,MapId,markStr,self.venue.coordinate.longitude,self.venue.coordinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
             [mapImgView setImageWithURL:[NSURL URLWithString:urlStr]];
+            mapImgView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showMap)];
+            [mapImgView addGestureRecognizer:singleTapRecognizer];
             [cell.contentView addSubview:mapImgView];
             
         }
@@ -391,12 +394,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section==1&&indexPath.row!=0){
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        MTMapDetailViewController *controller = [[MTMapDetailViewController alloc]init];
+        controller.mapData = self.map;
+        controller.placeArray = self.mapPlaceArray;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    MTMapDetailViewController *controller = [[MTMapDetailViewController alloc]init];
-    controller.mapData = self.map;
-    controller.placeArray = self.mapPlaceArray;
-    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
