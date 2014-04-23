@@ -90,6 +90,7 @@
 		5E99062E19079228007370F5 /* profile_favorites@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E99061A19079228007370F5 /* profile_favorites@2x.png */; };
 		5E99062F19079228007370F5 /* profile_mymap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E99061B19079228007370F5 /* profile_mymap@2x.png */; };
 		5E99063019079228007370F5 /* profile_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E99061C19079228007370F5 /* profile_normal@2x.png */; };
+		5E9906321907AEF8007370F5 /* MyMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9906311907AEF8007370F5 /* MyMapCell.xib */; };
 		5E99478118E94CF300F0D938 /* MTPlaceImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99478018E94CF300F0D938 /* MTPlaceImageViewController.m */; };
 		5E9A668918C018C5005E5169 /* MTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A668818C018C5005E5169 /* MTLoginViewController.m */; };
 		5E9A669018C0269C005E5169 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9A668F18C0269C005E5169 /* CoreTelephony.framework */; };
@@ -278,6 +279,7 @@
 		5E99061A19079228007370F5 /* profile_favorites@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_favorites@2x.png"; sourceTree = "<group>"; };
 		5E99061B19079228007370F5 /* profile_mymap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_mymap@2x.png"; sourceTree = "<group>"; };
 		5E99061C19079228007370F5 /* profile_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile_normal@2x.png"; sourceTree = "<group>"; };
+		5E9906311907AEF8007370F5 /* MyMapCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyMapCell.xib; sourceTree = "<group>"; };
 		5E99477F18E94CF300F0D938 /* MTPlaceImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlaceImageViewController.h; sourceTree = "<group>"; };
 		5E99478018E94CF300F0D938 /* MTPlaceImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlaceImageViewController.m; sourceTree = "<group>"; };
 		5E9A668718C018C5005E5169 /* MTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTLoginViewController.h; sourceTree = "<group>"; };
@@ -708,6 +710,7 @@
 			children = (
 				5227EE6718D20877002EB2AB /* PlaceSummaryCell.xib */,
 				5EE4F28318EAA47B00ECE09C /* MapCell.xib */,
+				5E9906311907AEF8007370F5 /* MyMapCell.xib */,
 				5EE4F28518EAA61100ECE09C /* MTMapCell.h */,
 				5EE4F28618EAA61100ECE09C /* MTMapCell.m */,
 			);
@@ -855,6 +858,7 @@
 				5E99062219079228007370F5 /* favorites_normal@2x.png in Resources */,
 				5E99062919079228007370F5 /* mapdetail_list button-2@2x.png in Resources */,
 				5E990608190791FE007370F5 /* story@2x.png in Resources */,
+				5E9906321907AEF8007370F5 /* MyMapCell.xib in Resources */,
 				5E99061E19079228007370F5 /* back@2x.png in Resources */,
 				5E95916A18ADEE310097B6BC /* poweredByFoursquare_gray.png in Resources */,
 				5E99062819079228007370F5 /* mapdetail_list button-1@2x.png in Resources */,

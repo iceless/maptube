@@ -10,7 +10,7 @@
 
 @interface MTProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,CLLocationManagerDelegate,UITextViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UINavigationItem *navItem;
+
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *myMapArray;
 @property (nonatomic, strong) NSMutableArray *favorateMapArray;

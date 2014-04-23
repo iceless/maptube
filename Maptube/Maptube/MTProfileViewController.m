@@ -18,6 +18,7 @@
 #import "MTEditProfileViewController.h"
 #import "MTMap.h"
 #import "MTMapDetailViewController.h"
+#import "MTMapCell.h"
 
 @interface MTProfileViewController ()
 
@@ -61,6 +62,9 @@
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
+    [self.table registerNib:[UINib nibWithNibName:@"MapCell" bundle:nil] forCellReuseIdentifier:@"CollectMapCell"];
+    [self.table registerNib:[UINib nibWithNibName:@"MyMapCell" bundle:nil] forCellReuseIdentifier:@"MyMapCell"];
+    
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:ModifyProfileNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
@@ -84,10 +88,10 @@
     [super viewWillAppear:animated];
     if ([PFUser currentUser]) {
         
-        self.navItem.title = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
+        self.title = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
     } else {
         
-        self.navItem.title = @"nobody";
+        self.title = @"nobody";
     }
    
     
@@ -264,138 +268,66 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         
-        
-        /*
-        imgv = [[UIImageView alloc]initWithFrame:CGRectMake(0,89,81,47)];
-        imgv.layer.borderWidth = 1;
-        imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        [cell.contentView addSubview:imgv];
-        imgv = [[UIImageView alloc]initWithFrame:CGRectMake(80,89,81,47)];
-        imgv.layer.borderWidth = 1;
-        imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        [cell.contentView addSubview:imgv];
-        imgv = [[UIImageView alloc]initWithFrame:CGRectMake(160,89,81,47)];
-        imgv.layer.borderWidth = 1;
-        imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        [cell.contentView addSubview:imgv];
-        imgv = [[UIImageView alloc]initWithFrame:CGRectMake(240,89,80,47)];
-        imgv.layer.borderWidth = 1;
-        imgv.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        [cell.contentView addSubview:imgv];
-        
-        label = [[UILabel alloc]initWithFrame:CGRectMake(20,115,46,21)];
-        label.text = @"Places";
-        label.textColor = [UIColor lightGrayColor];
-        label.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:label];
-        
-        label = [[UILabel alloc]initWithFrame:CGRectMake(0,95,81,21)];
-        label.text = self.totalPlacesCount;
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor lightGrayColor];
-        label.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:label];
-        
-        
-        
-        label = [[UILabel alloc]initWithFrame:CGRectMake(103,115,36,21)];
-        label.text = @"Likes";
-        label.textColor = [UIColor lightGrayColor];
-        label.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:label];
-        label = [[UILabel alloc]initWithFrame:CGRectMake(169,115,64,21)];
-        label.text = @"Followers";
-        label.textColor = [UIColor lightGrayColor];
-        label.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:label];
-        label = [[UILabel alloc]initWithFrame:CGRectMake(251,115,64,21)];
-        label.text = @"Following";
-        label.textColor = [UIColor lightGrayColor];
-        label.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:label];
-        
-        */
-    }else {
-        
-        UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(9,4,203,21)];
+    }
+    else {
         MTMap *map;
-        if(self.currentMap==1)
+        NSString *str;
+        if(self.currentMap==1){
+            str = @"MyMapCell";
             map= [self.myMapArray objectAtIndex:(indexPath.row-1)];
-        else map= [self.favorateMapArray objectAtIndex:(indexPath.row-1)];
+        }
+        else {
+            map= [self.favorateMapArray objectAtIndex:(indexPath.row-1)];
+            str = @"CollectMapCell";
+        }
+         MTMapCell *cell = (MTMapCell *)[tableView dequeueReusableCellWithIdentifier:str];
         
-        label.text = [map.mapObject objectForKey:Title];
-        [cell.contentView addSubview:label];
+        cell.nameLabel.text = [map.mapObject objectForKey:Title];
         
-       /*
-        MKMapView *mapView = [[MKMapView alloc]initWithFrame:CGRectMake(9,30,304,119)];
-        mapView.mapType = MKMapTypeStandard;
-        mapView.zoomEnabled=NO;
-        mapView.scrollEnabled = NO;
-        mapView.showsUserLocation=NO;
-        mapView.userInteractionEnabled = NO;
-        mapView.layer.borderWidth =1.0;
-        mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        [cell.contentView addSubview:mapView];
-       */
-        UIImageView *mapImgView = [[UIImageView alloc]initWithFrame:CGRectMake(9,30,304,119)];
-        [cell.contentView addSubview:mapImgView];
+        if(self.currentMap==2){
+            cell.authorLabel.text = [map.author objectForKey:@"username"];
+            cell.iconImage.layer.masksToBounds = YES;
+            cell.iconImage.layer.cornerRadius =15;
+            cell.iconImage.image = map.authorImage;
+        }
+        cell.likeCountLabel.text = [NSString stringWithFormat:@"%d",map.collectUsers.count];
         
         
-       
-        label = [[UILabel alloc]initWithFrame:CGRectMake(235,4,73,21)];
-        label.text = [NSString stringWithFormat:@"%d",map.placeArray.count];
-        label.textAlignment = NSTextAlignmentLeft;
-        label.textColor = [UIColor lightGrayColor];
-        label.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:label];
+        cell.placeCountLabel.text = [NSString stringWithFormat:@"%d",map.placeArray.count];
         
-        UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mappin"]];
-        imgView.frame = CGRectMake(220,4,18,18);
-        [cell.contentView addSubview:imgView];
         
-       
-       
-        label = [[UILabel alloc]initWithFrame:CGRectMake(280,4,73,21)];
-        label.text = [NSString stringWithFormat:@"%d",map.collectUsers.count];
-        label.textAlignment = NSTextAlignmentLeft;
-        label.textColor = [UIColor lightGrayColor];
-        label.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:label];
+        NSArray * array = map.placeArray;
         
-        imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"like"]];
-        imgView.frame = CGRectMake(260,4,18,18);
-        [cell.contentView addSubview:imgView];
-        
-        NSArray *array;
-    
-        array = map.placeArray;
         if(array.count!=0){
             
             CGRect placeRect = [MTPlace updateMemberPins:array];
             CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
             
-            //MTPlace *place = self.myPlaceArray[0];
+            //MTPlace *place = self.placeArray[0];
             int distance = placeRect.size.width;
             distance = MAX(1500,distance);
             distance = MIN(distance, 15000000);
             
             //MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
-          
+            float zoom=12;
             NSString *markStr = @"/";
             for (MTPlace *place in array){
                 NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f),",place.longitude.doubleValue,place.latitude.doubleValue];
                 markStr = [markStr stringByAppendingString:str];
             }
             markStr = [markStr substringToIndex:([markStr length]-1)];
-            NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
-            [mapImgView setImageWithURL:[NSURL URLWithString:urlStr]];
-        
+            NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,%f/%.0fx%.0f.png",MapBoxAPI,MapId,markStr,coodinate.longitude,coodinate.latitude,zoom,cell.mapImageView.frame.size.width,cell.mapImageView.frame.size.height];
+            [cell.mapImageView setImageWithURL:[NSURL URLWithString:urlStr]];
+            cell.mapImageView.userInteractionEnabled = YES;
+           // UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickMapImage:)];
+            //[cell.mapImageView addGestureRecognizer:singleTapRecognizer];
+            cell.mapImageView.tag = indexPath.row;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            // [mapView setRegion:region animated:TRUE];
+            //[mapView addAnnotations:array];
+            return cell;
         }
         
-        else{
-            //mapImgView放置默认图片
-        }
-         
        
         
        
@@ -415,7 +347,7 @@
     if (indexPath.row == 0)
         return 146;
     else
-        return 158;
+        return 185;
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

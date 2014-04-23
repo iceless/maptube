@@ -97,8 +97,6 @@
     cell.authorLabel.text = [map.author objectForKey:@"username"];
     cell.iconImage.layer.masksToBounds = YES;
     cell.iconImage.layer.cornerRadius =15;
-   
-    
     cell.iconImage.image = map.authorImage;
     cell.likeCountLabel.text = [NSString stringWithFormat:@"%d",map.collectUsers.count];
 
