@@ -42,12 +42,18 @@
     //self.title = @"Find A Place";
 	// Do any additional setup after loading the view.
     //[self.navigationController setNavigationBarHidden:YES];
-    self.mapView = [[MKMapView alloc]initWithFrame:CGRectMake(0,44,320,180)];
-    self.mapView.mapType = MKMapTypeStandard;
-    self.mapView.zoomEnabled=YES;
-    self.mapView.showsUserLocation=YES;
-    self.mapView.delegate=self;
+    
+    self.mapView = [[RMMapView alloc]initWithFrame:CGRectMake(0,44,self.view.frame.size.width,180) andTilesource:[[RMMapboxSource alloc] initWithMapID:MapId]];
+    self.mapView.zoom = 13;
+    self.mapView.delegate = self;
+    self.mapView.showsUserLocation = YES;
+    self.mapView.userTrackingMode = RMUserTrackingModeFollow;
+    
+    
+    
     [self.view addSubview:self.mapView];
+    
+   
     
     self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, 320, 44)];
     self.searchBar.delegate = self;
@@ -65,6 +71,7 @@
     self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;
     self.locationManager.distanceFilter=10.0f;
     [self.locationManager startUpdatingLocation];
+     
     //NSLog(@"%f,%f,%f,%f",self.mapView.frame.origin.x,self.mapView.frame.origin.y,self.mapView.frame.size.width,self.mapView.frame.size.height);
     
     //self.table.tableFooterView = self.footer;
@@ -94,15 +101,30 @@
             fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"newLocation:%@",[newLocation description]);
-
+    [manager stopUpdatingLocation];
     self.curLocation = newLocation;
     //设置显示区域
-    MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(newLocation.coordinate,2000 ,2000 );
-    [self.mapView setRegion:region animated:TRUE];
+    //MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(newLocation.coordinate,2000 ,2000 );
+    [self.mapView setCenterCoordinate:newLocation.coordinate];
     [self getVenuesForLocation:newLocation andquery:nil];
     [self.locationManager stopUpdatingLocation];
+    [manager stopUpdatingLocation];
     
     
+}
+
+- (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
+{
+    if (annotation.isUserLocationAnnotation)
+        return nil;
+    
+    RMMarker *marker;
+    marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"location_blue.png"]];
+    
+    
+    marker.canShowCallout = YES;
+    
+    return marker;
 }
 
 - (void)getVenuesForLocation:(CLLocation *)location andquery:(NSString *)str {
@@ -144,7 +166,16 @@
 
 - (void)proccessAnnotations {
     [self removeAllAnnotationExceptOfCurrentUser];
-    [self.mapView addAnnotations:self.nearbyPlaces];
+    for(FSVenue *place in self.nearbyPlaces){
+        RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:self.mapView
+                                                              coordinate:place.coordinate
+                                                                andTitle:place.title];
+        
+        annotation.userInfo = @"test";
+        annotation.annotationIcon = [UIImage imageNamed:@"placepin.png"];
+        [self.mapView addAnnotation:annotation];
+        
+    }
 }
 
 #pragma mark - SearchBar Delegate

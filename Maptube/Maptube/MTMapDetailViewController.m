@@ -101,11 +101,14 @@
         annotation.userInfo = @"test";
         annotation.annotationIcon = [UIImage imageNamed:@"placepin.png"];
         [self.mapView addAnnotation:annotation];
+       
     }
     //[self.mapView addAnnotations:self.placeArray];
     
-   
+    
     self.mapView.delegate = self;
+    
+    
 }
 
 
