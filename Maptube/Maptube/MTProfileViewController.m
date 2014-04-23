@@ -43,12 +43,14 @@
     
 
     UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingBtnPressed:)];
+    
     self.navigationItem.leftBarButtonItem = settingItem;
     
-    UIBarButtonItem *addMapItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addmap.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addMapBtnPressed:)];
+    UIBarButtonItem *addMapItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"create_a_map.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addMapBtnPressed:)];
+    //addMapItem.tintColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = addMapItem;
 
-    self.title = @"Profile";
+    //self.title = @"Profile";
     self.currentMap = 1;
 
     
@@ -236,23 +238,27 @@
         
         self.myMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.myMapButton.frame = CGRectMake(0, 89, 160, 47);
-        [self.myMapButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
-        [self.myMapButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-        [self.myMapButton setTitle:@"My Map" forState:UIControlStateNormal];
+        [self.myMapButton setBackgroundImage:[MTData createImageWithColor:[UIColor colorWithWhite:0.9 alpha:0.9]] forState:UIControlStateSelected];
+        [self.myMapButton setImage:[UIImage imageNamed: @"profile_mymap"]  forState:UIControlStateNormal];
         [self.myMapButton addTarget:self action:@selector(clickMyMapButton:) forControlEvents:UIControlEventTouchUpInside];
         if(self.currentMap == 1)
         [self.myMapButton setSelected:YES];
+        self.myMapButton.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.9].CGColor;
+        self.myMapButton.layer.borderWidth = 1;
+        
         
         [cell.contentView addSubview:self.myMapButton];
         
         self.collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.collectionButton.frame = CGRectMake(161, 89, 160, 47);
-        [self.collectionButton setTitleColor:[UIColor blackColor]forState:UIControlStateSelected];
-        [self.collectionButton setTitleColor:[UIColor grayColor]forState:UIControlStateNormal];
-        [self.collectionButton setTitle:@"Favorate" forState:UIControlStateNormal];
+        self.collectionButton.frame = CGRectMake(160, 89, 160, 47);
+        [self.collectionButton setBackgroundImage:[MTData createImageWithColor:[UIColor colorWithWhite:0.9 alpha:0.9]] forState:UIControlStateSelected];
+        
+        [self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] forState:UIControlStateNormal];
         [self.collectionButton addTarget:self action:@selector(clickFavorateButton:) forControlEvents:UIControlEventTouchUpInside];
         if(self.currentMap == 2)
             [self.collectionButton setSelected:YES];
+        self.collectionButton.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.9].CGColor;
+        self.collectionButton.layer.borderWidth = 1;
         
         [cell.contentView addSubview:self.collectionButton];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
