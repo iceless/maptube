@@ -31,6 +31,7 @@
     [self initAVOSCloudWithLaunchOptions:launchOptions];
     [self initFoursquare];
     [self initViewControllers];
+    [self initStyle];
    
     
     return YES;
@@ -79,6 +80,12 @@
     [Foursquare2 setupFoursquareWithClientId:@"XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ"
                                       secret:@"GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ"
                                  callbackURL:@"www.mapgis.com"];
+}
+
+-(void)initStyle{
+    [[UINavigationBar appearance]setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:1 green:1 blue:1 alpha:1.0],NSForegroundColorAttributeName,[UIFont systemFontOfSize:18],NSFontAttributeName, nil]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:18.0/255 green:97.0/255 blue:131.0/255 alpha:1]];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
