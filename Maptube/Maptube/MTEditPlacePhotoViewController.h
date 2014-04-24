@@ -15,4 +15,5 @@
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) MTPlace *place;
 @property (strong, nonatomic) NSMutableArray *selectImageArray;
+@property (assign, nonatomic) int totalImageCount;
 @end

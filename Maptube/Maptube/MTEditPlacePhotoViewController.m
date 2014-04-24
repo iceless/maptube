@@ -30,6 +30,7 @@
     self.title = @"Edit Photo";
     [self.navigationController setNavigationBarHidden:NO];
     self.selectImageArray = [[NSMutableArray alloc]initWithCapacity:10];
+   
     UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 40, 32);
     [button addTarget:self action:@selector(chooseDone) forControlEvents:UIControlEventTouchUpInside];
@@ -76,7 +77,7 @@
     UITapGestureRecognizer  *singleTap = [[UITapGestureRecognizer  alloc]initWithTarget:self action:@selector(addPic)];
     [addImageView addGestureRecognizer:singleTap];
     [self.view addSubview:addImageView];
-    
+    self.totalImageCount = self.imageStrArray.count;
     for(int i = 0;i<self.imageStrArray.count;i++){
         NSString *str = [self.imageStrArray objectAtIndex:i];
         UIImageView *view = [[UIImageView alloc]init];
@@ -106,7 +107,23 @@
         [view addSubview:imgView];
         imgView.hidden = YES;
         [self.view addSubview:view];
+        
 
+    }
+    if(self.imageStrArray.count==0){
+        if(self.place.placePhotos.count!=0){
+            
+            for (int i=0; i<self.place.placePhotos.count; i++)  {
+                
+                AVFile *picObject = self.place.placePhotos[i];
+                NSData *imageData = [picObject getData];
+                [self addImageView:[UIImage imageWithData:imageData]];
+  
+            }
+
+        
+        
+        }
     }
 }
 
@@ -117,7 +134,7 @@
     int height = 95;
     int x;
     int y;
-    int i = self.imageStrArray.count;
+    int i = self.totalImageCount;
     if(i%3==0)
         x = 115;
     else if(i%3==1)
@@ -141,9 +158,8 @@
     [view addSubview:imgView];
     imgView.hidden = YES;
     [self.view addSubview:view];
+    self.totalImageCount++;
 
-    
-    
 }
 
 -(void)clickImage:(UITapGestureRecognizer *)gestureRecognizer{

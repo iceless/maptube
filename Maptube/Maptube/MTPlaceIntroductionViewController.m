@@ -39,18 +39,8 @@
     self.imageUrlArray = [[NSMutableArray alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeChooseBoardView) name:CloseChooseBoardNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEditPlacePhotoView) name:PopUpEditPlacePhotoNotification object:nil];
-  //  self.place.placePhotos = [self.place objectForKey:PlacePhotos];
     self.boardArray = [NSMutableArray array];
-	//[self updateBoard];
-    //self.title = [self.placeData objectForKey:@"name"];
-    /*
-    self.addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(10,220,246,19)];
-    self.addressLabel.textAlignment = NSTextAlignmentCenter;
-    self.addressLabel.text = self.venue.location.address;
-    self.addressLabel.font = [UIFont systemFontOfSize:15];
-    [self.view addSubview:self.addressLabel];
-    
-    */
+
 
     self.chooseBoardView = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
     self.chooseBoardView.view.frame = CGRectMake(0, 130, self.view.frame.size.width, self.view.frame.size.height);
@@ -86,10 +76,13 @@
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
     
-    [self useCustomBackBarButtonItem];
+    UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
+    b.frame=CGRectMake(5, 30, 24, 24);
+    [b addTarget:self action:@selector(navBack) forControlEvents:UIControlEventTouchUpInside];
+    [b setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [self.view addSubview:b];
     
-    //UIBarButtonItem *pinItem = [[UIBarButtonItem alloc] initWithTitle:@"Pin" style:UIBarButtonItemStylePlain target:self action:@selector(pin:)];
-   // self.navigationItem.rightBarButtonItem = pinItem;
+  
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame = CGRectMake(180, 180, 60, 20);
    
