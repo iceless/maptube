@@ -84,14 +84,14 @@
     
   
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(180, 180, 60, 20);
+    button.frame = CGRectMake(180, 180, 24, 24);
    
     if([self.map.author.objectId isEqualToString:[AVUser currentUser].objectId]){
-        [button setTitle:@"Edit" forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"mappin"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(showEditPlacePhotoView) forControlEvents:UIControlEventTouchUpInside];
     }
     else {
-        [button setTitle:@"Pin" forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"mappin"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
     }
     [self.view addSubview:button];

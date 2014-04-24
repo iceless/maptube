@@ -80,7 +80,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = false;
-    //[self.navigationController setNavigationBarHidden:true];
+    [self.navigationController setNavigationBarHidden:false];
     
     UISearchBar *searchbar = (UISearchBar *)[self.navigationController.view viewWithTag:1];
     searchbar.hidden = NO;
