@@ -60,12 +60,9 @@
     [button setTitle:@"Done" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem=barItem;
 
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"close"] style:UIBarButtonItemStyleBordered target:self action:@selector(navBack)];
+    [self useCustomBackBarButtonItem];
 }
 
--(void)navBack{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 
 - (IBAction)doneButtonTapAction:(id)sender {

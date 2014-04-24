@@ -22,6 +22,7 @@
 - (void)loadView
 {
     [super loadView];
+    [self useCustomBackBarButtonItem];
     
     [self configViewHierarchy];
 }

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTSettingsViewController : UIViewController
+@interface MTSettingsViewController : MTBaseViewController
 
 @end

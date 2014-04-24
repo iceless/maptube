@@ -86,11 +86,7 @@
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
     
-    UIButton *backButton =  [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backButton.frame = CGRectMake(5, 20, 24, 24);
-    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [self.view addSubview:backButton];
-    [backButton addTarget:self action:@selector(navBack) forControlEvents:UIControlEventTouchUpInside];
+    [self useCustomBackBarButtonItem];
     
     //UIBarButtonItem *pinItem = [[UIBarButtonItem alloc] initWithTitle:@"Pin" style:UIBarButtonItemStylePlain target:self action:@selector(pin:)];
    // self.navigationItem.rightBarButtonItem = pinItem;
@@ -121,9 +117,7 @@
     searchbar.hidden = YES;
 }
 
--(void)navBack{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 
 -(void)initData{
     
@@ -215,7 +209,9 @@
 
 
 -(void)showMap{
-    MTMapViewController *viewController = [[MTMapViewController alloc]initWithVenue:self.venue];
+    MTMapViewController *viewController = [[MTMapViewController alloc]init];
+    viewController.venue = self.venue;
+    viewController.place = self.place;
     
     [self.navigationController pushViewController:viewController animated:YES];
     

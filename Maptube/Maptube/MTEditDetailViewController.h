@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @protocol MTEditDetailViewDelegate;
-@interface MTEditDetailViewController : UIViewController
+@interface MTEditDetailViewController : MTBaseViewController
 @property (nonatomic, strong) IBOutlet UITextView *detailTextView;
 @property (nonatomic, strong) NSString *detailValue;
 @property (nonatomic) NSInteger indexPathRow;

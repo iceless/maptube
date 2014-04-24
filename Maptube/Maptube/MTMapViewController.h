@@ -10,10 +10,11 @@
 #import <MapKit/MapKit.h>
 #import "FSVenue.h"
 #import "Mapbox.h"
+#import "MTPlace.h"
 
-@interface MTMapViewController : UIViewController<RMMapViewDelegate>
+@interface MTMapViewController : MTBaseViewController<RMMapViewDelegate>
 @property (strong, nonatomic) RMMapView  *mapView;
 @property (strong, nonatomic) FSVenue *venue;
+@property (strong, nonatomic) MTPlace *place;
 
-- (id)initWithVenue:(FSVenue *)venue;
 @end

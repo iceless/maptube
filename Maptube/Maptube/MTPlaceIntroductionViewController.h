@@ -13,7 +13,7 @@
 #import "MTPlace.h"
 
 
-@interface MTPlaceIntroductionViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MTPlaceIntroductionViewController : MTBaseViewController<UITableViewDataSource,UITableViewDelegate>
 //@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *addressLabel;
 @property (strong, nonatomic) UILabel *distanceLabel;
