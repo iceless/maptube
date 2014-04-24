@@ -33,13 +33,13 @@
 {
     [super loadView];
     
-    self.title = @"Add Place";
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.title = @"Find A Place";
+   
 	// Do any additional setup after loading the view.
     //[self.navigationController setNavigationBarHidden:YES];
     
@@ -61,6 +61,7 @@
     [self.navigationController.view addSubview:self.searchBar];
     self.searchBar.tag = 1;
     self.searchBar.backgroundImage = [self createImageWithColor:[UIColor clearColor]];
+    self.searchBar.placeholder = @"Find a place";
     
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 226, self.view.frame.size.width, self.view.frame.size.height-226-50)];
     self.table.delegate =self;

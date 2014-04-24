@@ -37,12 +37,8 @@
     [button setTitle:@"Done" forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem=barItem;
     
-    button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame=CGRectMake(0, 0, 40, 32);
-    [button addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Close" forState:UIControlStateNormal];
-    self.navigationItem.leftBarButtonItem=barItem;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"close"] style:UIBarButtonItemStyleBordered target:self action:@selector(close)];
+
     [self initPlaceView];
     [self initImageView];
 }

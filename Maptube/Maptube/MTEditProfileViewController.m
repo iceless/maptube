@@ -54,8 +54,12 @@
     
     UIBarButtonItem *addMapItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonTapAction:)];
     self.navigationItem.rightBarButtonItem = addMapItem;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"close"] style:UIBarButtonItemStyleBordered target:self action:@selector(navBack)];
 }
 
+-(void)navBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 //make sure everytime view appears, the table view's labels are updated from array values.
 - (void)viewWillAppear:(BOOL)animated

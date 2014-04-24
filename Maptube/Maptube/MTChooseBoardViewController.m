@@ -56,10 +56,10 @@
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 40, 32);
     [button addTarget:self action:@selector(createBoard) forControlEvents:UIControlEventTouchUpInside];
-    [button setImage:[UIImage imageNamed:@"addmap"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"create_a_map"] forState:UIControlStateNormal];
     UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
     navigationItem.rightBarButtonItem=barItem;
-    navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(navBack)];
+    navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"close"] style:UIBarButtonItemStyleBordered target:self action:@selector(navBack)];
    
     UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     [bar pushNavigationItem:navigationItem animated:YES];
