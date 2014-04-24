@@ -85,7 +85,8 @@
 
 
 -(void)setUpMapView{
-    self.mapView = [[RMMapView alloc]initWithFrame:CGRectMake(0,0,self.view.frame.size.width,400) andTilesource:[[RMMapboxSource alloc] initWithMapID:MapId]];
+    self.mapView = [[RMMapView alloc]initWithFrame:CGRectMake(0,20,self.view.frame.size.width,380) andTilesource:[[RMMapboxSource alloc] initWithMapID:MapId]];
+    self.mapView.delegate = self;
     self.mapView.zoom = 13;
     
     [self.view addSubview:self.mapView];
@@ -103,10 +104,10 @@
         [self.mapView addAnnotation:annotation];
        
     }
-    //[self.mapView addAnnotations:self.placeArray];
+   
     
     
-    self.mapView.delegate = self;
+   
     
     
 }
