@@ -59,6 +59,7 @@
     self.searchBar.delegate = self;
     //[self.view addSubview:self.searchBar];
     [self.navigationController.view addSubview:self.searchBar];
+    self.searchBar.tag = 1;
     self.searchBar.backgroundImage = [self createImageWithColor:[UIColor clearColor]];
     
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 226, self.view.frame.size.width, self.view.frame.size.height-226-50)];
@@ -79,6 +80,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = false;
     //[self.navigationController setNavigationBarHidden:true];
+    
+    UISearchBar *searchbar = (UISearchBar *)[self.navigationController.view viewWithTag:1];
+    searchbar.hidden = NO;
 
 }
 
