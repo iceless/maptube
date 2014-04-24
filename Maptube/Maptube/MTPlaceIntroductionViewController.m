@@ -87,8 +87,8 @@
     }
     
     UIButton *backButton =  [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    backButton.frame = CGRectMake(5, 10, 50, 20);
-    [backButton setTitle:@"back" forState:UIControlStateNormal];
+    backButton.frame = CGRectMake(5, 20, 24, 24);
+    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
     [self.view addSubview:backButton];
     [backButton addTarget:self action:@selector(navBack) forControlEvents:UIControlEventTouchUpInside];
     
@@ -117,6 +117,8 @@
     
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    UISearchBar *searchbar = (UISearchBar *)[self.navigationController.view viewWithTag:1];
+    searchbar.hidden = YES;
 }
 
 -(void)navBack{
@@ -198,7 +200,7 @@
         
         [self.view addSubview:self.pageControl];
         UILabel *numberLabel = [[UILabel alloc]initWithFrame:CGRectMake(280, 130, 30, 20)];
-        numberLabel.text = [NSString stringWithFormat:@"%d",self.imageUrlArray.count];
+        numberLabel.text = [NSString stringWithFormat:@"%d",picArray.count];
         numberLabel.textColor = [UIColor blueColor];
         [self.view addSubview:numberLabel];
     }
@@ -320,12 +322,15 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     if(indexPath.section==0){
         if(indexPath.row==0) {
+            CLLocationCoordinate2D coordinate;
+            if(self.venue) coordinate = self.venue.coordinate;
+            else coordinate = CLLocationCoordinate2DMake(self.place.latitude.doubleValue, self.place.longitude.doubleValue);
             NSString *markStr = @"/";
-            NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f)",self.venue.coordinate.longitude,self.venue.coordinate.latitude];
+            NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f)",coordinate.longitude,coordinate.latitude];
             markStr = [markStr stringByAppendingString:str];
             UIImageView *mapImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 120)];
             
-            NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxAPI,MapId,markStr,self.venue.coordinate.longitude,self.venue.coordinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
+            NSString *urlStr = [NSString stringWithFormat:@"%@%@%@/%f,%f,10/%.0fx%.0f.png",MapBoxAPI,MapId,markStr,coordinate.longitude,coordinate.latitude,mapImgView.frame.size.width,mapImgView.frame.size.height];
             [mapImgView setImageWithURL:[NSURL URLWithString:urlStr]];
             mapImgView.userInteractionEnabled = YES;
             UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showMap)];
