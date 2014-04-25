@@ -327,7 +327,9 @@
                     [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
                         if (!error) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
-                            [self.navigationController popViewControllerAnimated:YES];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
+                            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Pin Suceess", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+
                         }
                     }];
                     return ;
@@ -354,7 +356,9 @@
                 [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
                     if (!error) {
                         [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
-                        [self.navigationController popViewControllerAnimated:YES];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
+                        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Pin Suceess", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+
                     }
                 }];
             } else {
