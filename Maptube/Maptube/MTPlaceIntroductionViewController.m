@@ -83,17 +83,19 @@
     [self.view addSubview:b];
     
   
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(180, 180, 60, 20);
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(220, 170, 36, 36);
    
-    if([self.map.author.objectId isEqualToString:[AVUser currentUser].objectId]){
-        [button setTitle:@"Edit" forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(showEditPlacePhotoView) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else {
-        [button setTitle:@"Pin" forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
-    }
+   // if([self.map.author.objectId isEqualToString:[AVUser currentUser].objectId]){
+   //     [button setTitle:@"Edit" forState:UIControlStateNormal];
+    //    [button addTarget:self action:@selector(showEditPlacePhotoView) forControlEvents:UIControlEventTouchUpInside];
+    //}
+   // else {
+    //    [button setTitle:@"Pin" forState:UIControlStateNormal];
+    //    [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
+   // }
+    [button setImage:[UIImage imageNamed:@"pin_active"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
     
@@ -192,8 +194,10 @@
         [self.view addSubview:numberLabel];
     }
     
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 170, 160, 40)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 170, 160, 40)];
+    if(self.venue)
     titleLabel.text = self.venue.name;
+    else titleLabel.text = self.place.title;
     titleLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:titleLabel];
     [self.table reloadData];
