@@ -87,7 +87,8 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:18.0/255 green:97.0/255 blue:131.0/255 alpha:1]];
     
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
-    
+  
+    self.window.tintColor = [UIColor colorWithRed:18.0/255 green:97.0/255 blue:131.0/255 alpha:1];
   
     
 }

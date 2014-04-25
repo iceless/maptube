@@ -120,7 +120,7 @@
         float zoom=12;
         NSString *markStr = @"/";
         for (MTPlace *place in array){
-            NSString *str = [NSString stringWithFormat:@"pin-s+48C(%f,%f),",place.longitude.doubleValue,place.latitude.doubleValue];
+            NSString *str = [NSString stringWithFormat:@"pin-m+36C(%f,%f),",place.longitude.doubleValue,place.latitude.doubleValue];
             markStr = [markStr stringByAppendingString:str];
         }
         markStr = [markStr substringToIndex:([markStr length]-1)];
