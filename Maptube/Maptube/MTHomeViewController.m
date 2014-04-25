@@ -37,6 +37,7 @@
     self.table.delegate =self;
     self.table.dataSource = self;
     [self.view addSubview:self.table];
+    self.table.separatorStyle = NO;
     [self.table registerNib:[UINib nibWithNibName:@"MapCell" bundle:nil] forCellReuseIdentifier:@"MapCell"];
     self.mapList = [[NSMutableArray alloc]init];
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
