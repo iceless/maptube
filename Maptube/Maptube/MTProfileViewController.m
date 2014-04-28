@@ -78,22 +78,24 @@
     self.locationManager.distanceFilter=10.0f;
     [self.locationManager startUpdatingLocation];
     [self performSelectorInBackground:@selector(updateBoard) withObject:nil];
+    if(!self.user) {
+        self.user = [AVUser currentUser];
+        
+    }
 
-    
+    self.title = [self.user username];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     // [self updateBoard];
     [super viewWillAppear:animated];
-    if ([PFUser currentUser]) {
+    
         
-        self.title = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [[PFUser currentUser] username]];
-    } else {
+     //self.title = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [self.user username]];
+    
         
-        self.title = @"nobody";
-    }
-   
+    
     
     
 }
@@ -119,7 +121,7 @@
     
     [self.myMapArray removeAllObjects];
     [self.favorateMapArray removeAllObjects];
-    PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
+    PFRelation *relation = [self.user relationforKey:Map];
      [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
          
         for (int i=0;i<objects.count;i++) {
@@ -133,7 +135,7 @@
         }
     }];
     
-    PFRelation *favorateMapRelation = [[PFUser currentUser] relationforKey:CollectMap];
+    PFRelation *favorateMapRelation = [self.user relationforKey:CollectMap];
      [[favorateMapRelation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
          
          for (int i=0;i<objects.count;i++) {
@@ -214,8 +216,8 @@
     if (indexPath.row == 0) {
         
         NSString *name = [NSString stringWithFormat:NSLocalizedString(@"%@ %@", nil),
-                          [PFUser currentUser][@"firstname"],
-                          [PFUser currentUser][@"lastname"]];
+                          self.user[@"firstname"],
+                          self.user[@"lastname"]];
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(94,8,206,33)];
         label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), name];
         label.font = [UIFont systemFontOfSize:20];
@@ -229,13 +231,13 @@
         
         
         label = [[UILabel alloc]initWithFrame:CGRectMake(94,35,206,21)];
-        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"location"]];
+        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), self.user[@"location"]];
         label.font = [UIFont systemFontOfSize:13];
         label.textColor = [UIColor darkGrayColor];
         [cell.contentView addSubview:label];
         
         UITextView *descriptionView= [[UITextView alloc]initWithFrame:CGRectMake(88,53,302,29)];
-        descriptionView.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [PFUser currentUser][@"description"]];
+        descriptionView.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), self.user[@"description"]];
         descriptionView.font = [UIFont systemFontOfSize:13];
         descriptionView.delegate = self;
         [cell.contentView addSubview:descriptionView];
