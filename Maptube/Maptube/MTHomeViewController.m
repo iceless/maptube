@@ -12,6 +12,7 @@
 #import "MTPlace.h"
 #import "MTMapDetailViewController.h"
 #import "MTMap.h"
+#import "MTProfileViewController.h"
 
 @interface MTHomeViewController ()
 
@@ -33,13 +34,30 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title = @"Home";
+    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(showSearch)];
+   
+    self.navigationItem.rightBarButtonItem = searchItem;
+    
+    
+    self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, 320, 44)];
+    self.searchBar.delegate = self;
+    //[self.view addSubview:self.searchBar];
+    [self.navigationController.view addSubview:self.searchBar];
+    self.searchBar.backgroundImage = [self createImageWithColor:[UIColor clearColor]];
+    self.searchBar.hidden = YES;
+    self.searchBar.placeholder = @"Find a place";
+    
+    
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-44)];
     self.table.delegate =self;
     self.table.dataSource = self;
     [self.view addSubview:self.table];
     self.table.separatorStyle = NO;
     [self.table registerNib:[UINib nibWithNibName:@"MapCell" bundle:nil] forCellReuseIdentifier:@"MapCell"];
+    
     self.mapList = [[NSMutableArray alloc]init];
+    self.mapSearchArray = [[NSMutableArray alloc]init];
+    self.userSearchArray = [[NSMutableArray alloc]init];
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
@@ -48,8 +66,26 @@
      [self updateMap];
 }
 
+
+- (UIImage *)createImageWithColor: (UIColor *) color
+{
+    CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
+}
+
 -(void)refreshTableView{
     [self.table reloadData];
+}
+
+-(void)showSearch{
+    self.searchBar.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,16 +114,96 @@
     
 }
 
+#pragma mark - SearchBar Delegate
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    
+    // NSLog(@"shouldBeginEditing");
+    self.searchBar.showsCancelButton  = YES;
+    self.navigationItem.rightBarButtonItem = nil;
+    self.isSearching = true;
+    self.table.separatorStyle = YES;
+    return true;
+    
+    
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    self.isSearching = false;
+    [self.table reloadData];
+    searchBar.text = @"";
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    AVQuery *query = [AVQuery queryWithClassName:Map];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        //NSLog(@"%@",error);
+        if(!error){
+            for(AVObject *object in objects){
+                NSRange index = [object[Title] rangeOfString:searchText options:NSCaseInsensitiveSearch];
+                if(index.length>0){
+                    MTMap *map = [[MTMap alloc]init];
+                    map.mapObject = object;
+                    [map initData];
+                    [self.mapSearchArray addObject:map];
+                }
+            }
+            [self.table reloadData];
+        }
+    }];
+    AVQuery *userQuery =[AVQuery queryWithClassName:@"_User"];
+    [userQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        for(AVUser *user in objects){
+            NSRange index = [[user username] rangeOfString:searchText options:NSCaseInsensitiveSearch];
+            if(index.length>0){
+                [self.userSearchArray addObject:user];
+            }
+        }
+        [self.table reloadData];
+    }];
+    
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+    self.isSearching = false;
+    self.searchBar.showsCancelButton  = NO;
+    UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(showSearch)];
+    self.searchBar.hidden = YES;
+    self.navigationItem.rightBarButtonItem = searchItem;
+    self.table.separatorStyle = NO;
+    [self.table reloadData];
+}
+
+
+
+
 #pragma mark - Table view data delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if(!self.isSearching)
     return self.mapList.count;
+    else return self.mapSearchArray.count+self.userSearchArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if(self.isSearching){
+        UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        if(indexPath.row<self.mapSearchArray.count){
+            MTMap *map = [self.mapSearchArray objectAtIndex:indexPath.row];
+            cell.textLabel.text = map.mapObject[Title];
+        }
+        else{
+            AVUser *user= self.userSearchArray[indexPath.row-self.mapSearchArray.count];
+            cell.textLabel.text = [user username];
+        }
+        return cell;
+    }
     
     MTMapCell *cell = (MTMapCell *)[tableView dequeueReusableCellWithIdentifier:@"MapCell"];
     
@@ -143,9 +259,35 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(self.isSearching) return 30;
     
     return 185;
     
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(self.isSearching){
+        [self searchBarTextDidEndEditing:self.searchBar];
+        if(indexPath.row<self.mapSearchArray.count){
+            MTMap *map = [self.mapSearchArray objectAtIndex:indexPath.row];
+            
+            MTMapDetailViewController *viewController = [[MTMapDetailViewController alloc] init];
+            viewController.mapData = map;
+            viewController.placeArray = map.placeArray;
+            viewController.hidesBottomBarWhenPushed=YES;
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+        else {
+            AVUser *user= self.userSearchArray[indexPath.row-self.mapSearchArray.count];
+            MTProfileViewController *controller = [[MTProfileViewController alloc]init];
+            controller.user = user;
+            [self.navigationController pushViewController:controller animated:YES];
+            
+        }
+
+        
+    }
+
 }
 
 -(void)clickMapImage:(id)sender{

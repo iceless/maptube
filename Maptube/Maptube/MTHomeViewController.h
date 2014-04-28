@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MTHomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface MTHomeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate>
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *mapList;
-@property (nonatomic, strong) NSMutableDictionary *placeArray;
-@property (nonatomic, strong) NSMutableDictionary *userArray;
-@property (nonatomic, strong) NSMutableDictionary *photoArray;
-
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) NSMutableArray *mapSearchArray;
+@property (nonatomic, strong) NSMutableArray *userSearchArray;
+@property (nonatomic, assign) BOOL isSearching;
 @end
