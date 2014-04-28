@@ -20,5 +20,6 @@
 @property (strong, nonatomic) UIButton *collectionButton;
 @property (assign, nonatomic) int currentMap; 
 @property (strong, nonatomic) AVUser *user;
+@property (nonatomic,strong)  UIImage *userImage;
 
 @end

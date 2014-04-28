@@ -43,13 +43,7 @@
 	// Do any additional setup after loading the view.
     
 
-    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingBtnPressed:)];
     
-    self.navigationItem.leftBarButtonItem = settingItem;
-    
-    UIBarButtonItem *addMapItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"create_a_map.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addMapBtnPressed:)];
-    //addMapItem.tintColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = addMapItem;
 
     //self.title = @"Profile";
     self.currentMap = 1;
@@ -80,12 +74,23 @@
     [self performSelectorInBackground:@selector(updateBoard) withObject:nil];
     if(!self.user) {
         self.user = [AVUser currentUser];
+        UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingBtnPressed:)];
+        
+        self.navigationItem.leftBarButtonItem = settingItem;
+        
+        UIBarButtonItem *addMapItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"create_a_map.png"] style:UIBarButtonItemStylePlain target:self action:@selector(addMapBtnPressed:)];
+        //addMapItem.tintColor = [UIColor whiteColor];
+        self.navigationItem.rightBarButtonItem = addMapItem;
+        self.userImage = [MTData sharedInstance].iconImage;
         
     }
-
+    else{
+        [self initUserImage];
+    }
     self.title = [self.user username];
     
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
     // [self updateBoard];
@@ -94,10 +99,26 @@
         
      //self.title = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), [self.user username]];
     
-        
-    
-    
-    
+}
+
+-(void)initUserImage{
+    AVObject *fileObject = [self.user objectForKey:@"Icon"];
+    if(fileObject){
+        NSString *fileObjectId = fileObject.objectId;
+        AVQuery *photoQuery = [AVQuery queryWithClassName:@"UserPhoto"];
+        [photoQuery whereKey:@"objectId" equalTo:fileObjectId];
+        [photoQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if(objects.count!=0){
+                AVObject *photoObject = objects[0];
+                AVFile *theImage = [photoObject objectForKey:@"imageFile"];
+                NSData *imageData = [theImage getData];
+                self.userImage = [UIImage imageWithData:imageData];
+                [[NSNotificationCenter defaultCenter] postNotificationName:RefreshTableViewNotification object:nil];
+                //if(self.collectUsers&&self.placeArray)
+                // self.finishInit = true;
+            }
+        }];
+    }
 }
 
 -(void)refreshTableView{
@@ -224,7 +245,7 @@
         [cell.contentView addSubview:label];
         
         UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(6,6,80,80)];
-        imgv.image = [MTData sharedInstance].iconImage;
+        imgv.image = self.userImage;
         imgv.layer.masksToBounds = YES;
         imgv.layer.cornerRadius = 40;
         [cell.contentView addSubview:imgv];
