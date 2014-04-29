@@ -136,6 +136,8 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self.mapSearchArray removeAllObjects];
+    [self.userSearchArray removeAllObjects];
     AVQuery *query = [AVQuery queryWithClassName:Map];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         //NSLog(@"%@",error);
