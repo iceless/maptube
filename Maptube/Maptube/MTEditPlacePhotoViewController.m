@@ -45,22 +45,22 @@
 }
 
 -(void)initPlaceView{
-    UIView *placeView = [[UIView alloc]initWithFrame:CGRectMake(5, 65, 310, 50)];
-    placeView.layer.borderWidth = 1;
-    placeView.layer.borderColor = [UIColor grayColor].CGColor;
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 105, 310, 1)];
+    [imgView setBackgroundColor:[UIColor lightGrayColor]];
+    [self.view addSubview:imgView];
     
-    UILabel *label  = [[UILabel alloc]initWithFrame:CGRectMake(5, 10, 310, 20)];
+    UILabel *label  = [[UILabel alloc]initWithFrame:CGRectMake(5, 65, 310, 20)];
     label.text = self.place.title;
     label.textAlignment = NSTextAlignmentLeft;
-    [placeView addSubview:label];
+     [self.view addSubview:label];
     
-    label  = [[UILabel alloc]initWithFrame:CGRectMake(5, 30, 310, 20)];
+    label  = [[UILabel alloc]initWithFrame:CGRectMake(5, 85, 310, 20)];
     label.text = self.location;
     label.textAlignment = NSTextAlignmentLeft;
     label.textColor = [UIColor grayColor];
-    [placeView addSubview:label];
     
-    [self.view addSubview:placeView];
+    
+    [self.view addSubview:label];
 
 }
 
@@ -70,7 +70,7 @@
     int height = 95;
     int x;
     int y;
-    UIImageView *addImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"addpic.png"]];
+    UIImageView *addImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"camera.png"]];
     addImageView.frame = CGRectMake(15, 120, width, height);
     addImageView.userInteractionEnabled = YES;
     //addImageView.backgroundColor = [UIColor grayColor];
