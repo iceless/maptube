@@ -254,8 +254,12 @@
     
     if(indexPath.section==0){
        //cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(self.venue){
         cell.textLabel.text = self.venue.name;
-        
+        }
+        else {
+            cell.textLabel.text = self.place.title;
+        }
     }
     else{
      

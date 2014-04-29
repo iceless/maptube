@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FSVenue.h"
+#import "MTPlace.h"
 @interface MTChooseBoardViewController : MTBaseViewController<UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 @property (strong, nonatomic) FSVenue *venue;
 @property (strong, nonatomic) NSArray  *boardArray;
@@ -15,7 +16,7 @@
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) UITableView *table;
 @property (strong, nonatomic) NSMutableArray *imageUrlArray;
-//@property (strong, nonatomic) IBOutlet  UINavigationItem *myNavigationItem;
+@property (strong, nonatomic) MTPlace *place;
 -(id)initWithImage:(UIImage *)image AndVenue:(FSVenue *)venue;
 
 @end
