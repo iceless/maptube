@@ -82,8 +82,8 @@
     
    
     CGSize expectedSize = [MTData getSizebyString:[self.mapData.mapObject objectForKey:Description]];
-    self.storyViewHeight = expectedSize.height+85;
-    self.storyView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, expectedSize.height+85) style:UITableViewStylePlain];
+    self.storyViewHeight = expectedSize.height+115;
+    self.storyView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, expectedSize.height+115) style:UITableViewStylePlain];
     self.storyView.hidden = YES;
     self.isShowStory = NO;
    
@@ -200,8 +200,9 @@
     
 }
 
--(void)collect{
-    
+-(void)collect:(id)sender{
+    UIButton *button =(UIButton *)sender;
+    [button setSelected:!button.selected];
     PFRelation *relation = [self.mapData.mapObject relationforKey:CollectUser];
     AVUser *user = [AVUser currentUser];
     PFRelation *mapRelation = [user relationforKey:CollectMap];
@@ -240,7 +241,7 @@
     if(tableView == self.storyView){
         if(indexPath.row==1){
             CGSize expectedSize = [MTData getSizebyString:[self.mapData.mapObject objectForKey:Description]];
-            return expectedSize.height+10;
+            return expectedSize.height+40;
         }
         else return 40;
     }
@@ -267,7 +268,7 @@
             imgView.layer.masksToBounds = YES;
             imgView.layer.cornerRadius =15;
             [cell.contentView addSubview:imgView];
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.frame = CGRectMake(270, 10, 50, 20);
             AVUser *user = self.mapData.author;
             NSString *userID = [[AVUser currentUser] objectId];
@@ -277,8 +278,9 @@
                 [button setTitle:@"Edit" forState:UIControlStateNormal];
             }
             else{
-                [button addTarget:self action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
-                [button setTitle:@"Collect" forState:UIControlStateNormal];
+                [button addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
+                [button setImage:[UIImage imageNamed:@"favorites_normal"] forState:UIControlStateNormal];
+                [button setImage:[UIImage imageNamed:@"favorites_active"] forState:UIControlStateSelected];
                 
                 
             }
@@ -295,8 +297,12 @@
             descriptionLabel.numberOfLines = 0;
             CGSize maximumLabelSize = CGSizeMake(310, 300);
             CGSize expectedSize = [descriptionLabel sizeThatFits:maximumLabelSize];
-            descriptionLabel.frame = CGRectMake(5, 5, 310, expectedSize.height);
+            descriptionLabel.frame = CGRectMake(25, 20, 310, expectedSize.height);
+            UILabel *quota = [[UILabel alloc]initWithFrame:CGRectMake(5, 10, 20, 30)];
+            quota.text = @"“";
+            quota.font = [UIFont systemFontOfSize:24];
             [cell.contentView addSubview:descriptionLabel];
+            [cell.contentView addSubview:quota];
         }
         else{
             UILabel *label = [[UILabel alloc]init];
