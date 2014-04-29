@@ -43,6 +43,7 @@
 
 
     self.chooseBoardView = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
+    self.chooseBoardView.place = self.place;
     self.chooseBoardView.view.frame = CGRectMake(0, 130, self.view.frame.size.width, self.view.frame.size.height);
     UIView *greyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     greyView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
@@ -58,16 +59,13 @@
     //NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
     //add scroll view
     self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
-    
-    
-    
     [self.scrollView setPagingEnabled:YES];
     self.scrollView.showsHorizontalScrollIndicator =NO;
     [self.view addSubview:self.scrollView];
     
     
    
-    self.table = [[UITableView alloc]initWithFrame:CGRectMake(5, 200, 310, 270) style:UITableViewStyleGrouped];
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(5, 205, 310, 270) style:UITableViewStyleGrouped];
     self.table.delegate = self;
     self.table.dataSource = self;
     [self.view addSubview:self.table];
@@ -84,7 +82,7 @@
     
   
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(220, 170, 36, 36);
+    button.frame = CGRectMake(220, 175, 36, 36);
    
    // if([self.map.author.objectId isEqualToString:[AVUser currentUser].objectId]){
    //     [button setTitle:@"Edit" forState:UIControlStateNormal];
@@ -280,7 +278,9 @@
     MTEditPlacePhotoViewController *viewController = [[MTEditPlacePhotoViewController alloc]init];
     viewController.imageStrArray = self.imageUrlArray;
     //viewController.placeName = self.venue.name;
+    if(self.venue)
     viewController.location = self.venue.location.address;
+    else viewController.location = self.place.venueAddress;
     viewController.place = self.place;
     [self.navigationController pushViewController:viewController animated:NO];
 }
@@ -375,8 +375,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==0&indexPath.row==0)
+    if(indexPath.section==0){
+        if(indexPath.row==0)
         return 120;
+        else return 30;
+    }
     return 40;
 }
 
