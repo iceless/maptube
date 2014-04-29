@@ -53,12 +53,8 @@
     [self.view addSubview:self.detailTextView];
     self.view.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
     
-    UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame=CGRectMake(0, 0, 50, 32);
-    [button addTarget:self action:@selector(doneButtonTapAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Done" forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem=barItem;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(doneButtonTapAction:)];
+  
 
     [self useCustomBackBarButtonItem];
 }

@@ -98,9 +98,12 @@
     }
     [self setExtraCellLineHidden:self.storyView];
     [self setExtraCellLineHidden:self.tableView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshStoryView) name:ModifyBoardNotification object:nil];
     
 
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated {
     
@@ -108,7 +111,10 @@
     [self.navigationController setNavigationBarHidden:NO];
 }
 
-
+-(void)refreshStoryView{
+    [self.storyView reloadData];
+    
+}
 
 -(void)setUpMapView{
     self.mapView = [[RMMapView alloc]initWithFrame:CGRectMake(0,20,self.view.frame.size.width,380) andTilesource:[[RMMapboxSource alloc] initWithMapID:MapId]];
