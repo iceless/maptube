@@ -38,16 +38,19 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.fields = @[@"Title", @"Description", @"Category", @"Secret"];
-    UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame=CGRectMake(0, 0, 50, 32);
-    [button addTarget:self action:@selector(saveBoard) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Save" forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem=barItem;
+     UIBarButtonItem *mapItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveBoard)];
+    
+    self.navigationItem.rightBarButtonItem = mapItem;
    
-    
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleBordered target:self action:@selector(navBack)];
 }
+
+-(void)navBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+    
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.tableView reloadData];
