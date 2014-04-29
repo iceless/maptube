@@ -31,12 +31,8 @@
     [self.navigationController setNavigationBarHidden:NO];
     self.selectImageArray = [[NSMutableArray alloc]initWithCapacity:10];
    
-    UIButton * button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame=CGRectMake(0, 0, 40, 32);
-    [button addTarget:self action:@selector(chooseDone) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button setTitle:@"Done" forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem=barItem;
+   
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(chooseDone)];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"close"] style:UIBarButtonItemStyleBordered target:self action:@selector(close)];
 

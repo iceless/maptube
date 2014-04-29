@@ -40,6 +40,7 @@
     [button setImage:[UIImage imageNamed:@"story.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(showStory) forControlEvents:UIControlEventTouchUpInside];
     [self useCustomBackBarButtonItem];
+     self.isTableViewFolded = YES;
     
     UIBarButtonItem *mapItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = mapItem;
@@ -49,9 +50,35 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"PlaceSummaryCell" bundle:nil] forCellReuseIdentifier:@"PlaceSummaryCell"];
-    
-
     [self.view addSubview:self.tableView];
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 15)];
+    view.backgroundColor = [UIColor clearColor];
+    view.userInteractionEnabled = YES;
+    UITapGestureRecognizer *headTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickFold)];
+    [view addGestureRecognizer:headTap];
+    CGAffineTransform transform =CGAffineTransformMakeScale(2.0f,2.0f);
+    UIButton *headButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    headButton.frame = CGRectMake(298, 0, 15, 15);
+    headButton.transform = transform;
+    headButton.tag = 11;
+    
+   
+    if(self.isTableViewFolded){
+        [headButton setImage:[UIImage imageNamed:@"mapdetail_list button-1.png"] forState:UIControlStateNormal];
+    }
+    else{
+        [headButton setImage:[UIImage imageNamed:@"mapdetail_list button-2.png"] forState:UIControlStateNormal];
+        
+    }
+    
+    [view addSubview:headButton];
+    //[headButton addTarget:self action:@selector(clickFold) forControlEvents:UIControlEventTouchUpInside];
+    [self.tableView setTableHeaderView:view];
+    
+   
+
+    
     
    
     CGSize expectedSize = [MTData getSizebyString:[self.mapData.mapObject objectForKey:Description]];
@@ -59,7 +86,7 @@
     self.storyView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, expectedSize.height+85) style:UITableViewStylePlain];
     self.storyView.hidden = YES;
     self.isShowStory = NO;
-    self.isTableViewFolded = YES;
+   
     self.storyView.dataSource = self;
     self.storyView.delegate = self;
     [self.view addSubview:self.storyView];
@@ -71,7 +98,6 @@
     }
     [self setExtraCellLineHidden:self.storyView];
     [self setExtraCellLineHidden:self.tableView];
-    
     
 
 }
@@ -195,8 +221,11 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     if(tableView==self.storyView) return 3;
     return self.placeArray.count;
+    
+
     
 }
 
@@ -214,34 +243,9 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(tableView != self.storyView){
-        return 20;
-    }
-    else return 0;
-}
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if(tableView != self.storyView){
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
-        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(290, 0, 30, 30)];
-        if(self.isTableViewFolded){
-          [button setImage:[UIImage imageNamed:@"mapdetail_list button-1.png"] forState:UIControlStateNormal];
-        }
-        else{
-            [button setImage:[UIImage imageNamed:@"mapdetail_list button-2.png"] forState:UIControlStateNormal];
-            
-        }
-        
-        [view addSubview:button];
-        [button addTarget:self action:@selector(clickFold) forControlEvents:UIControlEventTouchUpInside];
-        return view;
-        
-        
-    }
-    return nil;
-    
-}
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(tableView==self.storyView){
@@ -326,7 +330,7 @@
     
     if(indexPath.row==0) cell.backgroundColor = [UIColor yellowColor];
     //UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
-    
+   
     return cell;
 }
 
@@ -409,7 +413,8 @@
 
 -(void)clickFold{
     CGRect foldRect = CGRectMake(0, self.view.frame.size.height - 45*3-20, self.view.frame.size.width, 45*3+20);
-    CGRect unFoldRect = CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height );
+    CGRect unFoldRect = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height );
+     UIButton *button = (UIButton *)[self.tableView.tableHeaderView viewWithTag:11];
     
     if(!self.isTableViewFolded) {
         self.isTableViewFolded = true;
@@ -417,6 +422,8 @@
         [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveLinear];
         self.tableView.frame = foldRect;
+        [button setImage:[UIImage imageNamed:@"mapdetail_list button-1"] forState:UIControlStateNormal];
+       
        
     }
     else {
@@ -425,6 +432,7 @@
         [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveLinear];
         self.tableView.frame = unFoldRect;
+        [button setImage:[UIImage imageNamed:@"mapdetail_list button-2"] forState:UIControlStateNormal];
      
     }
 
