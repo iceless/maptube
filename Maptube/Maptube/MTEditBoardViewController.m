@@ -37,7 +37,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.fields = @[@"Title", @"Description", @"Category", @"Secret"];
+    //self.fields = @[@"Title", @"Description", @"Category", @"Secret"];
+    self.fields = @[@"Title", @"Description", @"Secret"];
      UIBarButtonItem *mapItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveBoard)];
     
     self.navigationItem.rightBarButtonItem = mapItem;
@@ -57,7 +58,7 @@
 }
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section==0) return 3;
+    if(section==0) return 2;
     else return 1;
 }
 
@@ -92,7 +93,7 @@
         
         UISwitch *switchButton = [[UISwitch alloc]initWithFrame:CGRectMake(250, 5, 100, 100)];
         switchButton.tag = 12;
-        NSString *str = self.values[3];
+        NSString *str = self.values[2];
         
         BOOL secret = str.boolValue;
         if(!secret)
@@ -107,8 +108,12 @@
     }
    
     else {
-        UILabel *label = [[UILabel alloc]initWithFrame:cell.frame];
-        label.text =@"Delete Board";
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(5, 2, 310, 40)];
+        label.text =@"Delete Map";
+        label.textColor = [UIColor whiteColor];
+        label.backgroundColor = [UIColor colorWithRed:248.0/255 green:35.0/255 blue:44.0/255 alpha:1];
+        label.layer.cornerRadius = 5;
+        label.layer.masksToBounds = YES;
         label.textAlignment = NSTextAlignmentCenter;
         [cell.contentView addSubview:label];
     }
@@ -154,8 +159,8 @@
 -(void)saveBoard{
     self.mapObject[Title] = self.values[0];
     self.mapObject[Description] = self.values[1];
-    self.mapObject[Category] = self.values[2];
-    self.mapObject[Secret] = self.values[3];
+    //self.mapObject[Category] = self.values[2];
+    self.mapObject[Secret] = self.values[2];
     [self.mapObject saveInBackgroundWithBlock: ^(BOOL succeeded, NSError *error){
         [self.navigationController popViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
