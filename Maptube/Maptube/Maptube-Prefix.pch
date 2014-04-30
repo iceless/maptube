@@ -17,4 +17,5 @@
     #import "MTData.h"
     #import "MTBaseViewController.h"
     #import "Defines.h"
+    #import "UIButton+UIButtonImageWithLabel.h"
 #endif

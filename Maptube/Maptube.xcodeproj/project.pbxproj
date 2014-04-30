@@ -114,6 +114,7 @@
 		5E9C0DD518E2CE3600040114 /* Mapbox.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5E9C0DD418E2CE2800040114 /* Mapbox.bundle */; };
 		5E9C0DD618E2CE3F00040114 /* libMapbox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9C0DD218E2CE2800040114 /* libMapbox.a */; };
 		5E9E0FF418B7252F008D89AD /* MTPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E0FF318B7252F008D89AD /* MTPlace.m */; };
+		5EA1B5861910871C00E8F23E /* UIButton+UIButtonImageWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1B5851910871C00E8F23E /* UIButton+UIButtonImageWithLabel.m */; };
 		5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */; };
 		5EA684E918B32DA800679EDE /* MTChooseBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */; };
 		5EBBFE9218C6DA89007B6109 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8D18C6DA89007B6109 /* profile@2x.png */; };
@@ -321,6 +322,8 @@
 		5E9C0DCC18E2CE2800040114 /* MapView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MapView.xcodeproj; path = MapView/MapView.xcodeproj; sourceTree = "<group>"; };
 		5E9E0FF218B7252F008D89AD /* MTPlace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTPlace.h; sourceTree = "<group>"; };
 		5E9E0FF318B7252F008D89AD /* MTPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlace.m; sourceTree = "<group>"; };
+		5EA1B5841910871C00E8F23E /* UIButton+UIButtonImageWithLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+UIButtonImageWithLabel.h"; sourceTree = "<group>"; };
+		5EA1B5851910871C00E8F23E /* UIButton+UIButtonImageWithLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIButtonImageWithLabel.m"; sourceTree = "<group>"; };
 		5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddPictureViewController.h; sourceTree = "<group>"; };
 		5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddPictureViewController.m; sourceTree = "<group>"; };
 		5EA684E718B32DA800679EDE /* MTChooseBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTChooseBoardViewController.h; sourceTree = "<group>"; };
@@ -605,6 +608,8 @@
 				5E91992A18E4078E00EC3107 /* UIView+GeometryShortAccess.m */,
 				5E9B4D1C18B1FEB000D9D6A3 /* AFHelper.m */,
 				5E9B4D1D18B1FEB000D9D6A3 /* AFHelper.h */,
+				5EA1B5841910871C00E8F23E /* UIButton+UIButtonImageWithLabel.h */,
+				5EA1B5851910871C00E8F23E /* UIButton+UIButtonImageWithLabel.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -920,6 +925,7 @@
 				5E51970D18C9963500504EBD /* MTBaseViewController.m in Sources */,
 				5E95916318ADEE310097B6BC /* Foursquare2.m in Sources */,
 				56F1CB34186976ED008498DF /* MTRootTabBarController.m in Sources */,
+				5EA1B5861910871C00E8F23E /* UIButton+UIButtonImageWithLabel.m in Sources */,
 				5EBCC21818C7044F00BA4CAC /* MTMapViewController.m in Sources */,
 				5E9B4D1B18B1FE3B00D9D6A3 /* UIImageView+AFNetworking.m in Sources */,
 				5E963D4618F6320800132DF6 /* MTMap.m in Sources */,

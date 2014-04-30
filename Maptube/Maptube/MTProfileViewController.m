@@ -266,7 +266,10 @@
         self.myMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.myMapButton.frame = CGRectMake(0, 89, 160, 47);
         [self.myMapButton setBackgroundImage:[MTData createImageWithColor:[UIColor colorWithWhite:0.9 alpha:0.9]] forState:UIControlStateSelected];
-        [self.myMapButton setImage:[UIImage imageNamed: @"profile_mymap"]  forState:UIControlStateNormal];
+        [self.myMapButton setImage:[UIImage imageNamed: @"profile_mymap"] withTitle:[NSString stringWithFormat:@"%d",self.myMapArray.count] forState:UIControlStateNormal];
+        self.myMapButton.titleLabel.textColor = [UIColor lightGrayColor];
+        [self.myMapButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateSelected];
+        //[self.myMapButton setImage:[UIImage imageNamed: @"profile_mymap"]  forState:UIControlStateNormal];
         [self.myMapButton addTarget:self action:@selector(clickMyMapButton:) forControlEvents:UIControlEventTouchUpInside];
         if(self.currentMap == 1)
         [self.myMapButton setSelected:YES];
@@ -279,8 +282,10 @@
         self.collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.collectionButton.frame = CGRectMake(160, 89, 160, 47);
         [self.collectionButton setBackgroundImage:[MTData createImageWithColor:[UIColor colorWithWhite:0.9 alpha:0.9]] forState:UIControlStateSelected];
-        
-        [self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] forState:UIControlStateNormal];
+        [self.collectionButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [self.collectionButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateSelected];
+        [self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] withTitle:[NSString stringWithFormat:@"%d",self.favorateMapArray.count] forState:UIControlStateNormal];
+        //[self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] forState:UIControlStateNormal];
         [self.collectionButton addTarget:self action:@selector(clickFavorateButton:) forControlEvents:UIControlEventTouchUpInside];
         if(self.currentMap == 2)
             [self.collectionButton setSelected:YES];
