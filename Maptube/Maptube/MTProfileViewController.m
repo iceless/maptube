@@ -64,7 +64,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateBoard) name:ModifyBoardNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:RefreshTableViewNotification object:nil];
     self.myMapArray = [NSMutableArray array];
-    self.favorateMapArray = [NSMutableArray array];
+    self.FavoriteMapArray = [NSMutableArray array];
     
     self.locationManager =[[CLLocationManager alloc] init];
     self.locationManager.delegate=self;
@@ -141,7 +141,7 @@
 -(void)updateBoard{
     
     [self.myMapArray removeAllObjects];
-    [self.favorateMapArray removeAllObjects];
+    [self.favoriteMapArray removeAllObjects];
     PFRelation *relation = [self.user relationforKey:Map];
      [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
          
@@ -156,15 +156,15 @@
         }
     }];
     
-    PFRelation *favorateMapRelation = [self.user relationforKey:CollectMap];
-     [[favorateMapRelation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    PFRelation *FavoriteMapRelation = [self.user relationforKey:CollectMap];
+     [[FavoriteMapRelation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
          
          for (int i=0;i<objects.count;i++) {
              MTMap *map = [[MTMap alloc]init];
              map.mapObject = objects[i];
              [map initData];
-             [self.favorateMapArray addObject:map];
-             if(i==self.favorateMapArray.count-1)
+             [self.favoriteMapArray addObject:map];
+             if(i==self.favoriteMapArray.count-1)
                  [self.table reloadData];
              
          }
@@ -225,7 +225,7 @@
     if(self.currentMap==1)
         return self.myMapArray.count+1;
     else
-        return self.favorateMapArray.count+1;
+        return self.favoriteMapArray.count+1;
 
 }
 
@@ -284,9 +284,9 @@
         [self.collectionButton setBackgroundImage:[MTData createImageWithColor:[UIColor colorWithWhite:0.9 alpha:0.9]] forState:UIControlStateSelected];
         [self.collectionButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [self.collectionButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateSelected];
-        [self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] withTitle:[NSString stringWithFormat:@"%d",self.favorateMapArray.count] forState:UIControlStateNormal];
+        [self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] withTitle:[NSString stringWithFormat:@"%d",self.favoriteMapArray.count] forState:UIControlStateNormal];
         //[self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] forState:UIControlStateNormal];
-        [self.collectionButton addTarget:self action:@selector(clickFavorateButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.collectionButton addTarget:self action:@selector(clickFavoriteButton:) forControlEvents:UIControlEventTouchUpInside];
         if(self.currentMap == 2)
             [self.collectionButton setSelected:YES];
         self.collectionButton.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.9].CGColor;
@@ -305,7 +305,7 @@
             map= [self.myMapArray objectAtIndex:(indexPath.row-1)];
         }
         else {
-            map= [self.favorateMapArray objectAtIndex:(indexPath.row-1)];
+            map= [self.favoriteMapArray objectAtIndex:(indexPath.row-1)];
             str = @"CollectMapCell";
         }
          MTMapCell *cell = (MTMapCell *)[tableView dequeueReusableCellWithIdentifier:str];
@@ -391,7 +391,7 @@
             destViewController.mapData = map;
         }
         else {
-            MTMap *map = [self.favorateMapArray objectAtIndex:indexPath.row-1];
+            MTMap *map = [self.favoriteMapArray objectAtIndex:indexPath.row-1];
 
             places = map.placeArray;
 
@@ -446,7 +446,7 @@
     [self.collectionButton setSelected:NO];
     
 }
--(void)clickFavorateButton:(id)sender{
+-(void)clickFavoriteButton:(id)sender{
     UIButton *button = (UIButton *)sender;
     [button setSelected:YES];
     if(self.currentMap==1){

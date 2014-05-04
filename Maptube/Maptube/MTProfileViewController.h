@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) UITableView *table;
 @property (nonatomic, strong) NSMutableArray *myMapArray;
-@property (nonatomic, strong) NSMutableArray *favorateMapArray;
+@property (nonatomic, strong) NSMutableArray *favoriteMapArray;
 @property (nonatomic, strong) NSString *totalPlacesCount;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) UIButton *myMapButton;

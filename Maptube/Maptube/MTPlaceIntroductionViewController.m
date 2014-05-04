@@ -45,6 +45,7 @@
     self.chooseBoardView = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
     self.chooseBoardView.place = self.place;
     self.chooseBoardView.view.frame = CGRectMake(0, 130, self.view.frame.size.width, self.view.frame.size.height);
+   
     UIView *greyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     greyView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     greyView.tag = 101;
@@ -95,7 +96,10 @@
     [button setImage:[UIImage imageNamed:@"pin_active"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
-    
+    if(self.venue){
+        self.place = [[MTPlace alloc]initWithVenue:self.venue];
+        
+    }
     
     [self initData];
 
@@ -191,7 +195,8 @@
         numberLabel.textColor = [UIColor blueColor];
         [self.view addSubview:numberLabel];
     }
-    
+    self.chooseBoardView.imageUrlArray = self.imageUrlArray;
+    self.chooseBoardView.map = self.map;
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 170, 160, 40)];
     if(self.venue)
     titleLabel.text = self.venue.name;
@@ -268,12 +273,14 @@
 
     
 }
+
 -(void)closeChooseBoardView{
     UIView *view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:101];
     view.hidden = true;
     view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:102];
     view.hidden = true;
 }
+
 -(void)showEditPlacePhotoView{
     MTEditPlacePhotoViewController *viewController = [[MTEditPlacePhotoViewController alloc]init];
     viewController.imageStrArray = self.imageUrlArray;
