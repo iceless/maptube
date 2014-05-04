@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Mapbox.h"
+//#import "Mapbox.h"
 #import <AVOSCloud/AVOSCloud.h>
-
+#import "FSVenue.h"
 @interface MTPlace  : AVObject<AVSubclassing>
 @property (nonatomic,strong)NSString *title;
 @property (nonatomic,strong)NSString *venueId;
@@ -21,5 +21,6 @@
 @property (nonatomic,strong)NSNumber *longitude;
 
 +(NSArray *)convertPlaceArray:(NSArray *)array;
-+ (CGRect)updateMemberPins:(NSArray *)members;
++(CGRect)updateMemberPins:(NSArray *)members;
+-(id)initWithVenue:(FSVenue *)venue;
 @end
