@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MTPlace.h"
-
-@interface MTEditPlacePhotoViewController : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "MTEditDetailViewController.h"
+@interface MTEditPlacePhotoViewController : UIViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MTEditDetailViewDelegate>
 @property (strong, nonatomic) NSArray *imageStrArray;
 //@property (strong, nonatomic) NSString *placeName;
 @property (strong, nonatomic) NSString *location;

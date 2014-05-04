@@ -8,6 +8,7 @@
 
 #import "MTEditPlacePhotoViewController.h"
 
+
 @interface MTEditPlacePhotoViewController ()
 
 @end
@@ -48,7 +49,11 @@
     UILabel *label  = [[UILabel alloc]initWithFrame:CGRectMake(5, 65, 310, 20)];
     label.text = self.place.title;
     label.textAlignment = NSTextAlignmentLeft;
+    label.tag = 11;
      [self.view addSubview:label];
+    UITapGestureRecognizer  *singleTap = [[UITapGestureRecognizer  alloc]initWithTarget:self action:@selector(modifyPlaceTitle)];
+    label.userInteractionEnabled = YES;
+    [label addGestureRecognizer:singleTap];
     
     label  = [[UILabel alloc]initWithFrame:CGRectMake(5, 85, 310, 20)];
     label.text = self.location;
@@ -171,6 +176,23 @@
     }
     
 }
+
+-(void)modifyPlaceTitle{
+    MTEditDetailViewController *destViewController = [[MTEditDetailViewController alloc]init];
+    destViewController.delegate = self;
+    UILabel *label = (UILabel *)[self.view viewWithTag:11];
+    destViewController.detailValue = label.text;
+    //destViewController.indexPathRow = indexPath.row;
+    [self.navigationController pushViewController:destViewController animated:YES];
+}
+
+//MTEditDetailViewdelegate
+-(void)updateValue:(NSString *)str atIndex:(NSInteger)i{
+    UILabel *label = (UILabel *)[self.view viewWithTag:11];
+    label.text = str;
+    
+}
+
 
 -(void)close{
     [self.navigationController popViewControllerAnimated:YES];
