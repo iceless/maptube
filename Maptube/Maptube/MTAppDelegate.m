@@ -32,6 +32,7 @@
     [self initFoursquare];
     [self initViewControllers];
     [self initStyle];
+    [MTData sharedInstance];
    
     
     return YES;
