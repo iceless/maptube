@@ -115,6 +115,7 @@
 		5E9C0DD618E2CE3F00040114 /* libMapbox.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9C0DD218E2CE2800040114 /* libMapbox.a */; };
 		5E9E0FF418B7252F008D89AD /* MTPlace.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9E0FF318B7252F008D89AD /* MTPlace.m */; };
 		5EA1B5861910871C00E8F23E /* UIButton+UIButtonImageWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1B5851910871C00E8F23E /* UIButton+UIButtonImageWithLabel.m */; };
+		5EA1B58819109A6200E8F23E /* MapStoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA1B58719109A6200E8F23E /* MapStoryCell.xib */; };
 		5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */; };
 		5EA684E918B32DA800679EDE /* MTChooseBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */; };
 		5EBBFE9218C6DA89007B6109 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8D18C6DA89007B6109 /* profile@2x.png */; };
@@ -324,6 +325,7 @@
 		5E9E0FF318B7252F008D89AD /* MTPlace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTPlace.m; sourceTree = "<group>"; };
 		5EA1B5841910871C00E8F23E /* UIButton+UIButtonImageWithLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+UIButtonImageWithLabel.h"; sourceTree = "<group>"; };
 		5EA1B5851910871C00E8F23E /* UIButton+UIButtonImageWithLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+UIButtonImageWithLabel.m"; sourceTree = "<group>"; };
+		5EA1B58719109A6200E8F23E /* MapStoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapStoryCell.xib; sourceTree = "<group>"; };
 		5EA684E418B3029F00679EDE /* MTAddPictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAddPictureViewController.h; sourceTree = "<group>"; };
 		5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddPictureViewController.m; sourceTree = "<group>"; };
 		5EA684E718B32DA800679EDE /* MTChooseBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTChooseBoardViewController.h; sourceTree = "<group>"; };
@@ -721,6 +723,7 @@
 				5E9906311907AEF8007370F5 /* MyMapCell.xib */,
 				5EE4F28518EAA61100ECE09C /* MTMapCell.h */,
 				5EE4F28618EAA61100ECE09C /* MTMapCell.m */,
+				5EA1B58719109A6200E8F23E /* MapStoryCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -830,6 +833,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EA1B58819109A6200E8F23E /* MapStoryCell.xib in Resources */,
 				5E99062619079228007370F5 /* location_blue@2x.png in Resources */,
 				5E99062119079228007370F5 /* favorites_active@2x.png in Resources */,
 				5E99062419079228007370F5 /* home_active@2x.png in Resources */,
@@ -1085,8 +1089,8 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: zhong sheng (Y2P65PB7UL)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: zhong sheng (Y2P65PB7UL)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/Maptube",
