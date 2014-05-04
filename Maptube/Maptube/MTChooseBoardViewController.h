@@ -9,14 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "FSVenue.h"
 #import "MTPlace.h"
+#import "MTMap.h"
 @interface MTChooseBoardViewController : MTBaseViewController<UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate>
 @property (strong, nonatomic) FSVenue *venue;
-@property (strong, nonatomic) NSArray  *boardArray;
+@property (strong, nonatomic) NSMutableArray  *mapArray;
 @property (strong, nonatomic) UITextField *describeTextField;
 @property (strong, nonatomic) UIImage *image;
 @property (strong, nonatomic) UITableView *table;
 @property (strong, nonatomic) NSMutableArray *imageUrlArray;
 @property (strong, nonatomic) MTPlace *place;
+@property (strong, nonatomic) MTMap *map;
 -(id)initWithImage:(UIImage *)image AndVenue:(FSVenue *)venue;
 
 @end

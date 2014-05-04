@@ -12,6 +12,7 @@
 
 
 
+
 @interface MTChooseBoardViewController ()
 
 @end
@@ -43,7 +44,7 @@
     [super viewDidLoad];
     //PFUser *user = [PFUser currentUser];
    // self.boardArray = user[@"Board"];
-    self.boardArray = [[NSMutableArray alloc]init];
+    self.mapArray= [[NSMutableArray alloc]init];
     //PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
    
     //self.boardArray = [[relation query] findObjects];
@@ -95,8 +96,18 @@
     }
 */
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
-    self.boardArray = [[relation query] findObjects];
-    [self.table reloadData];
+    [relation.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [self.table reloadData];
+        for(AVObject *object in objects){
+            MTMap *map = [[MTMap alloc]init];
+            map.mapObject = object;
+            [map initData];
+            [self.mapArray addObject:object];
+        }
+
+    }];
+
+    
 }
 
 
@@ -111,20 +122,15 @@
     
 }
 
+/*
+
 -(void)addPlace{
    
-    PFQuery *query = [PFQuery queryWithClassName:@"Place"];
-    [query whereKey:VenueID containsString:self.venue.venueId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if(objects.count!=0){
-            PFObject * placeObject = (PFObject *)objects[0];
-             [self addPlaceRelation:placeObject];
-        }
-        else{
+    
             
-            PFObject *placeObject = [PFObject objectWithClassName:Place];
-            [placeObject setObject:self.venue.title forKey:Title];
-            if(self.describeTextField.text.length!=0){
+    PFObject *placeObject = [PFObject objectWithClassName:Place];
+    [placeObject setObject:self.venue.title forKey:Title];
+    if(self.describeTextField.text.length!=0){
                 [placeObject setObject:self.describeTextField.text  forKey:Description];
             }
             [placeObject setObject:self.venue.venueId forKey:VenueID];
@@ -146,14 +152,14 @@
                 }
             }];
     
-    }
-        
-    }];
+    
+
     [[NSNotificationCenter defaultCenter]postNotificationName:CloseChooseBoardNotification object:Nil];
 }
 
 -(void)addPlaceRelation:(PFObject *)placeObject{
     
+    /*
     for(NSDictionary *dict in self.boardArray){
         if([[dict objectForKey:@"exsist"] isEqualToString:@"1"]){
             PFObject *mapObject = [dict objectForKey:@"object"];
@@ -185,8 +191,10 @@
         }
         
     }
-    
-}
+ }
+    */
+
+
 /*
 -(void)addBoard:(NSString *)str{
     
@@ -237,7 +245,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if(section==0) return 1;
-    else return self.boardArray.count;
+    else return self.mapArray.count;
     
     
 }
@@ -248,27 +256,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 30, 30)];
+    [cell.contentView addSubview:imgView];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(50, 10, 200, 20)];
+    [cell.contentView addSubview:label];
     
     //static NSString *cellIdentifier = @"NewMapCell";
     
     if(indexPath.section==0){
        //cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(self.venue){
-        cell.textLabel.text = self.venue.name;
+        label.text = self.venue.name;
+        if(self.imageUrlArray.count!=0)
+        [imgView setImageWithURL:[NSURL URLWithString:self.imageUrlArray[0]]];
         }
         else {
-            cell.textLabel.text = self.place.title;
+            label.text = self.place.title;
+            imgView.image = self.place.placePhotos[0];
         }
+        
+        
     }
     else{
-     
-
-        PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
-
-        
-        cell.textLabel.text = mapObject[Title];
-        
+        MTMap *map = [self.mapArray objectAtIndex:indexPath.row];
+        MTPlace *place = map.placeArray[0];
+        imgView.image = place.placePhotos[0];
+        label.text = map.mapObject[Title];
     }
    
     return cell;
@@ -289,6 +303,8 @@
         return;
         
     }
+    
+    
     /*
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
@@ -310,9 +326,28 @@
    // [self.boardArray replaceObjectAtIndex:indexPath.row withObject:dict];
     
   
-    PFObject *mapObject = [self.boardArray objectAtIndex:indexPath.row];
+    MTMap *map = [self.mapArray objectAtIndex:indexPath.row];
+    if(map==self.map){
+        [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"The place exsits in the Map", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+        return;
+    }
     
-    PFRelation *relation = [mapObject relationforKey:Place];
+    PFRelation *relation = [map.mapObject relationforKey:Place];
+    [relation addObject:self.place];
+    [map.mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
+            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Pin Suceess", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+            
+        }
+    }];
+
+    
+    
+    /*
+    
+    PFRelation *relation = [map.mapObject relationforKey:Place];
     
     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         for (PFObject *object in objects) {
@@ -326,9 +361,9 @@
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             for (PFObject *object in objects) {
                 if([object[VenueID] isEqualToString:self.venue.venueId]){
-                    PFRelation *relation = [mapObject relationforKey:Place];
+                    PFRelation *relation = [map.mapObject relationforKey:Place];
                     [relation addObject:object];
-                    [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+                    [map.mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
                         if (!error) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
                             [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
@@ -355,9 +390,9 @@
         //[placeObject setObject:self.venue.location.distance forKey:Distance];
         [placeObject saveEventually: ^(BOOL succeeded, NSError *error) {
             if (!error) {
-                PFRelation *relation = [mapObject relationforKey:Place];
+                PFRelation *relation = [map.mapObject relationforKey:Place];
                 [relation addObject:placeObject];
-                [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+                [map.mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
                     if (!error) {
                         [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
                         [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
@@ -377,7 +412,7 @@
      
      ];
            
-    
+    */
     
 }
 
