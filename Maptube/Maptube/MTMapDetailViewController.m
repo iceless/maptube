@@ -50,6 +50,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"PlaceSummaryCell" bundle:nil] forCellReuseIdentifier:@"PlaceSummaryCell"];
+  
     [self.view addSubview:self.tableView];
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 15)];
@@ -89,6 +90,7 @@
    
     self.storyView.dataSource = self;
     self.storyView.delegate = self;
+    [self.storyView registerNib:[UINib nibWithNibName:@"MapStoryCell" bundle:nil] forCellReuseIdentifier:@"StoryCell"];
     [self.view addSubview:self.storyView];
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -305,6 +307,17 @@
             [cell.contentView addSubview:quota];
         }
         else{
+            
+           
+            cell = [tableView dequeueReusableCellWithIdentifier:@"StoryCell"];
+            UILabel *label = (UILabel *)[cell viewWithTag:1];
+            label.text = [NSString stringWithFormat:@"%d",self.mapData.placeArray.count];
+            
+            label = (UILabel *)[cell viewWithTag:2];
+            label.text = [NSString stringWithFormat:@"%d",self.mapData.collectUsers.count];
+            
+            
+            /*
             UILabel *label = [[UILabel alloc]init];
             NSArray *array = self.mapData.mapObject[City];
             MTPlace *place = self.mapData.placeArray[0];
@@ -323,6 +336,8 @@
             label.font = [UIFont systemFontOfSize:12];
             label.frame = CGRectMake(5, 5, 80, 20);
             [cell.contentView addSubview:label];
+            
+            */
         }
         return cell;
     }
