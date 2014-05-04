@@ -35,7 +35,10 @@
 #define PlacePhotos @"placePhotos"
 #define City @"city"
 
-#define MapId @"bluefeather.hkh8138o"
+//#define MapId @"bluefeather.hkh8138o"
+
+
+#define MapId @"wubingmapgis.i59ohpa8"
 #define MapBoxAPI @"http://api.tiles.mapbox.com/v3/"
 
 //http://api.tiles.mapbox.com/v3/{mapid}/{markers}/{lon},{lat},{z}/{width}x{height}.{format}
