@@ -66,8 +66,8 @@
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
     
-    self.fields = @[@"Title", @"Description", @"Category", @"Secret"];
-    self.values = [@[@"", @"", @"", [NSNumber numberWithBool:NO]]mutableCopy];
+    self.fields = @[@"Title", @"Description", @"Secret"];
+    self.values = [@[@"", @"", [NSNumber numberWithBool:NO]]mutableCopy];
 
     //PFUser *user = [PFUser currentUser];
     //self.values = @[@"", @"", @"Category", @"Show Map", @"Secret"];
@@ -81,7 +81,7 @@
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section==0) return 3;
+    if(section==0) return 2;
     else return 1;
 }
 
@@ -200,9 +200,9 @@
     UISwitch *switchButton = (UISwitch *)sender;
     //if(switchButton.tag==11){
         if(switchButton.on)
-            self.values[3] =  [NSNumber numberWithBool:NO];
+            self.values[2] =  [NSNumber numberWithBool:NO];
         else
-            self.values[3] = [NSNumber numberWithBool:YES];
+            self.values[2] = [NSNumber numberWithBool:YES];
         
 //    }
 //    else if(switchButton.tag==12){
@@ -230,8 +230,8 @@
         PFObject *mapObject = [PFObject objectWithClassName:Map];
         [mapObject setObject:self.values[0] forKey:Title];
         [mapObject setObject:self.values[1] forKey:Description];
-        [mapObject setObject:self.values[2] forKey:Category];
-        [mapObject setObject: self.values[3] forKey:Secret];
+        //[mapObject setObject:self.values[2] forKey:Category];
+        [mapObject setObject: self.values[2] forKey:Secret];
         [mapObject setObject:[AVUser currentUser] forKey:Author];
         [mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
             if (!error) {
