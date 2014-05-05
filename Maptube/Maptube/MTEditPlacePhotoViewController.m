@@ -102,11 +102,12 @@
         [view addGestureRecognizer:singleTap];
         
         [view setImageWithURL:[NSURL URLWithString:str]];
-        UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mark.png"]];
-        imgView.tag = 1;
-        imgView.frame = CGRectMake(80, 0, 15, 15);
-        [view addSubview:imgView];
-        imgView.hidden = YES;
+        UIButton *markButton = [[UIButton alloc]initWithFrame:CGRectMake(80, 0, 15, 15)];
+        [markButton setImage:[UIImage imageNamed:@"right_1.png"] forState:UIControlStateNormal];
+        [markButton setImage:[UIImage imageNamed:@"right_2.png"] forState:UIControlStateSelected];
+        markButton.tag = 11;
+        
+        [view addSubview:markButton];
         [self.view addSubview:view];
         
 
@@ -153,11 +154,13 @@
     [view addGestureRecognizer:singleTap];
     view.image = image;
     
-    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"right_2.png"]];
-    imgView.tag = 1;
-    imgView.frame = CGRectMake(80, 0, 15, 15);
-    [view addSubview:imgView];
-    imgView.hidden = YES;
+    UIButton *markButton = [[UIButton alloc]initWithFrame:CGRectMake(80, 0, 15, 15)];
+    [markButton setImage:[UIImage imageNamed:@"right_1.png"] forState:UIControlStateNormal];
+    [markButton setImage:[UIImage imageNamed:@"right_2.png"] forState:UIControlStateSelected];
+    markButton.tag = 11;
+    
+    [view addSubview:markButton];
+    //imgView.hidden = YES;
     [self.view addSubview:view];
     self.totalImageCount++;
 
@@ -166,9 +169,9 @@
 -(void)clickImage:(UITapGestureRecognizer *)gestureRecognizer{
    
     UIImageView *view = (UIImageView*)gestureRecognizer.view;
-    UIImageView *imgView = (UIImageView *)[view viewWithTag:1];
-    imgView.hidden = !imgView.hidden;
-    if(imgView.hidden){
+    UIButton *markButton = (UIButton *)[view viewWithTag:11];
+    [markButton setSelected:!markButton.selected];
+    if(!markButton.selected){
         [self.selectImageArray removeObject:view.image];
     }
     else {
