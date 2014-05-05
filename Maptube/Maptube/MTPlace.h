@@ -22,5 +22,5 @@
 
 +(NSArray *)convertPlaceArray:(NSArray *)array;
 +(CGRect)updateMemberPins:(NSArray *)members;
--(id)initWithVenue:(FSVenue *)venue;
+-(void)getDataByVenue:(FSVenue *)venue;
 @end

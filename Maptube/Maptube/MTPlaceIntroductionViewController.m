@@ -94,10 +94,7 @@
         [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
     }
     [self.view addSubview:button];
-    if(self.venue){
-        self.place = [[MTPlace alloc]initWithVenue:self.venue];
-        
-    }
+   
     
     [self initData];
     UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -207,9 +204,15 @@
     self.chooseBoardView.imageUrlArray = self.imageUrlArray;
     self.chooseBoardView.map = self.map;
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 170, 160, 40)];
-    if(self.venue)
-    titleLabel.text = self.venue.name;
-    else titleLabel.text = self.place.title;
+    if(self.venue){
+        titleLabel.text = self.venue.name;
+        self.chooseBoardView.place = [MTPlace objectWithClassName:Place];
+        [self.chooseBoardView.place getDataByVenue:self.venue];
+    }
+    else {
+        
+        titleLabel.text = self.place.title;
+    }
     titleLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:titleLabel];
     [self.table reloadData];

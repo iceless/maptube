@@ -12,14 +12,16 @@
 
 @implementation MTPlace
 
--(id)initWithVenue:(FSVenue *)venue{
+-(void)getDataByVenue:(FSVenue *)venue{
+   
+   
     self.title = venue.title;
     self.latitude = [NSNumber numberWithDouble:venue.location.coordinate.latitude];
     self.longitude = [NSNumber numberWithDouble:venue.location.coordinate.longitude];
     self.venueAddress = venue.location.address;
     self.venueId = venue.venueId;
     
-    return self;
+    
 }
 
 
