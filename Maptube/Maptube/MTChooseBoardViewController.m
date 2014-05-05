@@ -345,17 +345,21 @@
         [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"The place exsits in the Map", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
         return;
     }
-    
-    PFRelation *relation = [map.mapObject relationforKey:Place];
-    [relation addObject:self.place];
-    [map.mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+    [self.place saveEventually:^(BOOL succeeded, NSError *error) {
         if (!error) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
-            [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Pin Suceess", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
-            
+            PFRelation *relation = [map.mapObject relationforKey:Place];
+            [relation addObject:self.place];
+            [map.mapObject saveEventually: ^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ModifyBoardNotification object:nil];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CloseChooseBoardNotification object:nil];
+                    [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Pin Suceess", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
+                    
+                }
+            }];
         }
     }];
+    
 
     
     
