@@ -75,11 +75,7 @@
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
     
-    UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
-    b.frame=CGRectMake(5, 30, 24, 24);
-    [b addTarget:self action:@selector(navBack) forControlEvents:UIControlEventTouchUpInside];
-    [b setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [self.view addSubview:b];
+    
     
   
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -104,6 +100,11 @@
     }
     
     [self initData];
+    UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
+    b.frame=CGRectMake(5, 30, 24, 24);
+    [b addTarget:self action:@selector(navBack) forControlEvents:UIControlEventTouchUpInside];
+    [b setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [self.view addSubview:b];
 
     
 }
@@ -197,6 +198,12 @@
         numberLabel.textColor = [UIColor blueColor];
         [self.view addSubview:numberLabel];
     }
+    
+    else{
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
+        imgView.image = [UIImage imageNamed:@"No-Picture.jpg"];
+        [self.view addSubview:imgView];
+    }
     self.chooseBoardView.imageUrlArray = self.imageUrlArray;
     self.chooseBoardView.map = self.map;
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 170, 160, 40)];
@@ -281,6 +288,7 @@
     view.hidden = true;
     view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:102];
     view.hidden = true;
+    [self.chooseBoardView.table reloadData];
 }
 
 -(void)showEditPlacePhotoView{
@@ -370,7 +378,7 @@
             [cell.contentView addSubview:label];
             label.font = [UIFont systemFontOfSize:11];
             label.textColor = [UIColor lightGrayColor];
-            label = [[UILabel alloc]initWithFrame:CGRectMake(40, 15, 100, 20)];
+            label = [[UILabel alloc]initWithFrame:CGRectMake(40, 15, 200, 20)];
             label.text = [self.map.mapObject objectForKey:Title];
             [cell.contentView addSubview:label];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
