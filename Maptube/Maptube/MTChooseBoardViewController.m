@@ -67,10 +67,15 @@
     [self.view addSubview:bar];
     [self setExtraCellLineHidden:self.table];
     [self updateBoard];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:RefreshTableViewNotification object:nil];
 	// Do any additional setup after loading the view.
 }
 
--(void)updateBoard {
+-(void)refreshTableView{
+    [self.table reloadData];
+}
+
+-(void)updateBoard{
     /*
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     [self.boardArray removeAllObjects];
@@ -97,14 +102,14 @@
 */
     PFRelation *relation = [[PFUser currentUser] relationforKey:Map];
     [relation.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        [self.table reloadData];
+        
         for(AVObject *object in objects){
             MTMap *map = [[MTMap alloc]init];
             map.mapObject = object;
             [map initData];
-            [self.mapArray addObject:object];
+            [self.mapArray addObject:map];
         }
-
+        //[self.table reloadData];
     }];
 
     
@@ -273,16 +278,25 @@
         }
         else {
             label.text = self.place.title;
-            imgView.image = self.place.placePhotos[0];
+            if(self.place.placePhotos.count!=0){
+                AVFile *picObject = self.place.placePhotos[0];
+                NSData *imageData = [picObject getData];
+                imgView.image = [UIImage imageWithData:imageData];
+            }
         }
         
         
     }
     else{
         MTMap *map = [self.mapArray objectAtIndex:indexPath.row];
+        if(map.placeArray.count!=0){
         MTPlace *place = map.placeArray[0];
-        imgView.image = place.placePhotos[0];
+        AVFile *picObject = place.placePhotos[0];
+        NSData *imageData = [picObject getData];
+        imgView.image = [UIImage imageWithData:imageData];
+
         label.text = map.mapObject[Title];
+        }
     }
    
     return cell;
@@ -427,6 +441,10 @@
         return 40;
 }
 
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:RefreshTableViewNotification];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

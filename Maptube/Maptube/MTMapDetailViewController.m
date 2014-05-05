@@ -271,7 +271,7 @@
             imgView.layer.cornerRadius =15;
             [cell.contentView addSubview:imgView];
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.frame = CGRectMake(270, 10, 50, 20);
+            button.frame = CGRectMake(270, 10, 24, 24);
             AVUser *user = self.mapData.author;
             NSString *userID = [[AVUser currentUser] objectId];
             if([[user objectId] isEqualToString:userID])
