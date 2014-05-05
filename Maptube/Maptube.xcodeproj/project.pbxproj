@@ -118,6 +118,9 @@
 		5EA1B58819109A6200E8F23E /* MapStoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EA1B58719109A6200E8F23E /* MapStoryCell.xib */; };
 		5EA684E618B3029F00679EDE /* MTAddPictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */; };
 		5EA684E918B32DA800679EDE /* MTChooseBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */; };
+		5EA796E019172235005AC8E7 /* edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA796DD19172235005AC8E7 /* edit@2x.png */; };
+		5EA796E119172235005AC8E7 /* right_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA796DE19172235005AC8E7 /* right_1@2x.png */; };
+		5EA796E219172235005AC8E7 /* right_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA796DF19172235005AC8E7 /* right_2@2x.png */; };
 		5EBBFE9218C6DA89007B6109 /* profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8D18C6DA89007B6109 /* profile@2x.png */; };
 		5EBBFE9318C6DA89007B6109 /* message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8E18C6DA89007B6109 /* message@2x.png */; };
 		5EBBFE9418C6DA89007B6109 /* place@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBFE8F18C6DA89007B6109 /* place@2x.png */; };
@@ -330,6 +333,9 @@
 		5EA684E518B3029F00679EDE /* MTAddPictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAddPictureViewController.m; sourceTree = "<group>"; };
 		5EA684E718B32DA800679EDE /* MTChooseBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTChooseBoardViewController.h; sourceTree = "<group>"; };
 		5EA684E818B32DA800679EDE /* MTChooseBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTChooseBoardViewController.m; sourceTree = "<group>"; };
+		5EA796DD19172235005AC8E7 /* edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit@2x.png"; sourceTree = "<group>"; };
+		5EA796DE19172235005AC8E7 /* right_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_1@2x.png"; sourceTree = "<group>"; };
+		5EA796DF19172235005AC8E7 /* right_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_2@2x.png"; sourceTree = "<group>"; };
 		5EBBFE8D18C6DA89007B6109 /* profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "profile@2x.png"; sourceTree = "<group>"; };
 		5EBBFE8E18C6DA89007B6109 /* message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message@2x.png"; sourceTree = "<group>"; };
 		5EBBFE8F18C6DA89007B6109 /* place@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "place@2x.png"; sourceTree = "<group>"; };
@@ -464,6 +470,9 @@
 		52EB0F1D18D03959008CF6E6 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				5EA796DD19172235005AC8E7 /* edit@2x.png */,
+				5EA796DE19172235005AC8E7 /* right_1@2x.png */,
+				5EA796DF19172235005AC8E7 /* right_2@2x.png */,
 				5E507C5C190F32B20059947E /* camera@2x.png */,
 				5E9906331907C387007370F5 /* search@2x.png */,
 				5E9906341907C387007370F5 /* setting@2x.png */,
@@ -838,6 +847,7 @@
 				5E99062119079228007370F5 /* favorites_active@2x.png in Resources */,
 				5E99062419079228007370F5 /* home_active@2x.png in Resources */,
 				56F1CB021867DEEB008498DF /* Images.xcassets in Resources */,
+				5EA796E019172235005AC8E7 /* edit@2x.png in Resources */,
 				5E95916218ADEE310097B6BC /* CHANGELOG.md in Resources */,
 				5E9C0DD518E2CE3600040114 /* Mapbox.bundle in Resources */,
 				5E99062E19079228007370F5 /* profile_favorites@2x.png in Resources */,
@@ -859,6 +869,7 @@
 				5EBBFE9818C6F3A3007B6109 /* placepin@2x.png in Resources */,
 				5E963D541900C20A00132DF6 /* addpic@2x.png in Resources */,
 				5E99062D19079228007370F5 /* profile_active@2x.png in Resources */,
+				5EA796E119172235005AC8E7 /* right_1@2x.png in Resources */,
 				5EBBFE9918C6F543007B6109 /* Main.storyboard in Resources */,
 				5E25CBA018CD887800260E5A /* like@2x.png in Resources */,
 				5EBBFE9218C6DA89007B6109 /* profile@2x.png in Resources */,
@@ -867,6 +878,7 @@
 				5E99061F19079228007370F5 /* close@2x.png in Resources */,
 				5EE7CC8D18CF0CAC0095D0B5 /* addmap@2x.png in Resources */,
 				5227EE6818D20877002EB2AB /* PlaceSummaryCell.xib in Resources */,
+				5EA796E219172235005AC8E7 /* right_2@2x.png in Resources */,
 				5E99062219079228007370F5 /* favorites_normal@2x.png in Resources */,
 				5E99062919079228007370F5 /* mapdetail_list button-2@2x.png in Resources */,
 				5E507C5D190F32B20059947E /* camera@2x.png in Resources */,

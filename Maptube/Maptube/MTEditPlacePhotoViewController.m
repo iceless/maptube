@@ -153,7 +153,7 @@
     [view addGestureRecognizer:singleTap];
     view.image = image;
     
-    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"mark.png"]];
+    UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"right_2.png"]];
     imgView.tag = 1;
     imgView.frame = CGRectMake(80, 0, 15, 15);
     [view addSubview:imgView];
@@ -218,6 +218,7 @@
         }];
             }
         [self.navigationController popViewControllerAnimated:YES];
+    
     
 }
 

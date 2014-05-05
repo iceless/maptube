@@ -85,16 +85,18 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(220, 175, 36, 36);
    
-   // if([self.map.author.objectId isEqualToString:[AVUser currentUser].objectId]){
-   //     [button setTitle:@"Edit" forState:UIControlStateNormal];
-    //    [button addTarget:self action:@selector(showEditPlacePhotoView) forControlEvents:UIControlEventTouchUpInside];
-    //}
+    if([self.map.author.objectId isEqualToString:[AVUser currentUser].objectId]){
+        [button setImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(showEditPlacePhotoView) forControlEvents:UIControlEventTouchUpInside];
+    }
    // else {
     //    [button setTitle:@"Pin" forState:UIControlStateNormal];
     //    [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
    // }
-    [button setImage:[UIImage imageNamed:@"pin_active"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
+    else{
+        [button setImage:[UIImage imageNamed:@"pin_active"] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
+    }
     [self.view addSubview:button];
     if(self.venue){
         self.place = [[MTPlace alloc]initWithVenue:self.venue];
