@@ -46,10 +46,11 @@
     self.navigationItem.rightBarButtonItem = mapItem;
 
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 45*3-20, self.view.frame.size.width, 45*3+20) style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"PlaceSummaryCell" bundle:nil] forCellReuseIdentifier:@"PlaceSummaryCell"];
+    
   
     [self.view addSubview:self.tableView];
     
@@ -60,6 +61,7 @@
     [view addGestureRecognizer:headTap];
     CGAffineTransform transform =CGAffineTransformMakeScale(2.0f,2.0f);
     UIButton *headButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [headButton addTarget:self action:@selector(clickFold) forControlEvents:UIControlEventTouchUpInside];
     headButton.frame = CGRectMake(298, 0, 15, 15);
     headButton.transform = transform;
     headButton.tag = 11;
@@ -343,6 +345,7 @@
     }
     static NSString *CellIdentifier = @"PlaceSummaryCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     MTPlace *place = self.placeArray[indexPath.row];
     
@@ -440,7 +443,7 @@
 
 -(void)clickFold{
     CGRect foldRect = CGRectMake(0, self.view.frame.size.height - 45*3-20, self.view.frame.size.width, 45*3+20);
-    CGRect unFoldRect = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height );
+    CGRect unFoldRect = CGRectMake(0, 74, self.view.frame.size.width, self.view.frame.size.height );
      UIButton *button = (UIButton *)[self.tableView.tableHeaderView viewWithTag:11];
     
     if(!self.isTableViewFolded) {
