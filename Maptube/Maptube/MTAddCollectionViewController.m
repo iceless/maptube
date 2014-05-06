@@ -131,7 +131,7 @@
             
             UISwitch *switchButton = [[UISwitch alloc]initWithFrame:CGRectMake(250, 5, 100, 100)];
             switchButton.tag = 12;
-            NSNumber *secretNumber = self.values[3];
+            NSNumber *secretNumber = self.values[2];
             if(secretNumber== [NSNumber numberWithBool:NO])
                 switchButton.on = FALSE;
             else switchButton.on = TRUE;

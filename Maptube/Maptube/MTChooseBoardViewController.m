@@ -52,14 +52,19 @@
     self.table.dataSource = self;
     self.table.delegate = self;
     [self.view addSubview:self.table];
-    
+    if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.table setSeparatorInset:UIEdgeInsetsZero];
+    }
     UINavigationItem *navigationItem =[[UINavigationItem alloc] initWithTitle:@"Pick a Map"];
+    /*
     UIButton *button=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame=CGRectMake(0, 0, 40, 32);
     [button addTarget:self action:@selector(createBoard) forControlEvents:UIControlEventTouchUpInside];
     [button setImage:[UIImage imageNamed:@"create_a_map"] forState:UIControlStateNormal];
     UIBarButtonItem *barItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    navigationItem.rightBarButtonItem=barItem;
+     */
+    navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"create_a_map"] style:UIBarButtonItemStyleBordered target:self action:@selector(createBoard)];
+
     navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"close"] style:UIBarButtonItemStyleBordered target:self action:@selector(navBack)];
    
     UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
