@@ -62,7 +62,7 @@
     CGAffineTransform transform =CGAffineTransformMakeScale(2.0f,2.0f);
     UIButton *headButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [headButton addTarget:self action:@selector(clickFold) forControlEvents:UIControlEventTouchUpInside];
-    headButton.frame = CGRectMake(298, 0, 15, 15);
+    headButton.frame = CGRectMake(298, 0, 16, 16);
     headButton.transform = transform;
     headButton.tag = 11;
     

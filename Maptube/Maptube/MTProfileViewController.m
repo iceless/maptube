@@ -388,7 +388,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
      [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if(indexPath.row != 0){
+    if(indexPath.section!= 0){
         MTMapDetailViewController *destViewController = [[MTMapDetailViewController alloc] init];
         
         NSArray *places;
@@ -413,7 +413,7 @@
         destViewController.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:destViewController animated:YES];
     }
-    else{
+    else if(indexPath.row==0){
         MTEditProfileViewController  *controller = [[MTEditProfileViewController alloc]init];
         [self.navigationController pushViewController:controller animated:YES];
     }

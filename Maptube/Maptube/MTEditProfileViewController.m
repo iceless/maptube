@@ -117,12 +117,19 @@
         //if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
         //}
-        UITextField *textField= [[UITextField alloc]initWithFrame:CGRectMake(150,5,302,29)];
-        textField.text = self.values[indexPath.row];
-        textField.delegate = self;
-        textField.tag = indexPath.row;
-        [cell.contentView addSubview:textField];
-        
+        if(indexPath.row!=3){
+            UITextField *textField= [[UITextField alloc]initWithFrame:CGRectMake(150,5,302,29)];
+            textField.text = self.values[indexPath.row];
+            textField.delegate = self;
+            textField.tag = indexPath.row;
+            [cell.contentView addSubview:textField];
+        }
+        else {
+            UILabel *label= [[UILabel alloc]initWithFrame:CGRectMake(150,5,302,29)];
+            label.text = self.values[indexPath.row];
+            [cell.contentView addSubview:label];
+            
+        }
         //UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
        //UILabel *labelValue = (UILabel *)[cell.contentView viewWithTag:2];
         //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -194,15 +201,17 @@
     actionSheet.tag = 21;
     [actionSheet showInView:self.view];
     }
-    else{
-        /*
+    //描述
+    else if(indexPath.row==3){
+        
+        
         
         MTEditDetailViewController *destViewController = [[MTEditDetailViewController alloc]init];
         destViewController.delegate = self;
         destViewController.detailValue = self.values[indexPath.row];
         destViewController.indexPathRow = indexPath.row;
         [self.navigationController pushViewController:destViewController animated:YES];
-         */
+        
 
     }
 }
