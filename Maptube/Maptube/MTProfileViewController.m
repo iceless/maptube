@@ -222,11 +222,16 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //return [recipes count];
+    if(section==0) return 2;
     if(self.currentMap==1)
-        return self.myMapArray.count+1;
+        return self.myMapArray.count;
     else
-        return self.favoriteMapArray.count+1;
+        return self.favoriteMapArray.count;
 
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -234,78 +239,77 @@
     
     UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     
-    if (indexPath.row == 0) {
-        
-        NSString *name = [NSString stringWithFormat:NSLocalizedString(@"%@ %@", nil),
-                          self.user[@"firstname"],
-                          self.user[@"lastname"]];
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(94,8,206,33)];
-        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), name];
-        label.font = [UIFont systemFontOfSize:20];
-        [cell.contentView addSubview:label];
-        
-        UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(6,6,80,80)];
-        imgv.image = self.userImage;
-        imgv.layer.masksToBounds = YES;
-        imgv.layer.cornerRadius = 40;
-        [cell.contentView addSubview:imgv];
-        
-        
-        label = [[UILabel alloc]initWithFrame:CGRectMake(94,35,206,21)];
-        label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), self.user[@"location"]];
-        label.font = [UIFont systemFontOfSize:13];
-        label.textColor = [UIColor darkGrayColor];
-        [cell.contentView addSubview:label];
-        
-        UITextView *descriptionView= [[UITextView alloc]initWithFrame:CGRectMake(88,53,302,29)];
-        descriptionView.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), self.user[@"description"]];
-        descriptionView.font = [UIFont systemFontOfSize:13];
-        descriptionView.delegate = self;
-        [cell.contentView addSubview:descriptionView];
-        
-        self.myMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.myMapButton.frame = CGRectMake(0, 89, 160, 47);
-        [self.myMapButton setBackgroundImage:[MTData createImageWithColor:[UIColor colorWithWhite:0.9 alpha:0.9]] forState:UIControlStateSelected];
-        [self.myMapButton setImage:[UIImage imageNamed: @"profile_mymap"] withTitle:[NSString stringWithFormat:@"%d",self.myMapArray.count] forState:UIControlStateNormal];
-        self.myMapButton.titleLabel.textColor = [UIColor lightGrayColor];
-        [self.myMapButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateSelected];
-        //[self.myMapButton setImage:[UIImage imageNamed: @"profile_mymap"]  forState:UIControlStateNormal];
-        [self.myMapButton addTarget:self action:@selector(clickMyMapButton:) forControlEvents:UIControlEventTouchUpInside];
-        if(self.currentMap == 1)
-        [self.myMapButton setSelected:YES];
-        self.myMapButton.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.9].CGColor;
-        self.myMapButton.layer.borderWidth = 1;
-        
-        
-        [cell.contentView addSubview:self.myMapButton];
-        
-        self.collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.collectionButton.frame = CGRectMake(160, 89, 160, 47);
-        [self.collectionButton setBackgroundImage:[MTData createImageWithColor:[UIColor colorWithWhite:0.9 alpha:0.9]] forState:UIControlStateSelected];
-        [self.collectionButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [self.collectionButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateSelected];
-        [self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] withTitle:[NSString stringWithFormat:@"%d",self.favoriteMapArray.count] forState:UIControlStateNormal];
-        //[self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] forState:UIControlStateNormal];
-        [self.collectionButton addTarget:self action:@selector(clickFavoriteButton:) forControlEvents:UIControlEventTouchUpInside];
-        if(self.currentMap == 2)
-            [self.collectionButton setSelected:YES];
-        self.collectionButton.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.9].CGColor;
-        self.collectionButton.layer.borderWidth = 1;
-        
-        [cell.contentView addSubview:self.collectionButton];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-        
+    if (indexPath.section == 0) {
+        if(indexPath.row==0){
+            NSString *name = [NSString stringWithFormat:NSLocalizedString(@"%@ %@", nil),
+                              self.user[@"firstname"],
+                              self.user[@"lastname"]];
+            UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(94,8,206,33)];
+            label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), name];
+            label.font = [UIFont systemFontOfSize:20];
+            [cell.contentView addSubview:label];
+            
+            UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(6,6,80,80)];
+            imgv.image = self.userImage;
+            imgv.layer.masksToBounds = YES;
+            imgv.layer.cornerRadius = 40;
+            [cell.contentView addSubview:imgv];
+            
+            
+            label = [[UILabel alloc]initWithFrame:CGRectMake(94,35,206,21)];
+            label.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), self.user[@"location"]];
+            label.font = [UIFont systemFontOfSize:13];
+            label.textColor = [UIColor darkGrayColor];
+            [cell.contentView addSubview:label];
+            
+            UITextView *descriptionView= [[UITextView alloc]initWithFrame:CGRectMake(88,53,302,29)];
+            descriptionView.text = [NSString stringWithFormat:NSLocalizedString(@"%@", nil), self.user[@"description"]];
+            descriptionView.font = [UIFont systemFontOfSize:13];
+            descriptionView.delegate = self;
+            [cell.contentView addSubview:descriptionView];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        else{
+            self.myMapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.myMapButton.frame = CGRectMake(0, 0, 160, 50);
+            [self.myMapButton setBackgroundImage:[MTData createImageWithColor:[UIColor colorWithWhite:0.9 alpha:0.9]] forState:UIControlStateSelected];
+            [self.myMapButton setImage:[UIImage imageNamed: @"profile_mymap"] withTitle:[NSString stringWithFormat:@"%d",self.myMapArray.count] forState:UIControlStateNormal];
+            self.myMapButton.titleLabel.textColor = [UIColor lightGrayColor];
+            [self.myMapButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateSelected];
+            //[self.myMapButton setImage:[UIImage imageNamed: @"profile_mymap"]  forState:UIControlStateNormal];
+            [self.myMapButton addTarget:self action:@selector(clickMyMapButton:) forControlEvents:UIControlEventTouchUpInside];
+            if(self.currentMap == 1)
+                [self.myMapButton setSelected:YES];
+            self.myMapButton.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.9].CGColor;
+            self.myMapButton.layer.borderWidth = 1;
+            
+            
+            [cell.contentView addSubview:self.myMapButton];
+            
+            self.collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.collectionButton.frame = CGRectMake(160, 0, 160, 50);
+            [self.collectionButton setBackgroundImage:[MTData createImageWithColor:[UIColor colorWithWhite:0.9 alpha:0.9]] forState:UIControlStateSelected];
+            [self.collectionButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            [self.collectionButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateSelected];
+            [self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] withTitle:[NSString stringWithFormat:@"%d",self.favoriteMapArray.count] forState:UIControlStateNormal];
+            //[self.collectionButton setImage:[UIImage imageNamed: @"profile_favorites"] forState:UIControlStateNormal];
+            [self.collectionButton addTarget:self action:@selector(clickFavoriteButton:) forControlEvents:UIControlEventTouchUpInside];
+            if(self.currentMap == 2)
+                [self.collectionButton setSelected:YES];
+            self.collectionButton.layer.borderColor = [UIColor colorWithWhite:0.9 alpha:0.9].CGColor;
+            self.collectionButton.layer.borderWidth = 1;
+            [cell.contentView addSubview:self.collectionButton];
+        }
     }
     else {
         MTMap *map;
         NSString *str;
         if(self.currentMap==1){
             str = @"MyMapCell";
-            map= [self.myMapArray objectAtIndex:(indexPath.row-1)];
+            map= [self.myMapArray objectAtIndex:(indexPath.row)];
         }
         else {
-            map= [self.favoriteMapArray objectAtIndex:(indexPath.row-1)];
+            map= [self.favoriteMapArray objectAtIndex:(indexPath.row)];
             str = @"CollectMapCell";
         }
          MTMapCell *cell = (MTMapCell *)[tableView dequeueReusableCellWithIdentifier:str];
@@ -371,9 +375,12 @@
      Each type of cell has a different height.
      self.model contains the data for the tableview
      */
+    if(indexPath.section==0){
+         if (indexPath.row==0)
+              return 100;
+         else return 50;
+    }
     
-    if (indexPath.row == 0)
-        return 146;
     else
         return 185;
     
@@ -386,12 +393,12 @@
         
         NSArray *places;
         if(self.currentMap ==1){
-            MTMap *map = [self.myMapArray objectAtIndex:indexPath.row-1];
+            MTMap *map = [self.myMapArray objectAtIndex:indexPath.row];
             places = map.placeArray;
             destViewController.mapData = map;
         }
         else {
-            MTMap *map = [self.favoriteMapArray objectAtIndex:indexPath.row-1];
+            MTMap *map = [self.favoriteMapArray objectAtIndex:indexPath.row];
 
             places = map.placeArray;
 
