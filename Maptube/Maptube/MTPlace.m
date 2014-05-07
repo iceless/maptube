@@ -11,6 +11,11 @@
 //#import <Parse/Parse.h>
 
 @implementation MTPlace
+@dynamic title;
+@dynamic longitude;
+@dynamic latitude;
+@dynamic venueId;
+@dynamic venueAddress;
 
 -(void)getDataByVenue:(FSVenue *)venue{
    
