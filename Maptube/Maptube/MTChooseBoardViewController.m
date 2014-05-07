@@ -288,6 +288,7 @@
                 NSData *imageData = [picObject getData];
                 imgView.image = [UIImage imageWithData:imageData];
             }
+            else imgView.image = [UIImage imageNamed:@"No-picture.jpg"];
         }
         
         
@@ -297,11 +298,16 @@
         if(map.placeArray.count!=0){
         MTPlace *place = map.placeArray[0];
         AVFile *picObject = place.placePhotos[0];
-        NSData *imageData = [picObject getData];
-        imgView.image = [UIImage imageWithData:imageData];
-
-        label.text = map.mapObject[Title];
+        if(picObject){
+            NSData *imageData = [picObject getData];
+            imgView.image = [UIImage imageWithData:imageData];
         }
+        else imgView.image = [UIImage imageNamed:@"No-picture.jpg"];
+        
+        
+        }
+        else imgView.image = [UIImage imageNamed:@"No-picture.jpg"];
+        label.text = map.mapObject[Title];
     }
    
     return cell;
@@ -322,28 +328,6 @@
         return;
         
     }
-    
-    
-    /*
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-  
-    NSMutableDictionary *dict = [[self.boardArray objectAtIndex:indexPath.row] mutableCopy];
-  
-    
-    if(cell.accessoryType==UITableViewCellAccessoryCheckmark){
-        [dict setObject:@"0" forKey:@"exsist"];
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        
-    }
-    else {
-       
-        [dict setObject:@"1" forKey:@"exsist"];
-        cell.accessoryType=UITableViewCellAccessoryCheckmark;
-    }
-    */
-   // [self.boardArray replaceObjectAtIndex:indexPath.row withObject:dict];
-    
   
     MTMap *map = [self.mapArray objectAtIndex:indexPath.row];
     if(map==self.map){
