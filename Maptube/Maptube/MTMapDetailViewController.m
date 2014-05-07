@@ -82,9 +82,14 @@
    
 
     
-    
-   
-    CGSize expectedSize = [MTData getSizebyString:[self.mapData.mapObject objectForKey:Description]];
+    CGSize expectedSize;
+    NSString *descriptionText = [self.mapData.mapObject objectForKey:Description];
+    if(descriptionText.length==0) {
+        expectedSize = CGSizeMake(0, 60);
+    }
+    else {
+        expectedSize = [MTData getSizebyString:[self.mapData.mapObject objectForKey:Description]];
+    }
     self.storyViewHeight = expectedSize.height+115;
     self.storyView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, expectedSize.height+115) style:UITableViewStylePlain];
     self.storyView.hidden = YES;
@@ -244,7 +249,9 @@
 {
     if(tableView == self.storyView){
         if(indexPath.row==1){
-            CGSize expectedSize = [MTData getSizebyString:[self.mapData.mapObject objectForKey:Description]];
+            NSString *descriptionText = [self.mapData.mapObject objectForKey:Description];
+            if(descriptionText.length==0) return 100;
+            CGSize expectedSize = [MTData getSizebyString:descriptionText];
             return expectedSize.height+40;
         }
         else return 40;
@@ -285,28 +292,31 @@
                 [button addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
                 [button setImage:[UIImage imageNamed:@"favorites_normal"] forState:UIControlStateNormal];
                 [button setImage:[UIImage imageNamed:@"favorites_active"] forState:UIControlStateSelected];
-                
-                
             }
-
-            
-          
             
             [cell.contentView addSubview:button];
         }
         else if(indexPath.row==1){
-            UILabel *descriptionLabel = [[UILabel alloc] init];
-            descriptionLabel.font = [UIFont systemFontOfSize:12];
-            descriptionLabel.text = [self.mapData.mapObject objectForKey:Description];;
-            descriptionLabel.numberOfLines = 0;
-            CGSize maximumLabelSize = CGSizeMake(310, 300);
-            CGSize expectedSize = [descriptionLabel sizeThatFits:maximumLabelSize];
-            descriptionLabel.frame = CGRectMake(25, 20, 310, expectedSize.height);
-            UILabel *quota = [[UILabel alloc]initWithFrame:CGRectMake(5, 10, 20, 30)];
-            quota.text = @"“";
-            quota.font = [UIFont systemFontOfSize:24];
-            [cell.contentView addSubview:descriptionLabel];
-            [cell.contentView addSubview:quota];
+            NSString *descriptionText = [self.mapData.mapObject objectForKey:Description];
+            if(descriptionText.length!=0){
+                UILabel *descriptionLabel = [[UILabel alloc] init];
+                descriptionLabel.font = [UIFont systemFontOfSize:12];
+                descriptionLabel.text = descriptionText;
+                descriptionLabel.numberOfLines = 0;
+                CGSize maximumLabelSize = CGSizeMake(310, 300);
+                CGSize expectedSize = [descriptionLabel sizeThatFits:maximumLabelSize];
+                descriptionLabel.frame = CGRectMake(25, 20, 310, expectedSize.height);
+                UILabel *quota = [[UILabel alloc]initWithFrame:CGRectMake(5, 10, 20, 30)];
+                quota.text = @"“";
+                quota.font = [UIFont systemFontOfSize:24];
+                [cell.contentView addSubview:descriptionLabel];
+                [cell.contentView addSubview:quota];
+            }
+            else{
+                UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(120, 15, 80, 70)];
+                imgView.image = [UIImage imageNamed:@"no_story.png"];
+                [cell.contentView addSubview:imgView];
+            }
         }
         else{
             
@@ -317,7 +327,7 @@
             
             label = (UILabel *)[cell viewWithTag:2];
             label.text = [NSString stringWithFormat:@"%d",self.mapData.collectUsers.count];
-            
+            //城市信息
             
             /*
             UILabel *label = [[UILabel alloc]init];
@@ -345,7 +355,7 @@
     }
     static NSString *CellIdentifier = @"PlaceSummaryCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor whiteColor];
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     MTPlace *place = self.placeArray[indexPath.row];
     
@@ -358,7 +368,7 @@
     label = (UILabel *)[cell viewWithTag:3];
     label.text = place.venueAddress;
     
-    if(indexPath.row==0) cell.backgroundColor = [UIColor yellowColor];
+    //if(indexPath.row==0) cell.backgroundColor = [UIColor colorWithRed:232.0/255 green:249.0/255 blue:254.0/255 alpha:1];
     //UIImageView *imageView = (UIImageView *)[cell viewWithTag:2];
    
     return cell;
@@ -409,7 +419,8 @@
             cell.backgroundColor = [UIColor whiteColor];
         }
         UITableViewCell *cell = cellArray[0];
-        cell.backgroundColor = [UIColor yellowColor];
+        cell.backgroundColor = [UIColor colorWithRed:232.0/255 green:249.0/255 blue:254.0/255 alpha:1];
+
         
         NSIndexPath *path = [self.tableView indexPathForCell:cell];
         MTPlace *place = self.placeArray[path.row];
@@ -425,8 +436,6 @@
             }
             
         }
-        
-        
         
     }
     
