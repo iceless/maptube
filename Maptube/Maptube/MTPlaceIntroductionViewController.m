@@ -106,6 +106,10 @@
     
 }
 
+-(void)navBack{
+    [super navBack];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];

@@ -98,7 +98,6 @@
 		5E9A669318C029F5005E5169 /* MTSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A669218C029F5005E5169 /* MTSignUpViewController.m */; };
 		5E9ACD0818C5D49700E2F941 /* MTData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ACD0718C5D49700E2F941 /* MTData.m */; };
 		5E9B4CF918B1BEAE00D9D6A3 /* MTEditDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */; };
-		5E9B4CFE18B1F3E100D9D6A3 /* MTBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */; };
 		5E9B4D1318B1FE3B00D9D6A3 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D0118B1FE3B00D9D6A3 /* AFHTTPClient.m */; };
 		5E9B4D1418B1FE3B00D9D6A3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D0318B1FE3B00D9D6A3 /* AFHTTPRequestOperation.m */; };
 		5E9B4D1518B1FE3B00D9D6A3 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9B4D0518B1FE3B00D9D6A3 /* AFImageRequestOperation.m */; };
@@ -299,8 +298,6 @@
 		5E9ACD0718C5D49700E2F941 /* MTData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTData.m; sourceTree = "<group>"; };
 		5E9B4CF718B1BEAE00D9D6A3 /* MTEditDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTEditDetailViewController.h; sourceTree = "<group>"; };
 		5E9B4CF818B1BEAE00D9D6A3 /* MTEditDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTEditDetailViewController.m; sourceTree = "<group>"; };
-		5E9B4CFC18B1F3E100D9D6A3 /* MTBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTBoardViewController.h; sourceTree = "<group>"; };
-		5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTBoardViewController.m; sourceTree = "<group>"; };
 		5E9B4D0018B1FE3B00D9D6A3 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		5E9B4D0118B1FE3B00D9D6A3 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		5E9B4D0218B1FE3B00D9D6A3 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -418,8 +415,6 @@
 				5E95917518ADF78E0097B6BC /* MTAddCollectionViewController.m */,
 				5E62BB8C18B602C30061A48C /* MTEditBoardViewController.h */,
 				5E62BB8D18B602C30061A48C /* MTEditBoardViewController.m */,
-				5E9B4CFC18B1F3E100D9D6A3 /* MTBoardViewController.h */,
-				5E9B4CFD18B1F3E100D9D6A3 /* MTBoardViewController.m */,
 				5E963D4718FB8B3000132DF6 /* MTMapDetailViewController.h */,
 				5E963D4818FB8B3000132DF6 /* MTMapDetailViewController.m */,
 				5E85E19318B483A000A2A172 /* MTTableView.h */,
@@ -787,7 +782,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MT;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Bing W";
 				TargetAttributes = {
 					56F1CAE21867DEEB008498DF = {
@@ -917,7 +912,6 @@
 			files = (
 				5E9B4D1918B1FE3B00D9D6A3 /* AFURLConnectionOperation.m in Sources */,
 				5E95914E18ADE6260097B6BC /* MTAddPlaceViewController.m in Sources */,
-				5E9B4CFE18B1F3E100D9D6A3 /* MTBoardViewController.m in Sources */,
 				56F1CAF31867DEEB008498DF /* main.m in Sources */,
 				5E99478118E94CF300F0D938 /* MTPlaceImageViewController.m in Sources */,
 				56F1CB371869869D008498DF /* MTProfileViewController.m in Sources */,
@@ -1027,7 +1021,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1066,7 +1059,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1099,10 +1091,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Huang Vivian (6V256SAU88)";
@@ -1130,10 +1118,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -1160,7 +1144,6 @@
 		56F1CB1C1867DEEB008498DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Maptube.app/Maptube";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1183,7 +1166,6 @@
 		56F1CB1D1867DEEB008498DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Maptube.app/Maptube";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

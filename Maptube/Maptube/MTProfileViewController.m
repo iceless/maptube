@@ -10,7 +10,6 @@
 #import <MapKit/MapKit.h>
 #import "MTProfileViewController.h"
 #import "MTAddCollectionViewController.h"
-#import "MTBoardViewController.h"
 #import "FSConverter.h"
 #import "MTPlace.h"
 #import "MTEditBoardViewController.h"

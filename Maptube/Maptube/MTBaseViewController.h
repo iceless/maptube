@@ -11,4 +11,5 @@
 @interface MTBaseViewController : UIViewController
 -(void)setExtraCellLineHidden: (UITableView *)tableView;
 -(void)useCustomBackBarButtonItem;
+-(void)navBack;
 @end

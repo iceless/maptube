@@ -11,11 +11,9 @@
 @implementation UIButton (UIButtonImageWithLabel)
 
 - (void) setImage:(UIImage *)image withTitle:(NSString *)title forState:(UIControlState)stateType {
-    //UIEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right)
     
-    CGSize titleSize = [title sizeWithFont:[UIFont systemFontOfSize:12.0]];
     
-     [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
     [self.imageView setContentMode:UIViewContentModeCenter];
     [self setImageEdgeInsets:UIEdgeInsetsMake(0.0,
                                               0.0,
