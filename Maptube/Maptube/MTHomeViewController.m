@@ -35,13 +35,9 @@
 	// Do any additional setup after loading the view.
     self.title = @"Home";
     UIBarButtonItem *searchItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(showSearch)];
-   
     self.navigationItem.rightBarButtonItem = searchItem;
-    
-    
     self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, 320, 44)];
     self.searchBar.delegate = self;
-    //[self.view addSubview:self.searchBar];
     [self.navigationController.view addSubview:self.searchBar];
     self.searchBar.backgroundImage = [self createImageWithColor:[UIColor clearColor]];
     self.searchBar.hidden = YES;
@@ -62,7 +58,6 @@
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTableView) name:RefreshTableViewNotification object:nil];
-
      [self updateMap];
 }
 
@@ -228,17 +223,13 @@
        
         CGRect placeRect = [MTPlace updateMemberPins:array];
         CLLocationCoordinate2D coodinate = CLLocationCoordinate2DMake(placeRect.origin.x, placeRect.origin.y);
-        
-        //MTPlace *place = self.placeArray[0];
         int distance = placeRect.size.width;
         distance = MAX(1500,distance);
         distance = MIN(distance, 15000000);
-        
-        //MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(coodinate,distance,distance);
-        float zoom=12;
+        float zoom=distance/1500*12;
         NSString *markStr = @"/";
         for (MTPlace *place in array){
-            NSString *str = [NSString stringWithFormat:@"pin-m+36C(%f,%f),",place.longitude.doubleValue,place.latitude.doubleValue];
+            NSString *str = [NSString stringWithFormat:@"pin-s+36C(%f,%f),",place.longitude.doubleValue,place.latitude.doubleValue];
             markStr = [markStr stringByAppendingString:str];
         }
         markStr = [markStr substringToIndex:([markStr length]-1)];
@@ -249,13 +240,9 @@
         [cell.mapImageView addGestureRecognizer:singleTapRecognizer];
         cell.mapImageView.tag = indexPath.row;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        // [mapView setRegion:region animated:TRUE];
-        //[mapView addAnnotations:array];
+
     }
 
-    
-   
-    
     return cell;
 }
 
@@ -272,7 +259,6 @@
         [self searchBarTextDidEndEditing:self.searchBar];
         if(indexPath.row<self.mapSearchArray.count){
             MTMap *map = [self.mapSearchArray objectAtIndex:indexPath.row];
-            
             MTMapDetailViewController *viewController = [[MTMapDetailViewController alloc] init];
             viewController.mapData = map;
             viewController.placeArray = map.placeArray;

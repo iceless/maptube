@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Mapbox.h"
 
-@interface MTAddPlaceViewController : UIViewController<CLLocationManagerDelegate,RMMapViewDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>{
+@interface MTAddPlaceViewController : MTBaseViewController<CLLocationManagerDelegate,RMMapViewDelegate,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>{
    
 }
 @property (strong, nonatomic) RMMapView  *mapView;

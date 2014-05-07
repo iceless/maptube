@@ -33,7 +33,6 @@
 {
     [super loadView];
     
-    
 }
 
 - (void)viewDidLoad
@@ -48,24 +47,21 @@
     self.mapView.delegate = self;
     self.mapView.showsUserLocation = YES;
     self.mapView.userTrackingMode = RMUserTrackingModeFollow;
-    
-    
-    
     [self.view addSubview:self.mapView];
     
    
     
     self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, 320, 44)];
     self.searchBar.delegate = self;
-    //[self.view addSubview:self.searchBar];
     [self.navigationController.view addSubview:self.searchBar];
-    self.searchBar.tag = 1;
+    self.searchBar.tag = 3;
     self.searchBar.backgroundImage = [self createImageWithColor:[UIColor clearColor]];
     self.searchBar.placeholder = @"Find a place";
     
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 226, self.view.frame.size.width, self.view.frame.size.height-226-50)];
     self.table.delegate =self;
     self.table.dataSource = self;
+    [self setExtraCellLineHidden:self.table];
     [self.view addSubview:self.table];
     
     self.locationManager =[[CLLocationManager alloc] init];
@@ -73,18 +69,15 @@
     self.locationManager.desiredAccuracy=kCLLocationAccuracyBest;
     self.locationManager.distanceFilter=10.0f;
     [self.locationManager startUpdatingLocation];
-     
-    //NSLog(@"%f,%f,%f,%f",self.mapView.frame.origin.x,self.mapView.frame.origin.y,self.mapView.frame.size.width,self.mapView.frame.size.height);
     
-    //self.table.tableFooterView = self.footer;
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = false;
+    UISearchBar *searchbar = (UISearchBar *)[self.navigationController.view viewWithTag:3];
+    searchbar.hidden = NO;
     [self.navigationController setNavigationBarHidden:false];
     
-    UISearchBar *searchbar = (UISearchBar *)[self.navigationController.view viewWithTag:1];
-    searchbar.hidden = NO;
-
 }
 
 - (UIImage *)createImageWithColor: (UIColor *) color
@@ -108,8 +101,6 @@
     NSLog(@"newLocation:%@",[newLocation description]);
     [manager stopUpdatingLocation];
     self.curLocation = newLocation;
-    //设置显示区域
-    //MKCoordinateRegion region=MKCoordinateRegionMakeWithDistance(newLocation.coordinate,2000 ,2000 );
     [self.mapView setCenterCoordinate:newLocation.coordinate];
     [self getVenuesForLocation:newLocation andquery:nil];
     [self.locationManager stopUpdatingLocation];
@@ -125,10 +116,7 @@
     
     RMMarker *marker;
     marker = [[RMMarker alloc] initWithUIImage:[UIImage imageNamed:@"location_blue.png"]];
-    
-    
     marker.canShowCallout = YES;
-    
     return marker;
 }
 
@@ -266,21 +254,6 @@
         [self.navigationController pushViewController:controller animated:YES];
         
     }];
-/*
-    
-    //NSLog(@"%@",venue.venueId);
-    [AFHelper AFConnectionWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/%@?client_id=XNXP3PLBA3LDVIT3OFQVWYQWMTHKIJHFWWSKRZJMVLXIJPUJ&client_secret=GYZFXWJVXBB1B2BFOQDKWJAQ4JXA5QIJNKHOJJHCRYRC0KWZ&v=20131109",venue.venueId]] andStr:nil compeletion:^(id data){
-        //获取Foursquare venue信息
-        NSDictionary *dict = data;
-        dict = [dict objectForKey:@"response"];
-        dict = [dict objectForKey:@"venue"];
-        MTPlaceIntroductionViewController *controller = [[MTPlaceIntroductionViewController  alloc]initWithData:dict AndVenue:venue];
-        [self.navigationController pushViewController:controller animated:YES];
-        
-        
-    }];
-    
-    */
 
 }
 

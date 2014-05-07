@@ -34,13 +34,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.tabBarController.tabBar.hidden = true;
-    
     self.imageUrlArray = [[NSMutableArray alloc]init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(closeChooseBoardView) name:CloseChooseBoardNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showEditPlacePhotoView) name:PopUpEditPlacePhotoNotification object:nil];
     self.boardArray = [NSMutableArray array];
-
 
     self.chooseBoardView = [[MTChooseBoardViewController alloc]initWithImage:nil AndVenue:self.venue];
     self.chooseBoardView.place = self.place;
@@ -60,8 +57,6 @@
     self.scrollView.showsHorizontalScrollIndicator =NO;
     [self.view addSubview:self.scrollView];
     
-    
-   
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(5, 240, 310, 270)];
     self.table.delegate = self;
     self.table.dataSource = self;
@@ -102,7 +97,7 @@
     
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
-    UISearchBar *searchbar = (UISearchBar *)[self.navigationController.view viewWithTag:1];
+    UISearchBar *searchbar = (UISearchBar *)[self.navigationController.view viewWithTag:3];
     searchbar.hidden = YES;
 }
 
@@ -124,7 +119,6 @@
                 NSString *str= [picDict objectForKey:@"prefix"];
                 str = [str stringByAppendingString:@"300x300"];
                 str = [str stringByAppendingString:[picDict objectForKey:@"suffix"]];
-                //NSLog(@"%@",str);
                 UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 200)] ;
                 [imgView setImageWithURL:[NSURL URLWithString:str]];
                 [self.scrollView addSubview:imgView];
@@ -208,10 +202,10 @@
 
 
 -(void)showMap{
+    
     MTMapViewController *viewController = [[MTMapViewController alloc]init];
     viewController.venue = self.venue;
     viewController.place = self.place;
-    
     [self.navigationController pushViewController:viewController animated:YES];
     
 }
@@ -284,7 +278,6 @@
 -(void)showEditPlacePhotoView{
     MTEditPlacePhotoViewController *viewController = [[MTEditPlacePhotoViewController alloc]init];
     viewController.imageStrArray = self.imageUrlArray;
-    //viewController.placeName = self.venue.name;
     if(self.venue)
     viewController.location = self.venue.location.address;
     else viewController.location = self.place.venueAddress;
@@ -293,15 +286,13 @@
 }
 
 -(IBAction)pin:(id)sender {
-    //to do
-    //MTChooseBoardViewController *controller = [[MTChooseBoardViewController alloc]initWithImage:self.iconImageView.image AndVenue:self.venue];
+    
     
     UIView *view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:101];
     view.hidden = false;
     view = (UIView *)[[UIApplication sharedApplication].keyWindow viewWithTag:102];
     view.hidden = false;
-    
-    //[self.navigationController pushViewController:controller animated:YES];
+
     
 }
 

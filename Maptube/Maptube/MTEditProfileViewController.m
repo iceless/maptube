@@ -97,13 +97,9 @@
     UITableViewCell *cell;
     
     if(indexPath.section == 0){
-       // static NSString *CellIdentifier = @"profilepiccell";
+       
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        /*
-        UILabel *label =[[UILabel alloc]initWithFrame:CGRectMake(96, 32, 143, 21)];
-        label.text = @"Profile Picture";
-        [cell.contentView addSubview:label];
-         */
+       
         UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(120, 3, 80, 80)];
         imgv.image = [MTData sharedInstance].iconImage;
         imgv.layer.masksToBounds = YES;
@@ -111,12 +107,9 @@
         [cell.contentView addSubview:imgv];
 
     } else if(indexPath.section == 1){
-        //static NSString *CellIdentifier = @"detailcell";
-        //cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        
-        //if (cell == nil) {
+       
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        //}
+      
         if(indexPath.row!=3){
             UITextField *textField= [[UITextField alloc]initWithFrame:CGRectMake(150,5,302,29)];
             textField.text = self.values[indexPath.row];
@@ -130,22 +123,19 @@
             [cell.contentView addSubview:label];
             
         }
-        //UILabel *label = (UILabel *)[cell.contentView viewWithTag:1];
-       //UILabel *labelValue = (UILabel *)[cell.contentView viewWithTag:2];
-        //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+       
 
         cell.textLabel.text = self.fields[indexPath.row];
-        //cell.detailTextLabel.text = self.values[indexPath.row];
+        
     }
-    // Configure the cell...
+   
     
     return cell;
 }
  
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //#warning Incomplete method implementation.
-    // Return the number of rows in the section.
+    
     NSInteger num = 0;
     if (section == 0) {
         num = 1;
@@ -171,7 +161,7 @@
      self.model contains the data for the tableview
      */
     
-    //static NSString *cellIdentifier;
+  
     if (indexPath.section == 0)
         return 100;
     else

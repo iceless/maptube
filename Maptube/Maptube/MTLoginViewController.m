@@ -73,6 +73,7 @@
             if (user) {
                 [[[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login Success", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil] show];
                 [self dismissViewControllerAnimated:YES completion:NULL];
+                [MTData sharedInstance];
                 return;
                 
             }else{

@@ -62,11 +62,8 @@
     self.pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     self.pageControl.currentPage = 0;
     self.pageControl.numberOfPages = [self.imageUrlArray count];
-    //[self.pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_pageControl];
     [self setEdgesForExtendedLayout:UIRectEdgeNone];
-    
-    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(back:)];
     [self.view addGestureRecognizer:tap];
 }
