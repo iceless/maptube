@@ -55,18 +55,14 @@
     [[UIApplication sharedApplication].keyWindow addSubview:greyView];
     [[UIApplication sharedApplication].keyWindow addSubview:self.chooseBoardView.view];
     
-    
-    
-    //NSDictionary *categoryDict = [self.placeData objectForKey:@"catogories"];
-    //add scroll view
-    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
+    self.scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, 320, 200)];
     [self.scrollView setPagingEnabled:YES];
     self.scrollView.showsHorizontalScrollIndicator =NO;
     [self.view addSubview:self.scrollView];
     
     
    
-    self.table = [[UITableView alloc]initWithFrame:CGRectMake(5, 205, 310, 270) style:UITableViewStyleGrouped];
+    self.table = [[UITableView alloc]initWithFrame:CGRectMake(5, 240, 310, 270)];
     self.table.delegate = self;
     self.table.dataSource = self;
     [self.view addSubview:self.table];
@@ -74,28 +70,20 @@
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.table setSeparatorInset:UIEdgeInsetsZero];
     }
+    [self setExtraCellLineHidden:self.table];
     
-    
-    
-  
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(220, 175, 36, 36);
+    button.frame = CGRectMake(220, 205, 36, 36);
    
     if([self.map.author.objectId isEqualToString:[AVUser currentUser].objectId]){
         [button setImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(showEditPlacePhotoView) forControlEvents:UIControlEventTouchUpInside];
     }
-   // else {
-    //    [button setTitle:@"Pin" forState:UIControlStateNormal];
-    //    [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
-   // }
     else{
         [button setImage:[UIImage imageNamed:@"pin_active"] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(pin:) forControlEvents:UIControlEventTouchUpInside];
     }
     [self.view addSubview:button];
-   
-    
     [self initData];
     UIButton *b=[UIButton buttonWithType:UIButtonTypeCustom];
     b.frame=CGRectMake(5, 30, 24, 24);
@@ -137,7 +125,7 @@
                 str = [str stringByAppendingString:@"300x300"];
                 str = [str stringByAppendingString:[picDict objectForKey:@"suffix"]];
                 //NSLog(@"%@",str);
-                UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 160)] ;
+                UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 200)] ;
                 [imgView setImageWithURL:[NSURL URLWithString:str]];
                 [self.scrollView addSubview:imgView];
                 [self.imageUrlArray addObject:str];
@@ -153,23 +141,9 @@
                 
                 AVFile *picObject = self.place.placePhotos[i];
                 NSData *imageData = [picObject getData];
-                UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 160)] ;
+                UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 200)] ;
                 [imgView setImage:[UIImage imageWithData:imageData]];
                 [self.scrollView addSubview:imgView];
-                
-                /*
-                AVQuery *query =[AVQuery queryWithClassName:@"_File"];
-                [query whereKey:@"objectId" equalTo:picObject.objectId];
-                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                    AVFile *file = objects[0];
-                    NSData *imageData = [file getData];
-                    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(i*320,0, 320, 160)] ;
-                    [imgView setImage:[UIImage imageWithData:imageData]];
-                    [self.scrollView addSubview:imgView];
-
-                }];
-                */
-                
             }
         picArray = self.place.placePhotos;
     }
@@ -177,14 +151,12 @@
         
     if(array.count!=0||self.place.placePhotos.count!=0){
 
-        self.scrollView.contentSize = CGSizeMake(picArray.count*320, 160) ;
+        self.scrollView.contentSize = CGSizeMake(picArray.count*320, 180) ;
         self.scrollView.delegate = self;
         
         UITapGestureRecognizer *sigleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickImage:)];
         [self.scrollView addGestureRecognizer:sigleTapRecognizer];
-        //[self.view addSubview:self.scrollView];
-        //add pageControl
-        
+    
         self.pageControl = [[UIPageControl alloc] init];
         
         self.pageControl.frame = CGRectMake(150, 140, 20, 20);
@@ -201,13 +173,13 @@
     }
     
     else{
-        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 180)];
+        UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 200)];
         imgView.image = [UIImage imageNamed:@"No-Picture.jpg"];
         [self.view addSubview:imgView];
     }
     self.chooseBoardView.imageUrlArray = self.imageUrlArray;
     self.chooseBoardView.map = self.map;
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 170, 160, 40)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 200, 200, 20)];
     if(self.venue){
         titleLabel.text = self.venue.name;
         self.chooseBoardView.place = [MTPlace objectWithClassName:Place];
@@ -219,6 +191,17 @@
     }
     titleLabel.font = [UIFont systemFontOfSize:14];
     [self.view addSubview:titleLabel];
+    
+    UILabel *addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 220, 215, 20)];
+    addressLabel.textColor = [UIColor lightGrayColor];
+    if(self.venue){
+       addressLabel.text = self.venue.location.address;
+    }
+    else {
+        addressLabel.text = self.place.venueAddress;
+    }
+    addressLabel.font = [UIFont systemFontOfSize:14];
+    [self.view addSubview:addressLabel];
     [self.table reloadData];
     
 }
@@ -326,7 +309,12 @@
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    
+    if(self.map){
+        return 3;
+    }
+
+    return 1;
        
 }
 
@@ -337,8 +325,8 @@
     UITableViewCell *cell;
     
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    if(indexPath.section==0){
-        if(indexPath.row==0) {
+    
+    if(indexPath.row==0) {
             CLLocationCoordinate2D coordinate;
             if(self.venue) coordinate = self.venue.coordinate;
             else coordinate = CLLocationCoordinate2DMake(self.place.latitude.doubleValue, self.place.longitude.doubleValue);
@@ -355,14 +343,7 @@
             [cell.contentView addSubview:mapImgView];
             
         }
-        else{
-            cell.textLabel.text = self.venue.location.address;
-        
-        }
-        
-    }
-    else{
-        if(indexPath.row==0) {
+    else if(indexPath.row==1) {
             UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, 30, 30)];
             [cell.contentView addSubview:imgView];
             imgView.image = self.map.authorImage;
@@ -378,7 +359,7 @@
             label.text = [self.map.author objectForKey:@"username"];
             [cell.contentView addSubview:label];
         }
-        else{
+    else{
             
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(40, 5, 70, 20)];
             label.text = @"Pinned in";
@@ -391,32 +372,20 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             
         }
-        
-    }
-   
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==0){
-        if(indexPath.row==0)
+    
+   if(indexPath.row==0)
         return 120;
-        else return 30;
-    }
-    return 40;
+    
+   return 40;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if(self.map){
-        return 2;
-    }
-    return 1;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 1;
-    
-}
+
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section==1&&indexPath.row!=0){
